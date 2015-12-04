@@ -58,7 +58,6 @@ public class MemberController {
 	
 	@RequestMapping("registerview.do")
 	public String registerview() {
-		//ȸ������â form ���� �̵�
 		return "member_registerview";
 	}
 	
@@ -81,7 +80,7 @@ public class MemberController {
 		}
 		
 		MemberVO mvo = memberService.login(vo);
-		if(mvo!=null){ //���̵� ������
+		if(mvo!=null){
 			HttpSession session = request.getSession(true);	
 			session.setAttribute("mvo", mvo);
 			if(session.getAttribute("managerlogin")!=null) {
@@ -89,7 +88,6 @@ public class MemberController {
 			}
 			return new ModelAndView("home");
 		}else{	
-			//�α��� ����
 			return new ModelAndView("member_loginfail");
 		}
 	}
@@ -105,13 +103,11 @@ public class MemberController {
 	
 	@RequestMapping("registercancel.do")
 	public String registercancel(){
-		//ȸ������ ���
 		return "home";		
 	}
 	
 	@RequestMapping("updatecancel.do")
 	public String updatecancel(){
-		//�������� ���
 		return "home";		
 	}
 	
@@ -145,13 +141,11 @@ public class MemberController {
 		return new ModelAndView("redirect:home.do");
 	}
 	
-	//ȸ��Ż�� form ����
 	@RequestMapping("withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
 	}
 	
-	//ȸ��Ż�� ����
 	@RequestMapping("withdraw.do")
 	public String withdraw(HttpServletRequest request,MemberVO vo){
 		String reason=request.getParameter("reason");
@@ -168,7 +162,6 @@ public class MemberController {
 	////////////////////////////////////////////////////////////////////////DSF45ASDFAWE6 여기!!
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(HttpServletRequest request,HttpServletResponse response){
-		//ȸ������ form����
 /*		String pageNo=request.getParameter("pageNo");
 		ListVO list=noticeService.noticeList(pageNo);*/
 		String pageNo=request.getParameter("pageNo");

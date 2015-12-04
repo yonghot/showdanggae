@@ -2,6 +2,7 @@ member_Id 가 외래키
 member_name 은 관리자
 
 drop table message;
+
 create table message (
 	mno number primary key,
 	member_Id varchar2(100),

@@ -14,7 +14,8 @@ public class ProductDAOImpl implements ProductDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<ProductVO> getMyProductList(ProductVO pvo) {
-		return sqlSessionTemplate.selectList("product.getMyProductList", pvo);
+	public List<ProductVO> getMemberProductListForDeleteCategory(int category_id) {
+		return  sqlSessionTemplate.selectList("product.getMemberProductListForDeleteCategory", category_id);
 	}
+
 }

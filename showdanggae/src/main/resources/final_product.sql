@@ -59,13 +59,6 @@ create sequence product_seq;
 insert into product(product_id, category_id, member_id, product_name, review, detail, visiblity, regist_date)
 values(product_seq.nextval, '노트북','dd')
 
-
-
-
-
-
-
-
 create table seller_link (
 	link varchar2(100) primary key,
 	category_id number not null,
