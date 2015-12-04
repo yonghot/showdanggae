@@ -274,7 +274,9 @@ public class MemberController {
 	 */
 	@RequestMapping("onkeyupId.do")
 	public ModelAndView onkeyupId(String searchId) throws Exception{
-		//System.out.println(searchId);
+		if(searchId.equals("")) {
+			return new ModelAndView("ajaxView", "svoList", "");
+		}
 		return new ModelAndView("ajaxView", "svoList", memberService.onkeyupId(searchId));
 	}
 
