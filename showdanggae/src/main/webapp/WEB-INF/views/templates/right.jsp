@@ -6,7 +6,7 @@
 
 	$(document).ready(function(){
 	   $("#findBtn").click(function(){
-	      if($("#member_id").val()==""){
+	      if($("#inputId3").val()==""){
 	         alert("아이디를 입력해주시오");
 	         return false;
 	      }   
@@ -14,7 +14,7 @@
 	});
 	
 	function onKeyup(){
-		var min = $("#member_id").val();
+		var min = $("#inputId3").val();
 		 $.ajax({
 	         type:"POST",
 	         url:"onkeyupId.do",
@@ -42,7 +42,7 @@
 	            	<input type="hidden" name="sessionId" value="${sessionScope.mvo.member_id}">
 	                <input type="text" class="form-control" id="inputId3" name="member_id" placeholder="아이디 입력" onkeyup="onKeyup()">
 	                <br>
-	                <input class="active btn btn-danger btn-sm" type="submit" value="검색">
+	                <input class="active btn btn-danger btn-sm" type="submit" value="검색" id="findBtn">
 	                <span id="searchIdView"></span>
 	            </div>
 	        </div>
