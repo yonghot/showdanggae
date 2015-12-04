@@ -191,34 +191,79 @@ public class MemberController {
 	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-	
+	/**
+	 * 	(right 부분)
+	 * 	검색하고자 하는 친구의 ID를 검색하는 메서드
+	 * 	검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
+	 * @param member_id
+	 * @param sessionId
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("findMemberById.do")
 	public ModelAndView findMemberById(String member_id, String sessionId) throws Exception{
 		return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
 	}
-
+	
+	/**
+	 * 	(right 부분)
+	 * 	친구 ID 검색 후, 팔로잉을 하는 메서드
+	 * 	'+팔로우' 버튼 클릭과 동시에 친구추가가 되고 'v팔로잉' 버튼으로 변경된다.
+	 * @param fvo
+	 * @throws Exception
+	 */
 	@RequestMapping("add.do")
 	public void addFollow(FollowVO fvo) throws Exception {
 		memberService.addFollow(fvo);
 	}
 	
+	/**
+	 * 	(right 부분)
+	 * 	팔로잉한 친구를 팔로잉 취소하는 메서드
+	 * 	'v팔로잉' 버튼 클릭과 동시에 친구삭제가 되고 '+팔로우' 버튼으로 변경된다.
+	 * @param vo
+	 * @throws Exception
+	 */
 	@RequestMapping("delete.do")
 	public void deleteFollow(FollowVO vo) throws Exception {
 		memberService.deleteFollow(vo);
 	}
 	
+	/**
+	 * 	(right 부분)
+	 * 	팔로잉 버튼 클릭시
+	 * 	내가 following 한 친구 리스트를 보여준다.
+	 * @param member_id
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("findFollowingId.do")
 	public ModelAndView findFollowingId(String member_id) throws Exception {
 		List<FollowVO> list = memberService.findFollowingId(member_id);
 		return new ModelAndView("follow_followingid", "followingList", list);
 	}
 
+	/**
+	 * 	(right 부분)
+	 * 	팔로워 버튼 클릭시
+	 * 	나를 following 한 친구 리스트를 보여준다.
+	 * @param member_id
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("findFollowerId.do")
 	public ModelAndView findFollowerId(String member_id) throws Exception {
 		List<FollowVO> list = memberService.findFollowerId(member_id);
 		return new ModelAndView("follow_followerid", "followerList", list);
 	}
 	
+	/**
+	 * 	(right 부분)
+	 * 	친구 ID 검색시 입력한 검색어가 포함된 ID들을 실시간으로 보여준다.
+	 * @param searchId
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("onkeyupId.do")
 	public ModelAndView onkeyupId(String searchId) throws Exception{
 		//System.out.println(searchId);
