@@ -6,7 +6,7 @@
 
 	$(document).ready(function(){
 	   $("#findBtn").click(function(){
-	      if($("#inputId3").val()==""){
+	      if($("#Id3").val()==""){
 	         alert("아이디를 입력해주시오");
 	         return false;
 	      }   
