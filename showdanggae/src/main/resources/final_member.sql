@@ -1,4 +1,6 @@
 
+-- 테이블 생성 순서 : member -> member_category -> main_category ->  product -> item -> 나머지
+
 drop table member cascade constraint;
 create table member(
 	member_id varchar2(100) primary key,
@@ -9,15 +11,18 @@ create table member(
 	report number default 0
 );
 
-delete from member;
-
 select * from member;
 
--- 테이블 생성 순서 : member -> member_category -> main_category ->  product -> item -> 나머지
+delete from member;
+
+
+
 
 -- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 insert into member (member_Id,password,member_name,email,birthday) values ('java','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
+insert into member (member_Id,password,member_name,email,birthday) values ('java1','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
+insert into member (member_Id,password,member_name,email,birthday) values ('java2','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('admin','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
 
 
@@ -60,7 +65,6 @@ delete from member where member_Id='java';
 
  
 delete from member where member_Id='javaKING';
-
 
 
 

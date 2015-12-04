@@ -27,9 +27,6 @@ delete from follow;
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
 
-insert into follow(following_da;
-insert into follow(following_date,following,follower)
-values('2015-01-01','java10','java');
 insert into follow(following_date,following,follower)
 values('2015-01-01','java10','java');
 insert into follow(following_date,following,follower)

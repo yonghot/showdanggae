@@ -1,5 +1,8 @@
 
+-- 테이블 생성 순서 : member -> member_category -> main_category ->  product -> item -> 나머지
+
 -- main_category
+drop table main_category cascade constraint;
 create table main_category (
 	category varchar2(100) primary key
 );
@@ -12,6 +15,7 @@ insert into main_category(category) values('화장품');
 
 
 -- member_category
+drop table member_category cascade constraint;
 create table member_category (
 	category_id number primary key,
 	category varchar2(100) not null,
@@ -28,14 +32,8 @@ insert into member_category(category_id, category,member_id) values(member_categ
 insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','dd');
 insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','dd');
 
-create table member_category (
-	category_id number primary key,
-	category varchar2(100) not null,
-	member_id varchar2(100) not null,
-	constraint fk_category_main foreign key(category) references main_category(category),
-	constraint fk_category_member_id foreign key(member_id) references member(member_id)
-);
 
+drop table interest;
 create table interest (
 	category varchar2(100) not null,
 	member_id varchar2(100) not null,
@@ -44,6 +42,9 @@ create table interest (
 	constraint pk_interest primary key (category, member_id)
 );
 
+insert into interest(category, member_id) values('노트북','java');
+insert into interest(category, member_id) values('화장품','java');
+insert into interest(category, member_id) values('노트북','dd');
 
 
 -- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
