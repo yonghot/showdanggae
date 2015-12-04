@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+<!-- select member_id,to_char(birthday,'yyMMDD') from member where member_Id='sdvaeawee'; --> 
+ <mapper namespace="message">
+ 
+ <insert id="sendMessage">
+INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno) 
+values (#{member_Id},#{message},#{spand_name},#{title},SYSDATE,message_seq.nextval)
+</insert>
+
+<select id="myMessageBox" resultType="msvo">
+select e.title, m.member_Id, e.message, e.spand_name,e.spand_date,e.mno,e.read
+from message e,member m
+where e.member_Id=m.member_Id and m.member_Id=#{value} order by e.spand_date desc
+</select>
+
+<select id="MyMessageShowPopUp" resultType="msvo">
+select e.title, m.member_Id, e.message, e.spand_name,e.spand_date,e.mno
+from message e,member m
+where e.member_Id=m.member_Id and m.member_Id=#{member_Id} and e.mno=#{mno}
+</select>
+
+<update id="messageRead">
+	update message set read=read+1 where mno=#{value}
+</update>
+
+
+
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

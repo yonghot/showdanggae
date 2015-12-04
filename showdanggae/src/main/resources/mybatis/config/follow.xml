@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+ <mapper namespace="follow">
+ 	<insert id="addFollow" parameterType="fvo">
+      insert into follow(following_date,following,follower) 
+      values(sysdate,#{following},#{follower})
+    </insert>
+	<delete id="deleteFollow" parameterType="fvo">
+    	delete from follow where following=#{following} and follower=#{follower}
+    </delete>
+    <select id="findFollowingId" parameterType="java.lang.String" resultType="fvo">
+       select following
+       from follow
+       where follower = #{value}
+    </select>
+    <select id="findFollowerId" parameterType="java.lang.String" resultType="fvo">
+       select follower
+       from follow
+       where following = #{value}
+    </select>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

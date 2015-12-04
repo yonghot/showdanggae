@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+	
+	<context:component-scan base-package="org.kosta.finalproject.controller" /><!-- controller 붙여야됨? -->
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2"></property>
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 컨트롤러에서 viewName을 ajaxView로 명시하면 아래가 동작한다. -->
+	<bean id="ajaxView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"></bean>
+	
+	<!-- Tiles ViewResolver 설정: order를 0으로 setting -->
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="order" value="0" />
+	</bean>
+
+	<!-- Tiles Framework 연동 설정 -->
+	<bean id="tilesConfig" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/spring/appServlet/tiles-*.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- file upload와 file download에 관란 설정 -->
+	
+	<!-- 파일 업로드 설정 -->
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	 <property name="defaultEncoding" value="utf-8"></property>
+	 -1은 제한 없음 , 5MB로 하고 싶으면 = 5*1024*1024
+	 <property name="maxUploadSize" value="-1"></property>
+	</bean> -->
+	
+	<!-- upload path
+	   개발시에는 workspace 경로를 주입시키고, 운영시에는 실제 서버 경로를 주입시킨다. 
+	   서버 운영시 업로드 경로 - C:\java-kosta\WAS\spring2-tomcat\webapps\springmvc26-fileupload\upload
+	 -->
+	<!-- <bean id="uploadPath" class="java.lang.String" >
+	 <constructor-arg>
+	  <value>C:\\java-kosta\\spring-workspace2\\springmvc26-fileupload\\src\\main\\webapp\\upload\\</value> value가 여기 붙어있어야 한다
+	 </constructor-arg>
+	</bean>
+	
+	<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	 <property name="order" value="1"></property>
+	</bean>
+	 -->
+	<!-- 파일다운로드를 위한 view를 설정 -->
+	<!-- <bean name="downloadView" class="org.kosta.springmvc25.controller.DownloadView"></bean> -->
+
+</beans>

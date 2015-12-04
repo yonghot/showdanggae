@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/java/org/kosta/finalproject/controller/MemberController.java=UTF-8
+encoding//src/main/java/org/kosta/finalproject/model/member/MemberPagingBean.java=UTF-8
+encoding//src/main/java/org/kosta/finalproject/model/notice/PagingBean.java=UTF-8
+encoding//src/main/resources/final_member.sql=UTF-8
+encoding//src/main/resources/final_notice.sql=ms949
+encoding//src/main/webapp/WEB-INF/views/member/update_password.jsp=UTF-8
+encoding//src/main/webapp/withdraw/withdrawreason.txt=UTF-8

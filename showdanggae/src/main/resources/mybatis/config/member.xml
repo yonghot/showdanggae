@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
+<!-- select member_id,to_char(birthday,'yyMMDD') from member where member_id='sdvaeawee'; --> 
+ <mapper namespace="member">
+ 
+ 
+ <!-- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB -->
+ 
+ <select id="idCheck" resultType="mvo">
+ select member_id,password,member_name,email,to_char(birthday)as birthday from member where member_id=#{value}
+
+ </select>
+ 
+ <insert id="register">
+insert into member (member_id,password,member_name,email,birthday) values (#{member_id},#{password},#{member_name},#{email},to_date(#{birthday},'RRMMDD'))
+
+ </insert>
+ 
+ <select id="login" resultType="mvo">
+ 	select member_id,password,member_name,email,to_char(birthday,'RRMMDD')as birthday from member where member_id=#{member_id} and password=#{password}																
+ </select>
+ 
+ <select id="adminlogin"  resultType="mvo">
+ 	select member_id,password,member_name,email,to_char(birthday,'RRMMDD')as birthday from member where member_id=#{member_id} and password=#{password}
+ </select>
+ 
+ <update id="updateMember" parameterType="mvo">
+ update member set password=#{password} , member_name=#{member_name},email=#{email},birthday=to_date(#{birthday},'RRMMDD') where member_id=#{member_id}
+ </update>
+
+ <select id="updateOk" resultType="mvo">
+ select member_id,password,member_name,email,to_char(birthday,'RRMMDD')as birthday from member where member_id=#{value}
+ </select>
+ 
+ <delete id="withdraw">
+ delete from member where member_id=#{value}
+ </delete>
+
+ <select id="memberManagerList" resultType="mvo">
+	select member_id,password,member_name,report,email,to_char(birthday,'RRMMDD')as birthday from(
+	select member_id,password,member_name,report,email,birthday,ceil(rownum/5) as page from(
+	select member_id,password,member_name,report,email,birthday from member order by member_id desc)) where page=#{value} and member_id !='admingalbage' 
+ </select>
+ 
+ <delete id="memberDelete">
+  delete from member where member_id=#{value}
+ </delete>
+ 
+ 
+ <!-- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC -->
+ 
+ <resultMap type="mvo" id="followRM">
+		<result property="followVO.following" column="following" />
+</resultMap>
+ 
+ <select id="findMemberById" resultMap="followRM">
+ 		select member_id 
+ 		from member
+ 		where member_id like '%${value}%'
+ 	</select>
+ 	
+ 	<select id="findIsFollowBySessionId" resultType="java.lang.String">
+ 		select following 
+ 		from follow
+ 		where following=#{listId} and follower=#{sessionId}
+ 	</select>
+ 	
+ 	<insert id="addFollow" parameterType="fvo">
+      insert into follow(following_date,following,follower) 
+      values(sysdate,#{following},#{follower})
+    </insert>
+    
+	<delete id="deleteFollow" parameterType="fvo">
+    	delete from follow where following=#{following} and follower=#{follower}
+    </delete>
+    
+    <select id="onkeyupId" resultType="mvo">
+ 		select member_id 
+ 		from member
+ 		where member_id like '%${value}%'
+ 	</select>
+ 
+
+<select id="getCount" resultType="int">
+		select count(*) from member
+</select>
+
+
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
