@@ -31,8 +31,20 @@ public class MemberController {
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-	
-	
+/*	
+	@RequestMapping("home.do")
+	public String home() {
+
+		return "home";
+	}*/
+
+	@RequestMapping("loginview.do")
+	public String loginpage() {
+//member_loginview
+		return "member_login";
+	}
+
+
 	@RequestMapping("idCheck.do")
 	public ModelAndView idCheck(HttpServletRequest request,
 			HttpServletResponse response, String member_Id) {
@@ -46,7 +58,10 @@ public class MemberController {
 	}
 	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo){
+	
+
 		MemberVO insertVO=memberService.register(vo);
+	
 		return new ModelAndView("redirect:registerF5.do?member_name=" + insertVO.getMember_name());
 	}
 	
@@ -63,33 +78,26 @@ public class MemberController {
 	}
 	
 	
+	
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpServletRequest request, MemberVO vo){
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse repuest,MemberVO vo){
 		
-		if(vo.getMember_id().equals("admin")){
+		if(vo.getMember_id().equals("admingalbage")){
 			MemberVO admin=memberService.adminlogin(vo);
 			if(admin!=null){		
 				HttpSession session = request.getSession(true);			
 				session.setAttribute("managerlogin", admin);
-				if(session.getAttribute("mvo")!=null) {
-					session.setAttribute("mvo", null);
-				}
 				return new ModelAndView("home");
-			}else{
-				return new ModelAndView("member_loginfail");
-			}
+			}			
+			return new ModelAndView("member_loginfail");
 		}
 		
-		MemberVO mvo = memberService.login(vo);
-		if(mvo!=null){ //���̵� ������
+		MemberVO member=memberService.login(vo);
+		if(member!=null){ 
 			HttpSession session = request.getSession(true);	
-			session.setAttribute("mvo", mvo);
-			if(session.getAttribute("managerlogin")!=null) {
-				session.setAttribute("managerlogin", null);
-			}
+			session.setAttribute("mvo", member);
 			return new ModelAndView("home");
-		}else{	
-			//�α��� ����
+		}else{			
 			return new ModelAndView("member_loginfail");
 		}
 	}
@@ -105,18 +113,19 @@ public class MemberController {
 	
 	@RequestMapping("registercancel.do")
 	public String registercancel(){
-		//ȸ������ ���
+		
 		return "home";		
 	}
 	
 	@RequestMapping("updatecancel.do")
 	public String updatecancel(){
-		//�������� ���
+		
 		return "home";		
 	}
 	
 	@RequestMapping("update_password.do")
 	public String update_password(HttpServletRequest request,HttpServletResponse response){
+
 		return "member_update_password";
 	}
 	
@@ -134,24 +143,24 @@ public class MemberController {
 	@RequestMapping("updateMember.do")
 	public ModelAndView update(HttpServletRequest request,HttpServletResponse response,MemberVO vo){
 		HttpSession session = request.getSession(false);
-
+		System.out.println("update : " + vo);
 		if(session!=null){
+			//세션이 있으면
 			MemberVO member=memberService.updateMember(vo);
 			session.invalidate();
 			HttpSession session1 = request.getSession(true);
-			session1.setAttribute("memberOK", member);
-			return new ModelAndView("member_memberUpdateOk","memberOK", member);	
+			session1.setAttribute("mvo", member);
+			return new ModelAndView("member_memberUpdateOk");	
 		}
 		return new ModelAndView("redirect:home.do");
+			
 	}
-	
-	//ȸ��Ż�� form ����
+
 	@RequestMapping("withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
 	}
-	
-	//ȸ��Ż�� ����
+
 	@RequestMapping("withdraw.do")
 	public String withdraw(HttpServletRequest request,MemberVO vo){
 		String reason=request.getParameter("reason");
@@ -165,12 +174,10 @@ public class MemberController {
 		return "member_withdrawOk";
 	}
 	
-	////////////////////////////////////////////////////////////////////////DSF45ASDFAWE6 여기!!
+
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(HttpServletRequest request,HttpServletResponse response){
-		//ȸ������ form����
-/*		String pageNo=request.getParameter("pageNo");
-		ListVO list=noticeService.noticeList(pageNo);*/
+
 		String pageNo=request.getParameter("pageNo");
 		MemberListVO mvolist=memberService.memberManagerList(pageNo);
 		System.out.println(mvolist);
@@ -180,14 +187,15 @@ public class MemberController {
 	
 	@RequestMapping("memberDelete.do")
 	public ModelAndView memberDelete(HttpServletRequest request,HttpServletResponse response){
-		String member_Id=request.getParameter("member_Id");
-		memberService.memberDelete(member_Id);
+		String member_id=request.getParameter("member_id");
+		memberService.memberDelete(member_id);
 		String pageNo=request.getParameter("pageNo");
 		MemberListVO mvolist = memberService.memberManagerList(pageNo);
 		System.out.println(mvolist);
 
 		return new ModelAndView("member_memberManagerDeleteOk");	
 	}
+	
 	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
@@ -266,7 +274,9 @@ public class MemberController {
 	 */
 	@RequestMapping("onkeyupId.do")
 	public ModelAndView onkeyupId(String searchId) throws Exception{
-		//System.out.println(searchId);
+		if(searchId.equals("")) {
+			return new ModelAndView("ajaxView", "svoList", "");
+		}
 		return new ModelAndView("ajaxView", "svoList", memberService.onkeyupId(searchId));
 	}
 

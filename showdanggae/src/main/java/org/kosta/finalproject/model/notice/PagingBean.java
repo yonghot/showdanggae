@@ -1,4 +1,6 @@
 package org.kosta.finalproject.model.notice;
+
+
 //비즈?��?��로직 ?��?���? �?�? ?��?��
 
 
@@ -8,8 +10,6 @@ package org.kosta.finalproject.model.notice;
  * @author kosta
  *
  */
-
-
 
 public class PagingBean {
 	private int nowPage; 
@@ -34,8 +34,8 @@ public class PagingBean {
 	public static void main(String[] args) {
 		
 		PagingBean pb = new PagingBean();
-		pb.setTotalContents(30);
-		System.out.println("result: "+pb.getTotalPage());
+		//pb.setTotalContents(30);
+		System.out.println(pb.getTotalPage());
 	}
 	
 	
@@ -92,7 +92,7 @@ public class PagingBean {
 	public int getEndPageOfPageGroup(){ 
 		
 		int endPageOfPageGroup=pageNumberPerPageGroup*getNowPageGroup();
-			
+																	//한페이지당 3
 		
 		if(nowPage==getTotalPage()){
 			
@@ -155,3 +155,4 @@ public class PagingBean {
 	
 
 }
+

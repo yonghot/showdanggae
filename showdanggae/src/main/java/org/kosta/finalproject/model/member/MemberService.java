@@ -2,19 +2,20 @@ package org.kosta.finalproject.model.member;
 
 import java.util.List;
 
+
+
 public interface MemberService {
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-	
 	MemberVO idCheck(String beforeId);
 	MemberVO register(MemberVO vo);
 	MemberVO login(MemberVO vo);
 	MemberVO updateMember(MemberVO vo);
-	void withdraw(String member_Id,String reason);
+	void withdraw(String member_id,String reason);
 	MemberVO adminlogin(MemberVO vo);
 	MemberListVO memberManagerList(String pageNo);
-	void memberDelete(String member_Id);
+	void memberDelete(String member_id);
 	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC

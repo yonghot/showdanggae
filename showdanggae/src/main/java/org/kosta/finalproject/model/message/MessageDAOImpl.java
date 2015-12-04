@@ -1,9 +1,7 @@
 package org.kosta.finalproject.model.message;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +10,7 @@ public class MessageDAOImpl implements MessageDAO{
 	
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
+
 
 	@Override
 	public void sendMessage(MessageVO vo) {
@@ -34,9 +33,8 @@ public class MessageDAOImpl implements MessageDAO{
 
 
 	@Override
-	public void messageRead(int m) {
-		sqlSessionTemplate.update("message.messageRead", m);
+	public void messageRead(int mno) {
+		sqlSessionTemplate.update("message.messageRead", mno);
 		
 	}
-
 }

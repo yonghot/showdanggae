@@ -40,15 +40,21 @@ insert into member (member_id,password,member_name,email,birthday) values (#{mem
  </delete>
 
  <select id="memberManagerList" resultType="mvo">
-	select member_id,password,member_name,report,email,to_char(birthday,'RRMMDD')as birthday from(
-	select member_id,password,member_name,report,email,birthday,ceil(rownum/5) as page from(
-	select member_id,password,member_name,report,email,birthday from member order by member_id desc)) where page=#{value} and member_id !='admingalbage' 
+select member_id,password,member_name,report,email,to_char(birthday,'RRMMDD')as birthday from(
+select member_id,password,member_name,report,email,birthday,ceil(rownum/20) as page from(
+select member_id,password,member_name,report,email,birthday from member order by member_id desc)) where page=#{value} and member_id !='admingalbage' 
+											
  </select>
  
  <delete id="memberDelete">
   delete from member where member_id=#{value}
  </delete>
  
+ 
+<select id="getCount" resultType="int">
+		select count(*) from member
+</select>
+
  
  <!-- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC -->
  
@@ -84,41 +90,7 @@ insert into member (member_id,password,member_name,email,birthday) values (#{mem
  	</select>
  
 
-<select id="getCount" resultType="int">
-		select count(*) from member
-</select>
-
 
  </mapper>
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

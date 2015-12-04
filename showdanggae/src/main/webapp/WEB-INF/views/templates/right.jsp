@@ -21,11 +21,16 @@
 	         data:"searchId="+min,
 	         dataType:"json",
 	         success:function(data){
-	        	 var index = "";
-	           for(var i=0;i<data.svoList.length;i++){
-	        	   index += "<tr><td>"+data.svoList[i].member_id+"</td></tr>";
-	           }
-	        	   $("#searchIdView").html(index);
+	        	var index = "";
+	        	if(data!=""){
+	        		for(var i=0;i<data.svoList.length;i++){
+		  	        	   index += "<tr><td>"+data.svoList[i].member_id+"</td></tr>";
+		  	        }
+	  	        	$("#searchIdView").html(index);
+	        	}else{
+	        		$("#searchIdView").html(index);
+	        	}
+	  	           
 	         }//callback         
 	      });//ajax
 	}
@@ -41,7 +46,6 @@
 	            <div class="col-sm-10">
 	            	<input type="hidden" name="sessionId" value="${sessionScope.mvo.member_id}">
 	                <input type="text" class="form-control" id="inputId3" name="member_id" placeholder="아이디 입력" onkeyup="onKeyup()">
-	                <br>
 	                <input class="active btn btn-danger btn-sm" type="submit" value="검색" id="findBtn">
 	                <span id="searchIdView"></span>
 	            </div>
@@ -58,4 +62,5 @@
 		</form>
 	</c:if>
 </div>
+
 

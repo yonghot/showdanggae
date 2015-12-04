@@ -10,6 +10,7 @@ create table member(
 );
 
 delete from member;
+
 select * from member;
 
 -- 테이블 생성 순서 : member -> member_category -> main_category ->  product -> item -> 나머지
