@@ -15,8 +15,8 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping("getMyProductList.do")
-	public ModelAndView getMyProductList(ProductVO pvo) throws Exception {
-		return new ModelAndView("product_myProductList", "pvoList", productService.getMyProductList(pvo));
+	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
+		return new ModelAndView("product_productList", "pvoList", productService.getMyProductList(member_id, currentCategory));
 	}
 }
  

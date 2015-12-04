@@ -48,16 +48,12 @@ create table seller_link (
 
 
 -- eval_item
-drop table eval_item;
+drop table eval_item cascade constraint;
 create table eval_item (
 	item varchar2(100) primary key,
-	category_id number not null,
-	member_id varchar2(100) not null,
 	product_id number not null,
 	item_point number default 0,
 	constraint fk_eval_item_item foreign key(item) references item(item),
-	constraint fk_eval_item_category_id foreign key(category_id) references member_category(category_id),
-	constraint fk_eval_item_member_id foreign key(member_id) references member(member_id),
 	constraint fk_eval_itemt_product_id foreign key(product_id) references product(product_id)
 );
 
