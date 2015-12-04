@@ -1,14 +1,13 @@
 package org.kosta.finalproject.model.member;
 
 import java.io.FileWriter;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +24,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO idCheck(String beforeId) {
 		return memberDAO.idCheck(beforeId);
 	}
+
 
 	@Override
 	public MemberVO register(MemberVO vo) {
@@ -68,15 +68,15 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public void withdraw(String member_Id,String reason) {
-	memberDAO.withdraw(member_Id);
+	public void withdraw(String member_id,String reason) {
+	memberDAO.withdraw(member_id);
 
 	String path="C:\\java-kosta\\finallproject\\finalproject\\src\\main\\webapp\\withdraw\\withdrawreason.txt";
 						
 	try {
 		FileWriter fw = new FileWriter(path,true);
 		PrintWriter pw=new PrintWriter(fw);
-		pw.println(member_Id + "탈퇴사유 :");
+		pw.println(member_id + "탈퇴사유 :");
 		pw.println(reason);
 		pw.close();
 
@@ -98,7 +98,7 @@ public class MemberServiceImpl implements MemberService {
 		return adminVO;
 	}
 
-//////////////sdfjaoifjasodfjoawsifjsodifjasoiefeiourhguirsdhgouashfoawstruwehf
+
 	@Override
 	public MemberListVO memberManagerList(String pageNo) {
 
@@ -115,6 +115,7 @@ public class MemberServiceImpl implements MemberService {
 			memlist=(ArrayList<MemberVO>) memberDAO.memberManagerList(pn);
 			
 			int count=memberDAO.getCount(); //�� �Խù� ����
+			System.out.println(count); //20
 			mpagingBean=new MemberPagingBean(count,pn); //total nowpage
 			mvolist=new MemberListVO(memlist,mpagingBean);
 		}else{	//������ �ѹ��� ������
@@ -130,13 +131,10 @@ public class MemberServiceImpl implements MemberService {
 
 //ȸ������
 	@Override
-	public void memberDelete(String member_Id) {
-		memberDAO.memberDelete(member_Id);
+	public void memberDelete(String member_id) {
+		memberDAO.memberDelete(member_id);
 		
 	}
-	
-	
-	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 	

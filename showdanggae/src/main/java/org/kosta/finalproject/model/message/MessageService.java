@@ -10,6 +10,6 @@ public interface MessageService {
 
 	MessageVO MyMessageShowPopUp(MessageVO vo);
 
-	void messageRead(String mno);
+	void messageRead(int mno);
 
 }

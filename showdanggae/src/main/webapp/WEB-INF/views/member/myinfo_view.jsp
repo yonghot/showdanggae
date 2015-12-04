@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -37,7 +38,7 @@ $(document).ready(function() {
 	});
 
 	$("#subBtn").click(function() {
-	var idComp = $(":input[name=member_Id]").val();
+	var idComp = $(":input[name=member_id]").val();
 	var passwordComp = $(":input[name=password]").val();
 	var repasswordComp = $(":input[name=repassword]").val();
 	var nameComp = $(":input[name=member_name]").val();
@@ -76,7 +77,7 @@ $(document).ready(function() {
 			return false;
 		}
 		if(isNaN(birthdayComp)==true){
-			alert("생년월일은 숫자만 가능합니다");
+					alert("생년월일은 숫자만 가능합니다");
 			return false;
 		}
 		$("#registerForm").serialize();
@@ -116,8 +117,17 @@ $(document).ready(function() {
 		});
 </script>
 
-<div class="col-md-7">
-	<div class="section">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="main_회원정보수정.css" rel="stylesheet" type="text/css">
+    </head>
+    
+    <body>
+	<div class="col-md-7">
+<div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -137,7 +147,7 @@ $(document).ready(function() {
                                         <label for="inputEmail3" class="control-label">아이디</label>
                                     </div>
                                     <div class="col-sm-4 hidden-sm hidden-xs text-left">
-                                        <input type="text" class="form-control" value="${sessionScope.mvo.member_id }" name="member_Id"  id="id"readonly="readonly">            
+                                        <input type="text" class="form-control" value="${sessionScope.mvo.member_id }" name="member_id"  id="id"readonly="readonly">            
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -216,3 +226,5 @@ $(document).ready(function() {
             </div>
             	</div>
 	    </div>
+     
+        </body>

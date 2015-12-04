@@ -21,9 +21,14 @@ DELETE FROM member;
 
 ALTER TABLE  테이블이름  MODIFY
 컬럼에 대해서 데이터 타입이나 크기, 기본값들을 변경할 수 있습니다.
+
+ alter table member rename column member_Id to member_id;
+
  
-
-
+ 
+ 
+ 
+ALTER TABLE member MODIFY (member_id varchar2(100));
  
 ALTER TABLE member MODIFY (report number DEFAULT 0);
 

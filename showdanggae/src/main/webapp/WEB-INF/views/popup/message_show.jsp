@@ -6,7 +6,7 @@
          $(document).ready(function(){
         	 $("#readBtn").click(function(){ 	
         		 $("#messageContent").submit();	
-        		 self.close();
+        		 //self.close();
         	  });        	         	 
          });
          </script>

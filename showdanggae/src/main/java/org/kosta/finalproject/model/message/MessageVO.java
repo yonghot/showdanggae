@@ -1,16 +1,16 @@
 package org.kosta.finalproject.model.message;
 
 public class MessageVO {
-	private String member_Id;
+	private String member_id;
 	private String message;
 	private String spand_name;
 	private String title;
 	private String spand_date;
-	private String mno;
+	private int mno;
 	private int read;
 	
 	
-	
+
 	
 	public MessageVO() {
 		super();
@@ -23,10 +23,10 @@ public class MessageVO {
 
 
 
-	public MessageVO(String member_Id, String message, String spand_name,
-			String title, String spand_date, String mno, int read) {
+	public MessageVO(String member_id, String message, String spand_name,
+			String title, String spand_date, int mno, int read) {
 		super();
-		this.member_Id = member_Id;
+		this.member_id = member_id;
 		this.message = message;
 		this.spand_name = spand_name;
 		this.title = title;
@@ -41,15 +41,15 @@ public class MessageVO {
 
 
 
-	public String getMember_Id() {
-		return member_Id;
+	public String getMember_id() {
+		return member_id;
 	}
 
 
 
 
-	public void setMember_Id(String member_Id) {
-		this.member_Id = member_Id;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
 
@@ -112,7 +112,7 @@ public class MessageVO {
 	
 
 
-	public String getMno() {
+	public int getMno() {
 		return mno;
 	}
 
@@ -123,7 +123,7 @@ public class MessageVO {
 
 
 
-	public void setMno(String mno) {
+	public void setMno(int mno) {
 		this.mno = mno;
 	}
 
@@ -151,26 +151,13 @@ public class MessageVO {
 
 
 
-
-
-
-
-
 	@Override
 	public String toString() {
-		return "MessageVO [member_Id=" + member_Id + ", message=" + message
+		return "MessageVO [member_id=" + member_id + ", message=" + message
 				+ ", spand_name=" + spand_name + ", title=" + title
 				+ ", spand_date=" + spand_date + ", mno=" + mno + ", read="
 				+ read + "]";
 	}
 
-
-
-
-
-
-
-	
-	
 
 }
