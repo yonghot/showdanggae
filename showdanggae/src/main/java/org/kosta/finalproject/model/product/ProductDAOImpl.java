@@ -19,6 +19,7 @@ public class ProductDAOImpl implements ProductDAO {
 		return  sqlSessionTemplate.selectList("product.MemberProductListAndDeleteCategory", category_id);
 	}
 	
+	@Override
 	public List<ProductVO> getMyProductList(Map<String, String> map) {
 		return sqlSessionTemplate.selectList("product.getMyProductList", map);
 	}

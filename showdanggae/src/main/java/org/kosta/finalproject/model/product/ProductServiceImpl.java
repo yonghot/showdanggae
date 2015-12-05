@@ -17,6 +17,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> MemberProductListAndDeleteCategory(int category_id) {
 		return productDAO.MemberProductListAndDeleteCategory(category_id);
 	}
+	
 	@Override
 	public List<ProductVO> getMyProductList(String member_id, String currentCategory) {
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -26,4 +27,3 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 }
-

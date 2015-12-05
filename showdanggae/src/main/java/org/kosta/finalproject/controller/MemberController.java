@@ -56,9 +56,9 @@ public class MemberController {
 		}
 
 	}
+	
 	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo){
-	
 
 		MemberVO insertVO=memberService.register(vo);
 	
@@ -67,7 +67,6 @@ public class MemberController {
 	
 	@RequestMapping("registerF5.do")
 	public ModelAndView registerF5(String member_name) {
-	
 		return new ModelAndView("member_registerokview","member_name",member_name);
 	}
 	
@@ -75,7 +74,6 @@ public class MemberController {
 	public String registerview() {
 		return "member_registerview";
 	}
-	
 	
 	
 	@RequestMapping("login.do")
@@ -152,6 +150,7 @@ public class MemberController {
 		return new ModelAndView("redirect:home.do");
 			
 	}
+	
 	@RequestMapping("withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
@@ -194,6 +193,7 @@ public class MemberController {
 	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+	
 	/**
 	 * 	(right 부분)
 	 * 	검색하고자 하는 친구의 ID를 검색하는 메서드
