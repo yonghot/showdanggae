@@ -52,23 +52,20 @@ public class ProductController {
 	}
 	
 	@RequestMapping("MyProductListDelete.do")
-	public ModelAndView MyProductListDelete(int category_id, HttpServletRequest request){
+	public void MemberProductListAndDeleteCategory(HttpServletRequest request){
 		//HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환한다.
 		HttpSession session = request.getSession(false);
 		//로그인 되어있는 멤버의 세션을 가져온다.
 		session.getAttribute("mvo");
+		
+		//List<ProductVO> pvo=request.getParameter(category_id, productVO);
+		
+		
+		
 		//카테고리를 삭제 하려면, 카테고리 아래에 저장된 product가 존재해서는 안된다. 
 		//만약 존재하면 alert창으로 하위 product를 모두 삭제 하겠습니까? 물어본뒤 
 		//예:하위 product삭제 및 카테고리 삭제, 아니오:취소
 		
-		//product table에 데이터가 존재하는지 알아본다.
-		//복수의 product 중에 category_id(멤버가 지우기로 선택한)으로 조회한다.
-		
-		//test를 위해서 category_id에 1번 카테고리를 넣어본다.
-		category_id=1;
-		List<ProductVO> productnamelist = productService.getMemberProductListForDeleteCategory(category_id);
-		System.out.println(productnamelist+"민석 product");
-			return new ModelAndView("product_productList", "productnamelist", productnamelist);	
 		}
 		
 	}
