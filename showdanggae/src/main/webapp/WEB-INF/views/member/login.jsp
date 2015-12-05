@@ -22,7 +22,7 @@
  <div class="col-md-7">
     <h1 class="text-center">로그인</h1>
     
-    <form class="form-horizontal" role="form" action="login.do">
+    <form class="form-horizontal" role="form" action="login.do" method="post">
         <div class="form-group">
             <div class="col-sm-2">
                 <label for="inputEmail3" class="control-label" >ID</label>

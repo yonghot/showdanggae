@@ -23,7 +23,7 @@ delete from member;
 insert into member (member_Id,password,member_name,email,birthday) values ('java','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('java1','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('java2','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
-insert into member (member_Id,password,member_name,email,birthday) values ('admin','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
+insert into member (member_Id,password,member_name,email,birthday) values ('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
 
 
 
