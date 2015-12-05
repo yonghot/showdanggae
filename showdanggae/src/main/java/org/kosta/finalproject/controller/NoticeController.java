@@ -86,5 +86,12 @@ public class NoticeController {
 		}
 		return "redirect:notice.do";
 	}
+<<<<<<< HEAD
+=======
+	
+	
+	
+	}
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
 }

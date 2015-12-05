@@ -2,9 +2,6 @@ package org.kosta.finalproject.model.notice;
 
 import java.util.ArrayList;
 
-import org.kosta.finalproject.model.notice.NoticeVO;
-import org.kosta.finalproject.model.notice.PagingBean;
-
 public class ListVO {
 	private ArrayList<NoticeVO> list;
 	private PagingBean pagingBean;

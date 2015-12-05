@@ -23,6 +23,7 @@ public class ProductController {
 	private ProductService productService;
 	// 로그인 상태일때, 내가 추가해 놓은 카테고리 리스트가 표시된다.
 	@RequestMapping("getMyProductList.do")
+<<<<<<< HEAD
 	@ResponseBody
 	public ModelAndView getMyCategoryList(String member_id, HttpServletRequest request) {
 		//HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환한다.
@@ -44,6 +45,10 @@ public class ProductController {
 		} else {
 			return new ModelAndView("login");
 		}
+=======
+	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
+		return new ModelAndView("product_productList", "pvoList", productService.getMyProductList(member_id, currentCategory));
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 	
 	@RequestMapping("MyProductListDelete.do")

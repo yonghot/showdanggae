@@ -1,6 +1,3 @@
-member_Id 가 외래키
-member_name 은 관리자
-
 drop table message;
 
 create table message (
@@ -16,19 +13,30 @@ create table message (
 
 create sequence message_seq;
 
-
 delete from message;
 
-ALTER TABLE message ADD (read number DEFAULT 0);
-ALTER TABLE message MODIFY (mno number primary key);
+select * from message;
 
-SELECT * FROM MESSAGE;
+
+
+-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+
+
+
+
+
+-- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+member_Id 가 외래키
+member_name 은 관리자
+
 
 notice_seq.nextval
 
 INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
 values ('admin','두번째메세지TEST','관리자','TEST1',SYSDATE,message_seq.nextval);
-
 
 
 //특정 사람이 받은 메세지 검색할때
@@ -40,7 +48,9 @@ where e.member_Id=m.member_Id and m.member_Id='seojungspring' order by e.spand_d
 
 update message set read=read+1 where mno=8;
 	
-	
+
+
+-- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCccc
 	
 	
 	

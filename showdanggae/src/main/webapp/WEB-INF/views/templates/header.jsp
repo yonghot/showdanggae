@@ -89,6 +89,7 @@
                                         <a class="btn btn-success" type="submit">Go</a>
                                     </span>
                                 </div>
+                                <hr>
                             </div>
                         </form>
                     </div>

@@ -6,6 +6,7 @@
 	type="text/css">
 <!--카테고리 추가하기 -->
 
+<<<<<<< HEAD
 <div class="dropdown col-sm-3">
 	<button class="btn btn-default dropdown-toggle" type="button"
 		id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -65,6 +66,10 @@
 	<!-- ******************************************************************************************* -->
 
 	<table class="table table-striped"">
+=======
+<div class="col-md-8">
+	<table class="table">
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		<caption>목록</caption>
 		<thead>
 			<tr>
@@ -75,29 +80,51 @@
 				<th class="hit">조회수</th>
 			</tr>
 		</thead>
+<<<<<<< HEAD
 		<tbody>
 			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
 			<c:forEach items="${requestScope.lvo.list}" var="list">
 				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
+=======
+		<tbody><!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->			
+			<c:forEach items="${requestScope.pvoList}" var="list"><!-- 리스트에 순차적으로 접근하는 forEace문 -->
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				<tr>
+<<<<<<< HEAD
 					<td>${list.no}</td>
 
 					<c:choose>
+=======
+				    <td>${list.product_id}</td>
+				    
+				    <c:choose>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						<c:when test="${sessionScope.mvo!=null}">
-							<td><a href="hit.do?no=${list.no}">${list.title}</a></td>
+							<td><a href="hit.do?no=${list.product_id}">${list.product_name}</a></td>
 							<!-- 클릭시 조회수를 올리면서 글 내용을 봐야 하는데 이게 동시에 이루어 지면 글보기에서 새로고침시 조회수가 오른다 -->
 							<!-- 그래서 HitController를 먼저 들러서 조회수만 올린 뒤 showContent로 redirect하여 우회한다. -->
 						</c:when>
 						<c:otherwise>
-							<td>${list.title}</td>
+							<td>${list.product_name}</td>
 						</c:otherwise>
+<<<<<<< HEAD
 					</c:choose>
 
 					<td>${list.author}</td>
 					<td>${list.write_date}</td>
 					<td>${list.hit}</td>
 				</tr>
+=======
+				    </c:choose>			
+					<td>${list.review_score}</td>
+					<td>${list.regist_date}</td>
+					<td>${list.hits}</td>
+					<td>${list.likes}</td>
+					<td>${list.dislikes}</td>
+				</tr>					
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			</c:forEach>
+<<<<<<< HEAD
 		</tbody>
 	</table>
 
@@ -134,4 +161,10 @@
 			href="getBoardList.do?currentPage=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}">▶</a> &nbsp;
 	</c:if>
 
+=======
+		</tbody>					
+	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
+	
+	<a href="board/write.jsp"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 </div>

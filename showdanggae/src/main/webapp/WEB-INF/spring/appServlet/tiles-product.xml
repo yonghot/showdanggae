@@ -8,9 +8,14 @@
 	여러 페이지 조합결과 화면이 반환된다. -->
 <tiles-definitions>
 	<definition name="product_*" extends="home">
+<<<<<<< HEAD
 		<put-attribute name="main" value="/WEB-INF/views/product/{1}.jsp"></put-attribute> 
 	</definition>
 
+=======
+		<put-attribute name="main" value="/WEB-INF/views/product/{1}.jsp"></put-attribute>
+	</definition>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 </tiles-definitions>
 
 

@@ -1,7 +1,9 @@
 package org.kosta.finalproject.model.member;
 
 import java.util.HashMap;
+
 import java.util.List;
+
 
 
 public interface MemberDAO {
@@ -13,13 +15,13 @@ public interface MemberDAO {
 	MemberVO register(MemberVO vo);
 	MemberVO login(MemberVO vo);
 	void updateMember(MemberVO vo);
-	MemberVO updateOk(String member_Id);
-	void withdraw(String member_Id);
+	MemberVO updateOk(String member_id);
+	void withdraw(String member_id);
 	MemberVO adminlogin(MemberVO vo);
 	List<MemberVO> memberManagerList(int pn);
-	void memberDelete(String member_Id);
+	void memberDelete(String member_id);
 	int getCount();
-	
+
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 	
