@@ -67,7 +67,7 @@
                             <a href="notice.do">공지사항</a>                    
                         </li>
                         <li>
-                            <a href="shoping_getProductInfoList.do">Q&A</a>
+                            <a href="#">Q&A</a>
                         </li>
                     </ul>
                 </div>

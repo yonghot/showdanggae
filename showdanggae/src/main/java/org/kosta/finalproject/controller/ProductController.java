@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.kosta.finalproject.model.category.CategoryService;
 import org.kosta.finalproject.model.category.CategoryVO;
 import org.kosta.finalproject.model.product.ProductService;
-import org.kosta.finalproject.model.product.ProductVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +22,10 @@ public class ProductController {
 	
 	@Resource
 	private ProductService productService;
+	
+	
+	//강민석 영역
+	
 	
 	// 로그인 상태일때, 내가 추가해 놓은 카테고리 리스트가 표시된다.
 	@RequestMapping("getMyCategoryList.do")
@@ -49,10 +52,6 @@ public class ProductController {
 		}
 	}
 	
-	@RequestMapping("getMyProductList.do")
-	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
-		return new ModelAndView("product_productList", "pvoList", productService.getMyProductList(member_id, currentCategory));
-	}
 	
 	@RequestMapping("MyProductListDelete.do")
 	public void MemberProductListAndDeleteCategory(HttpServletRequest request){
@@ -67,7 +66,23 @@ public class ProductController {
 		//만약 존재하면 alert창으로 하위 product를 모두 삭제 하겠습니까? 물어본뒤 
 		//예:하위 product삭제 및 카테고리 삭제, 아니오:취소
 		
-		}
+	}
 	
+	
+	
+	
+	// 김용호 영역
+	
+	
+	@RequestMapping("getMyProductList.do")
+	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
+		return new ModelAndView("product_productList", "pvoList", productService.getMyProductList(member_id, currentCategory));
+	}
+	
+	
+	@RequestMapping("getAllBoardList.do")
+	public ModelAndView getAllBoardList(String sortBy) throws Exception {
+		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
+	}
 }
 

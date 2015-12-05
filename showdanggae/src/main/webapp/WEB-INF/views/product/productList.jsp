@@ -39,7 +39,7 @@
 			<c:forEach items="${requestScope.categorylist }" var="clist">
 				<tr>
 					<td>${clist.category_id}</td>
-					<td">${clist.member_id}</td>
+					<td>${clist.member_id}</td>
 					<td>${clist.category}</td>
 				</tr>
 			</c:forEach>
@@ -64,7 +64,7 @@
 
 	<!-- ******************************************************************************************* -->
 
-	<table class="table table-striped"">
+	<table class="table table-striped">
 		<caption>목록</caption>
 		<thead>
 			<tr>
@@ -77,7 +77,7 @@
 		</thead>
 		<tbody>
 			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
-			<c:forEach items="${requestScope.lvo.list}" var="list">
+			<c:forEach items="${requestScope.pvoList}" var="list">
 				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
 				<tr>
 				    <td>${list.product_id}</td>
@@ -102,5 +102,5 @@
 		</tbody>					
 	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
 	
-	<a href="board/write.jsp"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
+	<a href="product_registProduct.do"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
 </div>

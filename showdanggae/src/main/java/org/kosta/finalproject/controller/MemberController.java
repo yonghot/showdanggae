@@ -31,18 +31,6 @@ public class MemberController {
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-/*	
-	@RequestMapping("home.do")
-	public String home() {
-
-		return "home";
-	}*/
-
-	@RequestMapping("loginview.do")
-	public String loginpage() {
-//member_loginview
-		return "member_login";
-	}
 
 
 	@RequestMapping("idCheck.do")
@@ -77,7 +65,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse repuest,MemberVO vo){
+	public ModelAndView login(HttpServletRequest request, MemberVO vo){
 		
 		if(vo.getMember_id().equals("admingalbage")){
 			MemberVO admin=memberService.adminlogin(vo);
