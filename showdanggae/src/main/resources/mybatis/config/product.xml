@@ -3,67 +3,44 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="product">
- 
- 	<select id="getMemberProductListForDeleteCategory" resultType="pvo">
-	 	<![CDATA[
-	 		select product_name
-	 		from product
-	 		where product_id=#{value}
-	 	]]>
- 	</select>
- 
- 	<select id="getMyProductList" resultType="pvo">
+<mapper namespace="product">
+	
+	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
 	 		select product_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
 	 		from (select rownum as product_id, likes, category_id, member_id, dislikes, review_score, product_name, regist_date, hits
 	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
 	 		where member_id=#{member_id} and category_id=#{currentCategory}
 	 	]]>
- 	</select>
- 	
- 	<!-- <insert id="write">
- 		<![CDATA[
-	 		insert into board(no, title, author, write_date, content, id)
-	 		values(board_seq.nextval, #{title}, #{author}, sysdate, #{content} ,#{id})
+	</select>
+	
+	<select id="DeleteProduct">
+	 	<![CDATA[
+	 		delete *
+	 		from product
+	 		where product_id=#{value}
 	 	]]>
- 	</insert>
- 	
- 	<update id="hit">
- 		<![CDATA[
- 			update board set hit=hit+1
- 			where no=#{value}
+	</select>
+
+	<select id="DeleteProductList">
+	 	<![CDATA[
+	 		delete *
+	 		from product
+	 		where category_id=#{value}
 	 	]]>
- 	</update>
- 	
- 	<select id="showContent" resultType="bvo">
- 		<![CDATA[
-	 		select no, title, author, to_char(write_date, 'yyyy.mm.dd HH24:MI:SS') as write_date, hit, content, id
-	 		from board
-	 		where no=#{no}
-	 	]]>
- 	</select>
- 	
- 	<update id="update">
- 		<![CDATA[
- 			update board set title=#{title}, content=#{content}, write_date=sysdate
- 			where no=#{no}
-	 	]]>
- 	</update>
- 	
- 	<delete id="delete">
- 		<![CDATA[
- 			delete from board
- 			where no=#{value}
-	 	]]>
- 	</delete>
- 	
- 	<select id="getTotalPostNum" resultType="int">
- 		<![CDATA[
- 			select count(*) from board
-	 	]]>
- 	</select> -->
- </mapper>
+	</select>
+	
+	<!-- <insert id="write"> <![CDATA[ insert into board(no, title, author, 
+		write_date, content, id) values(board_seq.nextval, #{title}, #{author}, sysdate, 
+		#{content} ,#{id}) ]]> </insert> <update id="hit"> <![CDATA[ update board 
+		set hit=hit+1 where no=#{value} ]]> </update> <select id="showContent" resultType="bvo"> 
+		<![CDATA[ select no, title, author, to_char(write_date, 'yyyy.mm.dd HH24:MI:SS') 
+		as write_date, hit, content, id from board where no=#{no} ]]> </select> <update 
+		id="update"> <![CDATA[ update board set title=#{title}, content=#{content}, 
+		write_date=sysdate where no=#{no} ]]> </update> <delete id="delete"> <![CDATA[ 
+		delete from board where no=#{value} ]]> </delete> <select id="getTotalPostNum" 
+		resultType="int"> <![CDATA[ select count(*) from board ]]> </select> -->
+</mapper>
  
  
  

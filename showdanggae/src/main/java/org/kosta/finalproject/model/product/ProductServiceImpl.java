@@ -9,14 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
 	@Resource
 	private ProductDAO productDAO;
-
-	@Override
-	public List<ProductVO> MemberProductListAndDeleteCategory(int category_id) {
-		return productDAO.MemberProductListAndDeleteCategory(category_id);
-	}
 	
 	@Override
 	public List<ProductVO> getMyProductList(String member_id, String currentCategory) {
@@ -24,6 +18,14 @@ public class ProductServiceImpl implements ProductService {
 		map.put("member_id", member_id);
 		map.put("currentCategory", currentCategory);
 		return productDAO.getMyProductList(map);
+	}
+	@Override
+	public void DeleteProduct(int product_id){
+		productDAO.DeleteProduct(product_id);
+	}
+	@Override
+	public void DeleteProductList(int category_id) {
+		productDAO.DeleteProductList(category_id);
 	}
 	
 }
