@@ -20,10 +20,12 @@ public class ProductController {
 
 	@Resource
 	private CategoryService categoryService;
+	
+	@Resource
 	private ProductService productService;
 	
 	// 로그인 상태일때, 내가 추가해 놓은 카테고리 리스트가 표시된다.
-	@RequestMapping("getMyProductList.do")
+	@RequestMapping("getMyCategoryList.do")
 	@ResponseBody
 	public ModelAndView getMyCategoryList(String member_id, HttpServletRequest request) {
 		//HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환한다.
@@ -46,7 +48,8 @@ public class ProductController {
 			return new ModelAndView("login");
 		}
 	}
-
+	
+	@RequestMapping("getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
 		return new ModelAndView("product_productList", "pvoList", productService.getMyProductList(member_id, currentCategory));
 	}
@@ -68,8 +71,8 @@ public class ProductController {
 		category_id=1;
 		List<ProductVO> productnamelist = productService.getMemberProductListForDeleteCategory(category_id);
 		System.out.println(productnamelist+"민석 product");
-			return new ModelAndView("product_productList", "productnamelist", productnamelist);	
-		}
-		
+		return new ModelAndView("product_productList", "productnamelist", productnamelist);	
 	}
+	
+}
 
