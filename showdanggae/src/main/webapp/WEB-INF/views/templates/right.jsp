@@ -2,8 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="${initParam.root}js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript">
+<!--    <script type="text/javascript">
+   function login_view(){
+	   location.href="${initParam.root}loginview.do";
+   }
 
+</script>
+    
+
+  <p align="right">
+  
+  <input type="button"  value="로그인"  name="login_view" onclick="login_view()">  
+    <input type="button"  value="장바구니" name=> 
+      <input type="button"  value="Q&A" name=>  -->
+
+<script type="text/javascript">
+	function follow_view(){
+		
+		 location.href="findFollowingId.do?member_id=${mvo.member_id}";
+		
+	}
+	function follow1_view(){
+		 location.href="findFollowerId.do?member_id=${mvo.member_id}";
+	}
+	
 	$(document).ready(function(){
 	   $("#findBtn").click(function(){
 	      if($("#inputId3").val()==""){
@@ -45,21 +67,18 @@
 	            </div>
 	            <div class="col-sm-10">
 	            	<input type="hidden" name="sessionId" value="${sessionScope.mvo.member_id}">
-	                <input type="text" class="form-control" id="inputId3" name="member_id" placeholder="아이디 입력" onkeyup="onKeyup()">
+	                <input type="text"  class="form-control" id="inputId3" name="member_id" onkeyup="onKeyup()">
 	                <input class="active btn btn-danger btn-sm" type="submit" value="검색" id="findBtn">
 	                <span id="searchIdView"></span>
+	                
+	   
 	            </div>
 	        </div>
 		    <hr>
 	    </form>
-	    <form id="followingForm" action="findFollowingId.do">
-			<input type="hidden" name="member_id" value="${mvo.member_id}">
-			<input class="btn btn-default" type="submit" value="팔로잉">
-		</form>
-		<form id="followerForm" action="findFollowerId.do">
-			<input type="hidden" name="member_id" value="${mvo.member_id}">
-			<input class="btn btn-default" type="submit" value="팔로워">
-		</form>
+			<input class="btn btn-default" type="button" value="팔로잉" onclick="follow_view()">	
+			<input class="btn btn-default" type="button" value="팔로워" onclick="follow1_view()">
+		
 	</c:if>
 </div>
 
