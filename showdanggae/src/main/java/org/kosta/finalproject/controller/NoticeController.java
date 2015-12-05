@@ -79,19 +79,12 @@ public class NoticeController {
 	}
 
 	@RequestMapping("notice_delete")
-	public String notice_delete(HttpServletRequest request, HttpServletResponse response) {
-		String[] check_no = request.getParameterValues("check_no");
-		for (int i = 0; i < check_no.length; i++) {
-			noticeService.noticeDelete(check_no[i]);
+		public String notice_delete(HttpServletRequest request, HttpServletResponse response) {
+			String[] check_no = request.getParameterValues("check_no");
+			for (int i = 0; i < check_no.length; i++) {
+				noticeService.noticeDelete(check_no[i]);
+			}
+			return "redirect:notice.do";
 		}
-		return "redirect:notice.do";
-	}
-<<<<<<< HEAD
-=======
-	
-	
-	
-	}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
 }

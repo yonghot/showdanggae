@@ -91,21 +91,12 @@ public class MemberController {
 			return new ModelAndView("member_loginfail");
 		}
 		
-<<<<<<< HEAD
-		MemberVO mvo = memberService.login(vo);
-		if(mvo!=null){
-=======
 		MemberVO member=memberService.login(vo);
 		if(member!=null){ 
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			HttpSession session = request.getSession(true);	
 			session.setAttribute("mvo", member);
 			return new ModelAndView("home");
-<<<<<<< HEAD
-		}else{	
-=======
 		}else{			
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			return new ModelAndView("member_loginfail");
 		}
 	}
@@ -121,19 +112,11 @@ public class MemberController {
 	
 	@RequestMapping("registercancel.do")
 	public String registercancel(){
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		return "home";		
 	}
 	
 	@RequestMapping("updatecancel.do")
 	public String updatecancel(){
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		return "home";		
 	}
 	
@@ -169,20 +152,11 @@ public class MemberController {
 		return new ModelAndView("redirect:home.do");
 			
 	}
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	@RequestMapping("withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
 	}
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	@RequestMapping("withdraw.do")
 	public String withdraw(HttpServletRequest request,MemberVO vo){
 		String reason=request.getParameter("reason");
@@ -199,12 +173,6 @@ public class MemberController {
 
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(HttpServletRequest request,HttpServletResponse response){
-<<<<<<< HEAD
-/*		String pageNo=request.getParameter("pageNo");
-		ListVO list=noticeService.noticeList(pageNo);*/
-=======
-
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		String pageNo=request.getParameter("pageNo");
 		MemberListVO mvolist=memberService.memberManagerList(pageNo);
 		System.out.println(mvolist);

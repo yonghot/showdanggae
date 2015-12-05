@@ -1,6 +1,5 @@
 package org.kosta.finalproject.model.product;
 
-public class ProductVO {
 	
 	private int product_id;
 	private int likes;

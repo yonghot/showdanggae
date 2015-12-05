@@ -6,7 +6,6 @@
 	type="text/css">
 <!--카테고리 추가하기 -->
 
-<<<<<<< HEAD
 <div class="dropdown col-sm-3">
 	<button class="btn btn-default dropdown-toggle" type="button"
 		id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -66,10 +65,6 @@
 	<!-- ******************************************************************************************* -->
 
 	<table class="table table-striped"">
-=======
-<div class="col-md-8">
-	<table class="table">
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		<caption>목록</caption>
 		<thead>
 			<tr>
@@ -80,25 +75,14 @@
 				<th class="hit">조회수</th>
 			</tr>
 		</thead>
-<<<<<<< HEAD
 		<tbody>
 			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
 			<c:forEach items="${requestScope.lvo.list}" var="list">
 				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
-=======
-		<tbody><!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->			
-			<c:forEach items="${requestScope.pvoList}" var="list"><!-- 리스트에 순차적으로 접근하는 forEace문 -->
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				<tr>
-<<<<<<< HEAD
-					<td>${list.no}</td>
-
-					<c:choose>
-=======
 				    <td>${list.product_id}</td>
 				    
 				    <c:choose>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						<c:when test="${sessionScope.mvo!=null}">
 							<td><a href="hit.do?no=${list.product_id}">${list.product_name}</a></td>
 							<!-- 클릭시 조회수를 올리면서 글 내용을 봐야 하는데 이게 동시에 이루어 지면 글보기에서 새로고침시 조회수가 오른다 -->
@@ -107,14 +91,6 @@
 						<c:otherwise>
 							<td>${list.product_name}</td>
 						</c:otherwise>
-<<<<<<< HEAD
-					</c:choose>
-
-					<td>${list.author}</td>
-					<td>${list.write_date}</td>
-					<td>${list.hit}</td>
-				</tr>
-=======
 				    </c:choose>			
 					<td>${list.review_score}</td>
 					<td>${list.regist_date}</td>
@@ -122,49 +98,9 @@
 					<td>${list.likes}</td>
 					<td>${list.dislikes}</td>
 				</tr>					
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			</c:forEach>
-<<<<<<< HEAD
-		</tbody>
-	</table>
-
-	<br></br>
-	<!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
-	<c:if test="${sessionScope.mvo!=null}">
-		<a href="board/write.jsp"> <img
-			src="${initParam.root}img/write_btn.jpg" border="0"></a>
-	</c:if>
-
-
-	<br> <br>
-
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<c:if test="${requestScope.lvo.pagingBean.previousPageGroup}">
-		<a
-			href="getBoardList.do?currentPage=${requestScope.lvo.pagingBean.startPageOfPageGroup-1}">◀</a> &nbsp;
-		</c:if>
-
-	<c:forEach begin="${requestScope.lvo.pagingBean.startPageOfPageGroup}"
-		end="${requestScope.lvo.pagingBean.endPageOfPageGroup}" var="i">
-		<c:choose>
-			<c:when test="${i==requestScope.lvo.pagingBean.nowPage}">
-					${i} &nbsp;
-				</c:when>
-			<c:otherwise>
-				<a href="getBoardList.do?currentPage=${i}">${i}</a> &nbsp;
-				</c:otherwise>
-		</c:choose>
-	</c:forEach>
-
-	<c:if test="${requestScope.lvo.pagingBean.nextPageGroup}">
-		<a
-			href="getBoardList.do?currentPage=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}">▶</a> &nbsp;
-	</c:if>
-
-=======
 		</tbody>					
 	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
 	
 	<a href="board/write.jsp"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 </div>

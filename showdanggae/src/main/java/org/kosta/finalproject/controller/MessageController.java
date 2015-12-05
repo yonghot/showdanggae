@@ -19,46 +19,22 @@ public class MessageController {
 	MessageService messageService;
 
 	@RequestMapping("messagePopForm.do")
-<<<<<<< HEAD
-	public ModelAndView messagePopForm(HttpServletRequest request) {
-		// 전달받은 아이디값
-		String member_Id = request.getParameter("member_Id");
-		System.out.println("전달" + member_Id);
-		return new ModelAndView("../views/popup/message_popup", "member_Id",
-				member_Id);
-=======
 	public ModelAndView messagePopForm(HttpServletRequest request,HttpServletResponse response){		
 		//전달받은 아이디값
 		String member_Id=request.getParameter("member_Id");
 
 		return new ModelAndView("../views/popup/message_popup","member_Id",member_Id);		
 													//WEB-INF/views/popup/message_popup.jsp
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 
 	@RequestMapping("sendMessage.do")
-<<<<<<< HEAD
-	public void sendMessage(MessageVO vo) {
-		// System.out.println(vo); spand_date 널값
-		System.out.println(vo);
-=======
 	public ModelAndView sendMessage(HttpServletRequest request,HttpServletResponse response,MessageVO vo){	
 
 		vo.setRead(0);
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		messageService.sendMessage(vo);
 		
 		return  new ModelAndView("../views/popup/message_ok","message","전송완료");
 	}
-<<<<<<< HEAD
-
-	@RequestMapping("messagebox.do")
-	public ModelAndView messagebox(HttpServletRequest request) {
-		// 사용자의 메세지함으로 이동
-		String member_id = request.getParameter("member_id");
-		List<MessageVO> list = messageService.myMessageBox(member_id);
-		return new ModelAndView("message_MyMessageBox", "list", list);
-=======
 	
 	@RequestMapping("messagebox.do")
 	public ModelAndView messagebox(HttpServletRequest request,HttpServletResponse response){
@@ -76,7 +52,6 @@ public class MessageController {
 		MessageVO mvo=messageService.MyMessageShowPopUp(vo);
 		
 		return new ModelAndView("../views/popup/message_show","mvo",mvo);
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 
 	@RequestMapping("messageBoxContent.do")
@@ -92,21 +67,12 @@ public class MessageController {
 	}
 
 	@RequestMapping("messageRead.do")
-<<<<<<< HEAD
-	public void messageRead(MessageVO vo) {
-		String mno = vo.getMno();
-=======
 	public String messageRead(MessageVO vo){
 	
 		int mno=vo.getMno();
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		messageService.messageRead(mno);
-<<<<<<< HEAD
-		// return "redirect:messagebox.do"; 새로고침이 필요함
-=======
 	
 		return "../views/popup/message_read";
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 
 
