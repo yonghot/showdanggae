@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.finalproject.model.category.CategoryService;
 import org.kosta.finalproject.model.category.CategoryVO;
 import org.kosta.finalproject.model.product.ProductService;
+import org.kosta.finalproject.model.product.ProductVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
