@@ -4,7 +4,15 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="product">
- 	
+ 
+ 	<select id="getMemberProductListForDeleteCategory" resultType="pvo">
+	 	<![CDATA[
+	 		select product_name
+	 		from product
+	 		where product_id=#{value}
+	 	]]>
+ 	</select>
+ 
  	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
 	 		select product_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 

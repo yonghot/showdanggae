@@ -1,23 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<link rel="stylesheet" href="${initParam.root}bootstrap.css" type="text/css">
+<!DOCTYPE>
+<link rel="stylesheet" href="${initParam.root}bootstrap.css"
+	type="text/css">
+<!--카테고리 추가하기 -->
 
-<div class="col-md-8">
-	<table class="table">
+<div class="dropdown col-sm-3">
+	<button class="btn btn-default dropdown-toggle" type="button"
+		id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		카테고리 추가하기<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">computer</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">clothes</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">mobile</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">book</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">camera</a></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">beauty</a></li>
+		<!--구분선-->
+		<li role="presentation" class="divider"></li>
+		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li>
+	</ul>
+</div>
+<br>
+<br>
+<!--카테고리 보이기 -->
+<div class="col-md-7">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>카테고리ID</td>
+				<td>회원ID</td>
+				<td>카테고리</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${requestScope.categorylist }" var="clist">
+				<tr>
+					<td>${clist.category_id}</td>
+					<td">${clist.member_id}</td>
+					<td>${clist.category}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	
+	<!--내상품 보이기 -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>상품</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${requestScope.productnamelist }" var="plist">
+				<tr>
+					<td>${plist.product_name}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+	<!-- ******************************************************************************************* -->
+
+	<table class="table table-striped"">
 		<caption>목록</caption>
 		<thead>
-		<tr>
-			<th class="no">글 번호</th>
-			<th class="title">제목</th>
-			<th class="name">이름</th>
-			<th class="date">작성일</th>
-			<th class="hit">조회수</th>
-		</tr>
+			<tr>
+				<th class="no">글 번호</th>
+				<th class="title">제목</th>
+				<th class="name">이름</th>
+				<th class="date">작성일</th>
+				<th class="hit">조회수</th>
+			</tr>
 		</thead>
-		<tbody><!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->			
-			<c:forEach items="${requestScope.pvoList}" var="list"><!-- 리스트에 순차적으로 접근하는 forEace문 -->
+		<tbody>
+			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
+			<c:forEach items="${requestScope.lvo.list}" var="list">
+				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
 				<tr>
 				    <td>${list.product_id}</td>
 				    

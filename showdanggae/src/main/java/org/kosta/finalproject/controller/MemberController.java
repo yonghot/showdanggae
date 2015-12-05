@@ -73,7 +73,6 @@ public class MemberController {
 	
 	@RequestMapping("registerview.do")
 	public String registerview() {
-		//ȸ������â form ���� �̵�
 		return "member_registerview";
 	}
 	
@@ -113,13 +112,11 @@ public class MemberController {
 	
 	@RequestMapping("registercancel.do")
 	public String registercancel(){
-		
 		return "home";		
 	}
 	
 	@RequestMapping("updatecancel.do")
 	public String updatecancel(){
-		
 		return "home";		
 	}
 	
@@ -155,12 +152,11 @@ public class MemberController {
 		return new ModelAndView("redirect:home.do");
 			
 	}
-
 	@RequestMapping("withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
 	}
-
+	
 	@RequestMapping("withdraw.do")
 	public String withdraw(HttpServletRequest request,MemberVO vo){
 		String reason=request.getParameter("reason");
@@ -177,7 +173,6 @@ public class MemberController {
 
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(HttpServletRequest request,HttpServletResponse response){
-
 		String pageNo=request.getParameter("pageNo");
 		MemberListVO mvolist=memberService.memberManagerList(pageNo);
 		System.out.println(mvolist);

@@ -31,10 +31,13 @@ create table item (
 	item varchar2(100) primary key
 );
 
+<<<<<<< HEAD
+=======
 
 
 -- seller_link
 drop table seller_link;
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 create table seller_link (
 	link varchar2(100) primary key,
 	category_id number not null,

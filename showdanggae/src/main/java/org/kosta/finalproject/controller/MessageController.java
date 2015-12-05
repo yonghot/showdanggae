@@ -14,11 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MessageController {
-	
+
 	@Resource
 	MessageService messageService;
-	
-	
+
 	@RequestMapping("messagePopForm.do")
 	public ModelAndView messagePopForm(HttpServletRequest request,HttpServletResponse response){		
 		//전달받은 아이디값
@@ -27,7 +26,7 @@ public class MessageController {
 		return new ModelAndView("../views/popup/message_popup","member_Id",member_Id);		
 													//WEB-INF/views/popup/message_popup.jsp
 	}
-	
+
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request,HttpServletResponse response,MessageVO vo){	
 
@@ -54,6 +53,19 @@ public class MessageController {
 		
 		return new ModelAndView("../views/popup/message_show","mvo",mvo);
 	}
+
+	@RequestMapping("messageBoxContent.do")
+	public ModelAndView messageBoxContent(HttpServletRequest request,
+			MessageVO vo) {
+
+		MessageVO mvo = messageService.MyMessageShowPopUp(vo);
+		// System.out.println("값이 잘 담기나?" + mvo);
+		// return new
+		// ModelAndView("../WEB-INF/views/popup/message_show","member_Id",member_Id);
+		return new ModelAndView("../WEB-INF/views/popup/message_show", "mvo",
+				mvo);
+	}
+
 	@RequestMapping("messageRead.do")
 	public String messageRead(MessageVO vo){
 	

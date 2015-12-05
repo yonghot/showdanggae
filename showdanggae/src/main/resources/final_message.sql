@@ -1,4 +1,5 @@
 drop table message;
+
 create table message (
 	mno number primary key,
 	member_Id varchar2(100),
