@@ -4,9 +4,18 @@
  <script type="text/javascript">
  	$(document).ready(function(){
  		$("#sendBtn").click(function(){
- 			$("#sendForm").submit();
- 			alert("메세지가 전송되었습니다");
- 			self.close();
+
+			$.ajax({
+				type:"get",
+				url:"sendMessage.do",
+				data: $("#sendForm").serialize(),
+				dataType:"json",
+				 success:function(data){   
+				
+						 }
+			        }
+			  
+			});
  		});
  	});
 
@@ -20,12 +29,11 @@
 보내는이:<input type="text" value="${sessionScope.managerlogin.member_name}" 
 size="10"  readonly="readonly"  name="spand_name" ><br><br>
 
-<input type="hidden" value="${requestScope.member_Id}" name="member_Id">
+<input type="hidden" value="${requestScope.member_id }" name="member_Id">
 <textarea class="form-control"  rows="10" cols="30"   placeholder="보낼 메세지를 입력해주세요" name="message"></textarea><br>
 <input type="submit"  id="sendBtn"  value="보내기"> 
 <input type=button value=취소 onclick='javascript:self.close()'>
 
 
 </form>
-
 

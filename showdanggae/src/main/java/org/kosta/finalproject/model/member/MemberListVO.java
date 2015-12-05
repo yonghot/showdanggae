@@ -7,7 +7,7 @@ public class MemberListVO {
 	private ArrayList<MemberVO> list;
 	private MemberPagingBean mpagingBean;
 	
-	
+
 	public MemberListVO(ArrayList<MemberVO> list, MemberPagingBean mpagingBean) {
 		super();
 		this.list = list;

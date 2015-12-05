@@ -30,7 +30,7 @@
     </script>
   
     
-	<div class="col-md-7">
+	<div class="col-md-8">
    
 	<form id="notice_deleteForm" action="${initParam.root}notice_delete.do">	
 	    <c:if test="${!empty sessionScope.managerlogin}">

@@ -2,9 +2,7 @@ package org.kosta.finalproject.model.member;
 
 import java.util.HashMap;
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +13,6 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-	
 	@Override
 	public MemberVO idCheck(String beforeId) {
 
@@ -30,6 +27,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberVO login(MemberVO vo) {
+		
 		return sqlSessionTemplate.selectOne("member.login", vo);
 	}
 
@@ -39,14 +37,16 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO updateOk(String member_Id) {
+	public MemberVO updateOk(String member_id) {
 		
-		return sqlSessionTemplate.selectOne("member.updateOk", member_Id);
+		return sqlSessionTemplate.selectOne("member.updateOk", member_id);
 	}
 
 	@Override
-	public void withdraw(String member_Id) {
-		sqlSessionTemplate.delete("member.withdraw", member_Id);
+	public void withdraw(String member_id) {
+		
+		sqlSessionTemplate.delete("member.withdraw", member_id);
+		
 	}
 
 	@Override
@@ -57,20 +57,20 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<MemberVO> memberManagerList(int pn) {
+		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectList("member.memberManagerList",pn);
 	}
 
 	@Override
-	public void memberDelete(String member_Id) {
+	public void memberDelete(String member_id) {
 		//ȸ������
-		 sqlSessionTemplate.delete("member.memberDelete", member_Id);
+		 sqlSessionTemplate.delete("member.memberDelete", member_id);
 	}
 
 	@Override
 	public int getCount() {
 		return sqlSessionTemplate.selectOne("member.getCount");
 	}
-	
 	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC

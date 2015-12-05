@@ -17,5 +17,8 @@ public interface NoticeDAO {
 	void noticeUpdate(NoticeVO vo);
 
 	void noticeDelete(String string);
+	
+	
+	
 
 }

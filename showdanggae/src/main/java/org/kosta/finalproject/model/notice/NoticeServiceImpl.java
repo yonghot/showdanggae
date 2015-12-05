@@ -10,7 +10,6 @@ public class NoticeServiceImpl implements NoticeService{
 	@Resource
 	private NoticeDAO noticeDAO;
 
-
 	@Override
 	public ListVO noticeList(String pageNo) {
 		PagingBean pagingBean=new PagingBean();
@@ -27,7 +26,7 @@ public class NoticeServiceImpl implements NoticeService{
 			int count=noticeDAO.getCount(); //�� �Խù� ����
 			pagingBean=new PagingBean(count,pn); //total nowpage
 			list=new ListVO(noticeList,pagingBean);
-		}else{	//������ �ѹ��� ������
+		}else{	
 			
 			int count=noticeDAO.getCount();
 			noticeList=(ArrayList<NoticeVO>) noticeDAO.noticeList(pn);
@@ -70,7 +69,7 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public void noticeDelete(String string) {
-		// �迭�� ���� ������ �۹�ȣ��
+	
 		noticeDAO.noticeDelete(string);
 	}
 

@@ -1,4 +1,5 @@
 package org.kosta.finalproject.model.member;
+
 //비즈?��?��로직 ?��?���? �?�? ?��?��
 
 
@@ -11,11 +12,12 @@ package org.kosta.finalproject.model.member;
 
 
 
+
 public class MemberPagingBean {
-	private int nowPage; 
-	private int contentNumberPerPage=5; //페이지당 보여줄 게시물 수
-	private int pageNumberPerPageGroup=3; //페이지 그룹당 페이지 수 
-	private int totalContents; 
+	private int nowPage; 	
+	private int contentNumberPerPage=20; //페이지당 보여줄 게시물 수
+	private int pageNumberPerPageGroup=5; //페이지 그룹당 페이지 수 
+	private int totalContents; //지금 20개
 	
 	
 	public MemberPagingBean(int totalContents,int nowPage){
@@ -34,7 +36,7 @@ public class MemberPagingBean {
 	public static void main(String[] args) {
 		
 		MemberPagingBean pb = new MemberPagingBean();
-		pb.setTotalContents(30);
+	
 		System.out.println("result: "+pb.getTotalPage());
 	}
 	
@@ -48,17 +50,20 @@ public class MemberPagingBean {
 	public int getTotalPage(){
 
 		int num=this.totalContents%this.contentNumberPerPage;
+			// 20 페이지당 보여줄 게시물 수10
 		int totalPage=0;
 		if(num==0){
 			totalPage=this.totalContents/this.contentNumberPerPage;
 		}else{
 			totalPage=this.totalContents/this.contentNumberPerPage+1;
 		}
-		return totalPage; 
+		System.out.println(totalPage);
+		return totalPage;  //2개 왜? 총 콘ㅌㄴ츠가 20개니까
 	}
 	
 	public int getTotalPageGrop(){
-		int num=this.getTotalPage()%this.pageNumberPerPageGroup; //
+		int num=this.getTotalPage()%this.pageNumberPerPageGroup; //페이지그룹당 페이지수
+										//2%5
 		int totalPageGroup=0;
 		if(num==0){
 			totalPageGroup=this.getTotalPage()/this.pageNumberPerPageGroup;
@@ -92,13 +97,17 @@ public class MemberPagingBean {
 	public int getEndPageOfPageGroup(){ 
 		
 		int endPageOfPageGroup=pageNumberPerPageGroup*getNowPageGroup();
-			
+									
+		int num=this.totalContents/this.contentNumberPerPage;
+		
+		if(pageNumberPerPageGroup> num){		                                     
+			return num;
+		}
 		
 		if(nowPage==getTotalPage()){
 			
 			return getTotalPage();		
 		}
-		
 		return endPageOfPageGroup;
 	}
 	
@@ -149,8 +158,6 @@ public class MemberPagingBean {
 	public void setTotalContents(int totalContents) {
 		this.totalContents = totalContents;
 	}
-	
-	
 	
 	
 

@@ -1,9 +1,7 @@
 package org.kosta.finalproject.model.message;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,9 +30,9 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public void messageRead(String mno) {
-		int m=Integer.parseInt(mno);
-		messageDAO.messageRead(m);
+	public void messageRead(int mno) {
+	
+		messageDAO.messageRead(mno);
 		
 	}
 

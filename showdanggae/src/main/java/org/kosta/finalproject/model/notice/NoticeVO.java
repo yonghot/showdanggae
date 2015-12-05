@@ -9,6 +9,7 @@ public class NoticeVO {
 	private int hit;
 	private String time_post;
 	
+	
 	public NoticeVO() {
 		super();
 		// TODO Auto-generated constructor stub

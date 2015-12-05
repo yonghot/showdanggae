@@ -21,11 +21,16 @@
 	         data:"searchId="+min,
 	         dataType:"json",
 	         success:function(data){
-	        	 var index = "";
-	           for(var i=0;i<data.svoList.length;i++){
-	        	   index += "<tr><td>"+data.svoList[i].member_id+"</td></tr>";
-	           }
-	        	   $("#searchIdView").html(index);
+	        	var index = "";
+	        	if(data!=""){
+	        		for(var i=0;i<data.svoList.length;i++){
+		  	        	   index += "<tr><td>"+data.svoList[i].member_id+"</td></tr>";
+		  	        }
+	  	        	$("#searchIdView").html(index);
+	        	}else{
+	        		$("#searchIdView").html(index);
+	        	}
+	  	           
 	         }//callback         
 	      });//ajax
 	}
@@ -58,4 +63,5 @@
 		</form>
 	</c:if>
 </div>
+
 
