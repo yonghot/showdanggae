@@ -2,31 +2,29 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
-<link rel="stylesheet" href="${initParam.root}bootstrap.css"
-	type="text/css">
-<!--카테고리 추가하기 -->
+<link rel="stylesheet" href="${initParam.root}bootstrap.css" type="text/css">
 
-<div class="dropdown col-sm-3">
-	<button class="btn btn-default dropdown-toggle" type="button"
-		id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-		카테고리 추가하기<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
-		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">computer</a></li>
-		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">clothes</a></li>
-		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">mobile</a></li>
-		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">book</a></li>
-		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">camera</a></li>
-		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">beauty</a></li>
-		<!--구분선-->
-		<li role="presentation" class="divider"></li>
-		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li>
-	</ul>
-</div>
-<br>
-<br>
 <!--카테고리 보이기 -->
-<div class="col-md-7">
+<div class="col-md-8">
+	<!--카테고리 추가하기 -->
+	<div class="dropdown col-sm-3">
+		<button class="btn btn-default dropdown-toggle" type="button"
+			id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+			카테고리 추가하기<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">computer</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">clothes</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">mobile</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">book</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">camera</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">beauty</a></li>
+			<!--구분선-->
+			<li role="presentation" class="divider"></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li>
+		</ul>
+	</div>
+	
 	<table class="table table-striped">
 		<thead>
 			<tr>
