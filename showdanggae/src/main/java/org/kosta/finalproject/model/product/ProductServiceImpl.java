@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
 	@Resource
 	private ProductDAO productDAO;
 	
@@ -18,11 +17,13 @@ public class ProductServiceImpl implements ProductService {
 	
 
 	@Override
-	public List<ProductVO> MemberProductListAndDeleteCategory(int category_id) {
-		return productDAO.MemberProductListAndDeleteCategory(category_id);
+	public void DeleteProduct(int product_id){
+		productDAO.DeleteProduct(product_id);
 	}
-	
-	
+	@Override
+	public void DeleteProductList(int category_id) {
+		productDAO.DeleteProductList(category_id);
+	}
 	
 	
 	// 김용호 영역
@@ -35,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
 		map.put("currentCategory", currentCategory);
 		return productDAO.getMyProductList(map);
 	}
-
+	
 	@Override
 	public List<ProductVO> getAllBoardList(String sortBy) {
 		return productDAO.getAllBoardList(sortBy);

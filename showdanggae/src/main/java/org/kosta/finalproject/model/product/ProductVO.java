@@ -2,39 +2,40 @@ package org.kosta.finalproject.model.product;
 
 public class ProductVO {
 	
-	private int product_id;
-	private int likes;
-	private int dislikes;
-	private int hits;
-	private int review_score;
-	private int visiblity;
-	private String member_id;
-	private String product_name;
-	private String review;
-	private String detail;
-	private String regist_date;
-	
-	private int currentCategory;
+	private int product_id; //primary key
+	private int category_id; //not null
+	private String member_id; //not null
+	private String product_name; //not null
+	private int likes; //default 0
+	private int dislikes; //default 0
+	private int hits; //default 0
+	private String review; //not null
+	private int review_score; //default 0
+	private String detail; //not null
+	private int visiblity; //default 0
+	private String regist_date; //not null
+	private int currentCategory; //default 0
 	
 	public ProductVO() {
 		super();
 	}
 
-	public ProductVO(int product_id, int likes, int dislikes, int hits,
-			int review_score, int visiblity, String member_id,
-			String product_name, String review, String detail,
+	public ProductVO(int product_id, int category_id, String member_id,
+			String product_name, int likes, int dislikes, int hits,
+			String review, int review_score, String detail, int visiblity,
 			String regist_date, int currentCategory) {
 		super();
 		this.product_id = product_id;
+		this.category_id = category_id;
+		this.member_id = member_id;
+		this.product_name = product_name;
 		this.likes = likes;
 		this.dislikes = dislikes;
 		this.hits = hits;
-		this.review_score = review_score;
-		this.visiblity = visiblity;
-		this.member_id = member_id;
-		this.product_name = product_name;
 		this.review = review;
+		this.review_score = review_score;
 		this.detail = detail;
+		this.visiblity = visiblity;
 		this.regist_date = regist_date;
 		this.currentCategory = currentCategory;
 	}
@@ -45,6 +46,30 @@ public class ProductVO {
 
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 
 	public int getLikes() {
@@ -71,38 +96,6 @@ public class ProductVO {
 		this.hits = hits;
 	}
 
-	public int getReview_score() {
-		return review_score;
-	}
-
-	public void setReview_score(int review_score) {
-		this.review_score = review_score;
-	}
-
-	public int getVisiblity() {
-		return visiblity;
-	}
-
-	public void setVisiblity(int visiblity) {
-		this.visiblity = visiblity;
-	}
-
-	public String getMember_id() {
-		return member_id;
-	}
-
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
-
-	public String getProduct_name() {
-		return product_name;
-	}
-
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
-	}
-
 	public String getReview() {
 		return review;
 	}
@@ -111,12 +104,28 @@ public class ProductVO {
 		this.review = review;
 	}
 
+	public int getReview_score() {
+		return review_score;
+	}
+
+	public void setReview_score(int review_score) {
+		this.review_score = review_score;
+	}
+
 	public String getDetail() {
 		return detail;
 	}
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+
+	public int getVisiblity() {
+		return visiblity;
+	}
+
+	public void setVisiblity(int visiblity) {
+		this.visiblity = visiblity;
 	}
 
 	public String getRegist_date() {
@@ -137,15 +146,14 @@ public class ProductVO {
 
 	@Override
 	public String toString() {
-		return "ProductVO [product_id=" + product_id + ", likes=" + likes
-				+ ", dislikes=" + dislikes + ", hits=" + hits
-				+ ", review_score=" + review_score + ", visiblity=" + visiblity
-				+ ", member_id=" + member_id + ", product_name=" + product_name
-				+ ", review=" + review + ", detail=" + detail
-				+ ", regist_date=" + regist_date + ", currentCategory="
-				+ currentCategory + "]";
+		return "ProductVO [product_id=" + product_id + ", category_id="
+				+ category_id + ", member_id=" + member_id + ", product_name="
+				+ product_name + ", likes=" + likes + ", dislikes=" + dislikes
+				+ ", hits=" + hits + ", review=" + review + ", review_score="
+				+ review_score + ", detail=" + detail + ", visiblity="
+				+ visiblity + ", regist_date=" + regist_date
+				+ ", currentCategory=" + currentCategory + "]";
 	}
-	
 	
 }
 

@@ -10,20 +10,21 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
-	
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
-
 	
 	
 	// 강민석 영역
 	
 	
 	@Override
-	public List<ProductVO> MemberProductListAndDeleteCategory(int category_id) {
-		return  sqlSessionTemplate.selectList("product.MemberProductListAndDeleteCategory", category_id);
+	public void DeleteProduct(int product_id) {
+		sqlSessionTemplate.delete("product.DeleteProduct", product_id);
 	}
-	
+	@Override
+	public void DeleteProductList(int category_id) {
+		sqlSessionTemplate.delete("product.DeleteProductList", category_id);
+	}
 	
 	
 	// 김용호 영역

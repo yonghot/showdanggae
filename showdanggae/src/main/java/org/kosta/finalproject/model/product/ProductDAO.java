@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface ProductDAO {
-
-	List<ProductVO> MemberProductListAndDeleteCategory(int category_id);
+	
+	public void DeleteProduct(int product_id);
+	
+	public void DeleteProductList(int category_id);
 	
 	List<ProductVO> getMyProductList(Map<String, String> map);
 
