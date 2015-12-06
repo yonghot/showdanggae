@@ -35,6 +35,7 @@
     <div class="btn-group">
     	<a href="#" class="btn btn-default">좋아요</a>
     	<a href="#" class="btn btn-default">관심사</a>
+    	<br>
     </div>
     <hr>
     <div class="row" id="main_row">

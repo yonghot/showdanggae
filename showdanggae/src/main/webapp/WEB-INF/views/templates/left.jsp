@@ -15,7 +15,7 @@
 			<h3>My Page</h3>
 			<hr>
 				${sessionScope.mvo.member_name} 님 로그인중
-	    	<h4><a href="update_password.do">내정보 수정</a></h4>
+	    	<h4><a href="member_update_password.do">내정보 수정</a></h4>
 			<h4><a href="getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=1">내 장바구니</a></h4>
 			<h4><a href="messagebox.do?member_id=${sessionScope.mvo.member_id}">내 쪽지함</a>
 			</h4>

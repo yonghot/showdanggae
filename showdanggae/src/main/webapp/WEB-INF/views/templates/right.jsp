@@ -2,20 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="${initParam.root}js/jquery-1.11.3.min.js"></script>
-<!--    <script type="text/javascript">
-   function login_view(){
-	   location.href="${initParam.root}loginview.do";
-   }
-
-</script>
-    
-
-  <p align="right">
-  
-  <input type="button"  value="로그인"  name="login_view" onclick="login_view()">  
-    <input type="button"  value="장바구니" name=> 
-      <input type="button"  value="Q&A" name=>  -->
-
 <script type="text/javascript">
 	function follow_view(){
 		
@@ -62,23 +48,21 @@
 	<c:if test="${sessionScope.mvo!=null}">
 	    <form class="form-horizontal" role="form" action="findMemberById.do">
 	        <div class="form-group">
-	            <div class="col-sm-2">
-	                <label for="inputEmail3" class="control-label">ID</label>
-	            </div>
-	            <div class="col-sm-10">
+	            <div class="col-sm-12">
 	            	<input type="hidden" name="sessionId" value="${sessionScope.mvo.member_id}">
-	                <input type="text"  class="form-control" id="inputId3" name="member_id" onkeyup="onKeyup()">
-	                <input class="active btn btn-danger btn-sm" type="submit" value="검색" id="findBtn">
-	                <span id="searchIdView"></span>
-	                
-	   
+	                <div class="input-group">
+		                <input type="text"  class="form-control" id="inputId3" name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
+		                <span class="input-group-btn">
+		                	<a class="btn btn-success" type="submit" id="findBtn">검색</a>
+		                </span>
+					</div>
 	            </div>
 	        </div>
 		    <hr>
+			<span id="searchIdView"></span>
 	    </form>
 			<input class="btn btn-default" type="button" value="팔로잉" onclick="follow_view()">	
 			<input class="btn btn-default" type="button" value="팔로워" onclick="follow1_view()">
-		
 	</c:if>
 </div>
 
