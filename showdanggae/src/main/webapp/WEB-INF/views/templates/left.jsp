@@ -9,7 +9,6 @@
 			<hr>
 			<h4><a href="memberManagerForm.do">회원관리</a></h4>
 			<h4><a href="notice.do">공지사항관리</a></h4>
-			<h4><a href="">내 쪽지함</a></h4>
 		</c:when>
 		<c:when test="${!empty sessionScope.mvo}">
 			<!-- 일반회원으로 로그인 되었을때 -->

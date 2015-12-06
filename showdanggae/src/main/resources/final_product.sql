@@ -31,8 +31,6 @@ create table item (
 	item varchar2(100) primary key
 );
 
-<<<<<<< HEAD
-=======
 
 
 -- seller_link
