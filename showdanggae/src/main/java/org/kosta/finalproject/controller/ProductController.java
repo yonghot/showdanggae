@@ -69,11 +69,12 @@ public class ProductController {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		
 		//카테고리가 3개 초과일 경우 입력불가.(보류)
+		List<CategoryVO> categorylist = null;
 		if (mvo != null) {
 			categoryService.addMyCategory(category);
-			List<CategoryVO> categorylist = categoryService.getMemberCategoryList(mvo.getMember_id());
+			categorylist = categoryService.getMemberCategoryList(mvo.getMember_id());
 		}
-		return new ModelAndView("product_productList");
+		return new ModelAndView("product_productList", "categorylist", categorylist);
 	}
 	
 	@RequestMapping("MyProductListDelete.do")
@@ -108,7 +109,7 @@ public class ProductController {
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
 		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
 	}
-}
+
 
 	// 카테고리를 삭제 하려면, 카테고리 아래에 저장된 product가 존재해서는 안된다.
 	// 만약 존재하면 alert창으로 하위 product를 모두 삭제 하겠습니까? 물어본뒤
