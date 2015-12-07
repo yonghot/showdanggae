@@ -10,7 +10,7 @@
    </thead>
    <tbody>
       <c:forEach items="${requestScope.followerList}" var="fvo">
-         <tr >
+         <tr>
             <td>${fvo.follower}</td>
          </tr>
       </c:forEach>
