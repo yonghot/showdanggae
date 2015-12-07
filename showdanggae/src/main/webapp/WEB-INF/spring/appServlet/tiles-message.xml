@@ -11,7 +11,6 @@
 		<put-attribute name="main"  value="/WEB-INF/views/message/{1}.jsp"></put-attribute> 
 	</definition>
 
-
 </tiles-definitions>
 
 

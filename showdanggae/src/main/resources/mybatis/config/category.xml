@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+
+	<select id="getMemberCategoryList" resultType="cvo">
+		select
+		category_id, member_id, category
+		from member_category
+		where member_id=#{value}
+	</select>
+
+	<select id="getMainCategoryList" resultType="mvo">
+		select category
+		from main_category
+	</select>
+
+	<select id="addMyCategory">
+	 	<![CDATA[
+	 		insert into member_category
+	 		
+	 	]]>
+	</select>
+
+	<select id="DeleteCatgory">
+	 	<![CDATA[
+	 		delete *
+	 		from member_category 
+	 		where category_id=#{value}
+	 	]]>
+	</select>
+</mapper> 	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

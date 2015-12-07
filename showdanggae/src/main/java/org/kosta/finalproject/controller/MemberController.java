@@ -31,18 +31,6 @@ public class MemberController {
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-/*	
-	@RequestMapping("home.do")
-	public String home() {
-
-		return "home";
-	}*/
-
-	@RequestMapping("loginview.do")
-	public String loginpage() {
-//member_loginview
-		return "member_login";
-	}
 
 
 	@RequestMapping("idCheck.do")
@@ -56,9 +44,9 @@ public class MemberController {
 		}
 
 	}
+	
 	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo){
-	
 
 		MemberVO insertVO=memberService.register(vo);
 	
@@ -67,20 +55,17 @@ public class MemberController {
 	
 	@RequestMapping("registerF5.do")
 	public ModelAndView registerF5(String member_name) {
-	
 		return new ModelAndView("member_registerokview","member_name",member_name);
 	}
 	
 	@RequestMapping("registerview.do")
 	public String registerview() {
-		//ȸ������â form ���� �̵�
 		return "member_registerview";
 	}
 	
 	
-	
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse repuest,MemberVO vo){
+	public ModelAndView login(HttpServletRequest request, MemberVO vo){
 		
 		if(vo.getMember_id().equals("admingalbage")){
 			MemberVO admin=memberService.adminlogin(vo);
@@ -113,31 +98,13 @@ public class MemberController {
 	
 	@RequestMapping("registercancel.do")
 	public String registercancel(){
-		
 		return "home";		
 	}
 	
 	@RequestMapping("updatecancel.do")
 	public String updatecancel(){
-		
 		return "home";		
 	}
-	
-	@RequestMapping("update_password.do")
-	public String update_password(HttpServletRequest request,HttpServletResponse response){
-
-		return "member_update_password";
-	}
-	
-	@RequestMapping("myinfo_view.do")
-	public String myinfo_view(HttpServletRequest request,HttpServletResponse response){
-
-		HttpSession session = request.getSession(false);
-		session.getAttribute("memberOK");
-		System.out.println(session.getAttribute("memberOK"));
-
-		return "member_myinfo_view";
-	} 
 	
 	
 	@RequestMapping("updateMember.do")
@@ -155,12 +122,12 @@ public class MemberController {
 		return new ModelAndView("redirect:home.do");
 			
 	}
-
+	
 	@RequestMapping("withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
 	}
-
+	
 	@RequestMapping("withdraw.do")
 	public String withdraw(HttpServletRequest request,MemberVO vo){
 		String reason=request.getParameter("reason");
@@ -177,7 +144,6 @@ public class MemberController {
 
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(HttpServletRequest request,HttpServletResponse response){
-
 		String pageNo=request.getParameter("pageNo");
 		MemberListVO mvolist=memberService.memberManagerList(pageNo);
 		System.out.println(mvolist);
@@ -199,6 +165,7 @@ public class MemberController {
 	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+	
 	/**
 	 * 	(right 부분)
 	 * 	검색하고자 하는 친구의 ID를 검색하는 메서드
