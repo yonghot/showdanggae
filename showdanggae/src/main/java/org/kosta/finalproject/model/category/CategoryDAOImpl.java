@@ -22,7 +22,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 	@Override
 	public List<CategoryVO> getMemberCategoryList(String member_id) {
-		return sqlSessionTemplate.selectList("category.getMemberCategoryList");
+		return sqlSessionTemplate.selectList("category.getMemberCategoryList", member_id);
 	}
 	
 	

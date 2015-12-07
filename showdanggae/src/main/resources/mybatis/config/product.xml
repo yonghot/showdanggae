@@ -40,8 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
-	 		select product_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
-	 		from (select rownum as product_id, likes, category_id, member_id, dislikes, review_score, product_name, regist_date, hits
+	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
+	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
 	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
 	 		where member_id=#{member_id} and category_id=#{currentCategory}
 	 	]]>

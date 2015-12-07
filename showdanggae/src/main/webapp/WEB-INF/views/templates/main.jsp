@@ -9,7 +9,7 @@
          var scrollHeight = $(window).height()+$(window).scrollTop();
 
          if (documentHeight <= scrollHeight) { //그냥 = 으로 해서 계속 안됐었음.. 주의합시다
-            for(var i=0;i<2;i++) {
+            for(var i=0;i<3;i++) {
                $(
                    "<div class='col-md-6'>"+
                       "<div class='thumbnail'>"+
