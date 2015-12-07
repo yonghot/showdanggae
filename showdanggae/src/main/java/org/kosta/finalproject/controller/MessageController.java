@@ -19,27 +19,25 @@ public class MessageController {
 	private MessageService messageService;
 
 	@RequestMapping("messagePopForm.do")
-	public ModelAndView messagePopForm(HttpServletRequest request,HttpServletResponse response){		
+	public ModelAndView messagePopForm(HttpServletRequest request){		
 		//전달받은 아이디값
-		String member_Id=request.getParameter("member_Id");
+		String member_id=request.getParameter("member_id");
 
-		return new ModelAndView("../views/popup/message_popup","member_Id",member_Id);		
+		return new ModelAndView("../WEB-INF/views/popup/message_popup","member_id",member_id);		
 	}
 
 	@RequestMapping("sendMessage.do")
-	public ModelAndView sendMessage(HttpServletRequest request,HttpServletResponse response,MessageVO vo){	
+	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
 
 		vo.setRead(0);
 		messageService.sendMessage(vo);
 		
-		return  new ModelAndView("../views/popup/message_ok","message","전송완료");
+		return  new ModelAndView("../WEB-INF/views/popup/message_ok","message","전송완료");
 	}
 	
 	@RequestMapping("messagebox.do")
-	public ModelAndView messagebox(HttpServletRequest request,HttpServletResponse response){
+	public ModelAndView messagebox(String member_id){
 		//사용자의 메세지함으로 이동
-		String member_id=request.getParameter("member_id");
-		
 		List<MessageVO> list=messageService.myMessageBox(member_id);
 		
 		return new ModelAndView("message_MyMessageBox","list",list);	
@@ -62,7 +60,7 @@ public class MessageController {
 		int mno=vo.getMno();
 		messageService.messageRead(mno);
 	
-		return "../views/popup/message_read";
+		return "../WEB-INF/views/popup/message_read";
 	}
 
 

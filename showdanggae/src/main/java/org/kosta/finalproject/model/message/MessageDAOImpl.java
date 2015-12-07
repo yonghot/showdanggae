@@ -20,21 +20,17 @@ public class MessageDAOImpl implements MessageDAO{
 
 	@Override
 	public List<MessageVO> myMessageBox(String member_Id) {
-		// TODO Auto-generated method stub
+		System.out.println(sqlSessionTemplate.selectList("message.myMessageBox", member_Id));
 		return sqlSessionTemplate.selectList("message.myMessageBox", member_Id);
 	}
 
 	@Override
 	public MessageVO MyMessageShowPopUp(MessageVO vo) {
-		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("message.MyMessageShowPopUp", vo);
 	}
-
-
 
 	@Override
 	public void messageRead(int mno) {
 		sqlSessionTemplate.update("message.messageRead", mno);
-		
 	}
 }

@@ -151,7 +151,7 @@ create sequence qna_seq;
 insert into member(member_id, password, member_name, email, birthday) values('java','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member(member_id, password, member_name, email, birthday) values('java1','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member(member_id, password, member_name, email, birthday) values('java2','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
-insert into member(member_id, password, member_name, email, birthday) values('admin','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
+insert into member(member_id, password, member_name, email, birthday) values('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
 insert into member(member_id, password, member_name, email, birthday) values('dd','dd','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
 
 
@@ -170,7 +170,8 @@ insert into product(product_id, category_id, member_id, product_name, review, de
 values (product_seq.nextval, '1', 'java', '기가바이트 P35', '비행기 이륙소리 개쩔', '가성비는 좋은데 내구성이 영..', sysdate); 
 insert into product(product_id, category_id, member_id, product_name, review, detail, regist_date) 
 values (product_seq.nextval, '2', 'java', '바이오더마 립글로즈', '발림성 갑', '좋은 참 좋은데 내 돈주고 사긴 좀 비쌈..', sysdate); 
-
+insert into product(PRODUCT_ID, CATEGORY_ID, MEMBER_ID, PRODUCT_NAME, LIKES, DISLIKES, HITS, REVIEW, REVIEW_SCORE, DETAIL, VISIBLITY, REGIST_DATE) 
+values(product_seq.nextval, '1', 'java', '가시갑옷', 0, 0, 0, '때려보삼', 0, '가시가 촘촘합디다', 0, sysdate)
 
 insert into interest(category, member_id) values('노트북', 'java');
 insert into interest(category, member_id) values('화장품', 'java');

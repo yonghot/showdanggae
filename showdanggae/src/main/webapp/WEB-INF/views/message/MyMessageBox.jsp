@@ -21,8 +21,9 @@
 th,td { font-size: 10pt; line-height: 160%; }
 .shorttitle { width: 220; height: 18; display: block; overflow: hidden; }
 </style>
-    <div class="col-md-7">
-    <h2>나의 메세지함</h2><br>
+    <div class="col-md-8">
+    <h3>나의 메세지함</h3>
+    <hr>
     <form id="messageForm">
     <table class="table">
     	<tr>
@@ -42,14 +43,14 @@ th,td { font-size: 10pt; line-height: 160%; }
     		</td>     	
     		<td> ${msvo.spand_date }</td>
     		<td>
-    					<c:choose>
-							<c:when test="${msvo.read>1}">
-								O
-							</c:when>
-							<c:otherwise>
-								X
-							</c:otherwise>
-						</c:choose>
+  				<c:choose>
+					<c:when test="${msvo.read>1}">
+						O
+					</c:when>
+					<c:otherwise>
+						X
+					</c:otherwise>
+				</c:choose>
 			</td>
     	<tr>
     	</c:forEach>		

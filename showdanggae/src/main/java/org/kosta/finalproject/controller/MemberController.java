@@ -31,18 +31,6 @@ public class MemberController {
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-/*	
-	@RequestMapping("home.do")
-	public String home() {
-
-		return "home";
-	}*/
-
-	@RequestMapping("loginview.do")
-	public String loginpage() {
-//member_loginview
-		return "member_login";
-	}
 
 
 	@RequestMapping("idCheck.do")
@@ -77,7 +65,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse repuest,MemberVO vo){
+	public ModelAndView login(HttpServletRequest request, MemberVO vo){
 		
 		if(vo.getMember_id().equals("admingalbage")){
 			MemberVO admin=memberService.adminlogin(vo);
@@ -117,22 +105,6 @@ public class MemberController {
 	public String updatecancel(){
 		return "home";		
 	}
-	
-	@RequestMapping("update_password.do")
-	public String update_password(HttpServletRequest request,HttpServletResponse response){
-
-		return "member_update_password";
-	}
-	
-	@RequestMapping("myinfo_view.do")
-	public String myinfo_view(HttpServletRequest request,HttpServletResponse response){
-
-		HttpSession session = request.getSession(false);
-		session.getAttribute("memberOK");
-		System.out.println(session.getAttribute("memberOK"));
-
-		return "member_myinfo_view";
-	} 
 	
 	
 	@RequestMapping("updateMember.do")
