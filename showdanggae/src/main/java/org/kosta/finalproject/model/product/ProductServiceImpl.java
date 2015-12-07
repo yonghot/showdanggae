@@ -17,12 +17,12 @@ public class ProductServiceImpl implements ProductService {
 	
 
 	@Override
-	public void DeleteProduct(int product_id){
-		productDAO.DeleteProduct(product_id);
+	public void deleteProduct(int product_id){
+		productDAO.deleteProduct(product_id);
 	}
 	@Override
-	public void DeleteProductList(int category_id) {
-		productDAO.DeleteProductList(category_id);
+	public void deleteProductList(int category_id) {
+		productDAO.deleteProductList(category_id);
 	}
 	
 	

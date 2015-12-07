@@ -12,25 +12,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where member_id=#{value}
 	</select>
 
-	<select id="getMainCategoryList" resultType="mvo">
+	<select id="getMainCategoryList" resultType="cvo">
 		select category
 		from main_category
 	</select>
 
-	<select id="addMyCategory">
-	 	<![CDATA[
-	 		insert into member_category
-	 		
-	 	]]>
-	</select>
-
-	<select id="DeleteCatgory">
+	<select id="deleteCatgory">
 	 	<![CDATA[
 	 		delete *
 	 		from member_category 
 	 		where category_id=#{value}
 	 	]]>
 	</select>
+	
+	<select id="addMyCategory">
+	 	<![CDATA[
+	 		insert into member_category(category_id, category, member_id)
+	 		values (#{category_id}, #{category}, #{member_id })
+	 	]]>
+	</select>
+	
+	<select id="addInterest">
+	 	<![CDATA[
+	 		insert into interest(category, member_id)
+	 		values (#{category}, #{member_id})
+	 	]]>
+	</select>
+	
 </mapper> 	
 	
  
