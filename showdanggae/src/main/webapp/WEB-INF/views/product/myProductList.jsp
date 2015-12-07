@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
-<link rel="stylesheet" href="${initParam.root}bootstrap.css" type="text/css">
 
 <!--카테고리 보이기 -->
 <div class="col-md-8">
@@ -13,15 +12,12 @@
 			카테고리 추가하기<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">computer</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">clothes</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">mobile</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">book</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">camera</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">beauty</a></li>
+			<c:forEach items="${requestScope.productAndCategoryMap.mainCategoryList}" var="list">
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${list.category}</a></li>
+			</c:forEach>
 			<!--구분선-->
-			<li role="presentation" class="divider"></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li>
+			<!-- <li role="presentation" class="divider"></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li> -->
 		</ul>
 	</div>
 	
@@ -34,7 +30,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.categorylist }" var="clist">
+			<c:forEach items="${requestScope.productAndCategoryMap.memberCategoryList }" var="clist">
 				<tr>
 					<td>${clist.category_id}</td>
 					<td>${clist.member_id}</td>
@@ -75,7 +71,7 @@
 		</thead>
 		<tbody>
 			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
-			<c:forEach items="${requestScope.pvoList}" var="list">
+			<c:forEach items="${requestScope.productAndCategoryMap.pvoList}" var="list">
 				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
 				<tr>
 				    <td>${list.product_id}</td>

@@ -4,19 +4,6 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
-
-	   function login_view(){
-		   location.href="${initParam.root}loginview.do";
-	   }
-	
-	   function notice_view(){
-		   location.href="${initParam.root}notice.do";
-	   }
-	   
-	   function myinfo_view(){
-		  /*  내정보 요청 */
-		   location.href="${initParam.root}myinfo_view.do";
-	   }
 	   
 		$("#logout").click(function(){
 			if (confirm("로그아웃하시겠습니까??") == true) {

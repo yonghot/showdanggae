@@ -1,5 +1,6 @@
 package org.kosta.finalproject.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -25,43 +26,6 @@ public class ProductController {
 	
 //강민석 영역
 
-	// 로그인 상태일때, 내가 추가할 수 있는 카테고리 리스트가 표시된다.
-	@RequestMapping("getMainCategoryList.do")
-	public ModelAndView getMainCategoryList(HttpServletRequest request) {
-	
-		HttpSession session = request.getSession(false);
-		session.getAttribute("mvo");
-		if (session.getAttribute("mvo") != null) {
-			List<CategoryVO> maincategorylist = categoryService
-					.getMainCategoryList();
-			return new ModelAndView("product_productList", "maincategorylist",
-					maincategorylist);
-		} else {
-			return new ModelAndView("login");
-		}
-	}
-
-	// 로그인 상태일때, 내가 추가해 놓은 카테고리 리스트가 표시된다.
-	@RequestMapping("getMyCategoryList.do")
-	public ModelAndView getMyCategoryList(String member_id,
-			HttpServletRequest request) {
-		// HttpSession이 존재하면 현재 HttpSession을 반환하고
-		// 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환한다.
-		HttpSession session = request.getSession(false);
-		// 장바구니는 세션이 존재해야 하므로 한번더 if문으로 검증한다.
-		// 로그인 상태일때(나의 categoryList + 나의 productList)
-		session.getAttribute("mvo");
-		if (member_id != null) {
-			List<CategoryVO> categorylist = categoryService
-					.getMemberCategoryList(member_id);
-			System.out.println(categorylist);
-			return new ModelAndView("product_productList", "categorylist",
-					categorylist);
-		} else {
-			return new ModelAndView("login");
-		}
-	}
-	
 	
 	//로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
 	//이 때, 3개의 카테고리 까지만 추가 가능하다.
@@ -131,7 +95,11 @@ public class ProductController {
 	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
-		return new ModelAndView("product_myProductList", "pvoList", productService.getMyProductList(member_id, currentCategory));
+		HashMap<String, List> productAndCategoryMap = new HashMap<String, List>();
+		productAndCategoryMap.put("pvoList", productService.getMyProductList(member_id, currentCategory));
+		productAndCategoryMap.put("mainCategoryList", categoryService.getMainCategoryList());
+		productAndCategoryMap.put("memberCategoryList", categoryService.getMemberCategoryList(member_id));
+		return new ModelAndView("product_myProductList", "productAndCategoryMap", productAndCategoryMap);
 	}
 	
 	

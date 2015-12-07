@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
-<link rel="stylesheet" href="${initParam.root}css/home.css" type="text/css">
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -12,6 +10,8 @@
 		}, function(){
 			
 		});
+		
+		$('#myPopover')
 	});
 
 
@@ -65,7 +65,8 @@
 							<li><a href="#" contenteditable="true">Action</a></li>
 						</ul>
 					</div>
-					
+					<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" 
+					data-trigger="hover" id="myPopover" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Popover on right</button>
 				</td>
 				<td>
 					<div class="checkbox">
