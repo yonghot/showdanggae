@@ -129,7 +129,7 @@ public class ProductController {
 	// 김용호 영역
 	
 	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
-	@RequestMapping("getMyProductList.do")
+	@RequestMapping("auth_getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
 		return new ModelAndView("product_myProductList", "pvoList", productService.getMyProductList(member_id, currentCategory));
 	}

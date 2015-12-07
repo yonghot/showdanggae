@@ -35,7 +35,7 @@ public class MessageController {
 		return  new ModelAndView("../WEB-INF/views/popup/message_ok","message","전송완료");
 	}
 	
-	@RequestMapping("messagebox.do")
+	@RequestMapping("auth_messagebox.do")
 	public ModelAndView messagebox(String member_id){
 		//사용자의 메세지함으로 이동
 		List<MessageVO> list=messageService.myMessageBox(member_id);

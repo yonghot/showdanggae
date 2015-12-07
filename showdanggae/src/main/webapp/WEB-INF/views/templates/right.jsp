@@ -5,11 +5,11 @@
 <script type="text/javascript">
 	function follow_view(){
 		
-		 location.href="findFollowingId.do?member_id=${mvo.member_id}";
+		 location.href="auth_findFollowingId.do?member_id=${mvo.member_id}";
 		
 	}
 	function follow1_view(){
-		 location.href="findFollowerId.do?member_id=${mvo.member_id}";
+		 location.href="auth_findFollowerId.do?member_id=${mvo.member_id}";
 	}
 	
 	$(document).ready(function(){
@@ -25,7 +25,7 @@
 		var min = $("#inputId3").val();
 		 $.ajax({
 	         type:"POST",
-	         url:"onkeyupId.do",
+	         url:"auth_onkeyupId.do",
 	         data:"searchId="+min,
 	         dataType:"json",
 	         success:function(data){
@@ -46,14 +46,14 @@
 
 <div class="col-md-2">
 	<c:if test="${sessionScope.mvo!=null}">
-	    <form class="form-horizontal" role="form" action="findMemberById.do">
+	    <form class="form-horizontal" role="form" action="auth_findMemberById.do">
 	        <div class="form-group">
 	            <div class="col-sm-12">
 	            	<input type="hidden" name="sessionId" value="${sessionScope.mvo.member_id}">
 	                <div class="input-group">
 		                <input type="text"  class="form-control" id="inputId3" name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
 		                <span class="input-group-btn">
-		                	<a class="btn btn-success" type="submit" id="findBtn">검색</a>
+		                	<input class="btn btn-success" type="submit" id="findBtn" value="검색">
 		                </span>
 					</div>
 	            </div>
