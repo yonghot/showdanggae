@@ -7,8 +7,8 @@
 <!-- 컨트롤러에서 view name을 아래 definition name 으로 반환하면 TilesViewResolver에 의해 include된 
 	여러 페이지 조합결과 화면이 반환된다. -->
 <tiles-definitions>
-	<definition name="qna_*" extends="home">
-		<put-attribute name="main" value="/WEB-INF/views/qna/{1}.jsp"></put-attribute>
+	<definition name="product_*" extends="home">
+		<put-attribute name="main" value="/WEB-INF/views/product/{1}.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>
 
