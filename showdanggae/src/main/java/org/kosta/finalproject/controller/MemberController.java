@@ -96,6 +96,32 @@ public class MemberController {
 		return new ModelAndView("redirect:home.do");
 	}
 	
+	@RequestMapping("findidview.do")
+	public String findview() {
+		return "member_findidview";
+	}
+
+	@RequestMapping("findpassview.do")
+	public String findpassview() {
+		return "member_findpassview";
+	}
+
+	@RequestMapping("findIdByBirth.do")
+	public ModelAndView findIdByBirth(HttpServletRequest request, MemberVO vo) {
+		String mailId = request.getParameter("email_id");
+		String domain = request.getParameter("email_domain");
+		MemberVO ivo=memberService.findIdByBirth(vo,mailId,domain);
+		return new ModelAndView("member_findid","findId",ivo.getMember_id());
+	}
+
+	@RequestMapping("findPassById.do")
+	public ModelAndView findPassById(HttpServletRequest request, MemberVO vo) {
+		String mailId = request.getParameter("email_id");
+		String domain = request.getParameter("email_domain");
+		MemberVO pvo = memberService.findPassById(vo,mailId,domain);
+		return new ModelAndView("member_findpass","findPass",pvo.getPassword());
+	}
+	
 	@RequestMapping("registercancel.do")
 	public String registercancel(){
 		return "home";		
