@@ -1,13 +1,14 @@
 package org.kosta.finalproject.model.member;
 
 import java.io.FileWriter;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -50,8 +51,20 @@ public class MemberServiceImpl implements MemberService {
 
 		return loginVO;
 	}
-
-
+	
+	@Override
+	public MemberVO findIdByBirth(MemberVO vo, String email1, String email2){
+		String email = email1+"@"+email2;
+		vo.setEmail(email);
+		return memberDAO.findIdByBirth(vo);
+	}
+	
+	@Override
+	public MemberVO findPassById(MemberVO vo, String email1, String email2){
+		String email = email1+"@"+email2;
+		vo.setEmail(email);
+		return memberDAO.findPassById(vo);
+	}
 
 	@Override
 	public MemberVO updateMember(MemberVO vo) {

@@ -2,7 +2,9 @@ package org.kosta.finalproject.model.member;
 
 import java.util.HashMap;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +31,16 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO login(MemberVO vo) {
 		
 		return sqlSessionTemplate.selectOne("member.login", vo);
+	}
+	
+	@Override
+	public MemberVO findIdByBirth(MemberVO vo){
+		return sqlSessionTemplate.selectOne("member.findIdByBirth",vo);	
+	}
+	
+	@Override
+	public MemberVO findPassById(MemberVO vo){
+		return sqlSessionTemplate.selectOne("member.findPassById",vo);
 	}
 
 	@Override
