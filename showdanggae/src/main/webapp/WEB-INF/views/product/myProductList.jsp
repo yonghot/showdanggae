@@ -11,18 +11,9 @@
 			카테고리 추가하기<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
-<<<<<<< HEAD
+
 			<c:forEach items="${requestScope.productAndCategoryMap.mainCategoryList}" var="list">
 				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${list.category}</a></li>
-=======
-			<c:forEach items="${requestScope.maincategorylist }" var="mclist">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${mclist.category}</a></li>
-				<!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">clothes</a></li>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">mobile</a></li>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">book</a></li>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">camera</a></li>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">beauty</a></li> -->
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			</c:forEach>
 			<!--구분선-->
 			<!-- <li role="presentation" class="divider"></li>

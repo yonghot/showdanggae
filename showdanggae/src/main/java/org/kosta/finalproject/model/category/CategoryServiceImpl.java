@@ -19,6 +19,11 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<CategoryVO> getMainCategoryList() {
 		return categoryDAO.getMainCategoryList();
 	}
+	@Override
+	public List<CategoryVO> getMemberCategoryList(String member_id) {
+		return categoryDAO.getMemberCategoryList(member_id);
+	}
+	
 	
 	@Override
 	public void deleteCategory(int category_id) {
@@ -32,6 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public void addInterest(MemberVO vo) {
 		categoryDAO.addInterest(vo);
 	}
+	
 	
 }
 

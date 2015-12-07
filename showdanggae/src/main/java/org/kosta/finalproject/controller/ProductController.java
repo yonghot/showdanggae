@@ -23,61 +23,16 @@ public class ProductController {
 	@Resource
 	private ProductService productService;
 
-<<<<<<< HEAD
-	
-	//로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
-	//이 때, 3개의 카테고리 까지만 추가 가능하다.
-	@RequestMapping(value="addCategory.do")
-	public ModelAndView addCategory(String category, HttpServletRequest request){
-=======
-	// 강민석 영역
-
-	// 로그인 상태일때(나의 categoryList + 나의 productList가 표시된다.)
-	@RequestMapping("getMainCategoryList.do")
-	public ModelAndView getMainCategoryList(HttpServletRequest request) {
-		// HttpSession이 존재하면 현재 HttpSession을 반환하고,
-		// 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환한다.
-		HttpSession session = request.getSession(false);
-		// 장바구니는 세션이 존재해야 하므로 한번더 if문으로 검증한다.
-		session.getAttribute("mvo");
-		if (session.getAttribute("mvo") != null) {
-			List<CategoryVO> maincategorylist = categoryService
-					.getMainCategoryList();
-			return new ModelAndView("product_myProductList",
-					"maincategorylist", maincategorylist);
-		} else {
-			return new ModelAndView("redirect:login");
-		}
-	}
-
-	// 로그인 상태일때, 내가 추가해 놓은 카테고리 리스트가 표시된다.
-	@RequestMapping("getMyCategoryList.do")
-	public ModelAndView getMyCategoryList(String member_id,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		session.getAttribute("mvo");
-		if (member_id != null) {
-			List<CategoryVO> categorylist = categoryService
-					.getMyCategoryList(member_id);
-			System.out.println(categorylist);
-			return new ModelAndView("product_productList", "categorylist",
-					categorylist);
-		} else {
-			return new ModelAndView("login");
-		}
-	}
-
 	// 로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
-	// 상품정보 추가는 용호.
-	// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
-	@RequestMapping("addCategory.do")
-	public void addCategory(String category, HttpServletRequest request) {
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			categoryService.addMyCategory(category);
+		// 상품정보 추가는 용호.
+		// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
+		@RequestMapping("addCategory.do")
+		public void addCategory(String category, HttpServletRequest request) {
+			HttpSession session = request.getSession(false);
+			if (session != null) {
+				categoryService.addMyCategory(category);
+			}
 		}
-	}
 
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")

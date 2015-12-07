@@ -21,6 +21,12 @@ public class CategoryDAOImpl implements CategoryDAO{
 		return sqlSessionTemplate.selectList("category.getMainCategoryList");
 	}
 	@Override
+	public List<CategoryVO> getMemberCategoryList(String member_id) {
+		return sqlSessionTemplate.selectList("category.getMemberCategoryList");
+	}
+	
+	
+	@Override
 	public void deleteCategory(int category_id) {
 		sqlSessionTemplate.delete("category.deleteCategory", category_id);
 	}
@@ -32,5 +38,6 @@ public class CategoryDAOImpl implements CategoryDAO{
 	public void addInterest(MemberVO vo) {
 		sqlSessionTemplate.insert("category.addInterest", vo);
 	}
+	
 
 }
