@@ -1,41 +1,8 @@
-drop table member;
-drop table product;
 
-create table member(
-	member_Id varchar2(100) primary key,
-	password varchar2(100) not null,
-	member_name varchar2(100) not null,
-	email varchar2(100) not null,
-	birthday DATE not null
-);
+-- 테이블 생성 순서 : member -> member_category -> main_category ->  product -> item -> 나머지
 
-create table main_category (
-	category varchar2(100) primary key
-);
-select * from main_category;
-
-insert into main_category(category) values('노트북');
-insert into main_category(category) values('카메라');
-insert into main_category(category) values('화장품');
-
-create table member_category (
-	category_id number primary key,
-	category varchar2(100) not null,
-	member_id varchar2(100) not null,
-	constraint fk_category_main foreign key(category) references main_category(category),
-	constraint fk_category_member_id foreign key(member_id) references member(member_id)
-);
-select * from member_category;
-
-create sequence member_category_seq; 
-
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','java');
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '화장품','java');
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','dd');
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','dd');
-
-
-drop table product cascade constraint; -- 제약조건 있는 테이블은 이렇게 삭제
+-- product
+drop table product cascade constraint; -- 제약조건 있는 테이블은 이렇게 삭제...하면 제약조건들이 없어져서 되는거다
 create table product (
 	product_id number primary key,
 	category_id number not null,
@@ -57,15 +24,18 @@ select * from product;
 create sequence product_seq; 
 
 insert into product(product_id, category_id, member_id, product_name, review, detail, visiblity, regist_date)
-values(product_seq.nextval, '노트북','dd')
+values(product_seq.nextval, '노트북','dd');
+
+-- item
+create table item (
+	item varchar2(100) primary key
+);
 
 
 
-
-
-
-
-
+-- seller_link
+drop table seller_link;
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 create table seller_link (
 	link varchar2(100) primary key,
 	category_id number not null,
@@ -77,26 +47,34 @@ create table seller_link (
 	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id)
 );
 
-create table item (
-	item varchar2(100) primary key
-);
 
+-- eval_item
+drop table eval_item cascade constraint;
 create table eval_item (
 	item varchar2(100) primary key,
-	category_id number not null,
-	member_id varchar2(100) not null,
 	product_id number not null,
 	item_point number default 0,
 	constraint fk_eval_item_item foreign key(item) references item(item),
-	constraint fk_eval_item_category_id foreign key(category_id) references member_category(category_id),
-	constraint fk_eval_item_member_id foreign key(member_id) references member(member_id),
 	constraint fk_eval_itemt_product_id foreign key(product_id) references product(product_id)
 );
 
 
-alter table board modify hit default 0;
 
+
+-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+--참고
+alter table board modify hit default 0;
 alter table board drop constraint fk_id cascade;
 
+
+
+-- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+
+
+
+
+-- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
 

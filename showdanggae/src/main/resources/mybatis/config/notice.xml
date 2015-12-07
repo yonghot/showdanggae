@@ -2,17 +2,19 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
  <mapper namespace="notice">
- 
-	<select id="getCount" resultType="int">
+ 	<select id="getCount" resultType="int">
 		select count(*) from noticeboard
 	</select>
 	
-	<select id="noticeList" resultType="nvo">
+		<select id="noticeList" resultType="nvo">
 		select no,TITLE,writer,password,content,hit,to_char(time_post,'YYYY-MM-DD') as time_post from(
-		select no,TITLE,writer,password,content,hit,time_post,ceil(rownum/5) as page from(
-		select no,TITLE,writer,password,content,hit,time_post from noticeboard order by no desc)) where page=#{value}
+select no,TITLE,writer,password,content,hit,time_post,ceil(rownum/5) as page from(
+select no,TITLE,writer,password,content,hit,time_post from noticeboard order by no desc)) where page=#{value}
+		
+
 	</select>
 	
 	<update id="plusHit">
@@ -40,39 +42,6 @@ values(#{no},#{title},#{writer},'1234',#{content},0,SYSDATE)
  delete from noticeboard where no=#{value}
  </delete>
  
- 
-	
- 
- 
-<!-- 
-<select id="stocklist" resultType="shvo">
-
-select s.id,s.symbol, s.quantity, (k.price*s.quantity) as allmoney
-from shares s,stock k
-where s.symbol=k.symbol and s.id=#{value}
-
-</select>
-
-<update id="updatesell">
-update shares set quantity= quantity-#{quantity}
-where id=#{id} and symbol=#{symbol}
-</update>
-
-<update id="buy">
-update shares set quantity= quantity+#{quantity}
-where id=#{id} and symbol=#{symbol}
-</update>
-
-<insert id="buyinsert">
-insert into shares(id,symbol,quantity) values(#{id},#{symbol},#{quantity})
-</insert>
-
-
-<select id="havecheck" resultType="int">
-select quantity from SHARES where id=#{id} AND symbol=#{symbol}
-</select>
- -->
-
 
  </mapper>
  

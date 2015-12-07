@@ -67,31 +67,27 @@
                             <a href="notice.do">공지사항</a>                    
                         </li>
                         <li>
-                            <a href="shoping_getProductInfoList.do">Q&A</a>
+                            <a href="#">Q&A</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div><div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="text-center">쇼당개</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-6">
-                        <form role="form">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="상품명 또는 카테고리를 입력하세요">
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-success" type="submit">Go</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
+            <div class="container">
+                 <div class="col-md-12">
+                     <h2 class="text-center">쇼당개</h2>
+                 </div>
+                 <div class="col-md-offset-3 col-md-6">
+                     <form role="form">
+                         <div class="form-group">
+                             <div class="input-group">
+                                 <input type="text" class="form-control" placeholder="상품명 또는 카테고리를 입력하세요">
+                                 <span class="input-group-btn">
+                                     <a class="btn btn-success" type="submit">검색</a>
+                                 </span>
+                             </div>
+                         </div>
+                     </form>
+                     <hr>
+                 </div>
+            </div>

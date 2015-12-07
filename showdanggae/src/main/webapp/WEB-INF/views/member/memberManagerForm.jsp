@@ -13,33 +13,22 @@
  			$("#memberManagingTable :input[name=check_member]").prop("checked", false);		
  		});
  		
- 		$("#messageBtn").click(function(){
- 			
- 		});
  		
  		$("#memberManagingTable :input[name=deleteBtn]").click(function(){	
  		
 			var id=$(this).parent().parent().children().eq(1).text();
  			if(confirm(id + '회원을 삭제하시겠습니까?')==true){			
- 				location.href="memberDelete.do?member_Id=" + id;
+ 				location.href="memberDelete.do?member_id=" + id;
  			}else{
  				return false;
  			}
  		
  	 	});
- 	/* 	
- 		$("#memberManagerForm td").click(function(){
- 			//클릭된 td가 속한 tr의 자식 td중 첫번째 요소의 텍스트를 alert으로
- 				//alert($(this).parent().children().eq(1).text());
- 			//
- 			//alert($("#memberManagingTable :input[name=check_member]:checked").length + "명의 정보를 삭제하시겠습니까?");
- 			//alert($("#memberManagingTable :input[name=check_member]:checked").parent().children().eq(1).text());
-	 	});
- 		 */
+
  		$("#memberManagerForm a").click(function(){
  			var id=$(this).text();	
  			if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
- 			 window.open("${initParam.root}messagePopForm.do?member_Id="+id,"popup",
+ 			 window.open("${initParam.root}messagePopForm.do?member_id="+id,"popup",
 			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
  			}else{
  				return false;
@@ -56,7 +45,7 @@
 
    <input type="button" value="전체선택" id="allselBtn" class="btn btn-default">
   <input type="button" value="선택취소" id="cancelallsellBtn" class="btn btn-default">
-  <input type="button" value="메세지보내기" id="messageBtn" class="btn btn-default">
+
  <br>
   <table class="table"  id="memberManagerForm">
   		<tr>

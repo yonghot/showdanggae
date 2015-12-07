@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${initParam.root}js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -36,16 +38,22 @@
 		}); 
 	});
 </script>
+<style type ="text/css">
+.td1 {
+size: 10px;
+}
+</style>
 </head>
 <body>
 <jsp:include page="../templates/right.jsp"></jsp:include>
 <a href="home.do">홈으로</a><br><br>
 <!-- <form action ="add.do"> -->
-<form id="followForm">
+<form id="followForm" >
 <hr>
 <table border=2 id="followTable">
+
 <thead>
-<tr><th>ID</th></tr>
+<tr><th>ID</th><th>핑퐁</th></tr>
 </thead>
 <tbody id="listView">
 
@@ -53,20 +61,35 @@
 	 <%-- ${mvoList[status.index]} --%>
 	<c:choose>
 		<c:when test="${sessionScope.mvo.member_id==mvo.member_id}">
+<<<<<<< HEAD
 		<tr>
 			<td>${mvo.member_id}</td>
+=======
+		<tr>
+			<td class="td1">${mvo.member_id}</td><td></td>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		</tr>
 		</c:when>
 		
 		<c:when test="${mvo.isFollow==true}">
+<<<<<<< HEAD
 		<tr>
 			<td>${mvo.member_id}<input type="button" value="v팔로잉" name="addBtn" align="right"></td>
+=======
+		<tr>
+			<td>${mvo.member_id}</td><td><input type="button" value="+팔로우" name="addBtn" align="right"></td>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		</tr>
 		</c:when>
 		
 		<c:otherwise>
+<<<<<<< HEAD
 		<tr>
 			<td>${mvo.member_id}<input type="button" value="+팔로우" name="addBtn"></td>
+=======
+		<tr>
+			<td>${mvo.member_id}</td><td><input type="button" value="v팔로잉" name="addBtn"></td>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		</tr>
 		</c:otherwise>
 	</c:choose>

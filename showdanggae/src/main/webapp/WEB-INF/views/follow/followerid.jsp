@@ -10,7 +10,11 @@
    </thead>
    <tbody>
       <c:forEach items="${requestScope.followerList}" var="fvo">
+<<<<<<< HEAD
          <tr>
+=======
+         <tr >
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
             <td>${fvo.follower}</td>
          </tr>
       </c:forEach>

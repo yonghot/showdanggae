@@ -1,9 +1,7 @@
 package org.kosta.finalproject.model.notice;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
