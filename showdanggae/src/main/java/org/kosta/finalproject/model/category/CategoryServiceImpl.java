@@ -12,8 +12,8 @@ public class CategoryServiceImpl implements CategoryService {
 	@Resource
 	private CategoryDAO categoryDAO;
 	@Override
-	public List<CategoryVO> getMemberCategoryList(String member_id) {
-		return categoryDAO.getMemberCategoryList(member_id);
+	public List<CategoryVO> getMyCategoryList(String member_id) {
+		return categoryDAO.getMyCategoryList(member_id);
 	}
 	@Override
 	public List<CategoryVO> getMainCategoryList() {
@@ -21,12 +21,16 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public void DeleteCategory(int category_id) {
-		categoryDAO.DeleteCategory(category_id);
+	public void deleteCategory(int category_id) {
+		categoryDAO.deleteCategory(category_id);
 	}
 	@Override
 	public void addMyCategory(String category) {
 		categoryDAO.addMyCategory(category);
+	}
+	@Override
+	public void addInterest(MemberVO vo) {
+		categoryDAO.addInterest(vo);
 	}
 	
 }

@@ -7,39 +7,48 @@
 <div class="col-md-8">
 	<!--카테고리 추가하기 -->
 	<div class="dropdown col-sm-3">
-		<button class="btn btn-default dropdown-toggle" type="button"
-			id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 			카테고리 추가하기<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
+<<<<<<< HEAD
 			<c:forEach items="${requestScope.productAndCategoryMap.mainCategoryList}" var="list">
 				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${list.category}</a></li>
+=======
+			<c:forEach items="${requestScope.maincategorylist }" var="mclist">
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${mclist.category}</a></li>
+				<!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="#">clothes</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">mobile</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">book</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">camera</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">beauty</a></li> -->
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			</c:forEach>
 			<!--구분선-->
 			<!-- <li role="presentation" class="divider"></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li> -->
 		</ul>
 	</div>
-	
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<td>카테고리</td>
 				<td>카테고리ID</td>
 				<td>회원ID</td>
-				<td>카테고리</td>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${requestScope.productAndCategoryMap.memberCategoryList }" var="clist">
 				<tr>
+					<td>${clist.category}</td>
 					<td>${clist.category_id}</td>
 					<td>${clist.member_id}</td>
-					<td>${clist.category}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	
+
 	<!--내상품 보이기 -->
 	<table class="table table-striped">
 		<thead>
@@ -92,6 +101,7 @@
 					<td>${list.likes}</td>
 					<td>${list.dislikes}</td>
 				</tr>					
+	
 			</c:forEach>
 		</tbody>					
 	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->

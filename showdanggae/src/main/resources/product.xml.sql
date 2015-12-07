@@ -161,3 +161,9 @@ alter table board drop constraint fk_id cascade;
 select category_id, member_id, category 
 		from member_category
 		where member_id='java';
+		
+		insert into interest(category, member_id) 
+		values('카메라','java');
+		
+		
+		

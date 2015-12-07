@@ -18,12 +18,12 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	
 	@Override
-	public void DeleteProduct(int product_id) {
-		sqlSessionTemplate.delete("product.DeleteProduct", product_id);
+	public void deleteProduct(int product_id) {
+		sqlSessionTemplate.delete("product.deleteProduct", product_id);
 	}
 	@Override
-	public void DeleteProductList(int category_id) {
-		sqlSessionTemplate.delete("product.DeleteProductList", category_id);
+	public void deleteProductList(int category_id) {
+		sqlSessionTemplate.delete("product.deleteProductList", category_id);
 	}
 	
 	

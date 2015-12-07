@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 강민석 영역 -->
 	
-	<select id="DeleteProduct">
+	<select id="deleteProduct">
 	 	<![CDATA[
 	 		delete *
 	 		from product
@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</select>
 
-	<select id="DeleteProductList">
+	<select id="deleteProductList">
 	 	<![CDATA[
 	 		delete *
 	 		from product
