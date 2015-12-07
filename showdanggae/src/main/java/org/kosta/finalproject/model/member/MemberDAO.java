@@ -14,6 +14,8 @@ public interface MemberDAO {
 	MemberVO idCheck(String beforeId);
 	MemberVO register(MemberVO vo);
 	MemberVO login(MemberVO vo);
+	MemberVO findIdByBirth(MemberVO vo);
+	MemberVO findPassById(MemberVO vo);
 	void updateMember(MemberVO vo);
 	MemberVO updateOk(String member_id);
 	void withdraw(String member_id);
@@ -32,5 +34,6 @@ public interface MemberDAO {
 	List<FollowVO> findFollowerId(String member_id);
 	String findIsFollowBySessionId(HashMap<String, String> map);
 	List<MemberVO> onkeyupId(String searchId);
+
 
 }

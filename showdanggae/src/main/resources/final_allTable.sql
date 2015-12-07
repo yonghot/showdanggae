@@ -85,12 +85,15 @@ create table noticeboard(
 drop table qnaboard cascade constraint;
 create table qnaboard(
 	no number primary key,
-	member_id varchar2(100) not null,
 	title varchar2(100) not null,
+	member_id varchar2(100) not null,
 	writer varchar2(100) not null,
 	content CLOB not null,
-	hit number default 0,
-	time_post DATE not null,
+	writeDate DATE not null,
+	viewCount number default 0,
+	ref number not null, 
+	restep number not null, 
+	relevel number not null,
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
 

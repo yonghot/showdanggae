@@ -40,7 +40,29 @@
 		</property>
 	</bean>
 
+<<<<<<< HEAD
 
+=======
+<!-- jackson -->
+ <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" >
+           <property name= "order" value ="0"></property>
+ </bean >
+<bean id= "jspviewResolver"
+class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+           <property name= "order" value ="1"></property>
+<property name= "prefix" value ="/views/"></property>
+<property name= "suffix" value =".jsp"></property>
+</bean>
+<!--  Handler Interceptor 설정 -->
+<mvc:interceptors>
+	<mvc:interceptor>
+		<!-- <mvc:mapping path="/update.do"/>
+		<mvc:mapping path="/updateView.do"/> -->
+		<mvc:mapping path="/auth_*.do"/>
+		<bean class="org.kosta.finalproject.controller.LoginCheckInterceptor"></bean>
+	</mvc:interceptor>
+</mvc:interceptors>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	<!-- file upload와 file download에 관란 설정 -->
 	
 	<!-- 파일 업로드 설정 -->
