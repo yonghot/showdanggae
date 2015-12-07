@@ -272,18 +272,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 */
-<<<<<<< HEAD
-	/*@RequestMapping("onkeyupId.do")
-=======
 	@RequestMapping("auth_onkeyupId.do")
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-	public ModelAndView onkeyupId(String searchId) throws Exception{
-		if(searchId.equals("")) {
-			return new ModelAndView("ajaxView", "svoList", "");
-		}
-		return new ModelAndView("ajaxView", "svoList", memberService.onkeyupId(searchId));
-	}*/
-	@RequestMapping("onkeyupIdAjax.do")
 	@ResponseBody
 	public Object onkeyupId(String searchId) throws Exception{
 		if(searchId.equals("")) {

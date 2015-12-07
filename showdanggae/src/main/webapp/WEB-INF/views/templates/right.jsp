@@ -4,13 +4,7 @@
 <script type="text/javascript" src="${initParam.root}js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 	function follow_view(){
-<<<<<<< HEAD
-		 location.href="findFollowingId.do?member_id=${mvo.member_id}";
-=======
-		
 		 location.href="auth_findFollowingId.do?member_id=${mvo.member_id}";
-		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 	function follow1_view(){
 		 location.href="auth_findFollowerId.do?member_id=${mvo.member_id}";
@@ -29,19 +23,12 @@
 		var min = $("#inputId3").val();
 		 $.ajax({
 	         type:"POST",
-<<<<<<< HEAD
-	         url:"onkeyupIdAjax.do",
-=======
 	         url:"auth_onkeyupId.do",
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	         data:"searchId="+min,
 	         dataType:"json",
 	         success:function(data){
 	        	var index = "";
 	        	if(data!=""){
-	        		/* for(var i=0;i<data.svoList.length;i++){
-		  	        	   index += "<tr><td>"+data.svoList[i].member_id+"</td></tr>";
-		  	        } */
 	        		for(var i=0;i<data.length;i++){
 		  	        	   index += "<tr><td>"+data[i].member_id+"</td></tr>";
 		  	        }
