@@ -106,22 +106,6 @@ public class MemberController {
 		return "home";		
 	}
 	
-	@RequestMapping("update_password.do")
-	public String update_password(HttpServletRequest request,HttpServletResponse response){
-
-		return "member_update_password";
-	}
-	
-	@RequestMapping("myinfo_view.do")
-	public String myinfo_view(HttpServletRequest request,HttpServletResponse response){
-
-		HttpSession session = request.getSession(false);
-		session.getAttribute("memberOK");
-		System.out.println(session.getAttribute("memberOK"));
-
-		return "member_myinfo_view";
-	} 
-	
 	
 	@RequestMapping("updateMember.do")
 	public ModelAndView update(HttpServletRequest request,HttpServletResponse response,MemberVO vo){

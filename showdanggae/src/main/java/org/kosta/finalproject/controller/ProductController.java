@@ -19,6 +19,8 @@ public class ProductController {
 
 	@Resource
 	private CategoryService categoryService;
+	
+	@Resource
 	private ProductService productService;
 	
 //강민석 영역
@@ -69,11 +71,12 @@ public class ProductController {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		
 		//카테고리가 3개 초과일 경우 입력불가.(보류)
+		List<CategoryVO> categorylist = null;
 		if (mvo != null) {
 			categoryService.addMyCategory(category);
-			List<CategoryVO> categorylist = categoryService.getMemberCategoryList(mvo.getMember_id());
+			categorylist = categoryService.getMemberCategoryList(mvo.getMember_id());
 		}
-		return new ModelAndView("product_productList");
+		return new ModelAndView("product_productList", "categorylist", categorylist);
 	}
 	
 	@RequestMapping("MyProductListDelete.do")
@@ -84,13 +87,9 @@ public class ProductController {
 		session.getAttribute("mvo");
 		
 		//List<ProductVO> pvo=request.getParameter(category_id, productVO);
-		
-		//카테고리를 삭제 하려면, 카테고리 아래에 저장된 product가 존재해서는 안된다. 
-		//만약 존재하면 alert창으로 하위 product를 모두 삭제 하겠습니까? 물어본뒤 
-		//예:하위 product삭제 및 카테고리 삭제, 아니오:취소
-		
 	}
 	
+<<<<<<< HEAD
 	
 	
 	
@@ -109,6 +108,8 @@ public class ProductController {
 	}
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	// 카테고리를 삭제 하려면, 카테고리 아래에 저장된 product가 존재해서는 안된다.
 	// 만약 존재하면 alert창으로 하위 product를 모두 삭제 하겠습니까? 물어본뒤
 	// 예:하위 product삭제 및 카테고리 삭제, 아니오:취소
@@ -144,4 +145,22 @@ public class ProductController {
 		}
 		return new ModelAndView("login");
 	}
+	
+	
+	// 김용호 영역
+	
+	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
+	@RequestMapping("getMyProductList.do")
+	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
+		return new ModelAndView("product_myProductList", "pvoList", productService.getMyProductList(member_id, currentCategory));
+	}
+	
+	
+	@RequestMapping("getAllBoardList.do")
+	public ModelAndView getAllBoardList(String sortBy) throws Exception {
+		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
+	}
+
+
+	
 }

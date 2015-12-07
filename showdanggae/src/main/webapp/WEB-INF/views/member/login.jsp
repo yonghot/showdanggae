@@ -19,7 +19,7 @@
  });
  </script>
 
- <div class="col-md-7">
+ <div class="col-md-8">
     <h1 class="text-center">로그인</h1>
     
     <form class="form-horizontal" role="form" action="login.do" method="post">
@@ -40,17 +40,15 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10"></div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-12" align="center">
                 <button type="submit" class="btn btn-default" id="subBtn">로그인</button>
             </div>
         </div>
     </form>
-    
 <hr>
-<a href="">아이디찾기</a> 
-<a href="">비밀번호찾기 </a>
+<div align="center">
+<a href="">아이디찾기 |</a> 
+<a href="">비밀번호찾기 | </a>
 <a href="${initParam.root}registerview.do">회원가입</a>
+</div>
 </div>
