@@ -15,7 +15,7 @@
 				$(this).val("v팔로잉");
 				$.ajax({
 					type:"POST",
-					url:"add.do",
+					url:"auth_add.do",
 					data:"follower=${sessionScope.mvo.member_id}&following="+dor,
 					dataType:"json",
 					success:function(data){
@@ -26,7 +26,7 @@
 				$(this).val("+팔로우");
 				 $.ajax({
 		               type:"POST",
-		               url:"delete.do",
+		               url:"auth_delete.do",
 		               data:"follower=${sessionScope.mvo.member_id}&following="+dor,
 		               dataType:"json",
 		               success:function(data){
@@ -38,11 +38,6 @@
 		}); 
 	});
 </script>
-<style type ="text/css">
-.td1 {
-size: 10px;
-}
-</style>
 </head>
 <body>
 <jsp:include page="../templates/right.jsp"></jsp:include>
@@ -53,7 +48,7 @@ size: 10px;
 <table border=2 id="followTable">
 
 <thead>
-<tr><th>ID</th><th>핑퐁</th></tr>
+<tr><th>ID</th></tr>
 </thead>
 <tbody id="listView">
 
@@ -62,19 +57,19 @@ size: 10px;
 	<c:choose>
 		<c:when test="${sessionScope.mvo.member_id==mvo.member_id}">
 		<tr>
-			<td class="td1">${mvo.member_id}</td><td></td>
+			<td>${mvo.member_id}</td>
 		</tr>
 		</c:when>
 		
 		<c:when test="${mvo.isFollow==true}">
 		<tr>
-			<td>${mvo.member_id}</td><td><input type="button" value="+팔로우" name="addBtn" align="right"></td>
+			<td>${mvo.member_id}<input type="button" value="v팔로잉" name="addBtn"></td>
 		</tr>
 		</c:when>
 		
 		<c:otherwise>
 		<tr>
-			<td>${mvo.member_id}</td><td><input type="button" value="v팔로잉" name="addBtn"></td>
+			<td>${mvo.member_id}<input type="button" value="+팔로우" name="addBtn"></td>
 		</tr>
 		</c:otherwise>
 	</c:choose>

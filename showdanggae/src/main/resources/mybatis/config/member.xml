@@ -23,6 +23,16 @@ insert into member (member_id,password,member_name,email,birthday) values (#{mem
  	select member_id,password,member_name,email,to_char(birthday,'RRMMDD')as birthday from member where member_id=#{member_id} and password=#{password}																
  </select>
  
+ <select id="findIdByBirth" parameterType="mvo" resultType="mvo">
+		select member_id from member
+		where email=#{email} and birthday=to_date(#{birthday},'RRMMDD')
+	</select>
+
+	<select id="findPassById" parameterType="mvo" resultType="mvo">
+		select password from member
+		where member_name=#{member_name} and birthday=to_date(#{birthday},'RRMMDD') and email=#{email}
+	</select>
+ 
  <select id="adminlogin"  resultType="mvo">
  	select member_id,password,member_name,email,to_char(birthday,'RRMMDD')as birthday from member where member_id=#{member_id} and password=#{password}
  </select>
@@ -57,12 +67,10 @@ select member_id,password,member_name,report,email,birthday from member order by
 
  
  <!-- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC -->
- 
- <resultMap type="mvo" id="followRM">
+ 	<resultMap type="mvo" id="followRM">
 		<result property="followVO.following" column="following" />
-</resultMap>
- 
- <select id="findMemberById" resultMap="followRM">
+	</resultMap>
+ 	<select id="findMemberById" resultMap="followRM">
  		select member_id 
  		from member
  		where member_id like '%${value}%'
