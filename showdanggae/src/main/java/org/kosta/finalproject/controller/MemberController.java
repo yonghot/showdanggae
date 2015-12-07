@@ -11,6 +11,7 @@ import org.kosta.finalproject.model.member.FollowVO;
 import org.kosta.finalproject.model.member.MemberListVO;
 import org.kosta.finalproject.model.member.MemberService;
 import org.kosta.finalproject.model.member.MemberVO;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,11 @@ public class MemberController {
 	
 	@RequestMapping("{viewId}.do")
 	public String showTilesView(@PathVariable String viewId) {
+		System.out.println(viewId);
+		return viewId;
+	}
+	@RequestMapping("auth_{viewId}.do")
+	public String authShowTilesView(@PathVariable String viewId) {
 		System.out.println(viewId);
 		return viewId;
 	}
@@ -94,6 +100,32 @@ public class MemberController {
 			session.invalidate();
 		}
 		return new ModelAndView("redirect:home.do");
+	}
+	
+	@RequestMapping("findidview.do")
+	public String findview() {
+		return "member_findidview";
+	}
+
+	@RequestMapping("findpassview.do")
+	public String findpassview() {
+		return "member_findpassview";
+	}
+
+	@RequestMapping("findIdByBirth.do")
+	public ModelAndView findIdByBirth(HttpServletRequest request, MemberVO vo) {
+		String mailId = request.getParameter("email_id");
+		String domain = request.getParameter("email_domain");
+		MemberVO ivo=memberService.findIdByBirth(vo,mailId,domain);
+		return new ModelAndView("member_findid","findId",ivo.getMember_id());
+	}
+
+	@RequestMapping("findPassById.do")
+	public ModelAndView findPassById(HttpServletRequest request, MemberVO vo) {
+		String mailId = request.getParameter("email_id");
+		String domain = request.getParameter("email_domain");
+		MemberVO pvo = memberService.findPassById(vo,mailId,domain);
+		return new ModelAndView("member_findpass","findPass",pvo.getPassword());
 	}
 	
 	@RequestMapping("registercancel.do")
@@ -175,7 +207,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("findMemberById.do")
+	@RequestMapping("auth_findMemberById.do")
 	public ModelAndView findMemberById(String member_id, String sessionId) throws Exception{
 		System.out.println(member_id+sessionId);
 		return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
@@ -188,8 +220,8 @@ public class MemberController {
 	 * @param fvo
 	 * @throws Exception
 	 */
-	@RequestMapping("add.do")
-	public void addFollow(FollowVO fvo) throws Exception {
+	@RequestMapping("auth_add.do")
+	public void addFollow(FollowVO fvo,HttpServletRequest request) throws Exception {
 		memberService.addFollow(fvo);
 	}
 	
@@ -200,8 +232,8 @@ public class MemberController {
 	 * @param vo
 	 * @throws Exception
 	 */
-	@RequestMapping("delete.do")
-	public void deleteFollow(FollowVO vo) throws Exception {
+	@RequestMapping("auth_delete.do")
+	public void deleteFollow(FollowVO vo, HttpServletRequest request) throws Exception {
 		memberService.deleteFollow(vo);
 	}
 	
@@ -213,7 +245,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("findFollowingId.do")
+	@RequestMapping("auth_findFollowingId.do")
 	public ModelAndView findFollowingId(String member_id) throws Exception {
 		List<FollowVO> list = memberService.findFollowingId(member_id);
 		return new ModelAndView("follow_followingid", "followingList", list);
@@ -227,7 +259,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("findFollowerId.do")
+	@RequestMapping("auth_findFollowerId.do")
 	public ModelAndView findFollowerId(String member_id) throws Exception {
 		List<FollowVO> list = memberService.findFollowerId(member_id);
 		return new ModelAndView("follow_followerid", "followerList", list);
@@ -240,7 +272,11 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 */
+<<<<<<< HEAD
 	/*@RequestMapping("onkeyupId.do")
+=======
+	@RequestMapping("auth_onkeyupId.do")
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	public ModelAndView onkeyupId(String searchId) throws Exception{
 		if(searchId.equals("")) {
 			return new ModelAndView("ajaxView", "svoList", "");

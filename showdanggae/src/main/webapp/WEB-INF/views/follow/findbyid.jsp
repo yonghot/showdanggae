@@ -15,7 +15,7 @@
 				$(this).val("v팔로잉");
 				$.ajax({
 					type:"POST",
-					url:"add.do",
+					url:"auth_add.do",
 					data:"follower=${sessionScope.mvo.member_id}&following="+dor,
 					dataType:"json",
 					success:function(data){
@@ -26,7 +26,7 @@
 				$(this).val("+팔로우");
 				 $.ajax({
 		               type:"POST",
-		               url:"delete.do",
+		               url:"auth_delete.do",
 		               data:"follower=${sessionScope.mvo.member_id}&following="+dor,
 		               dataType:"json",
 		               success:function(data){
