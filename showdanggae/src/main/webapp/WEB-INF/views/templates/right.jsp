@@ -50,18 +50,12 @@
 	        <div class="form-group">
 	            <div class="col-sm-12">
 	            	<input type="hidden" name="sessionId" value="${sessionScope.mvo.member_id}">
-<<<<<<< HEAD
-	                <input type="text" class="form-control" id="inputId3" name="member_id" placeholder="아이디 입력" onkeyup="onKeyup()">
-	                <input class="active btn btn-danger btn-sm" type="submit" value="검색" id="findBtn">
-	                <span id="searchIdView"></span>
-=======
 	                <div class="input-group">
 		                <input type="text"  class="form-control" id="inputId3" name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
 		                <span class="input-group-btn">
 		                	<a class="btn btn-success" type="submit" id="findBtn">검색</a>
 		                </span>
 					</div>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	            </div>
 	        </div>
 		    <hr>

@@ -61,35 +61,20 @@ size: 10px;
 	 <%-- ${mvoList[status.index]} --%>
 	<c:choose>
 		<c:when test="${sessionScope.mvo.member_id==mvo.member_id}">
-<<<<<<< HEAD
-		<tr>
-			<td>${mvo.member_id}</td>
-=======
 		<tr>
 			<td class="td1">${mvo.member_id}</td><td></td>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		</tr>
 		</c:when>
 		
 		<c:when test="${mvo.isFollow==true}">
-<<<<<<< HEAD
-		<tr>
-			<td>${mvo.member_id}<input type="button" value="v팔로잉" name="addBtn" align="right"></td>
-=======
 		<tr>
 			<td>${mvo.member_id}</td><td><input type="button" value="+팔로우" name="addBtn" align="right"></td>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		</tr>
 		</c:when>
 		
 		<c:otherwise>
-<<<<<<< HEAD
-		<tr>
-			<td>${mvo.member_id}<input type="button" value="+팔로우" name="addBtn"></td>
-=======
 		<tr>
 			<td>${mvo.member_id}</td><td><input type="button" value="v팔로잉" name="addBtn"></td>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		</tr>
 		</c:otherwise>
 	</c:choose>
