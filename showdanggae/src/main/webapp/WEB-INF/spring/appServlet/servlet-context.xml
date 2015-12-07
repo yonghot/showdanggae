@@ -40,9 +40,6 @@
 		</property>
 	</bean>
 
-<<<<<<< HEAD
-
-=======
 <!-- jackson -->
  <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" >
            <property name= "order" value ="0"></property>
@@ -62,7 +59,6 @@ class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
 		<bean class="org.kosta.finalproject.controller.LoginCheckInterceptor"></bean>
 	</mvc:interceptor>
 </mvc:interceptors>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	<!-- file upload와 file download에 관란 설정 -->
 	
 	<!-- 파일 업로드 설정 -->
