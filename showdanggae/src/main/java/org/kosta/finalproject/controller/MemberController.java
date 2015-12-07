@@ -14,6 +14,7 @@ import org.kosta.finalproject.model.member.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -27,7 +28,6 @@ public class MemberController {
 		System.out.println(viewId);
 		return viewId;
 	}
-	
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
@@ -177,6 +177,7 @@ public class MemberController {
 	 */
 	@RequestMapping("findMemberById.do")
 	public ModelAndView findMemberById(String member_id, String sessionId) throws Exception{
+		System.out.println(member_id+sessionId);
 		return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
 	}
 	
@@ -239,12 +240,19 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("onkeyupId.do")
+	/*@RequestMapping("onkeyupId.do")
 	public ModelAndView onkeyupId(String searchId) throws Exception{
 		if(searchId.equals("")) {
 			return new ModelAndView("ajaxView", "svoList", "");
 		}
 		return new ModelAndView("ajaxView", "svoList", memberService.onkeyupId(searchId));
+	}*/
+	@RequestMapping("onkeyupIdAjax.do")
+	@ResponseBody
+	public Object onkeyupId(String searchId) throws Exception{
+		if(searchId.equals("")) {
+			return "";
+		}
+		return memberService.onkeyupId(searchId);
 	}
-
 }
