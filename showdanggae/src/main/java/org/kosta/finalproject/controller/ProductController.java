@@ -11,7 +11,9 @@ import org.kosta.finalproject.model.category.CategoryService;
 import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.product.ProductService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -25,11 +27,11 @@ public class ProductController {
 	// 로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
 		// 상품정보 추가는 용호.
 		// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
-		@RequestMapping("addCategory.do")
+		@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
 		public void addCategory(String category, HttpServletRequest request) {
 			HttpSession session = request.getSession(false);
+			//String category = httpServletRequest.getParameter("category");
 			if (session != null) {
-				categoryService.addMyCategory(category);
 			}
 		}
 
