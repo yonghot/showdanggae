@@ -39,15 +39,15 @@
  
  </script>
   
-	<div class="col-md-7">
+ <div class="col-md-8">
  <h3>회원관리</h3>
  <form id="memberManagingTable">
 
-   <input type="button" value="전체선택" id="allselBtn" class="btn btn-default">
+  <input type="button" value="전체선택" id="allselBtn" class="btn btn-default">
   <input type="button" value="선택취소" id="cancelallsellBtn" class="btn btn-default">
 
  <br>
-  <table class="table"  id="memberManagerForm">
+  <table class="table" id="memberManagerForm">
   		<tr>
   			<td></td>  	
 			<td>id</td>  	
@@ -59,8 +59,8 @@
   		</tr>
 			<c:forEach var="mvo" items="${requestScope.memberList.list}">				
 			<tr>
-				<td> <input type="checkbox"  id="checkbox_no" name="check_member"></td>
-			    <td><a href="">${mvo.member_id }</a></td> 	
+				<td><input type="checkbox"  id="checkbox_no" name="check_member"></td>
+			    <td><a href="">${mvo.member_id}</a></td> 	
 				<td>${mvo.member_name }</td>
 				<td>${mvo.email}</td>
 				<td>${mvo.birthday }</td>

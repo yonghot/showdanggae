@@ -9,9 +9,10 @@ create table main_category (
 
 select * from main_category;
 
-insert into main_category(category) values('노트북');
-insert into main_category(category) values('카메라');
-insert into main_category(category) values('화장품');
+
+insert into main_category(category) values('notebook');
+insert into main_category(category) values('camera');
+insert into main_category(category) values('beauty');
 
 
 -- member_category
@@ -27,10 +28,10 @@ select * from member_category;
 
 create sequence member_category_seq; 
 
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','java');
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '화장품','java');
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','dd');
-insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, '노트북','dd');
+insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, 'notebook','java');
+insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, 'beauty','java');
+insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, 'notebook','dd');
+insert into member_category(category_id, category,member_id) values(member_category_seq.nextval, 'notebook','dd');
 
 
 drop table interest;
@@ -42,9 +43,9 @@ create table interest (
 	constraint pk_interest primary key (category, member_id)
 );
 
-insert into interest(category, member_id) values('노트북','java');
-insert into interest(category, member_id) values('화장품','java');
-insert into interest(category, member_id) values('노트북','dd');
+insert into interest(category, member_id) values('notebook','java');
+insert into interest(category, member_id) values('beauty','java');
+insert into interest(category, member_id) values('notebook','dd');
 
 
 -- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
