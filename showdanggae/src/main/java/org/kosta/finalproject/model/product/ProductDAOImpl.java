@@ -38,5 +38,22 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> getAllBoardList(String sortBy) {
 		return sqlSessionTemplate.selectList("product.getAllBoardList", sortBy);
 	}
+	@Override
+	public List<String> getItemList() {
+		return sqlSessionTemplate.selectList("product.getItemList");
+	}
+	
+	@Override
+	public void addProduct(ProductVO pvo) {
+		sqlSessionTemplate.selectList("product.registProduct", pvo);
+	}
+	@Override
+	public void addSellerLink(SellerLinkVO lvo) {
+		sqlSessionTemplate.selectList("product.addSellerLink", lvo);
+	}
+	@Override
+	public void addEvaluatingItem(EvaluatingItemVO evo) {
+		sqlSessionTemplate.selectList("product.addEvaluatingItem", evo);
+	}
 
 }

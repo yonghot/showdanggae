@@ -7,4 +7,6 @@ public interface ProductService {
 	public void deleteProduct(int product_id);
 	public void deleteProductList(int category_id);
 	public List<ProductVO> getAllBoardList(String sortBy);
+	public List<String> getItemList();
+	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SellerLinkVO svo, EvaluatingItemVO evo);
 }

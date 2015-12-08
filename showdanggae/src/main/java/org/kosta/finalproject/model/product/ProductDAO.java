@@ -12,4 +12,12 @@ public interface ProductDAO {
 	List<ProductVO> getMyProductList(Map<String, String> map);
 
 	List<ProductVO> getAllBoardList(String sortBy);
+
+	public List<String> getItemList();
+
+	public void addProduct(ProductVO pvo);
+
+	public void addSellerLink(SellerLinkVO lvo);
+
+	public void addEvaluatingItem(EvaluatingItemVO evo);
 }

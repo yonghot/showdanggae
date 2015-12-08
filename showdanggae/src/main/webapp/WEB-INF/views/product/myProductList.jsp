@@ -12,7 +12,7 @@
 		</button>
 		<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
 
-			<c:forEach items="${requestScope.productAndCategoryMap.mainCategoryList}" var="list">
+			<c:forEach items="${requestScope.mainCategoryList}" var="list">
 				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${list.category}</a></li>
 			</c:forEach>
 			<!--구분선-->
@@ -30,7 +30,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.productAndCategoryMap.memberCategoryList }" var="clist">
+			<c:forEach items="${requestScope.memberCategoryList }" var="clist">
 				<tr>
 					<td>${clist.category}</td>
 					<td>${clist.category_id}</td>
@@ -55,7 +55,7 @@
 		</thead>
 		<tbody>
 			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
-			<c:forEach items="${requestScope.productAndCategoryMap.pvoList}" var="list">
+			<c:forEach items="${requestScope.pvoList}" var="list">
 				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
 				<tr>
 				    <td>${list.product_id}</td>
@@ -79,5 +79,5 @@
 			</c:forEach>
 		</tbody>					
 	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
-	<a href="registProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
+	<a href="beforeGoingRegistProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
 </div>

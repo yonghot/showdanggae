@@ -42,4 +42,20 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getAllBoardList(sortBy);
 	}
 	
+	@Override
+	public List<String> getItemList() {
+		return productDAO.getItemList();
+	}
+	@Override
+	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SellerLinkVO svo, EvaluatingItemVO evo) {
+		productDAO.addProduct(pvo);
+		System.out.println(pvo);
+		
+		svo.setProduct_id(pvo.getProduct_id());
+		evo.setProduct_id(pvo.getProduct_id());
+		
+		productDAO.addSellerLink(svo);
+		productDAO.addEvaluatingItem(evo);
+	}
+	
 }
