@@ -10,8 +10,7 @@
 <div class="col-md-8">
 	<h1 class="text-center">Password 찾기</h1><br>
 
-	<form class="form-horizontal" role="form"
-		action="${initParam.root}findPassById.do" method="post">
+	<form class="form-horizontal" role="form" action="${initParam.root}findPassById.do" method="post">
 		<div class="form-group">
 			<div class="col-sm-2">
 				<label for="inputEmail3" class="control-label">Name</label>
@@ -49,7 +48,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-12" align="center">
-				<button type="submit" class="btn btn-default" id="subBtn">패스워드 찾기</button>
+				<button type="submit" class="btn btn-default" >패스워드 찾기</button>
 			</div>
 		</div>
 	</form>
