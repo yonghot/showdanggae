@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-     	$(document).ready(function(){
+
+     $(document).ready(function(){
+    	 
      	$("#messageForm a").click(function(){
  			//메세지 확인form
  			var mno=$(this).children().eq(0).val();	
@@ -11,7 +13,7 @@
  			 window.open("${initParam.root}messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="+mno,"popup",
 			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
 
- 		});
+     	});
     });
          
          //${requestScope.list}
@@ -58,3 +60,4 @@ th,td { font-size: 10pt; line-height: 160%; }
     </form>
 
     </div>
+    

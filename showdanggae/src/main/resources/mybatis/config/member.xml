@@ -67,12 +67,10 @@ select member_id,password,member_name,report,email,birthday from member order by
 
  
  <!-- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC -->
- 
- <resultMap type="mvo" id="followRM">
+ 	<resultMap type="mvo" id="followRM">
 		<result property="followVO.following" column="following" />
-</resultMap>
- 
- <select id="findMemberById" resultMap="followRM">
+	</resultMap>
+ 	<select id="findMemberById" resultMap="followRM">
  		select member_id 
  		from member
  		where member_id like '%${value}%'

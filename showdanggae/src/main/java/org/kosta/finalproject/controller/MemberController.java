@@ -15,6 +15,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,7 +34,6 @@ public class MemberController {
 		System.out.println(viewId);
 		return viewId;
 	}
-	
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
@@ -209,6 +209,7 @@ public class MemberController {
 	 */
 	@RequestMapping("auth_findMemberById.do")
 	public ModelAndView findMemberById(String member_id, String sessionId) throws Exception{
+		System.out.println(member_id+sessionId);
 		return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
 	}
 	
@@ -272,11 +273,11 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_onkeyupId.do")
-	public ModelAndView onkeyupId(String searchId) throws Exception{
+	@ResponseBody
+	public Object onkeyupId(String searchId) throws Exception{
 		if(searchId.equals("")) {
-			return new ModelAndView("ajaxView", "svoList", "");
+			return "";
 		}
-		return new ModelAndView("ajaxView", "svoList", memberService.onkeyupId(searchId));
+		return memberService.onkeyupId(searchId);
 	}
-
 }

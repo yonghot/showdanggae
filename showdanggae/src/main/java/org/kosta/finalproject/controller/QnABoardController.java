@@ -1,0 +1,119 @@
+package org.kosta.finalproject.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.kosta.finalproject.model.member.MemberVO;
+import org.kosta.finalproject.model.qnaBoard.QnABoardService;
+import org.kosta.finalproject.model.qnaBoard.QnaListVO;
+import org.kosta.finalproject.model.qnaBoard.QnaVO;
+import org.kosta.finalproject.model.qnaBoard.ReplyVO;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class QnABoardController {
+	
+	@Resource
+	private QnABoardService qnaBoardService;
+	
+	@RequestMapping("qnaboard.do")
+	public ModelAndView qnaboard(String pageNo){
+		QnaListVO qvo=qnaBoardService.getBoardList(pageNo);
+		
+		return new ModelAndView("qna_qnaList","qvo",qnaBoardService.getBoardList(pageNo));
+	}
+	
+	@RequestMapping("showContent.do")
+	public ModelAndView showContent(int no){
+		//조회수 증가
+		qnaBoardService.plushit(no);
+		return  new ModelAndView("redirect:nohitshowContent.do?no=" + no);
+	}
+	
+	@RequestMapping("nohitshowContent.do")
+	public ModelAndView nohitshowContent(String no){
+		int num = Integer.parseInt(no);
+		QnaVO qvo=qnaBoardService.showContent(num);
+			System.out.println(qvo);
+		return new ModelAndView("qna_qnashowview","content",qvo);
+		
+	}
+	
+	@RequestMapping("qnaWriteForm.do")
+	public String qnaWriteForm(){
+		//글쓰기
+		return "qna_qnaWriteForm";
+	}
+	
+	@RequestMapping("qnaWritecancel.do")
+	public String qnaWritecancel(){
+		//글쓰기 도중 취소 눌렀을때
+		return "qna_qnaList";
+	}
+	
+	@RequestMapping("qnawrite.do")
+	public ModelAndView qnaWrite(QnaVO qvo){
+		//쓰고 난 후 쓴거 보여주기 redirect 해줘야함 no로
+		//제목 이름 content
+		System.out.println(qvo);
+		qnaBoardService.qnaWrite(qvo);
+		System.out.println(qvo.getNo());
+		return new ModelAndView("redirect:nohitshowContent.do?no=" + qvo.getNo());
+	}
+	
+	@RequestMapping("qnaDelete.do")
+	public String qnaDelete(String no){
+		qnaBoardService.qnaDelete(no);
+		return "redirect:qnaboard.do";
+	}
+	
+	@RequestMapping("qnaUpdateForm.do")
+	public ModelAndView qnaUpdateForm(String no){
+		int num = Integer.parseInt(no);
+		QnaVO qvo=qnaBoardService.showContent(num);
+		return new ModelAndView("qna_qnaUpdateForm","qvo",qvo);
+	}
+	
+	@RequestMapping("qnaUpdate.do")
+	public ModelAndView qnaUpdate(QnaVO qvo){
+		QnaVO afterQvo=qnaBoardService.qnaUpdate(qvo);
+		//nohitshowContent
+		return new ModelAndView("qna_qnashowview","content",afterQvo);
+	}
+	
+	@RequestMapping("replyView.do")
+	public ModelAndView replyView(String no){
+		int num=Integer.parseInt(no);
+		//QnaVO qvo=qnaBoardService.showContent(num); 이거 no hit임
+		return new ModelAndView("qna_reply_from","qvo",qnaBoardService.showContent(num));
+	}
+	
+	@RequestMapping("reply.do")
+	public ModelAndView reply(QnaVO qvo){
+		qnaBoardService.reply(qvo);
+		
+		return new ModelAndView("redirect:nohitshowContent.do?no="+qvo.getNo());
+	}
+	
+	@RequestMapping("comment.do")
+	public ModelAndView comment(int no,HttpServletRequest request,String replyComment){
+		System.out.println(no);
+		System.out.println(replyComment);
+		HttpSession session=request.getSession(false);
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo"); //지금 로그인 한 사람
+		qnaBoardService.commentInsert(no,replyComment,mvo);
+		
+		return new ModelAndView("recomment.do");
+	}
+	
+	@RequestMapping("recomment.do")
+	public ModelAndView recomment(){
+		return null;
+	}
+	
+
+}
