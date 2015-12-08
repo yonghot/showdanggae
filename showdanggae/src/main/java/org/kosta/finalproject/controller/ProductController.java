@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.finalproject.model.category.CategoryService;
-import org.kosta.finalproject.model.category.CategoryVO;
 import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.product.ProductService;
 import org.springframework.stereotype.Controller;
