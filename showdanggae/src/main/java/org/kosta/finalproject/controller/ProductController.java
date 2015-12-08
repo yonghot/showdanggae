@@ -99,8 +99,19 @@ public class ProductController {
 	// getAllBoardList
 	@RequestMapping("getAllBoardList.do")
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
-		return new ModelAndView("product_allProductList", "pvoList",
-				productService.getAllBoardList(sortBy));
+		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
+	}
+	
+	// getAllBoardList
+	@RequestMapping("registProduct.do")
+	public ModelAndView registProduct(String category_id) throws Exception {
+		return new ModelAndView("product_registProduct", "category_id", category_id);
+	}
+	
+	// getAllBoardList
+	@RequestMapping("addLinkAndPrice.do")
+	public ModelAndView addLinkAndPrice(String sortBy) throws Exception {
+		return new ModelAndView("addLinkAndPrice", "pvoList", productService.getAllBoardList(sortBy));
 	}
 
 }

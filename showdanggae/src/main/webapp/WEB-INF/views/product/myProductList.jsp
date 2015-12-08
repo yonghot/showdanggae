@@ -40,22 +40,6 @@
 		</tbody>
 	</table>
 
-	<!--내상품 보이기 -->
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<td>상품</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${requestScope.productnamelist }" var="plist">
-				<tr>
-					<td>${plist.product_name}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
 	<!-- ******************************************************************************************* -->
 
 	<table class="table table-striped">
@@ -92,10 +76,8 @@
 					<td>${list.likes}</td>
 					<td>${list.dislikes}</td>
 				</tr>					
-	
 			</c:forEach>
 		</tbody>					
 	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
-	
-	<a href="product_registProduct.do"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
+	<a href="registProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
 </div>

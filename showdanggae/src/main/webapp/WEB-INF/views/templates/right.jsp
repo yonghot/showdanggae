@@ -41,7 +41,7 @@
 	}
 </script>
 
-<div class="col-md-2">
+<div class="col-md-2" align="center">
 	<c:if test="${sessionScope.mvo!=null}">
 	    <form class="form-horizontal" role="form" action="auth_findMemberById.do">
 	        <div class="form-group">
