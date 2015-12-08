@@ -24,9 +24,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 	// 비인증 상태이면 index.jsp로 redirect시키고 false 를 리턴해 
 	// 컨트롤러 메서드 수행시키지 않는다 
 	@Override
-	public boolean preHandle(HttpServletRequest request,
-			HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("interceptor 실행~~~");
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
 			response.sendRedirect("home.do");

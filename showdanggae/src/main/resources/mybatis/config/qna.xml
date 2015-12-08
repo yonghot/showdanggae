@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+<!-- 
+     <resultMap type="qvo" id="boardListRM">		
+		<result property="viewCount" column="view_count" />			
+		<result property="writeDate" column="write_date" /> 		
+	</resultMap>	 -->
+	<select id="getBoardList" resultType="qvo">
+
+		SELECT no,title,member_id,writer,content,writeDate,viewCount,ref, restep,relevel
+					    FROM(	 
+								SELECT no,title,member_id,writer,content,writeDate,viewCount,
+								CEIL(rownum/5) AS page,ref,restep,relevel   
+								FROM ( 
+									SELECT no,title,member_id,writer,content,viewCount,
+									to_char(writeDate,'YYYY.MM.DD') as writeDate,
+									ref,restep,relevel 
+									FROM qnaboard
+									order by ref desc,restep asc  
+									 ) 
+    ) WHERE PAGE=#{value}
+	</select>
+
+
+	<select id="totalContent" resultType="int">
+		select count(*) from qnaboard
+	</select>	
+		
+		<select id="showContent" resultType="qvo">
+	select no,title,member_id,writer,content,viewCount,
+									to_char(writeDate,'YYYY.MM.DD') as writeDate,
+									ref,restep,relevel 
+									from qnaboard
+	where no=#{value}
+		</select>
+		
+		
+<update id="plushit" parameterType="int">
+	update qnaboard set viewCount=viewCount+1 where no=#{value}
+</update>
+
+<insert id="qnaWrite"  parameterType="qvo">
+<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	SELECT qna_seq.nextval from dual
+</selectKey>  
+insert into qnaboard (no,title,member_id,writer,content,writeDate,viewCount,ref,restep,relevel) 
+values (#{no},#{title},#{member_id},#{writer},#{content},SYSDATE,0,#{no},0,0)
+</insert> 
+
+<delete id="qnaDelete" parameterType="int">
+	delete from qnaboard where no=#{value}
+</delete>
+
+<update id="qnaUpdate" parameterType="qvo">
+ update qnaboard set title=#{title},content=#{content} where no=#{no}
+</update>
+
+
+
+	 <!-- BoardService: 답변글 restep+1 업데이트 , insert relevel+1 -->
+	 <update id="updateRestep" parameterType="hashmap">
+	 UPDATE qnaboard  SET restep = restep+1 WHERE ref=#{ref} AND restep > #{restep}
+	 </update>
+	 
+	 
+	 	 <insert id="writeReply" parameterType="qvo">
+	 	<selectKey keyProperty="no" resultType="int" order="BEFORE">
+	 		select qna_seq.nextval from dual 
+	 	</selectKey>
+	 	insert into qnaboard
+	 	(no,title,member_id,writer,content,writeDate,viewCount,ref,restep,relevel)
+	 	values(#{no},#{title},#{member_id},#{writer},#{content},sysdate,0,#{ref},#{restep},#{relevel})
+	 </insert>
+	 
+	 <insert id="commentInsert" parameterType="rvo">
+	 insert into QnAcomment(cno, no, member_name, replyComment, commentDate) 
+	values(qnacomment_seq.nextval,#{no},#{member_name},#{replyComment},SYSDATE);
+	 </insert>
+
+
+
+
+
+
+</mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

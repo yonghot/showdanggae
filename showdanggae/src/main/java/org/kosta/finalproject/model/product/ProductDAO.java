@@ -5,9 +5,9 @@ import java.util.Map;
 
 public interface ProductDAO {
 	
-	public void DeleteProduct(int product_id);
+	public void deleteProduct(int product_id);
 	
-	public void DeleteProductList(int category_id);
+	public void deleteProductList(int category_id);
 	
 	List<ProductVO> getMyProductList(Map<String, String> map);
 

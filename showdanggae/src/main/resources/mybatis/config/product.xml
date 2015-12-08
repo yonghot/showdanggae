@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 강민석 영역 -->
 	
-	<select id="DeleteProduct">
+	<select id="deleteProduct">
 	 	<![CDATA[
 	 		delete *
 	 		from product
@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</select>
 
-	<select id="DeleteProductList">
+	<select id="deleteProductList">
 	 	<![CDATA[
 	 		delete *
 	 		from product
@@ -36,21 +36,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="int"> <![CDATA[ select count(*) from board ]]> </select> -->
 		
 		
-		<!-- 김용호 영역 -->
-		
+	<!-- 김용호 영역 -->
 		
 	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
-	 		select product_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
-	 		from (select rownum as product_id, likes, category_id, member_id, dislikes, review_score, product_name, regist_date, hits
+	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
+	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
 	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
 	 		where member_id=#{member_id} and category_id=#{currentCategory}
 	 	]]>
 	</select>
-		
-		
-		
-		
 		
 </mapper>
  

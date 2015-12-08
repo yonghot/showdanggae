@@ -85,12 +85,15 @@ create table noticeboard(
 drop table qnaboard cascade constraint;
 create table qnaboard(
 	no number primary key,
-	member_id varchar2(100) not null,
 	title varchar2(100) not null,
+	member_id varchar2(100) not null,
 	writer varchar2(100) not null,
 	content CLOB not null,
-	hit number default 0,
-	time_post DATE not null,
+	writeDate DATE not null,
+	viewCount number default 0,
+	ref number not null, 
+	restep number not null, 
+	relevel number not null,
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
 
@@ -132,8 +135,6 @@ create table interest (
 -- 총 12개 테이블
 ------------------------------------------------------------------------------------------------------------
 
-
-
 drop sequence product_seq;
 drop sequence member_category_seq; 
 drop sequence message_seq;
@@ -153,6 +154,7 @@ insert into member(member_id, password, member_name, email, birthday) values('ja
 insert into member(member_id, password, member_name, email, birthday) values('java2','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member(member_id, password, member_name, email, birthday) values('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
 insert into member(member_id, password, member_name, email, birthday) values('dd','dd','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
+insert into member(member_id, password, member_name, email, birthday) values('admin','1234','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
 
 
 insert into main_category(category) values('노트북');
@@ -171,11 +173,11 @@ values (product_seq.nextval, '1', 'java', '기가바이트 P35', '비행기 이�
 insert into product(product_id, category_id, member_id, product_name, review, detail, regist_date) 
 values (product_seq.nextval, '2', 'java', '바이오더마 립글로즈', '발림성 갑', '좋은 참 좋은데 내 돈주고 사긴 좀 비쌈..', sysdate); 
 insert into product(PRODUCT_ID, CATEGORY_ID, MEMBER_ID, PRODUCT_NAME, LIKES, DISLIKES, HITS, REVIEW, REVIEW_SCORE, DETAIL, VISIBLITY, REGIST_DATE) 
-values(product_seq.nextval, '1', 'java', '가시갑옷', 0, 0, 0, '때려보삼', 0, '가시가 촘촘합디다', 0, sysdate)
+values(product_seq.nextval, '1', 'java', '가시갑옷', 0, 0, 0, '때려보삼', 0, '가시가 촘촘합디다', 0, sysdate);
 
-insert into interest(category, member_id) values('노트북', 'java');
-insert into interest(category, member_id) values('화장품', 'java');
-insert into interest(category, member_id) values('노트북', 'dd');
+insert into interest(category, member_id) values('노트북','java');
+insert into interest(category, member_id) values('화장품','java');
+insert into interest(category, member_id) values('노트북','dd');
 
 
 insert into item(item) values('가성비');
