@@ -91,7 +91,6 @@ public class ProductController {
 	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
-<<<<<<< HEAD
 		
 		ModelAndView mv = new ModelAndView("product_myProductList");
 		
@@ -100,13 +99,6 @@ public class ProductController {
 		mv.addObject("memberCategoryList", categoryService.getMemberCategoryList(member_id));
 		
 		return mv;
-=======
-		HashMap<String, List> productAndCategoryMap = new HashMap<String, List>();
-		productAndCategoryMap.put("pvoList", productService.getMyProductList(member_id, currentCategory));
-		productAndCategoryMap.put("mainCategoryList", categoryService.getMainCategoryList());
-		productAndCategoryMap.put("memberCategoryList", categoryService.getMemberCategoryList(member_id));
-		return new ModelAndView("product_myProductList", "productAndCategoryMap", productAndCategoryMap);
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 
 	// getAllBoardList
@@ -134,13 +126,8 @@ public class ProductController {
 		return new ModelAndView("addLinkAndPrice");
 	}
 
-<<<<<<< HEAD
 }
 
 
 
 
-
-=======
-}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
