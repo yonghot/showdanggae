@@ -11,6 +11,7 @@
 			var dor=$(this).parent().siblings().next().text();
 			/* alert((dor+"2")); */
 			/* alert(member_id); */
+			alert(dor);
 		 	if ($(this).val() == "+팔로우") {
 				$(this).val("v팔로잉");
 				$.ajax({
@@ -57,19 +58,19 @@
 	<c:choose>
 		<c:when test="${sessionScope.mvo.member_id==mvo.member_id}">
 		<tr>
-			<td>${mvo.member_id}</td>
+			<td></td><td>${mvo.member_id}</td>
 		</tr>
 		</c:when>
 		
 		<c:when test="${mvo.isFollow==true}">
 		<tr>
-			<td>${mvo.member_id}<input type="button" value="v팔로잉" name="addBtn"></td>
+			<td></td><td>${mvo.member_id}<input type="button" value="v팔로잉" name="addBtn"></td>
 		</tr>
 		</c:when>
 		
 		<c:otherwise>
 		<tr>
-			<td>${mvo.member_id}<input type="button" value="+팔로우" name="addBtn"></td>
+			<td></td><td>${mvo.member_id}<input type="button" value="+팔로우" name="addBtn"></td>
 		</tr>
 		</c:otherwise>
 	</c:choose>
