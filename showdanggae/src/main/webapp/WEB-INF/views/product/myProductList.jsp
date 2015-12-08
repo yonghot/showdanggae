@@ -2,59 +2,39 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
-<link rel="stylesheet" href="${initParam.root}bootstrap.css" type="text/css">
 
 <!--카테고리 보이기 -->
 <div class="col-md-8">
 	<!--카테고리 추가하기 -->
 	<div class="dropdown col-sm-3">
-		<button class="btn btn-default dropdown-toggle" type="button"
-			id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 			카테고리 추가하기<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">computer</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">clothes</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">mobile</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">book</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">camera</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">beauty</a></li>
+
+			<c:forEach items="${requestScope.productAndCategoryMap.mainCategoryList}" var="list">
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${list.category}</a></li>
+			</c:forEach>
 			<!--구분선-->
-			<li role="presentation" class="divider"></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li>
+			<!-- <li role="presentation" class="divider"></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li> -->
 		</ul>
 	</div>
-	
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<td>카테고리</td>
 				<td>카테고리ID</td>
 				<td>회원ID</td>
-				<td>카테고리</td>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.categorylist }" var="clist">
+			<c:forEach items="${requestScope.productAndCategoryMap.memberCategoryList }" var="clist">
 				<tr>
+					<td>${clist.category}</td>
 					<td>${clist.category_id}</td>
 					<td>${clist.member_id}</td>
-					<td>${clist.category}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
-	<!--내상품 보이기 -->
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<td>상품</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${requestScope.productnamelist }" var="plist">
-				<tr>
-					<td>${plist.product_name}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -75,7 +55,7 @@
 		</thead>
 		<tbody>
 			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
-			<c:forEach items="${requestScope.pvoList}" var="list">
+			<c:forEach items="${requestScope.productAndCategoryMap.pvoList}" var="list">
 				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
 				<tr>
 				    <td>${list.product_id}</td>
@@ -99,6 +79,5 @@
 			</c:forEach>
 		</tbody>					
 	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
-	
-	<a href="product_registProduct.do"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
+	<a href="registProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
 </div>

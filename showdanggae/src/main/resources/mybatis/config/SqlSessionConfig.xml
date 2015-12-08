@@ -10,9 +10,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="org.kosta.finalproject.model.member.FollowVO" alias="fvo"/>
 		<typeAlias type="org.kosta.finalproject.model.notice.NoticeVO" alias="nvo"/>	
 		<typeAlias type="org.kosta.finalproject.model.message.MessageVO" alias="msvo"/>
+		<typeAlias type="org.kosta.finalproject.model.qnaBoard.QnaVO" alias="qvo"/>
+		<typeAlias type="org.kosta.finalproject.model.qnaBoard.ReplyVO" alias="rvo"/>
 		
 		<typeAlias type="org.kosta.finalproject.model.category.CategoryVO" alias="cvo"/>
 		<typeAlias type="org.kosta.finalproject.model.product.ProductVO" alias="pvo"/>
+		
 	</typeAliases>	
 
 	<mappers>
@@ -20,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/notice.xml"/>
 		<mapper resource="mybatis/config/message.xml"/>
 		<mapper resource="mybatis/config/follow.xml"/>
+		<mapper resource="mybatis/config/qna.xml"/>
 		
 		<mapper resource="mybatis/config/category.xml"/>
 		<mapper resource="mybatis/config/product.xml"/>
