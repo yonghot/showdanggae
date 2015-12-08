@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.finalproject.model.email.Email;
+import org.kosta.finalproject.model.email.EmailSender;
 import org.kosta.finalproject.model.member.FollowVO;
 import org.kosta.finalproject.model.member.MemberListVO;
 import org.kosta.finalproject.model.member.MemberService;
 import org.kosta.finalproject.model.member.MemberVO;
-import org.springframework.http.HttpRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -120,12 +122,26 @@ public class MemberController {
 		return new ModelAndView("member_findid","findId",ivo.getMember_id());
 	}
 
+	@Autowired
+	private EmailSender emailSender;
+	@Autowired
+	private Email email;
+	
 	@RequestMapping("findPassById.do")
-	public ModelAndView findPassById(HttpServletRequest request, MemberVO vo) {
+	public String findPassById(HttpServletRequest request, MemberVO vo) throws Exception {
 		String mailId = request.getParameter("email_id");
 		String domain = request.getParameter("email_domain");
-		MemberVO pvo = memberService.findPassById(vo,mailId,domain);
-		return new ModelAndView("member_findpass","findPass",pvo.getPassword());
+		MemberVO pvo = memberService.findPassById(vo, mailId, domain);
+		System.out.println(pvo);
+		if(pvo!=null){
+			email.setContent("비밀번호는 "+pvo.getPassword()+"입니다.");
+			email.setReceiver(pvo.getEmail());
+			email.setSubject(pvo.getMember_id()+"님의 비밀번호 찾기 발송 이메일입니다.");
+			emailSender.SendEmail(email);
+			return "member_findpass";
+		}else{
+			return "member_failpass";
+		}
 	}
 	
 	@RequestMapping("registercancel.do")
@@ -221,6 +237,7 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_add.do")
+	@ResponseBody
 	public void addFollow(FollowVO fvo,HttpServletRequest request) throws Exception {
 		memberService.addFollow(fvo);
 	}
@@ -233,6 +250,7 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_delete.do")
+	@ResponseBody
 	public void deleteFollow(FollowVO vo, HttpServletRequest request) throws Exception {
 		memberService.deleteFollow(vo);
 	}
