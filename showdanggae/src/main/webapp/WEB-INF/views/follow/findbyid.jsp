@@ -12,6 +12,7 @@
 			alert(dor);
 			/* alert((dor+"2")); */
 			/* alert(member_id); */
+			alert(dor);
 		 	if ($(this).val() == "+팔로우") {
 				$(this).val("v팔로잉");
 				$.ajax({
