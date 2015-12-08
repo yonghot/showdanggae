@@ -237,6 +237,7 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_add.do")
+	@ResponseBody
 	public void addFollow(FollowVO fvo,HttpServletRequest request) throws Exception {
 		memberService.addFollow(fvo);
 	}
@@ -249,6 +250,7 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_delete.do")
+	@ResponseBody
 	public void deleteFollow(FollowVO vo, HttpServletRequest request) throws Exception {
 		memberService.deleteFollow(vo);
 	}
