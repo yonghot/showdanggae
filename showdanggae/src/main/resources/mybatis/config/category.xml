@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="addMyCategory">
 	 	<![CDATA[
 	 		insert into member_category(category_id, category, member_id)
-	 		values (#{category_id}, #{category}, #{member_id })
+	 		values (member_category_seq.nextval, #{category}, #{member_id })
 	 	]]>
 	</select>
 	

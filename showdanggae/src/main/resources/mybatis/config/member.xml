@@ -29,7 +29,7 @@ insert into member (member_id,password,member_name,email,birthday) values (#{mem
 	</select>
 
 	<select id="findPassById" parameterType="mvo" resultType="mvo">
-		select password from member
+		select member_id,password,member_name,email,birthday from member
 		where member_name=#{member_name} and birthday=to_date(#{birthday},'RRMMDD') and email=#{email}
 	</select>
  
