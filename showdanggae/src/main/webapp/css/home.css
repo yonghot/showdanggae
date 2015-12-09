@@ -13,6 +13,13 @@
  * }
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
 html {
   font-family: 'Hanna', serif;
   -ms-text-size-adjust: 100%;

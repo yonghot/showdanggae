@@ -46,16 +46,23 @@ public class ProductServiceImpl implements ProductService {
 	public List<String> getItemList() {
 		return productDAO.getItemList();
 	}
+	
 	@Override
-	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SellerLinkVO svo, EvaluatingItemVO evo) {
+	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) {
 		productDAO.addProduct(pvo);
-		System.out.println(pvo);
 		
-		svo.setProduct_id(pvo.getProduct_id());
-		evo.setProduct_id(pvo.getProduct_id());
+		System.out.println("svo link 출력: "+slvo.getLink());
+		System.out.println("evo item 출력: "+evo.getItem());
 		
-		productDAO.addSellerLink(svo);
-		productDAO.addEvaluatingItem(evo);
+		if(!slvo.getLink().equals("")) { //공란이 DB에 들어가면 null로 인식되서 not null인 변수에 넣을 수가 없다
+			slvo.setProduct_id(pvo.getProduct_id());
+			productDAO.addSellerLink(slvo);
+		}
+		
+		if(evo.getItem()!=null) {
+			evo.setProduct_id(pvo.getProduct_id());
+			productDAO.addEvaluatingItem(evo);
+		}
 	}
 	
 }

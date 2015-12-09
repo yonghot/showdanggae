@@ -17,7 +17,7 @@ public interface ProductDAO {
 
 	public void addProduct(ProductVO pvo);
 
-	public void addSellerLink(SellerLinkVO lvo);
+	public void addSellerLink(SellerLinkVO slvo);
 
 	public void addEvaluatingItem(EvaluatingItemVO evo);
 }

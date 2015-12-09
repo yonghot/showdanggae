@@ -23,7 +23,7 @@ public class MessageController {
 		//전달받은 아이디값
 		String member_id=request.getParameter("member_id");
 
-		return new ModelAndView("../views/popup/message_popup","member_id",member_id);		
+		return new ModelAndView("popup/message_popup","member_id",member_id);		
 	}
 
 	@RequestMapping("sendMessage.do")
@@ -32,7 +32,7 @@ public class MessageController {
 		vo.setRead(0);
 		messageService.sendMessage(vo);
 		
-		return  new ModelAndView("../views/popup/message_ok","message","전송완료");
+		return  new ModelAndView("popup/message_ok","message","전송완료");
 	}
 	
 	@RequestMapping("auth_messagebox.do")
@@ -51,7 +51,7 @@ public class MessageController {
 		// System.out.println("값이 잘 담기나?" + mvo);
 		// return new
 		// ModelAndView("../WEB-INF/views/popup/message_show","member_Id",member_Id);
-		return new ModelAndView("../WEB-INF/views/popup/message_show", "mvo", mvo);
+		return new ModelAndView("popup/message_show", "mvo", mvo);
 	}
 
 	@RequestMapping("messageRead.do")
@@ -60,7 +60,7 @@ public class MessageController {
 		int mno=vo.getMno();
 		messageService.messageRead(mno);
 	
-		return "../WEB-INF/views/popup/message_read";
+		return "popup/message_read";
 	}
 
 

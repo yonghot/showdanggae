@@ -11,7 +11,6 @@ import org.kosta.finalproject.model.product.ProductService;
 import org.kosta.finalproject.model.product.ProductVO;
 import org.kosta.finalproject.model.product.SellerLinkVO;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,15 +24,15 @@ public class ProductController {
 	private ProductService productService;
 
 	// 로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
-		// 상품정보 추가는 용호.
-		// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
-		@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
-		public void addCategory(String category, HttpServletRequest request) {
-			HttpSession session = request.getSession(false);
-			//String category = httpServletRequest.getParameter("category");
-			if (session != null) {
-			}
+	// 상품정보 추가는 용호.
+	// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
+	@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
+	public void addCategory(String category, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		//String category = httpServletRequest.getParameter("category");
+		if (session != null) {
 		}
+	}
 
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")
@@ -86,6 +85,7 @@ public class ProductController {
 		return new ModelAndView("login");
 	}
 
+	
 	// 김용호 영역
 	
 	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
@@ -97,6 +97,7 @@ public class ProductController {
 		mv.addObject("pvoList", productService.getMyProductList(member_id, currentCategory));
 		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
 		mv.addObject("memberCategoryList", categoryService.getMemberCategoryList(member_id));
+		mv.addObject("category_id", currentCategory);
 		
 		return mv;
 	}
@@ -121,9 +122,10 @@ public class ProductController {
 	
 	// registProduct
 	@RequestMapping("registProduct.do")
-	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO lvo, EvaluatingItemVO evo) throws Exception {
-		productService.addProductWithSellerLinkAndEvaluating(pvo, lvo, evo);
-		return new ModelAndView("addLinkAndPrice");
+	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
+		//vo에 변수명이 int로 되어있어도 String 데이터가 자동으로 parseInt되면서 들어가는 듯
+		productService.addProductWithSellerLinkAndEvaluating(pvo, slvo, evo);
+		return new ModelAndView("product/registOk", "currentCategory", pvo.getCategory_id());
 	}
 
 }

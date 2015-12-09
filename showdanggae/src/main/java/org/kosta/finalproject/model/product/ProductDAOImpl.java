@@ -33,7 +33,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> getMyProductList(Map<String, String> map) {
 		return sqlSessionTemplate.selectList("product.getMyProductList", map);
 	}
-
 	@Override
 	public List<ProductVO> getAllBoardList(String sortBy) {
 		return sqlSessionTemplate.selectList("product.getAllBoardList", sortBy);
@@ -45,15 +44,15 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public void addProduct(ProductVO pvo) {
-		sqlSessionTemplate.selectList("product.registProduct", pvo);
+		sqlSessionTemplate.insert("product.registProduct", pvo);
 	}
 	@Override
-	public void addSellerLink(SellerLinkVO lvo) {
-		sqlSessionTemplate.selectList("product.addSellerLink", lvo);
+	public void addSellerLink(SellerLinkVO slvo) {
+		sqlSessionTemplate.insert("product.addSellerLink", slvo);
 	}
 	@Override
 	public void addEvaluatingItem(EvaluatingItemVO evo) {
-		sqlSessionTemplate.selectList("product.addEvaluatingItem", evo);
+		sqlSessionTemplate.insert("product.addEvaluatingItem", evo);
 	}
 
 }

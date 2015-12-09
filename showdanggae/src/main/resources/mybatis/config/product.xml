@@ -38,6 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<!-- 김용호 영역 -->
 		
+	<select id="getAllBoardList" resultType="pvo">
+	 	<![CDATA[
+	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
+	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
+	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by likes desc))
+	 	]]>
+	</select>
+	
 	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
 	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
@@ -67,8 +75,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="addSellerLink">
 		<![CDATA[
-	 		insert into seller_link(product_id, category_id, member_id, link, price)
-	 		values(#{product_id}, #{category_id}, #{member_id}, #{link}, #{price})
+	 		insert into seller_link(product_id, link, price)
+	 		values(#{product_id}, #{link}, #{price})
 	 	]]>
 	</insert>
 	
