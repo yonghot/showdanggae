@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.message.MessageService;
@@ -23,10 +22,6 @@ public class MessageController {
 	public ModelAndView messagePopForm(HttpServletRequest request){		
 		//전달받은 아이디값
 		String member_id=request.getParameter("member_id");
-<<<<<<< HEAD
-
-		return new ModelAndView("popup/message_popup","member_id",member_id);		
-=======
 		return new ModelAndView("popup/message_popup","member_id",member_id);		
 	}
 	
@@ -36,18 +31,12 @@ public class MessageController {
 		//String member_id=request.getParameter("member_id");
 		String member_id=request.getParameter("member_id");
 		return new ModelAndView("../views/popup/message_popup1","member_id",member_id);		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
 		vo.setRead(0);
-<<<<<<< HEAD
-		messageService.sendMessage(vo);
-		
-=======
 		messageService.sendMessage(vo);	
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		return  new ModelAndView("popup/message_ok","message","전송완료");
 	}
 	
@@ -64,13 +53,6 @@ public class MessageController {
 	public ModelAndView messageBoxContent(HttpServletRequest request, MessageVO vo) {
 
 		MessageVO mvo = messageService.MyMessageShowPopUp(vo);
-<<<<<<< HEAD
-		// System.out.println("값이 잘 담기나?" + mvo);
-		// return new
-		// ModelAndView("../WEB-INF/views/popup/message_show","member_Id",member_Id);
-=======
-	
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		return new ModelAndView("popup/message_show", "mvo", mvo);
 	}
 

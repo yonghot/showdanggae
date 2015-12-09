@@ -36,12 +36,7 @@ public class ProductController {
 		//String category = httpServletRequest.getParameter("category");
 		if (session != null) {
 		}
-<<<<<<< HEAD
 	}
-
-=======
-	
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")
 	public void addInterest(String interest, HttpServletRequest request) {
@@ -90,12 +85,9 @@ public class ProductController {
 		}
 		return new ModelAndView("login");
 	}
-<<<<<<< HEAD
 
 	
 	// 김용호 영역
-=======
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	
 	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
 	public ModelAndView AjaxMainCategoryList(String member_id) {
