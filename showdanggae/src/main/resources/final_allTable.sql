@@ -37,9 +37,9 @@ create table product (
 	likes number default 0,
 	dislikes number default 0,
 	hits number default 0,
-	review clob not null,
+	review clob,
 	review_score number default 0,
-	detail clob not null,
+	detail clob,
 	visiblity number default 0,
 	regist_date date not null,
 	constraint fk_product_category_id foreign key(category_id) references member_category(category_id),
@@ -96,6 +96,16 @@ create table qnaboard(
 	relevel number not null,
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
+ALTER TABLE qnaboard ADD (total number default 0);
+ALTER TABLE QnAcomment
+ADD (member_id VARCHAR2(100));
+
+delete from QnAcomment
+
+ALTER TABLE QnAcomment
+ADD CONSTRAINT FK_QnAcomment FOREIGN KEY(member_id)
+references member(member_id);
+
 
 
 drop table message cascade constraint;

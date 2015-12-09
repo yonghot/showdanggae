@@ -8,6 +8,24 @@
 </script> -->
 
 <div class="col-md-8">
+<<<<<<< HEAD
+	<!--카테고리 추가하기 -->
+	<div class="dropdown col-sm-3">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+			카테고리 추가하기<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="dropdownMenuDivider">
+
+			<c:forEach items="${requestScope.mainCategoryList}" var="list">
+				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">${list.category}</a></li>
+			</c:forEach>
+			<!--구분선-->
+			<!-- <li role="presentation" class="divider"></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리 추가하기</a></li> -->
+		</ul>
+	</div>
+
+=======
 	
 	<form method="post" action="addCategory.do">
 		<div>
@@ -27,6 +45,7 @@
 	
 	
 	
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -36,7 +55,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${requestScope.productAndCategoryMap.memberCategoryList }" var="clist">
+			<c:forEach items="${requestScope.memberCategoryList }" var="clist">
 				<tr>
 					<td>${clist.category}</td>
 					<td>${clist.category_id}</td>
@@ -61,7 +80,7 @@
 		</thead>
 		<tbody>
 			<!-- Controller에서 request 객체에 setAttribute해 둔 list를 EL로 가져와서 사용 -->
-			<c:forEach items="${requestScope.productAndCategoryMap.pvoList}" var="list">
+			<c:forEach items="${requestScope.pvoList}" var="list">
 				<!-- 리스트에 순차적으로 접근하는 forEace문 -->
 				<tr>
 					<td>${list.product_id}</td>
@@ -82,6 +101,12 @@
 					<td>${list.dislikes}</td>
 				</tr>
 			</c:forEach>
+<<<<<<< HEAD
+		</tbody>					
+	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
+	<a href="beforeGoingRegistProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}"><img src="${initParam.root}img/write_btn.jpg" border="0"></a>
+</div>
+=======
 		</tbody>
 	</table>
 	<br></br>
@@ -90,3 +115,4 @@
 		href="registProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}"><img
 		src="${initParam.root}img/write_btn.jpg" border="0"></a>
 </div>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
