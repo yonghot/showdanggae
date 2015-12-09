@@ -24,4 +24,6 @@ public interface QnABoardService {
 
 	 List<ReplyVO> showReplyComment(int num);
 
+	void deleteComment(int cno, int no);
+
 }

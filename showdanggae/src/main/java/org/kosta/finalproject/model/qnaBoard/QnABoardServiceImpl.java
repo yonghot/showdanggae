@@ -80,6 +80,12 @@ public class QnABoardServiceImpl implements QnABoardService{
 		
 		return qnaBoardDAO.showReplyComment(num);
 	}
+	@Override
+	public void deleteComment(int cno,int no) {
+		qnaBoardDAO.deleteComment(cno);
+		qnaBoardDAO.commentTotalminus(no);
+		
+	}
 	
 	
 

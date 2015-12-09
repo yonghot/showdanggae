@@ -78,7 +78,7 @@ function commentForm(){
 			<td><font size='2' style="text-align: 'left';">${rvo.replyComment }</font></td>
 			<td><font size='2' style="text-align: 'left';">${rvo.commentDate }</font></td>
 			<c:if test="${rvo.member_id==sessionScope.mvo.member_id}">
-			<td><font size='1'><a href="deleteComment.do?member_id=${rvo.member_id}&cno=${rvo.cno}">x</a></font></td>
+			<td><font size='1'><a href="deleteComment.do?cno=${rvo.cno}&no=${requestScope.content.no}">x</a></font></td>
 			</c:if>
 		</tr>
 			</c:forEach>

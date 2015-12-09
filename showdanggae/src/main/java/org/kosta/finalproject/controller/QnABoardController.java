@@ -124,9 +124,9 @@ public class QnABoardController {
 	}
 	
 	@RequestMapping("deleteComment.do")
-	public String deleteComment(ReplyVO rvo){
-		System.out.println(rvo);
-		return null;
+	public String deleteComment(int cno,int no){
+		qnaBoardService.deleteComment(cno,no);
+		return  "redirect:nohitshowContent.do?no="+no;
 	}
 	
 

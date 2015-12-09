@@ -28,4 +28,8 @@ public interface QnABoardDAO {
 
 	void commentTotal(int no);
 
+	void deleteComment(int cno);
+
+	void commentTotalminus(int no);
+
 }

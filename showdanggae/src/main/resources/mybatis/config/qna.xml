@@ -97,7 +97,13 @@ values (#{no},#{title},#{member_id},#{writer},#{content},SYSDATE,0,#{no},0,0)
 	  UPDATE qnaboard  SET total = total+1 WHERE no=#{value}
 	 </update>
 
+	<delete id="deleteComment" parameterType="int">
+	delete from QnAcomment where cno=#{value}
+	</delete>
 
+	 <update id="commentTotalminus" parameterType="int">
+	  UPDATE qnaboard  SET total = total-1 WHERE no=#{value}
+	 </update>
 
 
 

@@ -93,3 +93,8 @@ from QnAcomment where no=47 order by cno asc
 insert into QnAcomment(cno,no,member_name,replyComment,commentDate,member_id) 
 values(qnacomment_seq.nextval, 47,'dd','두번째댓글',SYSDATE,'dd');
 
+
+
+delete from QnAcomment where cno=84;
+
+
