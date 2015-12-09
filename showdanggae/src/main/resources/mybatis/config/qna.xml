@@ -12,14 +12,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>	 -->
 	<select id="getBoardList" resultType="qvo">
 
-		SELECT no,title,member_id,writer,content,writeDate,viewCount,ref, restep,relevel
+		SELECT no,title,member_id,writer,content,writeDate,viewCount,ref, restep,relevel,total
 					    FROM(	 
 								SELECT no,title,member_id,writer,content,writeDate,viewCount,
-								CEIL(rownum/5) AS page,ref,restep,relevel   
+								CEIL(rownum/5) AS page,ref,restep,relevel,total
 								FROM ( 
 									SELECT no,title,member_id,writer,content,viewCount,
 									to_char(writeDate,'YYYY.MM.DD') as writeDate,
-									ref,restep,relevel 
+									ref,restep,relevel,total
 									FROM qnaboard
 									order by ref desc,restep asc  
 									 ) 
@@ -37,6 +37,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 									ref,restep,relevel 
 									from qnaboard
 	where no=#{value}
+	
+<!-- 	
+select b.no,b.title, b.member_id, to_char(b.writeDate,'YYYY.MM.DD') as writeDate,b.viewCount,b.content,b.ref,b.restep,b.relevel,
+c.cno,c.no,c.replyComment,c.member_name
+from qnaboard b,QnAcomment c
+where b.no=c.no and b.no=#{value} and c.no=#{value}; -->
+		</select>
+		
+		<select id="showReplyComment" parameterType="int" resultType="rvo">
+select cno,no,member_name,replyComment,to_char(commentDate,'YYYY.MM.DD') as commentDate,member_id
+from QnAcomment where no=#{value} order by cno asc
 		</select>
 		
 		
@@ -78,11 +89,21 @@ values (#{no},#{title},#{member_id},#{writer},#{content},SYSDATE,0,#{no},0,0)
 	 </insert>
 	 
 	 <insert id="commentInsert" parameterType="rvo">
-	 insert into QnAcomment(cno, no, member_name, replyComment, commentDate) 
-	values(qnacomment_seq.nextval,#{no},#{member_name},#{replyComment},SYSDATE);
+	 insert into QnAcomment(cno, no, member_name, replyComment, commentDate,member_id) 
+	values(qnacomment_seq.nextval,#{no},#{member_name},#{replyComment},SYSDATE,#{member_id})
 	 </insert>
+	 
+	 <update id="commentTotal" parameterType="int">
+	  UPDATE qnaboard  SET total = total+1 WHERE no=#{value}
+	 </update>
 
+	<delete id="deleteComment" parameterType="int">
+	delete from QnAcomment where cno=#{value}
+	</delete>
 
+	 <update id="commentTotalminus" parameterType="int">
+	  UPDATE qnaboard  SET total = total-1 WHERE no=#{value}
+	 </update>
 
 
 

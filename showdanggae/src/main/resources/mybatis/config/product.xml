@@ -46,6 +46,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 		where member_id=#{member_id} and category_id=#{currentCategory}
 	 	]]>
 	</select>
+	
+	<select id="getItemList" resultType="java.lang.String">
+	 	<![CDATA[
+	 		select item from item
+	 	]]>
+	</select>
+	
+	<insert id="registProduct">
+		<selectKey keyProperty="product_id" order="BEFORE" resultType="int">
+			<![CDATA[
+				select product_seq.nextval from dual
+			]]>
+		</selectKey>
+		<![CDATA[
+	 		insert into product(product_id, category_id, member_id, product_name, detail, visiblity, regist_date)
+	 		values(#{product_id}, #{category_id}, #{member_id}, #{product_name}, #{detail}, #{visiblity}, sysdate)
+	 	]]>
+	</insert>
+	
+	<insert id="addSellerLink">
+		<![CDATA[
+	 		insert into seller_link(product_id, category_id, member_id, link, price)
+	 		values(#{product_id}, #{category_id}, #{member_id}, #{link}, #{price})
+	 	]]>
+	</insert>
+	
+	<insert id="addEvaluatingItem">
+		<![CDATA[
+	 		insert into eval_item(product_id, item, item_point)
+	 		values(#{product_id}, #{item}, #{item_point})
+	 	]]>
+	</insert>
 		
 </mapper>
  

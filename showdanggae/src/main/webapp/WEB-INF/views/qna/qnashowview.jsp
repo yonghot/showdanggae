@@ -36,20 +36,26 @@ function replyForm(){
 	
 }
 
-function comment(){
-	var result = confirm('댓글을 입력 하시겠습니까???');
-    if(result){
-		return true;
-    } else {
-    	return false;
-    }
+function commentForm(){
+	var comment=document.com.replyComment.value;
+	if(comment==""){
+		alert("댓글을 입력해주세요");
+		return false;
+	}else{
+		 document.com.submit(); 
+	}
 	
 }
+
+
+    
+	
+
 
 </script>
 
 <div class="col-md-8">
-<form action="comment.do">
+<form action="comment.do" name="com">
     <table class="table">
     		<tr>
 		<td>NO : ${requestScope.content.no} </td> 
@@ -61,13 +67,24 @@ function comment(){
 			<td>조회수 : ${requestScope.content.viewCount }</td>
 		</tr>
 		<tr>
-			<td colspan="3">
+			<td colspan="4">
 			<pre>${requestScope.content.content}</pre>
 			</td>
 		</tr>
+			<!-- 댓글영역 -->
+			<c:forEach var="rvo" items="${requestScope.replycomment}">		
+		<tr>
+			<td><font size='2'>${rvo.member_name }님</font></td>
+			<td><font size='2' style="text-align: 'left';">${rvo.replyComment }</font></td>
+			<td><font size='2' style="text-align: 'left';">${rvo.commentDate }</font></td>
+			<c:if test="${rvo.member_id==sessionScope.mvo.member_id}">
+			<td><font size='1'><a href="deleteComment.do?cno=${rvo.cno}&no=${requestScope.content.no}">x</a></font></td>
+			</c:if>
+		</tr>
+			</c:forEach>
 		<tr>
 	 	<td colspan="2"><textarea cols="90" rows="3" name="replyComment"></textarea></td>  
-			<td>	<input type="submit" value="댓글달기" onclick="comment()" class="btn btn-info btn-md"
+			<td>	<input type="button" value="댓글달기"  onclick="commentForm()" class="btn btn-info btn-md"
 			 style="WIDTH: 60pt; HEIGHT: 50pt"></td>
 		</tr>
 		<tr>
@@ -87,6 +104,7 @@ function comment(){
 					</c:if>
 					
 			 <input type="hidden" name="no" value="${requestScope.content.no}">
+			 
 				</div>
 			</div>
 		</td>				 
