@@ -3,7 +3,7 @@
    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
  <script type="text/javascript">
  	$(document).ready(function(){
- 		$("#sendBtn").click(function(){
+ 		$("#sendBtn").submit(function(){
 
 		$.ajax({
 			type:"get",
@@ -11,7 +11,6 @@
 			data: $("#sendForm").serialize(),
 			dataType:"json",
 			 success:function(data){   
-			
 				 }
 	        })
 		});
