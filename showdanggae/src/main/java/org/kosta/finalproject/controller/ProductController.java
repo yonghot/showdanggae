@@ -1,18 +1,19 @@
 package org.kosta.finalproject.controller;
 
-import java.util.HashMap;
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.finalproject.model.category.CategoryService;
-import org.kosta.finalproject.model.category.CategoryVO;
 import org.kosta.finalproject.model.member.MemberVO;
+import org.kosta.finalproject.model.product.EvaluatingItemVO;
 import org.kosta.finalproject.model.product.ProductService;
+import org.kosta.finalproject.model.product.ProductVO;
+import org.kosta.finalproject.model.product.SellerLinkVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -26,11 +27,11 @@ public class ProductController {
 	// 로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
 		// 상품정보 추가는 용호.
 		// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
-		@RequestMapping("addCategory.do")
+		@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
 		public void addCategory(String category, HttpServletRequest request) {
 			HttpSession session = request.getSession(false);
+			//String category = httpServletRequest.getParameter("category");
 			if (session != null) {
-				categoryService.addMyCategory(category);
 			}
 		}
 
@@ -90,11 +91,14 @@ public class ProductController {
 	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
-		HashMap<String, List> productAndCategoryMap = new HashMap<String, List>();
-		productAndCategoryMap.put("pvoList", productService.getMyProductList(member_id, currentCategory));
-		productAndCategoryMap.put("mainCategoryList", categoryService.getMainCategoryList());
-		productAndCategoryMap.put("memberCategoryList", categoryService.getMemberCategoryList(member_id));
-		return new ModelAndView("product_myProductList", "productAndCategoryMap", productAndCategoryMap);
+		
+		ModelAndView mv = new ModelAndView("product_myProductList");
+		
+		mv.addObject("pvoList", productService.getMyProductList(member_id, currentCategory));
+		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
+		mv.addObject("memberCategoryList", categoryService.getMemberCategoryList(member_id));
+		
+		return mv;
 	}
 
 	// getAllBoardList
@@ -103,16 +107,27 @@ public class ProductController {
 		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
 	}
 	
-	// getAllBoardList
-	@RequestMapping("registProduct.do")
-	public ModelAndView registProduct(String category_id) throws Exception {
-		return new ModelAndView("product_registProduct", "category_id", category_id);
+	// beforeGoingRegistProduct
+	@RequestMapping("beforeGoingRegistProduct.do")
+	public ModelAndView beforeGoingRegistProduct(String category_id) throws Exception {
+		
+		ModelAndView mv = new ModelAndView("product_registProduct");
+		
+		mv.addObject("category_id", category_id);
+		mv.addObject("itemList", productService.getItemList());
+		
+		return mv;
 	}
 	
-	// getAllBoardList
-	@RequestMapping("addLinkAndPrice.do")
-	public ModelAndView addLinkAndPrice(String sortBy) throws Exception {
-		return new ModelAndView("addLinkAndPrice", "pvoList", productService.getAllBoardList(sortBy));
+	// registProduct
+	@RequestMapping("registProduct.do")
+	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO lvo, EvaluatingItemVO evo) throws Exception {
+		productService.addProductWithSellerLinkAndEvaluating(pvo, lvo, evo);
+		return new ModelAndView("addLinkAndPrice");
 	}
 
 }
+
+
+
+

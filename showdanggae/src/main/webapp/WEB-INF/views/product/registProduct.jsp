@@ -5,11 +5,6 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
-		$("#linkPlusBtn").hover(function(){
-			
-		}, function(){
-			
-		});
 		
 		function AddComma(data_value) {
 			 
@@ -37,8 +32,9 @@
 		    }
 		}
 		
+		
 		$("#linkPlusBtn").click(function(){
-			
+
 			if($(":text[name=link]").val()=="") {
 				alert("판매자 링크를 입력해주세요");
 				return;
@@ -50,8 +46,9 @@
 				return;
 			}
 			
-			if($(":text[name=link]").val().length>=50) {
-				var shortenLink = $(":text[name=link]").val().substring(0, 50) + "...";;
+			var shortenLink = $(":text[name=link]").val();
+			if($(":text[name=link]").val().length>=65) {
+				shortenLink = $(":text[name=link]").val().substring(0, 65) + "...";
 			}
 			
 			$("#linkView").append(
@@ -61,23 +58,89 @@
 				"<td>"+AddComma($(":text[name=price]").val())+" 원"+"<td><tr>"
 			);
 			
+			$(":text[name=link]").val("");
+			$(":text[name=price]").val("");
+			$(":text[name=link]").focus();
+			$(":text[name=price]").focus();
 		});
 		
 		
-		$("#linkView").on("change","tbody",function(){
-
-			for(var i=0;i<$("tbody").length;i++) {
+		var itemList = "";
+		for(var i=0;i<$("#itemList :input").length;i++){
+			itemList += "<option>"+$("#itemList :input[name="+i+"]").val()+"</option>"
+		}
+		
+		
+		$("#itemPlusBtn").click(function(){
+			
+			if($("#itemView tr").length>=3) {
+				alert("평가 항목은 3개까지 등록 가능합니다.")
+				return;
+			}
+			
+			$("#itemView").append(
+				"<tr>"+
+				"<td><img src='img/minus_icon.png' width='25'></td>"+
+				"<td><select><option>------</option>"+itemList+"</select></td>"+
+				"<td>"+"<input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에'>"+"</td>"+
+				"</tr>"
+			);
+		});
+		
+		
+		$("#itemView").on("keyup",":input[type=text]",function(){
+			if($("#itemView :input[type=text]").val()>10) {
+				alert("10점 만점입니다!");
+				$(this).val("");
 			}
 		}); //on
 		
+		$("#itemView").on("click","img",function(){
+			if(confirm("항목을 삭제하시겠습니까?")) {
+				$(this).parent().parent().remove();
+			}
+		}); //on
 		
-		$("button[data-toggle=popover]").popover().click(function(e) {
-            e.preventDefault();
-        });
+		$("#uploadBtn").click(function(){
+			 var data = new FormData();
+            $.each($('#uploadForm')[0].files, function(i, file) {          
+                data.append('file-' + i, file);
+            });
+             
+            $.ajax({
+                url: 'fileupload.do',
+                type: "post",
+                dataType: "text",
+                data: data,
+                // cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data, textStatus, jqXHR) {
+                    alert(data);
+                }, error: function(jqXHR, textStatus, errorThrown) {}
+            });
+		});
+		
+		
+		$("#registProductBtn").click(function(){
+			
+			if($(":input[name=product_name]").val()=="") {
+				alert("제품명을 입력해주세요!");
+				return false;
+			} else {
+				$("#registForm").submit();
+			}
+		});
+		
 	});
 
 </script>
 
+<span id="itemList">
+	<c:forEach items="${requestScope.itemList}" varStatus="status" var="i">
+		<input type="hidden" name="${status.count-1}" value="${i}">
+	</c:forEach>
+</span>
 
 <div class="col-md-8">
 	<div class="col-sm-9">
@@ -94,18 +157,28 @@
 		</div>
 	</div>
 	<div class="col-md-5">
-		<div class="thumbnail">
-			<img src="http://cfile24.uf.tistory.com/image/2567C64151A2AAB1352FF7"/>
-		</div>
-		
+		<a href="fileupload.do" class="thumbnail">
+			<c:choose>
+				<c:when test="">
+					<img src="img/no_image.png" width="285">
+				</c:when>
+				<c:otherwise>
+					<img src="img/no_image.png" width="285">
+				</c:otherwise>
+			</c:choose>
+		</a>
+	    <form id="uploadForm" action="${initParam.root}fileupload.do" enctype="multipart/form-data" method="post" class="thumbnail">
+			<input type="file" name="file[0]"><br>
+			<input type="button" value="파일 업로드" id="uploadBtn"><br>
+		</form>
 	</div>
-	<div class="col-md-7">
-		<form class="form-horizontal" role="form" action="">
+	<form class="form-horizontal" role="form" action="registProduct.do" id="registForm">
+		<div class="col-md-7">
 			<input type="hidden" class="form-control" name="member_id" value="${sessionScope.mvo.member_id}">
 			<input type="hidden" class="form-control" name="category_id" value="${requestScope.category_id}">
 			<div class="form-group">
 				<div class="col-sm-3">
-					<label for="product_id" class="control-label">제품명</label>
+					<label for="product_name" class="control-label">제품명</label>
 				</div>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" name="product_name" placeholder="제품명을 입력해주세요">
@@ -128,59 +201,47 @@
 				<button type="button" class="btn btn-default" id="linkPlusBtn"><img src="img/plus_icon.png" width="20"
 				data-toggle="popover" title="판매자 링크를 추가합니다" data-placement="right"/></button>
 				<div class="checkbox col-sm-4">
-					<label><input type="checkbox">비공개</label>
+					<label><input type="checkbox" name="visiblity" value="1">비공개</label>
 				</div>
 			</div>
-		</form>
-	</div>
-	<table class="table table-hover table-condensed">
-		<thead>
-			<tr></tr>
-		</thead>
-		<tbody id="linkView" valign="middle"></tbody>
-	</table>
-	<table class="table">
-		<tbody>
-			<tr>
-				<td>
-					<div class="col-sm-5">
-						<table class="table table-hover table-condensed">
-							<thead>
-								<tr>
-									<td>&nbsp</td><td>평가 항목</td><td>점수</td>
-								</tr>
-							</thead>
-							<tbody id="linkView" valign="middle">
-								<tr>
-									<td><img src="img/plus_icon.png" width="20"/></td>
-									<td>
-										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
-										  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Regular link</a></li>
-										  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
-										  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another link</a></li>
-										</ul>
-									</td>
-									<td>
-										<div class="col-sm-2">
-											<input type="text" class="form-control" name="link">
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="col-sm-7">
-						<textarea cols="57" rows="5" name="content" placeholder="메모를 입력해주세요"></textarea>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="5" align="center">
-					<input type="submit" value="상품 등록" id="subBtn" class="btn btn-info btn-md">
-					<input type="button" value="취소" id="noticeWrBtn" class="btn btn-info btn-md">
-				</td>
-			</tr>
-		</tbody>
-	</table>
+		</div>
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr></tr>
+			</thead>
+			<tbody id="linkView" valign="middle"></tbody>
+		</table>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<div class="col-sm-5">
+							<table class="table table-hover table-condensed table-bordered">
+								<thead align="center">
+									<tr>
+										<td>
+											<button type="button" class="btn btn-default btn-xs" id="itemPlusBtn" title="평가항목을 추가합니다"><img src="img/plus_icon.png" width="20"/></button>
+										</td>
+										<td>평가 항목</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점 수&nbsp;&nbsp;&nbsp;</td>
+									</tr>
+								</thead>
+								<tbody id="itemView" align="center" valign="middle">
+								</tbody>
+							</table>
+						</div>
+						<div class="col-sm-7">
+							<textarea cols="57" rows="9" name="detail" placeholder="메모를 입력해주세요"></textarea>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" align="center">
+						<input type="submit" value="상품 등록" id="registProductBtn" class="btn btn-info btn-md">
+						<input type="button" value="취소" id="cancelRegist" class="btn btn-info btn-md">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 </div>
 

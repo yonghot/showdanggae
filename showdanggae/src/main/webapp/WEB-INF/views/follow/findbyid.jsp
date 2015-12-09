@@ -9,6 +9,7 @@
 	$(document).ready(function(){
 		$("#followForm :input[name=addBtn]").click(function(){
 			var dor=$(this).parent().siblings().next().text();
+			alert(dor);
 			/* alert((dor+"2")); */
 			/* alert(member_id); */
 			alert(dor);

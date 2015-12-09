@@ -7,6 +7,22 @@ $(document).ready(function() {
 	$("#qnawrcBtn").click(function(){
 		location.href="qnaWritecancel.do";
 	});
+	
+	$("#subBtn").click(function(){
+
+	var titleComp=$(":input[name=title]").val();
+	var contentComp=$(":input[name=content]").val();
+	if (titleComp=="") {
+			alert("제목을 입력해주세요");
+			return false;
+		}		
+	if (contentComp=="") {
+			alert("내용을 입력해주세요");
+			return false;
+		}		
+	});
+	
+	
 
 });
 
@@ -22,7 +38,7 @@ $(document).ready(function() {
 				<tr>
 					<td>제목</td>
 					<td colspan="3">
-						<input type="text" name="title" size="48">
+						<input type="text" name="title"  id="title" size="48">
 					</td>
 				</tr>
 				<tr>
@@ -31,7 +47,7 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<td colspan="4" align="left">
-						<textarea cols="105" rows="10" name="content"></textarea>
+						<textarea cols="105" rows="10" name="content" id="content"></textarea>
 						<br>
 					<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}">
 					</td>
