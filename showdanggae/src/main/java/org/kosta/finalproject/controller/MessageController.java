@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.message.MessageService;
 import org.kosta.finalproject.model.message.MessageVO;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,15 @@ public class MessageController {
 	public ModelAndView messagePopForm(HttpServletRequest request){		
 		//전달받은 아이디값
 		String member_id=request.getParameter("member_id");
-
+		System.out.println(member_id);
 		return new ModelAndView("../views/popup/message_popup","member_id",member_id);		
+	}
+	@RequestMapping("messagePopForm1.do")
+	public ModelAndView messagePopForm1(HttpServletRequest request, MemberVO vo){		
+		//전달받은 아이디값
+		//String member_id=request.getParameter("member_id");
+		String member_id=request.getParameter("member_id");
+		return new ModelAndView("../views/popup/message_popup1","member_id",member_id);		
 	}
 
 	@RequestMapping("sendMessage.do")
@@ -31,7 +39,7 @@ public class MessageController {
 
 		vo.setRead(0);
 		messageService.sendMessage(vo);
-		
+		System.out.println(vo);
 		return  new ModelAndView("../views/popup/message_ok","message","전송완료");
 	}
 	

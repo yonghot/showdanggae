@@ -6,6 +6,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${initParam.root}js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		$("#followForm :input[name=addBtn]").click(function(){
 			var dor=$(this).parent().siblings().next().text();
@@ -37,8 +38,19 @@
 			}  
 		 	
 		}); 
+		$("#listView a").click(function(){
+ 			var id=$(this).text();
+ 			if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
+ 			 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
+			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
+ 			}else{
+ 				return false;
+ 			}
+ 		});
 	});
+	
 </script>
+
 </head>
 <body>
 <jsp:include page="../templates/right.jsp"></jsp:include>
@@ -46,10 +58,10 @@
 <!-- <form action ="add.do"> -->
 <form id="followForm" >
 <hr>
-<table border=2 id="followTable">
+<table border="1" class="right">
 
 <thead>
-<tr><th>ID</th></tr>
+<tr><th></th><th>ID</th></tr>
 </thead>
 <tbody id="listView">
 
@@ -64,13 +76,13 @@
 		
 		<c:when test="${mvo.isFollow==true}">
 		<tr>
-			<td></td><td>${mvo.member_id}<input type="button" value="v팔로잉" name="addBtn"></td>
+			<td></td><td><a href="">${mvo.member_id}</a><input type="button" value="v팔로잉" name="addBtn"></td>
 		</tr>
 		</c:when>
 		
 		<c:otherwise>
 		<tr>
-			<td></td><td>${mvo.member_id}<input type="button" value="+팔로우" name="addBtn"></td>
+			<td></td><td><a href="">${mvo.member_id}</a><input type="button" value="+팔로우" name="addBtn"></td>
 		</tr>
 		</c:otherwise>
 	</c:choose>
