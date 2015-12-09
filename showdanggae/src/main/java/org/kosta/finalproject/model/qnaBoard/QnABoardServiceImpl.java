@@ -68,10 +68,17 @@ public class QnABoardServiceImpl implements QnABoardService{
 		rvo.setNo(no);
 		rvo.setReplyComment(replyComment);
 		rvo.setMember_name(mvo.getMember_name());
+		System.out.println("확인" + mvo);
+		rvo.setMember_id(mvo.getMember_id());
 		
 		qnaBoardDAO.commentInsert(rvo);
-
+		qnaBoardDAO.commentTotal(no);
+	
+	}
+	@Override
+	public  List<ReplyVO> showReplyComment(int num) {
 		
+		return qnaBoardDAO.showReplyComment(num);
 	}
 	
 	

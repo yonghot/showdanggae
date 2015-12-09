@@ -1,5 +1,7 @@
 package org.kosta.finalproject.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -38,9 +40,14 @@ public class QnABoardController {
 	public ModelAndView nohitshowContent(String no){
 		int num = Integer.parseInt(no);
 		QnaVO qvo=qnaBoardService.showContent(num);
-			System.out.println(qvo);
-		return new ModelAndView("qna_qnashowview","content",qvo);
-		
+		 List<ReplyVO> rvo=qnaBoardService.showReplyComment(num);
+		 System.out.println(rvo);
+		 ModelAndView mav= new ModelAndView();
+		 mav.setViewName("qna_qnashowview");
+		 mav.addObject("replycomment", rvo);
+		 mav.addObject("content", qvo);
+		 
+		return mav;
 	}
 	
 	@RequestMapping("qnaWriteForm.do")
@@ -101,17 +108,24 @@ public class QnABoardController {
 	
 	@RequestMapping("comment.do")
 	public ModelAndView comment(int no,HttpServletRequest request,String replyComment){
+		///comment.do?replyComment=ㅇㄻㄴ&no=38&member_name=김용호
 		System.out.println(no);
 		System.out.println(replyComment);
 		HttpSession session=request.getSession(false);
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo"); //지금 로그인 한 사람
 		qnaBoardService.commentInsert(no,replyComment,mvo);
 		
-		return new ModelAndView("recomment.do");
+		return new ModelAndView("redirect:recomment.do?no="+ no);
 	}
 	
 	@RequestMapping("recomment.do")
-	public ModelAndView recomment(){
+	public String recomment(int no){
+		return "redirect:nohitshowContent.do?no="+no;
+	}
+	
+	@RequestMapping("deleteComment.do")
+	public String deleteComment(ReplyVO rvo){
+		System.out.println(rvo);
 		return null;
 	}
 	

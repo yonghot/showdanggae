@@ -24,4 +24,8 @@ public interface QnABoardDAO {
 
 	void commentInsert(ReplyVO rvo);
 
+	 List<ReplyVO> showReplyComment(int num);
+
+	void commentTotal(int no);
+
 }

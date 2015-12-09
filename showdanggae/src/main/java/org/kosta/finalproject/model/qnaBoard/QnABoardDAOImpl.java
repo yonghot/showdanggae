@@ -70,4 +70,15 @@ public class QnABoardDAOImpl implements QnABoardDAO{
 		sqlSessionTemplate.insert("qna.commentInsert",rvo);
 	}
 
+	@Override
+	public List<ReplyVO> showReplyComment(int num) {
+		return sqlSessionTemplate.selectList("qna.showReplyComment", num);
+	}
+
+	@Override
+	public void commentTotal(int no) {
+		sqlSessionTemplate.update("qna.commentTotal", no);
+		
+	}
+
 }

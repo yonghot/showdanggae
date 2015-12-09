@@ -1,5 +1,7 @@
 package org.kosta.finalproject.model.qnaBoard;
 
+import java.util.List;
+
 import org.kosta.finalproject.model.member.MemberVO;
 
 public interface QnABoardService {
@@ -19,5 +21,7 @@ public interface QnABoardService {
 	void reply(QnaVO qvo);
 
 	void commentInsert(int no, String replyComment, MemberVO mvo);
+
+	 List<ReplyVO> showReplyComment(int num);
 
 }
