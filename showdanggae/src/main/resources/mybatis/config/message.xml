@@ -8,8 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <insert id="sendMessage" parameterType="msvo">
 INSERT INTO MESSAGE(member_id,message,spand_name,title,spand_date,mno,read) 
-values (#{member_id,jdbcType=VARCHAR},#{message,jdbcType=CLOB},#{spand_name,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR},SYSDATE,message_seq.nextval,#{read,jdbcType=INTEGER})
-			
+values (#{member_id},#{message},#{spand_name},#{title},SYSDATE,message_seq.nextval,#{read})
 </insert>
 
 <select id="myMessageBox" resultType="msvo">

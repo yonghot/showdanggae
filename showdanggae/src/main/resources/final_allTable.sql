@@ -97,14 +97,9 @@ create table qnaboard(
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
 ALTER TABLE qnaboard ADD (total number default 0);
-ALTER TABLE QnAcomment
-ADD (member_id VARCHAR2(100));
 
-delete from QnAcomment
 
-ALTER TABLE QnAcomment
-ADD CONSTRAINT FK_QnAcomment FOREIGN KEY(member_id)
-references member(member_id);
+
 
 
 

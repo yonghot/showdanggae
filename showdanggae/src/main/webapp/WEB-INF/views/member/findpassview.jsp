@@ -11,21 +11,22 @@
 	<h1 class="text-center">Password 찾기</h1><br>
 
 	<form class="form-horizontal" role="form" action="${initParam.root}findPassById.do" method="post">
+		
+		<div class="form-group">
+			<div class="col-sm-2">
+				<label for="inputEmail3" class="control-label">ID</label>
+			</div>
+			<div class="col-sm-10 hidden-sm hidden-xs text-left">
+				<input type="text" class="form-control" name="member_id" placeholder="아이디">
+			</div>
+		</div>
+		
 		<div class="form-group">
 			<div class="col-sm-2">
 				<label for="inputEmail3" class="control-label">Name</label>
 			</div>
 			<div class="col-sm-10 hidden-sm hidden-xs text-left">
 				<input type="text" class="form-control" name="member_name" placeholder="이름">
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-2">
-				<label for="inputEmail3" class="control-label">Birth</label>
-			</div>
-			<div class="col-sm-10 hidden-sm hidden-xs text-left">
-				<input type="text" class="form-control" name="birthday" placeholder="생년월일"><br>
 			</div>
 		</div>
 
@@ -39,6 +40,7 @@
 		</div>
 		<div class="col-sm-offset-2 col-sm-10">
 			<select id="email_domain" class="form-control" name="email_domain">
+			 	<option value="selected">선택하세요</option>
 				<option value="nate.com">nate.com</option>
 				<option value="hanmail.net">hanmail.net</option>
 				<option value="naver.com">naver.com</option>
