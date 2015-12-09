@@ -13,17 +13,19 @@
     <title>쇼당개 삼년이면 핑월을 읊는다</title>
 </head>
 <body>
-    <div id="header"><tiles:insertAttribute name="header"/></div>
-    <div class="section">
-    	<div class="container">
-    		<div class="row">
-			    <div id="left"><tiles:insertAttribute name="left"/></div>
-			    <div id="main"><tiles:insertAttribute name="main"/></div>
-			    <div id="right"><tiles:insertAttribute name="right"/></div>
-	    	</div>
-	   	</div>
+	<div class="wrap">
+	    <div id="header"><tiles:insertAttribute name="header"/></div>
+	    <div class="section">
+	    	<div class="container">
+	    		<div class="row">
+				    <div id="left"><tiles:insertAttribute name="left"/></div>
+				    <div id="main"><tiles:insertAttribute name="main"/></div>
+				    <div id="right"><tiles:insertAttribute name="right"/></div>
+		    	</div>
+		   	</div>
+	    </div>
     </div>
-    <div id="footer"><tiles:insertAttribute name="footer"/></div>
+	<div id="footer"><tiles:insertAttribute name="footer"/></div>
 </body>
 </html>
 

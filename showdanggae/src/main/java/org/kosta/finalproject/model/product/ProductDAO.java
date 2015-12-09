@@ -20,4 +20,10 @@ public interface ProductDAO {
 	public void addSellerLink(SellerLinkVO slvo);
 
 	public void addEvaluatingItem(EvaluatingItemVO evo);
+
+	public void hit(String product_id);
+
+	public ProductVO getProductByProduct_id(String product_id);
+	public List<SellerLinkVO> getSellerLinkByProduct_id(String product_id);
+	public List<EvaluatingItemVO> getEvaluatingItemByProduct_id(String product_id);
 }

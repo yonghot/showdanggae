@@ -92,8 +92,6 @@ public class ProductController {
 	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
 	public ModelAndView AjaxMainCategoryList(String member_id) {
 		List<CategoryVO> vo=categoryService.getMemberCategoryList(member_id);
-		
-		System.out.println("2145435646"+member_id);
 		if(vo!=null) {
 			return new ModelAndView("ajaxList", "vo", vo);
 		}
@@ -140,6 +138,21 @@ public class ProductController {
 		productService.addProductWithSellerLinkAndEvaluating(pvo, slvo, evo);
 		return new ModelAndView("product/registOk", "currentCategory", pvo.getCategory_id());
 	}
+	
+	// hit
+	@RequestMapping("hit.do")
+	public ModelAndView hit(String product_id) throws Exception {
+		productService.hit(product_id);
+		return new ModelAndView("redirect:showProductContent.do?product_id="+product_id);
+	}
+	
+	
+	// showContent
+		@RequestMapping("showProductContent.do")
+		public ModelAndView showProductContent(String product_id) throws Exception {
+			productService.showProductContent(product_id);
+			return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
+		}
 
 }
 

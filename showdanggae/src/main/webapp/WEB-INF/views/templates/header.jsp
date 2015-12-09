@@ -62,7 +62,7 @@
         </div>
             <div class="container">
                  <div class="col-md-12">
-                     <h2 class="text-center">쇼당개</h2>
+                     <h2 class="text-center"><img src="${initParam.root}img/showdanggae_logo.PNG" width="200"></h2>
                  </div>
                  <div class="col-md-offset-3 col-md-6">
                      <form role="form">

@@ -58,7 +58,7 @@
 			    ${bvo.no }
 			    </td> 	
 			    	 	    	
-				<td><a href="${initParam.root}noticeShow.do?no=${bvo.no }">
+				<td><a href="${initParam.root}noticeShow.do?no=${bvo.no}">
 				${bvo.title }</a></td>
 				<td>${bvo.writer }</td>
 				<td>${bvo.time_post}</td>

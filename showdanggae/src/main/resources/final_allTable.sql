@@ -98,15 +98,18 @@ create table qnaboard(
 	total number default 0,
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
-<<<<<<< HEAD
-=======
-ALTER TABLE qnaboard ADD (total number default 0);
 
-
-
-
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-
+drop table qnacomment cascade constraint;
+create table qnacomment(
+	cno number primary key,
+	no number not null,
+	member_name varchar2(100) not null,
+	member_id VARCHAR2(100) not null,
+	replyComment clob not null,
+	commentDate date not null,
+	constraint no foreign KEY(no) references qnaboard(no),
+	constraint fk_qnacomment foreign key(member_id) references member(member_id)
+);
 
 drop table message cascade constraint;
 create table message (
@@ -150,13 +153,14 @@ drop sequence member_category_seq;
 drop sequence message_seq;
 drop sequence notice_seq;
 drop sequence qna_seq;
+drop sequence qnacomment_seq;
 
 create sequence product_seq;
 create sequence member_category_seq; 
 create sequence message_seq;
 create sequence notice_seq;
 create sequence qna_seq;
-
+create sequence qnacomment_seq;
 ------------------------------------------------------------------------------------------------------------
 
 insert into member(member_id, password, member_name, email, birthday) values('java','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));

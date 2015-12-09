@@ -44,7 +44,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
 	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by likes desc))
 	 	]]>
+		<!-- <where>
+			 <if test="value=='likes'">
+				<![CDATA[
+					from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by likes desc))
+				]]>
+			 </if> 
+			 <if test="value=='maker'">
+			 	<![CDATA[
+			 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
+	 				where member_id=#{member_id} and category_id=#{currentCategory}
+				]]> 
+			 </if>
+		</where> -->
 	</select>
+	
 	
 	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
@@ -86,37 +100,60 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 		values(#{product_id}, #{item}, #{item_point})
 	 	]]>
 	</insert>
+	
+	<update id="hit">
+		<![CDATA[
+			update product set hits = hits + 1
+			where product_id=#{value}
+	 	]]>
+	</update>
+	
+	<select id="getProductByProduct_id" resultType="pvo">
+		<![CDATA[
+			select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
+	 		from product
+			where product_id=#{value}
+	 	]]>
+	</select>
+	
+	<select id="getSellerLinkByProduct_id" resultType="slvo">
+		<![CDATA[
+			select link, price 
+	 		from seller_link
+			where product_id=#{value}
+	 	]]>
+	</select>
+	
+	<select id="getEvaluatingItemByProduct_id" resultType="evo">
+		<![CDATA[
+			select item, itme_point
+	 		from eval_item
+			where product_id=#{value}
+	 	]]>
+	</select>
 		
 </mapper>
  
  
+
+ <!-- dynamin SQL -->
+	<!-- <select id="findByNameOrMaker" resultType="mpvo">
+	 		select * from myproduct
+		<where>
+			 <if test="nameOrMaker=='name'">
+				<![CDATA[
+ 					name like '%' || #{input} || '%'
+ 				]]>
+			 </if> 
+			 <if test="nameOrMaker=='maker'">
+			 	<![CDATA[
+			 		maker like '%' || #{input} || '%'
+ 				]]> 
+			 </if>
+		</where>
+	</select> -->
  
  
  
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

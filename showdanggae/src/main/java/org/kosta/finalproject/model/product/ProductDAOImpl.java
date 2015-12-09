@@ -54,5 +54,22 @@ public class ProductDAOImpl implements ProductDAO {
 	public void addEvaluatingItem(EvaluatingItemVO evo) {
 		sqlSessionTemplate.insert("product.addEvaluatingItem", evo);
 	}
+	@Override
+	public void hit(String product_id) {
+		sqlSessionTemplate.update("product.hit", product_id);
+	}
+	
+	@Override
+	public ProductVO getProductByProduct_id(String product_id) {
+		return sqlSessionTemplate.selectOne("product.getProductByProduct_id", product_id);
+	}
+	@Override
+	public List<SellerLinkVO> getSellerLinkByProduct_id(String product_id) {
+		return sqlSessionTemplate.selectList("product.getSellerLinkByProduct_id", product_id);
+	}
+	@Override
+	public List<EvaluatingItemVO> getEvaluatingItemByProduct_id(String product_id) {
+		return sqlSessionTemplate.selectList("product.getEvaluatingItemByProduct_id", product_id);
+	}
 
 }
