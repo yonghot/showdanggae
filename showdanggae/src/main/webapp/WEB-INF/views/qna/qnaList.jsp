@@ -8,10 +8,6 @@
     
     
     	<div class="col-md-8">
-qna리스트
-
-
-
     <table class="table" id="qnaTable">
 	
 		<thead>
@@ -35,7 +31,7 @@ qna리스트
 				└▶
 				<%-- <img src="${initParam.root }img/reply.jpg"> --%>
 				</c:if>
-				<a href="${initParam.root}showContent.do?no=${qvo.no}">${qvo.title }</a>
+				<a href="${initParam.root}showContent.do?no=${qvo.no}">${qvo.title }[${qvo.total }]</a>
 				</td>
 				<td>${qvo.writer }</td>
 				<td>${qvo.writeDate}</td>

@@ -37,13 +37,6 @@
 	</property>
 </bean>
 
-<!-- 컨트롤러에서 viewName을 ajaxView로 명시하면 아래가 동작한다. -->
-<!-- <bean id="ajaxView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"></bean> -->
-
-<!-- jackson -->
-<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" >
-	<property name= "order" value ="1"></property>
-</bean>
 
 <!--  Handler Interceptor 설정 -->
 <mvc:interceptors>
@@ -56,30 +49,30 @@
 </mvc:interceptors>
 
 
-	<!-- file upload와 file download에 관란 설정 -->
-	
-	<!-- 파일 업로드 설정 -->
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	 <property name="defaultEncoding" value="utf-8"></property>
-	 -1은 제한 없음 , 5MB로 하고 싶으면 = 5*1024*1024
-	 <property name="maxUploadSize" value="-1"></property>
-	</bean> -->
-	
-	<!-- upload path
-	   개발시에는 workspace 경로를 주입시키고, 운영시에는 실제 서버 경로를 주입시킨다. 
-	   서버 운영시 업로드 경로 - C:\java-kosta\WAS\spring2-tomcat\webapps\springmvc26-fileupload\upload
-	 -->
-	<!-- <bean id="uploadPath" class="java.lang.String" >
-	 <constructor-arg>
-	  <value>C:\\java-kosta\\spring-workspace2\\springmvc26-fileupload\\src\\main\\webapp\\upload\\</value> value가 여기 붙어있어야 한다
-	 </constructor-arg>
-	</bean>
-	
-	<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
-	 <property name="order" value="1"></property>
-	</bean>
-	 -->
-	<!-- 파일다운로드를 위한 view를 설정 -->
-	<!-- <bean name="downloadView" class="org.kosta.springmvc25.controller.DownloadView"></bean> -->
+<!-- file upload와 file download에 관란 설정 -->
+
+<!-- 파일 업로드 설정 -->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ <property name="defaultEncoding" value="utf-8"></property>
+ <!-- -1은 제한 없음 , 5MB로 하고 싶으면 = 5*1024*1024(를 계산한 값) -->
+ <property name="maxUploadSize" value="2097152"></property>
+</bean>
+
+<!-- upload path
+   개발시에는 workspace 경로를 주입시키고, 운영시에는 실제 서버 경로를 주입시킨다. 
+   서버 운영시 업로드 경로 - C:\java-kosta\WAS\spring2-tomcat\webapps\springmvc26-fileupload\upload
+ -->
+<bean id="uploadPath" class="java.lang.String" >
+ <constructor-arg>
+  <value>C:\\java-kosta\\finalproject\\upload\\</value><!-- value가 여기 붙어있어야 한다 -->
+ </constructor-arg>
+</bean>
+
+<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+ <property name="order" value="1"></property>
+</bean>
+
+<!-- 파일다운로드를 위한 view를 설정 -->
+<!-- <bean name="downloadView" class="org.kosta.springmvc25.controller.DownloadView"></bean> -->
 
 </beans>
