@@ -100,6 +100,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void deleteFollow(FollowVO vo) {
+		System.out.println(vo);
 		sqlSessionTemplate.delete("member.deleteFollow", vo);
 	}
 	

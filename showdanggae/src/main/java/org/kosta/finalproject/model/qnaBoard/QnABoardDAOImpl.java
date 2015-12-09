@@ -70,4 +70,28 @@ public class QnABoardDAOImpl implements QnABoardDAO{
 		sqlSessionTemplate.insert("qna.commentInsert",rvo);
 	}
 
+	@Override
+	public List<ReplyVO> showReplyComment(int num) {
+		return sqlSessionTemplate.selectList("qna.showReplyComment", num);
+	}
+
+	@Override
+	public void commentTotal(int no) {
+		sqlSessionTemplate.update("qna.commentTotal", no);
+		
+	}
+
+	@Override
+	public void deleteComment(int cno) {
+		// 댓글지우기
+		sqlSessionTemplate.delete("qna.deleteComment", cno);
+		
+	}
+
+	@Override
+	public void commentTotalminus(int no) {
+		// 댓글 마이너스
+		sqlSessionTemplate.update("qna.commentTotalminus", no);
+	}
+
 }
