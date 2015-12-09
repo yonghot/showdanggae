@@ -1,10 +1,14 @@
 package org.kosta.finalproject.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.finalproject.model.category.CategoryService;
+import org.kosta.finalproject.model.category.CategoryVO;
 import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.product.EvaluatingItemVO;
 import org.kosta.finalproject.model.product.ProductService;
@@ -32,8 +36,12 @@ public class ProductController {
 		//String category = httpServletRequest.getParameter("category");
 		if (session != null) {
 		}
+<<<<<<< HEAD
 	}
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")
 	public void addInterest(String interest, HttpServletRequest request) {
@@ -53,8 +61,7 @@ public class ProductController {
 
 	// 나의 개별 상품을 지운다.
 	@RequestMapping("deleteProduct.do")
-	public ModelAndView deleteProduct(int category_id,
-			HttpServletRequest request) {
+	public ModelAndView deleteProduct(int category_id, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session.getAttribute("mvo") != null) {
 			productService.deleteProduct(category_id);
@@ -64,8 +71,7 @@ public class ProductController {
 
 	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다.
 	@RequestMapping("deleteProductListAndCategory.do")
-	public ModelAndView deleteProductListAndCategory(int category_id,
-			HttpServletRequest request) {
+	public ModelAndView deleteProductListAndCategory(int category_id, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session.getAttribute("mvo") != null) {
 			productService.deleteProductList(category_id);
@@ -84,10 +90,25 @@ public class ProductController {
 		}
 		return new ModelAndView("login");
 	}
+<<<<<<< HEAD
 
 	
 	// 김용호 영역
+=======
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	
+	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
+	public ModelAndView AjaxMainCategoryList(String member_id) {
+		List<CategoryVO> vo=categoryService.getMemberCategoryList(member_id);
+		
+		System.out.println("2145435646"+member_id);
+		if(vo!=null) {
+			return new ModelAndView("ajaxList", "vo", vo);
+		}
+			return new ModelAndView("ajaxList", "vo", null);
+	}
+	
+	//김용호 영역
 	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
@@ -102,7 +123,7 @@ public class ProductController {
 		return mv;
 	}
 
-	// getAllBoardList
+	//getAllBoardList
 	@RequestMapping("getAllBoardList.do")
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
 		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));

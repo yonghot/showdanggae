@@ -98,6 +98,14 @@ create table qnaboard(
 	total number default 0,
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
+<<<<<<< HEAD
+=======
+ALTER TABLE qnaboard ADD (total number default 0);
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
 
 drop table message cascade constraint;

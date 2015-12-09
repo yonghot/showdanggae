@@ -137,9 +137,9 @@ public class MemberController {
 			email.setReceiver(pvo.getEmail());
 			email.setSubject(pvo.getMember_id()+"님의 비밀번호 찾기 발송 이메일입니다.");
 			emailSender.SendEmail(email);
-			return "member_findpass";
+			return "member_findpass";	
 		}else{
-			return "member_failpass";
+			return "member_findfailpass";
 		}
 	}
 	

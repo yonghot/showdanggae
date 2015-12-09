@@ -15,7 +15,6 @@ public class MessageDAOImpl implements MessageDAO{
 	@Override
 	public void sendMessage(MessageVO vo) {
 		sqlSessionTemplate.insert("message.sendMessage", vo);
-		
 	}
 
 	@Override
