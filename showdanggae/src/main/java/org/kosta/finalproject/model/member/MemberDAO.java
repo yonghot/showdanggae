@@ -10,7 +10,7 @@ public interface MemberDAO {
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
-	String idCheck(String beforeId);
+	MemberVO idCheck(String beforeId);
 	MemberVO register(MemberVO vo);
 	MemberVO login(MemberVO vo);
 	MemberVO findIdByBirth(MemberVO vo);

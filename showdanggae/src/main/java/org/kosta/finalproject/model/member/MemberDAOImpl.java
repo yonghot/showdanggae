@@ -16,7 +16,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 	@Override
-	public String idCheck(String beforeId) {
+	public MemberVO idCheck(String beforeId) {
 		return  sqlSessionTemplate.selectOne("member.idCheck", beforeId);
 	}
 

@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB -->
  
- <select id="idCheck" resultType="java.lang.String">
+ <select id="idCheck" resultType="mvo">
  select member_id,password,member_name,email,to_char(birthday)as birthday from member where member_id=#{value}
  </select>
 
