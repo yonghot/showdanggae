@@ -17,6 +17,7 @@ import org.kosta.finalproject.model.member.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,15 +44,17 @@ public class MemberController {
 
 
 	@RequestMapping("idCheck.do")
-	public ModelAndView idCheck(HttpServletRequest request,
-			HttpServletResponse response, String member_Id) {
-		MemberVO vo = memberService.idCheck(member_Id);
-		if (vo != null) {
-			return new ModelAndView("ajaxView", "vo", vo);
-		} else {
-			return new ModelAndView("ajaxView", "vo", null);
+	@ResponseBody
+	public Object idCheck(String member_id)throws Exception{
+		//System.out.println(member_id);
+		String id = memberService.idCheck(member_id);
+		//System.out.println(id);
+		if (id!=null) {
+			return "a";
+		}else{
+			return "";
 		}
-
+		//System.out.println(id);
 	}
 	
 	@RequestMapping("register.do")
