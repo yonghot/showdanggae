@@ -35,8 +35,8 @@
 				<input type="text" class="form-control" name="email_id" placeholder="이메일 아이디">
 			</div>
 		</div>
-		<div class="col-sm-offset-2 col-sm-10">
-			<select id="email_domain" class="form-control" name="email_domain">
+		<div class="col-sm-offset-2 col-sm-10"> 
+			<select id="email_domain" class="form-control" name="email_domain"> 
 			 	<option value="selected">선택하세요</option>
 				<option value="nate.com">nate.com</option>
 				<option value="hanmail.net">hanmail.net</option>
