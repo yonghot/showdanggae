@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#replyBtn").click(function(){

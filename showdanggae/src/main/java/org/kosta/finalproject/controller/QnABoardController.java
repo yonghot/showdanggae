@@ -24,8 +24,6 @@ public class QnABoardController {
 	
 	@RequestMapping("qnaboard.do")
 	public ModelAndView qnaboard(String pageNo){
-		QnaListVO qvo=qnaBoardService.getBoardList(pageNo);
-		
 		return new ModelAndView("qna_qnaList","qvo",qnaBoardService.getBoardList(pageNo));
 	}
 	
@@ -33,7 +31,7 @@ public class QnABoardController {
 	public ModelAndView showContent(int no){
 		//조회수 증가
 		qnaBoardService.plushit(no);
-		return  new ModelAndView("redirect:nohitshowContent.do?no=" + no);
+		return new ModelAndView("redirect:nohitshowContent.do?no=" + no);
 	}
 	
 	@RequestMapping("nohitshowContent.do")
@@ -41,7 +39,6 @@ public class QnABoardController {
 		int num = Integer.parseInt(no);
 		QnaVO qvo=qnaBoardService.showContent(num);
 		 List<ReplyVO> rvo=qnaBoardService.showReplyComment(num);
-		 System.out.println(rvo);
 		 ModelAndView mav= new ModelAndView();
 		 mav.setViewName("qna_qnashowview");
 		 mav.addObject("replycomment", rvo);
@@ -66,9 +63,7 @@ public class QnABoardController {
 	public ModelAndView qnaWrite(QnaVO qvo){
 		//쓰고 난 후 쓴거 보여주기 redirect 해줘야함 no로
 		//제목 이름 content
-		System.out.println(qvo);
 		qnaBoardService.qnaWrite(qvo);
-		System.out.println(qvo.getNo());
 		return new ModelAndView("redirect:nohitshowContent.do?no=" + qvo.getNo());
 	}
 	
@@ -109,8 +104,6 @@ public class QnABoardController {
 	@RequestMapping("comment.do")
 	public ModelAndView comment(int no,HttpServletRequest request,String replyComment){
 		///comment.do?replyComment=ㅇㄻㄴ&no=38&member_name=김용호
-		System.out.println(no);
-		System.out.println(replyComment);
 		HttpSession session=request.getSession(false);
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo"); //지금 로그인 한 사람
 		qnaBoardService.commentInsert(no,replyComment,mvo);

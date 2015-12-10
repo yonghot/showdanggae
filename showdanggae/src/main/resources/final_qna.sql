@@ -12,9 +12,10 @@ create table qnaboard(
 	content CLOB not null,
 	writeDate DATE not null,
 	viewCount number default 0,
-	ref number not null, 
-	restep number not null, 
-	relevel number not null,
+	ref number default 0, 
+	restep number default 0, 
+	relevel number default 0,
+	total number default 0,
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
 
@@ -28,7 +29,7 @@ select * from qnaboard;
 insert into qnaboard(no, title, member_id, writer, content, writeDate,viewCount,ref,restep,relevel) 
 values(qna_seq.nextval, '질문입니다','java','김용호', '언제 개발 완료 되는거죠?', SYSDATE,0,qna_seq.nextval,0,0);
 
-insert into noticeboard (no,title,member_id,writer,content,writeDate,viewCount,ref,restep,relevel) 
+insert into noticeboard (no,title,member_id,writer,content, writeDate,viewCount,ref,restep,relevel) 
 values(#{no},#{title},#{member_id},#{writer},#{content},SYSDATE,0,#{no},0,0)
 
 insert into qnaboard(no, title, member_id, writer, content, writeDate,viewCount,ref,restep,relevel) 

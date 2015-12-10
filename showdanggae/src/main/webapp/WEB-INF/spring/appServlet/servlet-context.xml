@@ -47,8 +47,6 @@
 <!--  Handler Interceptor 설정 -->
 <mvc:interceptors>
 	<mvc:interceptor>
-		<!-- <mvc:mapping path="/update.do"/>
-		<mvc:mapping path="/updateView.do"/> -->
 		<mvc:mapping path="/auth_*.do"/>
 		<bean class="org.kosta.finalproject.controller.LoginCheckInterceptor"></bean>
 	</mvc:interceptor>

@@ -132,7 +132,6 @@ public class MemberController {
 		String mailId = request.getParameter("email_id");
 		String domain = request.getParameter("email_domain");
 		MemberVO pvo = memberService.findPassById(vo, mailId, domain);
-		System.out.println(pvo);
 		if(pvo!=null){
 			email.setContent("비밀번호는 "+pvo.getPassword()+"입니다.");
 			email.setReceiver(pvo.getEmail());

@@ -18,23 +18,15 @@ public class NoticeController {
 	private NoticeService noticeService;
 
 	@RequestMapping("notice.do")
-	public ModelAndView notice(HttpServletRequest request,
-			HttpServletResponse response) {
-		String pageNo = request.getParameter("pageNo");
+	public ModelAndView notice(String pageNo) {
 		ListVO list = noticeService.noticeList(pageNo);
-
 		return new ModelAndView("notice_noticeboardview", "noticeList", list);
 	}
 
 	@RequestMapping("noticeShow.do")
-	public ModelAndView noticeShow(HttpServletRequest request,
-			HttpServletResponse response) {
-		String no2 = request.getParameter("no"); // �۹�ȣ
-		int no = Integer.parseInt(no2);
-
-		NoticeVO vo = noticeService.noticeContent(no);
-
-		return new ModelAndView("redirect:nohit.do?no=" + no);
+	public ModelAndView noticeShow(String no) {
+		int noInt = Integer.parseInt(no);
+		return new ModelAndView("redirect:nohit.do?no="+noInt);
 	}
 
 	@RequestMapping("nohit.do")

@@ -28,16 +28,15 @@ public class ProductController {
 	private ProductService productService;
 
 	// 로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
-		// 상품정보 추가는 용호.
-		// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
-		@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
-		public void addCategory(String category, HttpServletRequest request) {
-			HttpSession session = request.getSession(false);
-			//String category = httpServletRequest.getParameter("category");
-			if (session != null) {
-			}
+	// 상품정보 추가는 용호.
+	// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
+	@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
+	public void addCategory(String category, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		//String category = httpServletRequest.getParameter("category");
+		if (session != null) {
 		}
-	
+	}
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")
 	public void addInterest(String interest, HttpServletRequest request) {
@@ -86,12 +85,18 @@ public class ProductController {
 		}
 		return new ModelAndView("login");
 	}
+
+	
+	// 김용호 영역
 	
 	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
 	public ModelAndView AjaxMainCategoryList(String member_id) {
 		List<CategoryVO> vo=categoryService.getMemberCategoryList(member_id);
+<<<<<<< HEAD
 		System.out.println("멤버 아이디"+ member_id);
 		System.out.println("멤버 카테고리"+vo);
+=======
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		if(vo!=null) {
 			return new ModelAndView("ajaxList", "vo", vo);
 		}
@@ -108,6 +113,7 @@ public class ProductController {
 		mv.addObject("pvoList", productService.getMyProductList(member_id, currentCategory));
 		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
 		mv.addObject("memberCategoryList", categoryService.getMemberCategoryList(member_id));
+		mv.addObject("category_id", currentCategory);
 		
 		return mv;
 	}
@@ -132,10 +138,26 @@ public class ProductController {
 	
 	// registProduct
 	@RequestMapping("registProduct.do")
-	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO lvo, EvaluatingItemVO evo) throws Exception {
-		productService.addProductWithSellerLinkAndEvaluating(pvo, lvo, evo);
-		return new ModelAndView("addLinkAndPrice");
+	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
+		//vo에 변수명이 int로 되어있어도 String 데이터가 자동으로 parseInt되면서 들어가는 듯
+		productService.addProductWithSellerLinkAndEvaluating(pvo, slvo, evo);
+		return new ModelAndView("product/registOk", "currentCategory", pvo.getCategory_id());
 	}
+	
+	// hit
+	@RequestMapping("hit.do")
+	public ModelAndView hit(String product_id) throws Exception {
+		productService.hit(product_id);
+		return new ModelAndView("redirect:showProductContent.do?product_id="+product_id);
+	}
+	
+	
+	// showContent
+		@RequestMapping("showProductContent.do")
+		public ModelAndView showProductContent(String product_id) throws Exception {
+			productService.showProductContent(product_id);
+			return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
+		}
 
 }
 
