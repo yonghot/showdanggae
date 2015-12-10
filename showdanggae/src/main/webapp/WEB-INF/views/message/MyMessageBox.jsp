@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 
      $(document).ready(function(){
@@ -9,7 +8,6 @@
      	$("#messageForm a").click(function(){
  			//메세지 확인form
  			var mno=$(this).children().eq(0).val();	
-			alert(mno);
  			 window.open("${initParam.root}messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="+mno,"popup",
 			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
 
@@ -58,6 +56,5 @@ th,td { font-size: 10pt; line-height: 160%; }
     	</c:forEach>		
     </table>
     </form>
-
-    </div>
+</div>
     

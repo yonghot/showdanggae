@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.message.MessageService;
@@ -54,7 +53,6 @@ public class MessageController {
 	public ModelAndView messageBoxContent(HttpServletRequest request, MessageVO vo) {
 
 		MessageVO mvo = messageService.MyMessageShowPopUp(vo);
-	
 		return new ModelAndView("popup/message_show", "mvo", mvo);
 	}
 
