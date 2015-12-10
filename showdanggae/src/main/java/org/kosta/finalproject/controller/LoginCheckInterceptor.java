@@ -27,7 +27,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
-			response.sendRedirect("home.do");
+			response.sendRedirect("member_login.do");
 			return false;//컨트롤러 메서드 수행하지 않게 한다 
 		}
 		return true;

@@ -18,6 +18,7 @@
 
 $(document).ready(function() {
 	
+	
 	$("#emailSelect").change(function(){
 		var checkval1=$("#email_id").val();
 		var checkval=	$("#emailSelect option:selected").val();
@@ -38,7 +39,7 @@ $(document).ready(function() {
 	});
 
 	$("#subBtn").click(function() {
-	var idComp = $(":input[name=member_Id]").val();
+	var idComp = $(":input[name=member_id]").val();
 	var passwordComp = $(":input[name=password]").val();
 	var repasswordComp = $(":input[name=repassword]").val();
 	var nameComp = $(":input[name=member_name]").val();
@@ -48,10 +49,12 @@ $(document).ready(function() {
 	var email=emailIdComp+"@"+emaildomainComp;
 	
 	
+	var RegexName = /^[가-힣]{2,4}$/; //이름 유효성 검사 2~4자 사이
+
+
 	$("#email").val(email);
 	
 
-	
 	if (idComp == "") {
 		alert("아이디를 입력해주세요");
 		return false;
@@ -75,11 +78,19 @@ $(document).ready(function() {
 			alert("이름을 입력해주세요");
 			return false;
 		}
-		if (emailIdComp == ""||emailaddressComp=="") {
+		
+ 		if ( !RegexName.test($.trim($("#name").val())) )
+		{
+		alert("이름 오류입니다 한글로 입력해주세요");
+		$("#name").focus();
+		return false;
+		} 
+
+		if (emailIdComp == ""||emaildomainComp == "") {
 			alert("이메일을 입력해주세요");
 			return false;
 		}
-		if (birthdayComp== "") {
+		if (birthdayComp == "") {
 			alert("생년월일을 입력해주세요");
 			return false;
 		}
@@ -88,11 +99,9 @@ $(document).ready(function() {
 			return false;
 		}
 		if(isNaN(birthdayComp)==true){
-					alert("생년월일은 숫자만 가능합니다");
+			alert("생년월일은 숫자만 가능합니다");
 			return false;
 		}
-
-		//alert($("#registerForm").serialize());
 		$("#registerForm").serialize();
 		
 		
@@ -101,62 +110,94 @@ $(document).ready(function() {
 </script>
 <script type="text/javascript">
 $(document).ready(function() {
+	var RegexName = /^[가-힣]{2,4}$/; //이름 유효성 검사 2~4자 사이
+	var RegexId = /^[a-z0-9]{6,12}$/; //아이디 유효성 검사 6-12자 사이
+	var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //비밀번호
+
+
 			$("#id").keyup(function() {
-			var id = $(":input[name=member_Id]").val();
-			var idComp = $(":input[name=member_Id]").val().trim();
-		
-							if (idComp.length<6||idComp.length>12) {
-							$("#checkResult").html("6자이상 12자이하만 가능!").css(
-									"background", "pink");
+			var id = $(":input[name=member_id]").val();
+			var idComp = $(":input[name=member_id]").val().trim();
+			
+							/* if (idComp.length<6||idComp.length>12) {
+							$("#checkResult").html("6자이상 12자이하만 가능합니다");
+<<<<<<< HEAD
+								return false;
+							}else if(!RegexId.test($.trim($("#id").val()))){
+								$("#checkResult").html("한글, 특수문자 불가");
+								return false;
+							}
+							
+=======
 							//alert($("#id").serialize());
-							return;
-						}			
+							return false;
+							}  */
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						$.ajax({
 							type:"get",
 							url:"idCheck.do",
-							data: $("#id").serialize(),
+<<<<<<< HEAD
+							data: $("#id").serialize(),			
+=======
+							data: $("#id").serialize(), 
 							dataType:"json",
-							 success:function(data){   
-						            if(data.vo==null){
-						            	$("#checkResult").html("사용가능").css("background","green");
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+							 success:function(data){
+<<<<<<< HEAD
+						            if(data!=""){
+						            	$("#checkResult").html("아이디중복");			         
 						            }else{
-						            	$("#checkResult").html("아이디가 중복됩니다!").css("background", "red");
-						            }
+						            	$("#checkResult").html("사용가능");
+						            
+						            } 
 						        }
 						  
+=======
+								 if(data==""){
+									 $("#checkResult").html("사용가능");
+								 }else{
+									 $("#checkResult").html("아이디중복");
+								 }
+							}
+								
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						});
 					});
-///////////////////////
+
 			$("#password").keyup(function() {
 				var passwordComp = $(":input[name=password]").val();
 				var repasswordComp = $(":input[name=repassword]").val();
-				
-							if(passwordComp.length<6||passwordComp.length>12){
-								$("#passResult").html("6자이상 12자이하만 가능!").css(
-										"background", "pink");
-								
-								return;
-							}else{
-								$("#passResult").html("사용가능").css(
-										"background", "pink");
+				var reg_pwd = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[!,@,#,$,%,^,&,*,?,_,~])(?=.*[a-zA-Z]).*$/;
+		
+				if(!reg_pwd.test(passwordComp)){
+					$("#passResult").html("영문,숫자,특수문자 혼합하여 8자리~20자리 이내만 가능");
+					  return false;
+					 }else{
+								$("#passResult").html("사용가능");
 							}
 							
 						});
-						/////////
+						
 			$("#repassword").keyup(function() {
 				var passwordComp = $(":input[name=password]").val();
 				var repasswordComp = $(":input[name=repassword]").val();
 				
-							if(passwordComp!=repasswordComp){
-								$("#repassResult").html("비밀번호가 다릅니다!").css(
-										"background", "pink");
-								//alert($("#id").serialize());
-								return;
+
+							if($("#passResult").text()!="사용가능"){
+								$("#repassResult").html("비밀번호 인증을 받으세요");
+							}else if(passwordComp!=repasswordComp){
+								$("#repassResult").html("비밀번호가 다릅니다!");
 							}else{
-								$("#repassResult").html("인증성공").css(
-										"background", "blue");
-							}				
+								$("#repassResult").html("인증성공");
+							}
+
+							
 						});
+	
+				
+
+
+		
 						
 						
 
@@ -183,17 +224,18 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<form name="registerForm" class="form-horizontal text-left"
 								role="form" id="registerForm"
-								action="${initParam.root}register.do">
+								action="${initParam.root}auth_register.do">
 
 								<div class="form-group">
 									<div class="col-sm-2">
 										<label for="inputEmail3" class="control-label">아이디</label>
 									</div>
 									<div class="col-sm-4 hidden-sm hidden-xs text-left">
-										<input type="text" class="form-control" name="member_Id"
+										<input type="text" class="form-control" name="member_id"
 											id="id" placeholder="영문과 숫자로만 입력해주세요 (한글, 특수문자 불가)">
 										<span id="checkResult"></span>
 									</div>
+									
 								</div>
 								<div class="form-group">
 									<div class="col-sm-2">
@@ -201,7 +243,8 @@ $(document).ready(function() {
 									</div>
 									<div class="col-sm-4">
 										<input type="password" class="form-control" name="password"
-											id="password" placeholder="6자 이상 12자 이하로 입력해주세요"> <span
+										
+											id="password" placeholder="영문,숫자,특수문자 조합 8자리~20자리 이내 "> <span
 											id="passResult"></span>
 									</div>
 								</div>
@@ -221,7 +264,7 @@ $(document).ready(function() {
 										<label for="inputPassword3" class="control-label">이름</label>
 									</div>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" name="member_name"
+										<input type="text" class="form-control" name="member_name" id="name"
 											placeholder="이름">
 									</div>
 								</div>
@@ -239,7 +282,8 @@ $(document).ready(function() {
 									<div class="col-sm-2">
 										<input class="form-control" id="email_domain"
 											name="email_domain" readonly="readonly" value="" type="text"
-											placeholder="이메일 Domain" /> <input id="email" name="email"
+											placeholder="이메일 Domain" />
+											 <input id="email" name="email"
 											value="" type="hidden" />
 									</div>
 									<div class="col-sm-2">
@@ -258,7 +302,7 @@ $(document).ready(function() {
 									<div class="col-sm-2">
 										<label for="inputPassword3" class="control-label">생년월일</label>
 									</div>
-									<div class="col-sm-4">
+									<div class="col-sm-4"> 
 										<input type="text" class="form-control" name="birthday"
 											placeholder="주민등록번호 앞 6자리로 입력해주세요 (ex. 880307)">
 									</div>
@@ -267,9 +311,9 @@ $(document).ready(function() {
 								<br>
 								<div class="form-group">
 									<div class="col-sm-10 col-sm-offset-2 text-left">
-										<button type="submit" id="subBtn" class="btn btn-info btn-lg">회원가입</button>
+										<button type="submit" id="subBtn" class="btn btn-info btn-sm">회원가입</button>
 										<button type="button" id="canBtn"
-											class="btn btn-default btn-lg">회원가입취소</button>
+											class="btn btn-default btn-sm">회원가입취소</button>
 									</div>
 								</div>
 						</form>

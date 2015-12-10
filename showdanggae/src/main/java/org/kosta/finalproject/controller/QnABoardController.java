@@ -22,7 +22,7 @@ public class QnABoardController {
 	@Resource
 	private QnABoardService qnaBoardService;
 	
-	@RequestMapping("qnaboard.do")
+	@RequestMapping("auth_qnaboard.do")
 	public ModelAndView qnaboard(String pageNo){
 		return new ModelAndView("qna_qnaList","qvo",qnaBoardService.getBoardList(pageNo));
 	}
@@ -31,10 +31,10 @@ public class QnABoardController {
 	public ModelAndView showContent(int no){
 		//조회수 증가
 		qnaBoardService.plushit(no);
-		return new ModelAndView("redirect:nohitshowContent.do?no=" + no);
+		return new ModelAndView("redirect:auth_nohitshowContent.do?no=" + no);
 	}
 	
-	@RequestMapping("nohitshowContent.do")
+	@RequestMapping("auth_nohitshowContent.do")
 	public ModelAndView nohitshowContent(String no){
 		int num = Integer.parseInt(no);
 		QnaVO qvo=qnaBoardService.showContent(num);
@@ -64,13 +64,13 @@ public class QnABoardController {
 		//쓰고 난 후 쓴거 보여주기 redirect 해줘야함 no로
 		//제목 이름 content
 		qnaBoardService.qnaWrite(qvo);
-		return new ModelAndView("redirect:nohitshowContent.do?no=" + qvo.getNo());
+		return new ModelAndView("redirect:auth_nohitshowContent.do?no=" + qvo.getNo());
 	}
 	
 	@RequestMapping("qnaDelete.do")
 	public String qnaDelete(String no){
 		qnaBoardService.qnaDelete(no);
-		return "redirect:qnaboard.do";
+		return "redirect:auth_qnaboard.do";
 	}
 	
 	@RequestMapping("qnaUpdateForm.do")
@@ -98,7 +98,7 @@ public class QnABoardController {
 	public ModelAndView reply(QnaVO qvo){
 		qnaBoardService.reply(qvo);
 		
-		return new ModelAndView("redirect:nohitshowContent.do?no="+qvo.getNo());
+		return new ModelAndView("redirect:auth_nohitshowContent.do?no="+qvo.getNo());
 	}
 	
 	@RequestMapping("comment.do")
@@ -113,13 +113,13 @@ public class QnABoardController {
 	
 	@RequestMapping("recomment.do")
 	public String recomment(int no){
-		return "redirect:nohitshowContent.do?no="+no;
+		return "redirect:auth_nohitshowContent.do?no="+no;
 	}
 	
 	@RequestMapping("deleteComment.do")
 	public String deleteComment(int cno,int no){
 		qnaBoardService.deleteComment(cno,no);
-		return  "redirect:nohitshowContent.do?no="+no;
+		return  "redirect:auth_nohitshowContent.do?no="+no;
 	}
 	
 

@@ -26,13 +26,14 @@ public class NoticeController {
 	@RequestMapping("noticeShow.do")
 	public ModelAndView noticeShow(String no) {
 		int noInt = Integer.parseInt(no);
+		noticeService.noticeContent(noInt);
 		return new ModelAndView("redirect:nohit.do?no="+noInt);
 	}
 
 	@RequestMapping("nohit.do")
 	public ModelAndView nohit(HttpServletRequest request,
 			HttpServletResponse response) {
-		String no2 = request.getParameter("no"); // �۹�ȣ
+		String no2 = request.getParameter("no"); 
 		int no = Integer.parseInt(no2);
 		NoticeVO vo = noticeService.noHitnoticeContent(no);
 

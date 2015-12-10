@@ -88,14 +88,14 @@
 	</table> --%> 
 
 	<div align="right">
-		<a href="beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
+		<a href="auth_beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="5">
 		<div class="col-md-6">
 		    <div class="thumbnail">
-		    	<a href="hit.do?product_id=${list.product_id}">
+		    	<a href="auth_hit.do?product_id=${list.product_id}">
 		        	<img src="http://cfile28.uf.tistory.com/image/2113AC3755228C8F163A5B" class="img-responsive">
 		        </a>
 		        <div class="caption" align="center">

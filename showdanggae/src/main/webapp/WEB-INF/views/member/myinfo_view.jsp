@@ -8,7 +8,7 @@
 			
 			var result = confirm('탈퇴하시겠습니까?');
 	        if(result) {
-	        	location.href="withdrawForm.do";
+	        	location.href="auth_withdrawForm.do";
 	        } else {
 	        	location.href="updatecancel.do";
 	        	//home으로 이동
@@ -32,7 +32,7 @@
 		
 		$("#canBtn").click(function(){
 			alert("홈으로 이동합니다");
-			location.href="updatecancel.do";
+			location.href="auth_updatecancel.do";
 		});
 	
 		$("#subBtn").click(function() {
@@ -122,7 +122,7 @@
             <hr>
        </div>
        <div class="col-md-12">
-           <form class="form-horizontal text-left" role="form" action="updateMember.do">
+           <form class="form-horizontal text-left" role="form" action="auth_updateMember.do">
                <div class="form-group">
                    <div class="col-sm-2">
                        <label for="inputEmail3" class="control-label">아이디</label>

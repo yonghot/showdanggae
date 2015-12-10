@@ -20,7 +20,7 @@ $(document).ready(function() {
 		<hr>
 	</div>
 	<div class="col-md-12">
-		<form class="form-horizontal" role="form" action="member_myinfo_view.do">
+		<form class="form-horizontal" role="form" action="auth_member_myinfo_view.do">
 			<div class="form-group">
 				<div class="col-sm-2">
 					<label for="inputPassword3" class="control-label">비밀번호 입력</label>

@@ -43,24 +43,23 @@
 
 <div class="col-md-2" align="center">
 	<c:if test="${sessionScope.mvo!=null}">
-	    <form class="form-horizontal" role="form" action="auth_findMemberById.do">
+ <form class="form-horizontal" role="form" action="auth_findMemberById.do">
 	        <div class="form-group">
 	            <div class="col-sm-12">
 	            	<input type="hidden" name="sessionId" value="${sessionScope.mvo.member_id}">
 	                <div class="input-group">
-		                <input type="text"  class="form-control" id="inputId3" name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
+		              <input type="text"  class="form-control" id="inputId3" name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
 		                <span class="input-group-btn">
 		                	<input class="btn btn-success" type="submit" id="findBtn" value="검색">
 		                </span>
 					</div>
 	            </div>
 	        </div>
-		    <hr>
-			<span id="searchIdView"></span>
 	    </form>
 			<input class="btn btn-default" type="button" value="팔로잉" onclick="follow_view()">	
 			<input class="btn btn-default" type="button" value="팔로워" onclick="follow1_view()">
+			<span id="searchIdView"></span>
 	</c:if>
 </div>
-
+<br><br><br><br>
 

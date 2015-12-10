@@ -76,9 +76,9 @@
 
 	
 
-		<c:if test="${requestScope.noticeList.pagingBean.isPreviousPageGroup()}">
-			<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.startPageOfPageGroup-1}">◀ </a>
-		</c:if>
+<c:if test="${requestScope.noticeList.pagingBean.isPreviousPageGroup()}">
+<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.startPageOfPageGroup-1}">◀ </a>
+</c:if>
 		
 		
 <c:forEach begin="${requestScope.noticeList.pagingBean.startPageOfPageGroup }" end="${requestScope.noticeList.pagingBean.endPageOfPageGroup }" var="i">

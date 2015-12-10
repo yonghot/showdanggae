@@ -54,7 +54,7 @@
                             <a href="notice.do">공지사항</a>                    
                         </li>
                         <li>
-                            <a href="qnaboard.do">Q&A</a>
+                            <a href="auth_qnaboard.do">Q&A</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
         </div>
             <div class="container">
                  <div class="col-md-12">
-                     <h2 class="text-center"><img src="${initParam.root}img/showdanggae_logo.PNG" width="200"></h2>
+                     <h2 class="text-center"><a href ="home.do"><img src="${initParam.root}img/showdanggae_logo.PNG" width="200"></a></h2>
                  </div>
                  <div class="col-md-offset-3 col-md-6">
                      <form role="form">

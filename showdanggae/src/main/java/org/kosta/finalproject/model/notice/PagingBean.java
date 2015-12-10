@@ -14,7 +14,7 @@ package org.kosta.finalproject.model.notice;
 public class PagingBean {
 	private int nowPage; 
 	private int contentNumberPerPage=5; //페이지당 보여줄 게시물 수
-	private int pageNumberPerPageGroup=3; //페이지 그룹당 페이지 수 
+	private int pageNumberPerPageGroup=5; //페이지 그룹당 페이지 수 
 	private int totalContents; 
 	
 	
@@ -30,14 +30,7 @@ public class PagingBean {
 	
 	
 	
-	
-	public static void main(String[] args) {
-		
-		PagingBean pb = new PagingBean();
-		//pb.setTotalContents(30);
-		System.out.println(pb.getTotalPage());
-	}
-	
+
 	
 	
 	public PagingBean() {
@@ -48,6 +41,7 @@ public class PagingBean {
 	public int getTotalPage(){
 
 		int num=this.totalContents%this.contentNumberPerPage;
+		////10페이지당 보여줄 게시물 수 5
 		int totalPage=0;
 		if(num==0){
 			totalPage=this.totalContents/this.contentNumberPerPage;
@@ -92,11 +86,15 @@ public class PagingBean {
 	public int getEndPageOfPageGroup(){ 
 		
 		int endPageOfPageGroup=pageNumberPerPageGroup*getNowPageGroup();
-																	//한페이지당 3
 		
 		if(nowPage==getTotalPage()){
-			
 			return getTotalPage();		
+		}
+		if(pageNumberPerPageGroup>getTotalPage()){
+			return getTotalPage();	
+		}
+		if(endPageOfPageGroup>getTotalPage()){
+			return getTotalPage();	
 		}
 		
 		return endPageOfPageGroup;

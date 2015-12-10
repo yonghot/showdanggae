@@ -8,7 +8,7 @@
      	$("#messageForm a").click(function(){
  			//메세지 확인form
  			var mno=$(this).children().eq(0).val();	
- 			 window.open("${initParam.root}messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="+mno,"popup",
+ 			 window.open("${initParam.root}auth_messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="+mno,"popup",
 			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
 
      	});
@@ -44,7 +44,7 @@ th,td { font-size: 10pt; line-height: 160%; }
     		<td> ${msvo.spand_date }</td>
     		<td>
   				<c:choose>
-					<c:when test="${msvo.read>1}">
+					<c:when test="${msvo.read>0}">
 						O
 					</c:when>
 					<c:otherwise>
@@ -56,5 +56,29 @@ th,td { font-size: 10pt; line-height: 160%; }
     	</c:forEach>		
     </table>
     </form>
+    
+    <%-- 
+    <c:if test="${requestScope.noticeList.pagingBean.isPreviousPageGroup()}">
+<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.startPageOfPageGroup-1}">◀ </a>
+</c:if>
+		
+		
+<c:forEach begin="${requestScope.noticeList.pagingBean.startPageOfPageGroup }" end="${requestScope.noticeList.pagingBean.endPageOfPageGroup }" var="i">
+	<c:choose>
+	<c:when test="${requestScope.noticeList.pagingBean.nowPage==i}">
+		${i}
+	</c:when>
+	<c:otherwise>
+			<a href="${initParam.root}notice.do?pageNo=${i }">${i }</a>
+	</c:otherwise>
+	</c:choose>	
+	</c:forEach>
+	
+	
+ 	<c:if test="${requestScope.noticeList.pagingBean.isNextPageGroup()}">
+	<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.endPageOfPageGroup+1}">▶ </a>
+	</c:if> 
+	 --%>
+	
 </div>
     

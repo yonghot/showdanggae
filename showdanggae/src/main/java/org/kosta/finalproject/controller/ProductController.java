@@ -133,13 +133,14 @@ public class ProductController {
 	}
 
 	//getAllBoardList
-	@RequestMapping("getAllBoardList.do")
+	@RequestMapping(value={"getAllBoardList.do", "home.do"})
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
 		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
 	}
 	
+	
 	// beforeGoingRegistProduct
-	@RequestMapping("beforeGoingRegistProduct.do")
+	@RequestMapping("auth_beforeGoingRegistProduct.do")
 	public ModelAndView beforeGoingRegistProduct(String category_id) throws Exception {
 		
 		ModelAndView mv = new ModelAndView("product_registProduct");
@@ -151,7 +152,7 @@ public class ProductController {
 	}
 	
 	// registProduct
-	@RequestMapping("registProduct.do")
+	@RequestMapping("auth_registProduct.do")
 	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
 		//vo에 변수명이 int로 되어있어도 String 데이터가 자동으로 parseInt되면서 들어가는 듯
 		productService.addProductWithSellerLinkAndEvaluating(pvo, slvo, evo);
@@ -159,7 +160,7 @@ public class ProductController {
 	}
 	
 	// hit
-	@RequestMapping("hit.do")
+	@RequestMapping("auth_hit.do")
 	public ModelAndView hit(String product_id) throws Exception {
 		productService.hit(product_id);
 		return new ModelAndView("redirect:showProductContent.do?product_id="+product_id);

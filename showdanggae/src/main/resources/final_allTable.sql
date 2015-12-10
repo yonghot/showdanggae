@@ -1,6 +1,5 @@
 
 -- 테이블 생성 순서 : member -> main_category -> member_category ->  product -> item -> 나머지
-
 drop table member cascade constraint;  -- 제약조건 있는 테이블은 이렇게 삭제...하면 제약조건들이 없어져서 되는거다
 create table member(
 	member_id varchar2(100) primary key,
@@ -10,14 +9,10 @@ create table member(
 	birthday DATE not null,
 	report number default 0
 );
-
-
 drop table main_category cascade constraint;
 create table main_category (
 	category varchar2(100) primary key
 );
-
-
 drop table member_category cascade constraint;
 create table member_category (
 	category_id number primary key,
@@ -26,8 +21,6 @@ create table member_category (
 	constraint fk_category_main foreign key(category) references main_category(category),
 	constraint fk_category_member_id foreign key(member_id) references member(member_id)
 );
-
-
 drop table product cascade constraint;
 create table product (
 	product_id number primary key,
@@ -219,11 +212,11 @@ values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제
 
 
 INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
-values ('admin', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
+values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
 INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
-values ('admin', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
+values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
 INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
-values ('admin', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
+values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
 
 
 insert into follow(following_date,following,follower) values(sysdate,'java1','java');
