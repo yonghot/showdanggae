@@ -1,7 +1,6 @@
 package org.kosta.finalproject.model.member;
 
 import java.util.HashMap;
-
 import java.util.List;
 
 
@@ -11,7 +10,7 @@ public interface MemberDAO {
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
-	MemberVO idCheck(String beforeId);
+	String idCheck(String beforeId);
 	MemberVO register(MemberVO vo);
 	MemberVO login(MemberVO vo);
 	MemberVO findIdByBirth(MemberVO vo);
