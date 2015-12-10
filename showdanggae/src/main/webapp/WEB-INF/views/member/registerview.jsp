@@ -183,7 +183,7 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<form name="registerForm" class="form-horizontal text-left"
 								role="form" id="registerForm"
-								action="${initParam.root}register.do">
+								action="${initParam.root}auth_register.do">
 
 								<div class="form-group">
 									<div class="col-sm-2">

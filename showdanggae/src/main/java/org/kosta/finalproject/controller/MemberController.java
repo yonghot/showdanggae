@@ -53,7 +53,7 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping("register.do")
+	@RequestMapping("auth_register.do")
 	public ModelAndView register(MemberVO vo){
 
 		MemberVO insertVO=memberService.register(vo);
@@ -148,13 +148,13 @@ public class MemberController {
 		return "home";		
 	}
 	
-	@RequestMapping("updatecancel.do")
+	@RequestMapping("auth_updatecancel.do")
 	public String updatecancel(){
 		return "home";		
 	}
 	
 	
-	@RequestMapping("updateMember.do")
+	@RequestMapping("auth_updateMember.do")
 	public ModelAndView update(HttpServletRequest request,HttpServletResponse response,MemberVO vo){
 		HttpSession session = request.getSession(false);
 		System.out.println("update : " + vo);
@@ -170,12 +170,12 @@ public class MemberController {
 			
 	}
 	
-	@RequestMapping("withdrawForm.do")
+	@RequestMapping("auth_withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
 	}
 	
-	@RequestMapping("withdraw.do")
+	@RequestMapping("auth_withdraw.do")
 	public String withdraw(HttpServletRequest request,MemberVO vo){
 		String reason=request.getParameter("reason");
 		memberService.withdraw(vo.getMember_id(),reason);

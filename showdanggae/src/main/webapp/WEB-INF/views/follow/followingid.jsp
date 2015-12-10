@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="css/type5.css" type="text/css">
 <jsp:include page="../templates/right.jsp"></jsp:include>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	$("#followingView a").click(function(){
 		var id=$(this).text();
@@ -15,7 +17,7 @@ $(document).ready(function(){
 	});	
 });
 </script>
-<table class="table" border="1">
+<table border="1" class="type05">
    <thead>
       <tr>
          <th>ID</th>

@@ -49,7 +49,7 @@
 	
 
 		<c:if test="${requestScope.qvo.qpagingBean.isPreviousPageGroup()}">
-			<a href="${initParam.root}qnaboard.do?pageNo=${requestScope.qvo.qpagingBean.startPageOfPageGroup-1}">◀ </a>
+			<a href="${initParam.root}auth_qnaboard.do?pageNo=${requestScope.qvo.qpagingBean.startPageOfPageGroup-1}">◀ </a>
 		</c:if>
 		
 		
@@ -59,7 +59,7 @@
 		${i}
 	</c:when>
 	<c:otherwise>
-			<a href="${initParam.root}qnaboard.do?pageNo=${i }">${i }</a>
+			<a href="${initParam.root}auth_qnaboard.do?pageNo=${i }">${i }</a>
 	</c:otherwise>
 	</c:choose>	
 	</c:forEach>

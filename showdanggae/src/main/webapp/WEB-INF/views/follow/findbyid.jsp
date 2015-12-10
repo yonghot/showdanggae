@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     <link rel="stylesheet" href="css/type5.css" type="text/css">
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -31,8 +32,7 @@
 		                 
 		               }//callback         
 		            });//ajax
-			}  
-		 	
+			}  		 	
 		}); 
 		$("#listView a").click(function(){
  			var id=$(this).text();
@@ -46,21 +46,14 @@
 	});
 	
 </script>
-
-</head>
-<body>
 <jsp:include page="../templates/right.jsp"></jsp:include>
-<a href="home.do">홈으로</a><br><br>
 <!-- <form action ="add.do"> -->
 <form id="followForm" >
-<hr>
-<table border="1" class="right">
-
+<table border="1" class="type05">
 <thead>
 <tr><th></th><th>ID</th></tr>
 </thead>
 <tbody id="listView">
-
 <c:forEach items="${requestScope.mvoList}" var="mvo" varStatus="status">
 	 <%-- ${mvoList[status.index]} --%>
 	<c:choose>
@@ -69,13 +62,11 @@
 			<td></td><td>${mvo.member_id}</td>
 		</tr>
 		</c:when>
-		
 		<c:when test="${mvo.isFollow==true}">
 		<tr>
 			<td></td><td><a href="">${mvo.member_id}</a><input type="button" value="v팔로잉" name="addBtn"></td>
 		</tr>
 		</c:when>
-		
 		<c:otherwise>
 		<tr>
 			<td></td><td><a href="">${mvo.member_id}</a><input type="button" value="+팔로우" name="addBtn"></td>
@@ -83,7 +74,6 @@
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
-
 </tbody>
 </table>
 </form>

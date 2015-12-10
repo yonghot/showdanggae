@@ -46,7 +46,7 @@ $(document).ready(function() {
     <div class="section"><div class="container"><div class="row"><div class="col-md-12"><h1>회원탈퇴 페이지<br></h1>
     </div></div></div></div>
 	
-	<form action="withdraw.do">
+	<form action="auth_withdraw.do">
 	
 	비밀번호확인
 	<input type="password" name="password" id="password" class="form-control" placeholder="비밀번호를 입력해주세요"><br>
