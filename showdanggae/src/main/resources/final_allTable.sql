@@ -79,8 +79,9 @@ create table noticeboard(
 	password varchar2(100) not null,
 	content CLOB not null,
 	hit number default 0,
-	time_post DATE not null
+	writeDate DATE not null
 );
+
 
 drop table qnaboard cascade constraint;
 create table qnaboard(
@@ -91,22 +92,24 @@ create table qnaboard(
 	content CLOB not null,
 	writeDate DATE not null,
 	viewCount number default 0,
-	ref number not null, 
-	restep number not null, 
-	relevel number not null,
+	ref number default 0, 
+	restep number default 0, 
+	relevel number default 0,
+	total number default 0,
 	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
 );
-ALTER TABLE qnaboard ADD (total number default 0);
-ALTER TABLE QnAcomment
-ADD (member_id VARCHAR2(100));
 
-delete from QnAcomment
-
-ALTER TABLE QnAcomment
-ADD CONSTRAINT FK_QnAcomment FOREIGN KEY(member_id)
-references member(member_id);
-
-
+drop table qnacomment cascade constraint;
+create table qnacomment(
+	cno number primary key,
+	no number not null,
+	member_name varchar2(100) not null,
+	member_id VARCHAR2(100) not null,
+	replyComment clob not null,
+	commentDate date not null,
+	constraint no foreign KEY(no) references qnaboard(no),
+	constraint fk_qnacomment foreign key(member_id) references member(member_id)
+);
 
 drop table message cascade constraint;
 create table message (
@@ -150,13 +153,14 @@ drop sequence member_category_seq;
 drop sequence message_seq;
 drop sequence notice_seq;
 drop sequence qna_seq;
+drop sequence qnacomment_seq;
 
 create sequence product_seq;
 create sequence member_category_seq; 
 create sequence message_seq;
 create sequence notice_seq;
 create sequence qna_seq;
-
+create sequence qnacomment_seq;
 ------------------------------------------------------------------------------------------------------------
 
 insert into member(member_id, password, member_name, email, birthday) values('java','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
@@ -178,13 +182,6 @@ insert into member_category(category_id, category, member_id) values('3', '노�
 insert into member_category(category_id, category, member_id) values('4', '노트북','dd');
 
 
-insert into product(product_id, category_id, member_id, product_name, review, detail, regist_date) 
-values (product_seq.nextval, '1', 'java', '기가바이트 P35', '비행기 이륙소리 개쩔', '가성비는 좋은데 내구성이 영..', sysdate); 
-insert into product(product_id, category_id, member_id, product_name, review, detail, regist_date) 
-values (product_seq.nextval, '2', 'java', '바이오더마 립글로즈', '발림성 갑', '좋은 참 좋은데 내 돈주고 사긴 좀 비쌈..', sysdate); 
-insert into product(PRODUCT_ID, CATEGORY_ID, MEMBER_ID, PRODUCT_NAME, LIKES, DISLIKES, HITS, REVIEW, REVIEW_SCORE, DETAIL, VISIBLITY, REGIST_DATE) 
-values(product_seq.nextval, '1', 'java', '가시갑옷', 0, 0, 0, '때려보삼', 0, '가시가 촘촘합디다', 0, sysdate);
-
 insert into interest(category, member_id) values('노트북','java');
 insert into interest(category, member_id) values('화장품','java');
 insert into interest(category, member_id) values('노트북','dd');
@@ -195,38 +192,29 @@ insert into item(item) values('디자인');
 insert into item(item) values('AS');
 
 
-insert into seller_link(link, product_id, price) values('www.naver.com', '1', '1200000');
-insert into seller_link(link, product_id, price) values('www.daum.net', '2', '20000');
-
-
-insert into eval_item(item, product_id, item_point) values('가성비', '1', '8');
-insert into eval_item(item, product_id, item_point) values('디자인', '1', '4');
-insert into eval_item(item, product_id, item_point) values('AS', '1', '2');
-
-
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
 
 
-insert into qnaboard(no, member_id, title, writer, content, time_post) 
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
-insert into qnaboard(no, member_id, title, writer, content, time_post) 
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
-insert into qnaboard(no, member_id, title, writer, content, time_post) 
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
-insert into qnaboard(no, member_id, title, writer, content, time_post) 
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
-insert into qnaboard(no, member_id, title, writer, content, time_post) 
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
-insert into qnaboard(no, member_id, title, writer, content, time_post) 
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
 
 
@@ -239,3 +227,4 @@ values ('admin', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, messag
 
 
 insert into follow(following_date,following,follower) values(sysdate,'java1','java');
+

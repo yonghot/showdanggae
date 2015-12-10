@@ -132,15 +132,14 @@ public class MemberController {
 		String mailId = request.getParameter("email_id");
 		String domain = request.getParameter("email_domain");
 		MemberVO pvo = memberService.findPassById(vo, mailId, domain);
-		System.out.println(pvo);
 		if(pvo!=null){
 			email.setContent("비밀번호는 "+pvo.getPassword()+"입니다.");
 			email.setReceiver(pvo.getEmail());
 			email.setSubject(pvo.getMember_id()+"님의 비밀번호 찾기 발송 이메일입니다.");
 			emailSender.SendEmail(email);
-			return "member_findpass";
+			return "member_findpass";	
 		}else{
-			return "member_failpass";
+			return "member_findfailpass";
 		}
 	}
 	
