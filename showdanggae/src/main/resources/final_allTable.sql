@@ -219,11 +219,11 @@ values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제
 
 
 INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
-values ('admin', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
+values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
 INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
-values ('admin', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
+values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
 INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
-values ('admin', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
+values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
 
 
 insert into follow(following_date,following,follower) values(sysdate,'java1','java');

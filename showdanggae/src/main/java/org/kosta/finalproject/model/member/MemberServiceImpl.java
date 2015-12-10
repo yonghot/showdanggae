@@ -29,9 +29,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO register(MemberVO vo) {
-
-		MemberVO insertVO=memberDAO.register(vo);	//�������
-		
+		MemberVO insertVO=memberDAO.register(vo);	
+		//email_id 와 domain은 쓰지 않음
 		insertVO.setEmail_id(insertVO.getEmail().split("@")[0]);
 		insertVO.setEmail_domain(insertVO.getEmail().split("@")[1]);
 		
@@ -68,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO updateMember(MemberVO vo) {
 		//update�Ҷ�
-		memberDAO.updateMember(vo); //������Ʈ�Ϸ��� �� ���� �����ֱ�
+		memberDAO.updateMember(vo); 
 		MemberVO member=memberDAO.updateOk(vo.getMember_id());
 		
 		member.setEmail_id(member.getEmail().split("@")[0]);
@@ -126,15 +125,15 @@ public class MemberServiceImpl implements MemberService {
 			pn=Integer.parseInt(pageNo);
 			memlist=(ArrayList<MemberVO>) memberDAO.memberManagerList(pn);
 			
-			int count=memberDAO.getCount(); //�� �Խù� ����
-			System.out.println(count); //20
+			int count=memberDAO.getCount(); 
+	
 			mpagingBean=new MemberPagingBean(count,pn); //total nowpage
 			mvolist=new MemberListVO(memlist,mpagingBean);
 		}else{	//������ �ѹ��� ������
 			
 			int count=memberDAO.getCount();
 			memlist=(ArrayList<MemberVO>) memberDAO.memberManagerList(pn);
-			mpagingBean=new MemberPagingBean(count,pn);//total nowpage
+			mpagingBean=new MemberPagingBean(count,pn);//26 1
 			mvolist=new MemberListVO(memlist,mpagingBean);
 		}
 		

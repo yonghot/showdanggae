@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.message.MessageService;
 import org.kosta.finalproject.model.message.MessageVO;
+import org.kosta.finalproject.model.notice.ListVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,9 +42,10 @@ public class MessageController {
 	}
 	
 	@RequestMapping("auth_messagebox.do")
-	public ModelAndView messagebox(String member_id){
-		//사용자의 메세지함으로 이동
+	public ModelAndView messagebox(String member_id,String pageNo){
+		//ListVO list = noticeService.noticeList(pageNo);
 		List<MessageVO> list=messageService.myMessageBox(member_id);
+	
 		
 		return new ModelAndView("message_MyMessageBox","list",list);	
 	}
@@ -51,7 +53,7 @@ public class MessageController {
 
 	@RequestMapping("messageBoxContent.do")
 	public ModelAndView messageBoxContent(HttpServletRequest request, MessageVO vo) {
-
+	
 		MessageVO mvo = messageService.MyMessageShowPopUp(vo);
 		return new ModelAndView("popup/message_show", "mvo", mvo);
 	}

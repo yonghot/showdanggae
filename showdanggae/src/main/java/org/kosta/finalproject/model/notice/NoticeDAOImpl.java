@@ -12,6 +12,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 
 	@Override
 	public List<NoticeVO> noticeList(int pn) {
+		
 		return sqlSessionTemplate.selectList("notice.noticeList", pn);
 	}
 

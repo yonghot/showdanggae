@@ -52,7 +52,7 @@ insert into member (member_id,password,member_name,email,birthday) values (#{mem
  <select id="memberManagerList" resultType="mvo">
 select member_id,password,member_name,report,email,to_char(birthday,'RRMMDD')as birthday from(
 select member_id,password,member_name,report,email,birthday,ceil(rownum/20) as page from(
-select member_id,password,member_name,report,email,birthday from member order by member_id desc)) where page=#{value} and member_id !='admingalbage' 
+select member_id,password,member_name,report,email,birthday from member where member_id !='admingalbage' order by member_id desc)) where page=#{value} 
 											
  </select>
  

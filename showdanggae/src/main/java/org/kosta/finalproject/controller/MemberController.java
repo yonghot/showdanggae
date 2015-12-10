@@ -1,5 +1,7 @@
 package org.kosta.finalproject.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -45,23 +47,27 @@ public class MemberController {
 	@RequestMapping("idCheck.do")
 	@ResponseBody
 	public Object idCheck(String member_id)throws Exception{
-		System.out.println(member_id);
 		MemberVO vo = memberService.idCheck(member_id);		
-
 		return vo;
-
 	}
 	
 	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo){
 
 		MemberVO insertVO=memberService.register(vo);
-	
-		return new ModelAndView("redirect:registerF5.do?member_name=" + insertVO.getMember_name());
+		try {
+			String member_name = URLEncoder.encode(insertVO.getMember_name(), "UTF-8");
+			return new ModelAndView("redirect:registerF5.do?member_name=" + member_name);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		//실패했을때
+		return new ModelAndView("redirect:registerF5.do?member_name=" + "fail");
 	}
 	
 	@RequestMapping("registerF5.do")
 	public ModelAndView registerF5(String member_name) {
+		System.out.println(member_name);
 		return new ModelAndView("member_registerokview","member_name",member_name);
 	}
 	
@@ -189,8 +195,8 @@ public class MemberController {
 	
 
 	@RequestMapping("memberManagerForm.do")
-	public ModelAndView memberManagerForm(HttpServletRequest request,HttpServletResponse response){
-		String pageNo=request.getParameter("pageNo");
+	public ModelAndView memberManagerForm(String pageNo){
+		
 		MemberListVO mvolist=memberService.memberManagerList(pageNo);
 		System.out.println(mvolist);
 	

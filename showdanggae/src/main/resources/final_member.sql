@@ -28,6 +28,14 @@ insert into member (member_Id,password,member_name,email,birthday) values ('java
 insert into member (member_Id,password,member_name,email,birthday) values ('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
 insert into member (member_Id,password,member_name,email,birthday) values('david','1234','박성엽','david@naver.com',to_date('850429','RRMMDD'));
 
+insert into member(member_id, password, member_name, email, birthday) values('jaxeva','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
+insert into member(member_id, password, member_name, email, birthday) values('jaexva1','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
+insert into member(member_id, password, member_name, email, birthday) values('jaxxvva2','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
+insert into member(member_id, password, member_name, email, birthday) values('adegalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
+insert into member(member_id, password, member_name, email, birthday) values('dewd','dd','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
+insert into member(member_id, password, member_name, email, birthday) values('addr23min','1234','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
+
+select count(*) from member;
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
@@ -36,7 +44,7 @@ insert into member values ('dd','tjwjd','������','lipchel@naver.com'
 
  update member set email='lipchel@daum.net' , birthday='19880530' where member_Id='javaKING'
 
- to_date
+
  
 select  to_date(birthday) from member where member_Id='javaKING'; 
 
@@ -54,7 +62,7 @@ insert into member values ('asd58e4c','asdf','asdf','asdf',to_date(990823,'RRMMD
 
 select * from member where member_Id='sdvaeawee'; 
 
-select * from member;
+select count(*) from member;
 insert into member values ('asd58e4c','asdf','asdf','asdf',to_date(990823,'RRMMDD'))
 
 select member_Id,password,member_name,email,to_date(birthday)as birthday from member where member_Id='avselofias';
@@ -70,6 +78,10 @@ delete from member where member_Id='javaKING';
 
 insert into member values ('java','1234','박성엽','david@naver.com',to_date(850429,'RRMMDD'));
 
+select member_id,password,member_name,report,email,to_char(birthday,'RRMMDD')as birthday from(
+select member_id,password,member_name,report,email,birthday,ceil(rownum/3) as page from(
+select member_id,password,member_name,report,email,birthday from member where member_id !='admingalbage' order by member_id desc)) where page=9
+	
 
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 

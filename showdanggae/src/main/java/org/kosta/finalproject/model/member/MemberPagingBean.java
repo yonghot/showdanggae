@@ -1,23 +1,12 @@
 package org.kosta.finalproject.model.member;
 
-//비즈?��?��로직 ?��?���? �?�? ?��?��
-
-
-/**
- * 	getTotalPage() -> getTotalPageGroup() ->getNowPageGroup() ->getStartPageOfPageGroup()
-		  	->getEndPageOfPageGroup()-> isPreviousPageGroup() -> isNextPageGroup()
- * @author kosta
- *
- */
-
-
 
 
 public class MemberPagingBean {
 	private int nowPage; 	
 	private int contentNumberPerPage=20; //페이지당 보여줄 게시물 수
 	private int pageNumberPerPageGroup=5; //페이지 그룹당 페이지 수 
-	private int totalContents; //지금 20개
+	private int totalContents; //지금 26개
 	
 	
 	public MemberPagingBean(int totalContents,int nowPage){
@@ -50,32 +39,35 @@ public class MemberPagingBean {
 	public int getTotalPage(){
 
 		int num=this.totalContents%this.contentNumberPerPage;
-			// 20 페이지당 보여줄 게시물 수10
+			// 26 페이지당 보여줄 게시물 수20
 		int totalPage=0;
 		if(num==0){
 			totalPage=this.totalContents/this.contentNumberPerPage;
 		}else{
 			totalPage=this.totalContents/this.contentNumberPerPage+1;
 		}
-		System.out.println(totalPage);
-		return totalPage;  //2개 왜? 총 콘ㅌㄴ츠가 20개니까
+		return totalPage;  //2개 왜? 총 콘ㅌㄴ츠가 26개니까
 	}
 	
-	public int getTotalPageGrop(){
+	public int getTotalPageGrop(){//총 페이지의 그룹
 		int num=this.getTotalPage()%this.pageNumberPerPageGroup; //페이지그룹당 페이지수
-										//2%5
+										//2%5=2
 		int totalPageGroup=0;
 		if(num==0){
-			totalPageGroup=this.getTotalPage()/this.pageNumberPerPageGroup;
+			totalPageGroup=this.getTotalPage()/this.pageNumberPerPageGroup;													//2/5
 		}else{
+			if(this.getTotalPage()<this.pageNumberPerPageGroup){
+				totalPageGroup=1;	
+			}
 			totalPageGroup=this.getTotalPage()/this.pageNumberPerPageGroup+1;
 		}
+
 		return totalPageGroup; 
 	}
 	
 	public int getNowPageGroup(){
 		int num=this.nowPage%this.pageNumberPerPageGroup; 
-							
+							//1%5=1
 		
 		int nowPageGroup=0;
 		if(num==0){
@@ -95,19 +87,19 @@ public class MemberPagingBean {
 	}
 	
 	public int getEndPageOfPageGroup(){ 
-		
 		int endPageOfPageGroup=pageNumberPerPageGroup*getNowPageGroup();
-									
-		int num=this.totalContents/this.contentNumberPerPage;
-		
-		if(pageNumberPerPageGroup> num){		                                     
-			return num;
-		}
-		
+		System.out.println(getTotalPage());
+																	
 		if(nowPage==getTotalPage()){
-			
 			return getTotalPage();		
 		}
+		if(pageNumberPerPageGroup>getTotalPage()){
+			return getTotalPage();	
+		}
+		if(endPageOfPageGroup>getTotalPage()){
+			return getTotalPage();	
+		}
+	
 		return endPageOfPageGroup;
 	}
 	
