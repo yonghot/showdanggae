@@ -13,6 +13,22 @@
  * }
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+/* 임의 추가 영역 */
+
+html { overflow-y:scroll; }
+
+body,html{width:100%;height: 100%;}
+
+*{margin: 0; padding: 0;}
+li{list-style: none}
+a{text-decoration: none; color:#8b8a8a;}
+
+.wrap{min-height: 100%; position: relative; width:100%;}
+.footer{margin-top:-150px; clear: both; position: relative; height: 150px; border:1px #f00 solid;}
+
+/**/
+
 html {
   font-family: 'Hanna', serif;
   -ms-text-size-adjust: 100%;
@@ -2254,8 +2270,17 @@ th {
   text-align: left;
 }
 .table {
+/*   width: 100%;
+  max-width: 100%; */
   width: 100%;
   max-width: 100%;
+  margin-bottom: 20px;
+}
+table.right {
+/*   width: 100%;
+  max-width: 100%; */
+  width: 10%;
+  max-width: 10%;
   margin-bottom: 20px;
 }
 .table > thead > tr > th,

@@ -3,10 +3,13 @@ CREATE table QnAcomment(
 	cno number primary key,
 	no number not null,
 	member_name varchar2(100) not null,
+	member_id VARCHAR2(100) not null,
 	replyComment CLOB not null,
 	commentDate DATE not null,
-	CONSTRAINT no foreign KEY(no) references qnaboard(no)
+	CONSTRAINT no foreign KEY(no) references qnaboard(no),
+	CONSTRAINT FK_QnAcomment FOREIGN KEY(member_id) references member(member_id)
 );
+
 ALTER TABLE QnAcomment
 ADD (member_id VARCHAR2(100));
 

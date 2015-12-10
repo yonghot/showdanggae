@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE>
-<script type="text/javascript">
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script type="text/javascript">     
 
 	$(document).ready(function(){
 		
 		function AddComma(data_value) {
-			 
-		    var txtNumber = '' + data_value;    // 입력된 값을 문자열 변수에 저장합니다.
+			
+		    var txtNumber = "" + data_value;    // 입력된 값을 문자열 변수에 저장합니다.
 		 
 		    if (isNaN(txtNumber) || txtNumber == "") {    // 숫자 형태의 값이 정상적으로 입력되었는지 확인합니다.
 		        alert("숫자만 입력 하세요");
@@ -127,6 +126,8 @@
 			if($(":input[name=product_name]").val()=="") {
 				alert("제품명을 입력해주세요!");
 				return false;
+			} else if($(":input[name=price]").val()=="") {
+				$(":input[name=price]").val(0);
 			} else {
 				$("#registForm").submit();
 			}
@@ -244,4 +245,3 @@
 		</table>
 	</form>
 </div>
-
