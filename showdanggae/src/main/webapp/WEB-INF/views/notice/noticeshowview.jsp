@@ -26,9 +26,9 @@
 			<td colspan="2">${requestScope.content.title} </td>
 		</tr>
 		<tr>
-			<td>작성자 :  ${requestScope.content.writer }</td>
-			<td> ${requestScope.content.time_post }</td>
-			<td>조회수 : ${requestScope.content.hit }</td>
+			<td>작성자 :  ${requestScope.content.writer}</td>
+			<td> ${requestScope.content.time_post}</td>
+			<td>조회수 : ${requestScope.content.hit}</td>
 		</tr>
 		<tr>
 			<td colspan="3">

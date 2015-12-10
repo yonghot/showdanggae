@@ -15,6 +15,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		
 		<typeAlias type="org.kosta.finalproject.model.category.CategoryVO" alias="cvo"/>
 		<typeAlias type="org.kosta.finalproject.model.product.ProductVO" alias="pvo"/>
+		<typeAlias type="org.kosta.finalproject.model.product.SellerLinkVO" alias="slvo"/>
+		<typeAlias type="org.kosta.finalproject.model.product.EvaluatingItemVO" alias="evo"/>
 		
 	</typeAliases>	
 

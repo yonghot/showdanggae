@@ -6,7 +6,7 @@ create table noticeboard(
 	password varchar2(100) not null,
 	content CLOB not null,
 	hit number default 0,
-	time_post DATE not null
+	writeDate DATE not null
 );
 
 create sequence notice_seq;
@@ -19,15 +19,15 @@ create sequence notice_seq;
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,time_post) 
+insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
 
 

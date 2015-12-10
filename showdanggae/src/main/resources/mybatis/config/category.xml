@@ -6,10 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="category">
 
 	<select id="getMemberCategoryList" resultType="cvo">
+	<![CDATA[
 		select
-		category_id, member_id, category
+		category_id, category, member_id
 		from member_category
 		where member_id=#{value}
+		]]>
 	</select>
 
 	<select id="getMainCategoryList" resultType="cvo">
