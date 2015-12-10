@@ -8,7 +8,7 @@
      	$("#messageForm a").click(function(){
  			//메세지 확인form
  			var mno=$(this).children().eq(0).val();	
- 			 window.open("${initParam.root}messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="+mno,"popup",
+ 			 window.open("${initParam.root}auth_messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="+mno,"popup",
 			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
 
      	});

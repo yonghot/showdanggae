@@ -118,20 +118,32 @@ $(document).ready(function() {
 			$("#id").keyup(function() {
 			var id = $(":input[name=member_id]").val();
 			var idComp = $(":input[name=member_id]").val().trim();
-		
-							if (idComp.length<6||idComp.length>12) {
+			
+							/* if (idComp.length<6||idComp.length>12) {
 							$("#checkResult").html("6자이상 12자이하만 가능합니다");
+<<<<<<< HEAD
 								return false;
 							}else if(!RegexId.test($.trim($("#id").val()))){
 								$("#checkResult").html("한글, 특수문자 불가");
 								return false;
 							}
 							
+=======
+							//alert($("#id").serialize());
+							return false;
+							}  */
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						$.ajax({
 							type:"get",
 							url:"idCheck.do",
+<<<<<<< HEAD
 							data: $("#id").serialize(),			
+=======
+							data: $("#id").serialize(), 
+							dataType:"json",
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 							 success:function(data){
+<<<<<<< HEAD
 						            if(data!=""){
 						            	$("#checkResult").html("아이디중복");			         
 						            }else{
@@ -140,6 +152,15 @@ $(document).ready(function() {
 						            } 
 						        }
 						  
+=======
+								 if(data==""){
+									 $("#checkResult").html("사용가능");
+								 }else{
+									 $("#checkResult").html("아이디중복");
+								 }
+							}
+								
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						});
 					});
 
@@ -203,7 +224,7 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<form name="registerForm" class="form-horizontal text-left"
 								role="form" id="registerForm"
-								action="${initParam.root}register.do">
+								action="${initParam.root}auth_register.do">
 
 								<div class="form-group">
 									<div class="col-sm-2">
@@ -214,6 +235,7 @@ $(document).ready(function() {
 											id="id" placeholder="영문과 숫자로만 입력해주세요 (한글, 특수문자 불가)">
 										<span id="checkResult"></span>
 									</div>
+									
 								</div>
 								<div class="form-group">
 									<div class="col-sm-2">

@@ -9,11 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <!-- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB -->
  
- <select id="idCheck" resultType="mvo">
+ <select id="idCheck" resultType="java.lang.String">
  select member_id,password,member_name,email,to_char(birthday)as birthday from member where member_id=#{value}
-
  </select>
- 
+
  <insert id="register">
 insert into member (member_id,password,member_name,email,birthday) values (#{member_id},#{password},#{member_name},#{email},to_date(#{birthday},'RRMMDD'))
 

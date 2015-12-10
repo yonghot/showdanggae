@@ -13,7 +13,7 @@ create table member(
 
 select * from member;
 
-delete from member;
+delete from member where member_id='david';
 
 
 
@@ -26,6 +26,7 @@ insert into member (member_Id,password,member_name,email,birthday) values ('java
 insert into member (member_Id,password,member_name,email,birthday) values ('java3','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('java4','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
+<<<<<<< HEAD
 insert into member (member_Id,password,member_name,email,birthday) values('david','1234','박성엽','david@naver.com',to_date('850429','RRMMDD'));
 
 insert into member(member_id, password, member_name, email, birthday) values('jaxeva','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
@@ -36,6 +37,9 @@ insert into member(member_id, password, member_name, email, birthday) values('de
 insert into member(member_id, password, member_name, email, birthday) values('addr23min','1234','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
 
 select count(*) from member;
+=======
+insert into member (member_Id,password,member_name,email,birthday) values('david','1234','박성엽','david_good@naver.com',to_date('850429','RRMMDD'));
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
@@ -82,6 +86,10 @@ select member_id,password,member_name,report,email,to_char(birthday,'RRMMDD')as 
 select member_id,password,member_name,report,email,birthday,ceil(rownum/3) as page from(
 select member_id,password,member_name,report,email,birthday from member where member_id !='admingalbage' order by member_id desc)) where page=9
 	
+
+
+
+
 
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 

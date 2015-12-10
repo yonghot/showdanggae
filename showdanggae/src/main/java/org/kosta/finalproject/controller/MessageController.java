@@ -23,9 +23,9 @@ public class MessageController {
 	public ModelAndView messagePopForm(HttpServletRequest request){		
 		//전달받은 아이디값
 		String member_id=request.getParameter("member_id");
+
 		return new ModelAndView("popup/message_popup","member_id",member_id);		
 	}
-	
 	@RequestMapping("messagePopForm1.do")
 	public ModelAndView messagePopForm1(HttpServletRequest request, MemberVO vo){		
 		//전달받은 아이디값
@@ -37,6 +37,7 @@ public class MessageController {
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
 		vo.setRead(0);
+
 		messageService.sendMessage(vo);	
 		return  new ModelAndView("popup/message_ok","message","전송완료");
 	}
@@ -51,7 +52,7 @@ public class MessageController {
 	}
 	
 
-	@RequestMapping("messageBoxContent.do")
+	@RequestMapping("auth_messageBoxContent.do")
 	public ModelAndView messageBoxContent(HttpServletRequest request, MessageVO vo) {
 	
 		MessageVO mvo = messageService.MyMessageShowPopUp(vo);
