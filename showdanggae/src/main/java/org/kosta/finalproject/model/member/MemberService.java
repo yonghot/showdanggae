@@ -8,7 +8,7 @@ public interface MemberService {
 	
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-	String idCheck(String beforeId);
+	MemberVO idCheck(String beforeId);
 	MemberVO register(MemberVO vo);
 	MemberVO login(MemberVO vo);
 	MemberVO findIdByBirth(MemberVO vo, String email1, String email2);

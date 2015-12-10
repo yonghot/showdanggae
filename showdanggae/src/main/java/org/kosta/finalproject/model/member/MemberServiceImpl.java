@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
 	@Override
-	public String idCheck(String beforeId) {
+	public MemberVO idCheck(String beforeId) {
 		return memberDAO.idCheck(beforeId);
 	}
 

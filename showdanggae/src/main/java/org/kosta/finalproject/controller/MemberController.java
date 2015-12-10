@@ -48,20 +48,8 @@ public class MemberController {
 	@RequestMapping("idCheck.do")
 	@ResponseBody
 	public Object idCheck(String member_id)throws Exception{
-<<<<<<< HEAD
 		MemberVO vo = memberService.idCheck(member_id);		
 		return vo;
-=======
-		//System.out.println(member_id);
-		String id = memberService.idCheck(member_id);
-		//System.out.println(id);
-		if (id!=null) {
-			return "a";
-		}else{
-			return "";
-		}
-		//System.out.println(id);
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 	
 	@RequestMapping("auth_register.do")
