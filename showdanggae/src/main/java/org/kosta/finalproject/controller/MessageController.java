@@ -22,15 +22,10 @@ public class MessageController {
 	public ModelAndView messagePopForm(HttpServletRequest request){		
 		//전달받은 아이디값
 		String member_id=request.getParameter("member_id");
-<<<<<<< HEAD
-		System.out.println(member_id);
-		return new ModelAndView("../views/popup/message_popup","member_id",member_id);		
-	}
-=======
+
 		return new ModelAndView("popup/message_popup","member_id",member_id);		
 	}
 	
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	@RequestMapping("messagePopForm1.do")
 	public ModelAndView messagePopForm1(HttpServletRequest request, MemberVO vo){		
 		//전달받은 아이디값
@@ -42,14 +37,9 @@ public class MessageController {
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
 		vo.setRead(0);
-<<<<<<< HEAD
-		messageService.sendMessage(vo);
-		System.out.println(vo);
-		return  new ModelAndView("../views/popup/message_ok","message","전송완료");
-=======
+
 		messageService.sendMessage(vo);	
 		return  new ModelAndView("popup/message_ok","message","전송완료");
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 	
 	@RequestMapping("auth_messagebox.do")
