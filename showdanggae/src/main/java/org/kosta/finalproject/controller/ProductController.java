@@ -90,8 +90,8 @@ public class ProductController {
 	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
 	public ModelAndView AjaxMainCategoryList(String member_id) {
 		List<CategoryVO> vo=categoryService.getMemberCategoryList(member_id);
-		
-		System.out.println("2145435646"+member_id);
+		System.out.println("멤버 아이디"+ member_id);
+		System.out.println("멤버 카테고리"+vo);
 		if(vo!=null) {
 			return new ModelAndView("ajaxList", "vo", vo);
 		}

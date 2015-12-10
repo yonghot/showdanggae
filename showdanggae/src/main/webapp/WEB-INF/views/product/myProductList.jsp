@@ -4,12 +4,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		
 		alert("메롱");
 			$.ajax({
 				type : "post",
 				url  : "auth_ajaxMemberCategoryList.do",
-				data : "member_id",
+				/* data : "member_id", */
 				dataType : "json",
 				success:function(result) {
 					if(jsonData.result=="success")
@@ -30,7 +29,9 @@
 			});
 		});
 </script>
+
 <div class="col-md-8">
+	
 	<div>
 		<form method="post" action="addCategory.do">
 			<div>
@@ -42,17 +43,14 @@
 					
 					</div>
 					</c:forEach>&nbsp;&nbsp;
-				<button type="submit" class="btn btn-default btn-xs">추가</button>
+				<button type="submit" class="btn btn-default btn-xs" id="add" >추가</button>
 			</div>
 		</form>
 	</div>
 	
-	<hr>
-	<table class="table table-striped" id="ajaxList">
-	<hr>
 	<!--**************************************************************************  -->
-	
-	<%-- <table class="table table-striped">
+	<div>
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<td>카테고리</td>
@@ -69,10 +67,11 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table> --%>
-
+	</table>
+	</div>
 	<!-- ******************************************************************************************* -->
-
+	<div>
+	<table class="table table-striped">
 		<caption>목록</caption>
 		<thead>
 			<tr>
@@ -105,10 +104,14 @@
 					<td>${list.likes}</td>
 					<td>${list.dislikes}</td>
 				</tr>
-			</c:forEach>
+			</c:forEach>	
+			</tbody>
 	</table>
-	</table><br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
-	<a href="beforeGoingRegistProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}">
+	
+
+	</div>
+	<br></br><!-- 테이블 밑에 항상 글쓰기 버튼 따라다니도록 삽입 -->
+	<a href="beforeGoingRegistProduct.do?category_id=${requestScope.productAndCategoryMap.pvoList[0].category_id}"> 
 	<img src="${initParam.root}img/write_btn.jpg" border="0"></a>
 </div>
 
