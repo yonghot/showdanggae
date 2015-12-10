@@ -38,7 +38,7 @@ $(document).ready(function() {
 	});
 
 	$("#subBtn").click(function() {
-	var idComp = $(":input[name=member_Id]").val();
+	var idComp = $(":input[name=member_id]").val();
 	var passwordComp = $(":input[name=password]").val();
 	var repasswordComp = $(":input[name=repassword]").val();
 	var nameComp = $(":input[name=member_name]").val();
@@ -102,26 +102,26 @@ $(document).ready(function() {
 <script type="text/javascript">
 $(document).ready(function() {
 			$("#id").keyup(function() {
-			var id = $(":input[name=member_Id]").val();
-			var idComp = $(":input[name=member_Id]").val().trim();
+			var id = $(":input[name=member_id]").val();
+			var idComp = $(":input[name=member_id]").val().trim();
 		
 							if (idComp.length<6||idComp.length>12) {
-							$("#checkResult").html("6자이상 12자이하만 가능!").css(
-									"background", "pink");
+							$("#checkResult").html("6자이상 12자이하만 가능합니다");
 							//alert($("#id").serialize());
-							return;
-						}			
+							return false;
+							} 
 						$.ajax({
 							type:"get",
 							url:"idCheck.do",
 							data: $("#id").serialize(),
 							dataType:"json",
-							 success:function(data){   
-						            if(data.vo==null){
-						            	$("#checkResult").html("사용가능").css("background","green");
+							 success:function(data){
+						            if(data==null){
+						            	$("#checkResult").html("사용가능");
 						            }else{
-						            	$("#checkResult").html("아이디가 중복됩니다!").css("background", "red");
-						            }
+						            	$("#checkResult").html("아이디중복");
+						            
+						            } 
 						        }
 						  
 						});
@@ -190,7 +190,7 @@ $(document).ready(function() {
 										<label for="inputEmail3" class="control-label">아이디</label>
 									</div>
 									<div class="col-sm-4 hidden-sm hidden-xs text-left">
-										<input type="text" class="form-control" name="member_Id"
+										<input type="text" class="form-control" name="member_id"
 											id="id" placeholder="영문과 숫자로만 입력해주세요 (한글, 특수문자 불가)">
 										<span id="checkResult"></span>
 									</div>
@@ -267,9 +267,9 @@ $(document).ready(function() {
 								<br>
 								<div class="form-group">
 									<div class="col-sm-10 col-sm-offset-2 text-left">
-										<button type="submit" id="subBtn" class="btn btn-info btn-lg">회원가입</button>
+										<button type="submit" id="subBtn" class="btn btn-info btn-sm">회원가입</button>
 										<button type="button" id="canBtn"
-											class="btn btn-default btn-lg">회원가입취소</button>
+											class="btn btn-default btn-sm">회원가입취소</button>
 									</div>
 								</div>
 						</form>

@@ -41,9 +41,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO login(MemberVO vo) {
-		//�α���
-		//Email Id�� domain �����ϱ�
-			MemberVO loginVO=memberDAO.login(vo);//�������
+		
+			MemberVO loginVO=memberDAO.login(vo);
 			if(loginVO!=null){		
 				loginVO.setEmail_id(loginVO.getEmail().split("@")[0]);
 				loginVO.setEmail_domain(loginVO.getEmail().split("@")[1]);
