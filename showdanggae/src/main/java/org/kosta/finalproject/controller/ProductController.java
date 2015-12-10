@@ -33,10 +33,41 @@ public class ProductController {
 	@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
 	public void addCategory(String category, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		//String category = httpServletRequest.getParameter("category");
 		if (session != null) {
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			String member_id=vo.getMember_id();
+			categoryService.addMyCategory(category, member_id);
 		}
 	}
+	/*@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
+	public ModelAndView AjaxMainCategoryList(String member_id, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		String id=mvo.getMember_id();
+		System.out.println("auth_ajaxMemberCategoryList.do 아이디는 : "+" "+id+" "+"님 꺼를 보여준다.");
+		if(session != null) {
+			List<CategoryVO> lvo=categoryService.getMemberCategoryList(id);
+			System.out.println("현재 멤버카테고리를 가져온다" + " "+lvo);
+			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", lvo);
+		}
+			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", null);
+	}*/
+	
+	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
+	public ModelAndView AjaxMainCategoryList(String category, HttpServletRequest request) {
+		
+		System.out.println(category);
+		
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		String id=mvo.getMember_id();
+		if(session != null) {
+			List<CategoryVO> lvo=categoryService.getMemberCategoryList(id);
+			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", lvo);
+		}
+			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", null);
+	}
+	
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")
 	public void addInterest(String interest, HttpServletRequest request) {
@@ -84,18 +115,6 @@ public class ProductController {
 			categoryService.deleteCategory(category_id);
 		}
 		return new ModelAndView("login");
-	}
-
-	
-	// 김용호 영역
-	
-	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
-	public ModelAndView AjaxMainCategoryList(String member_id) {
-		List<CategoryVO> vo=categoryService.getMemberCategoryList(member_id);
-		if(vo!=null) {
-			return new ModelAndView("ajaxList", "vo", vo);
-		}
-			return new ModelAndView("ajaxList", "vo", null);
 	}
 	
 	//김용호 영역

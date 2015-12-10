@@ -3,45 +3,72 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$("#addBtn").click(function() {
+				/*  if($(":radio[name=category]:checked").val()=="") { 
+					alert("카테고리를 선택하세요");		
+				 }
+					return; */
 			$.ajax({
 				type : "post",
-				url  : "auth_ajaxMemberCategoryList.do",
-			    data : "member_id", 
-				dataType : "json",
-				success:function(result) {
-					if(jsonData.result=="success")
-						$.each(result, function(category) {
-							var list = result[category];
-							var content = "<table>";
-							for(i=0; i<list.length; i++) {
-								content +="<tr>";
-								content +="<td>" + list[i].category + "</td>";
-								content +="<td>" + list[i].category_id + "</td>";
-								content +="<td>" + list[i].member_id + "</td>";
-								content +="</tr>";
-							}
-							content +="<table class='table table-striped'>";
-							$("#ajaxList").html(content);
-						});
+				url : "addCategory.do",
+				data : "category="+$(":input[name=category]").val(),
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+				dataType : 'json',
+				success : function(lvo) {
+					if(lvo.result=="success") {
+					alert("추가 완료");
+					}else{
+						alert("추가실패");
+					}
+				}
+			});
+			
+			$.ajax({
+				type : "post",
+				url : "auth_ajaxMemberCategoryList.do",
+				data : $("category"),
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+				dataType : 'json',
+				success:function(jsonData) {
+					/* alert(jsonData);
+					$.each(result, function(jsonData) {
+						var list = result[jsonData];
+						var content = "<table>";
+						for(i=0; i<list.length; i++) {
+							content +="<tr>";
+							content +="<td>" + list[i].category + "</td>";
+							content +="<td>" + list[i].category_id + "</td>";
+							content +="<td>" + list[i].member_id + "</td>";
+							content +="</tr>";
+						}
+						content +="<table class='table table-striped'>";
+						$("#AjaxAddCategory").html(content);
+					}); */
 				}
 			});
 		});
+	});
+
 </script>
 
-<div class="col-md-8">
-	<form method="post" action="addCategory.do">
+	<div class="col-md-8">
+	<!-- <form method="GET" action="addCategory.do" id="addForm" > -->
+	<form method="post"  id="addForm" >
 		<div>
-			<c:forEach items="${requestScope.mainCategoryList}" var="list">
-				<div class="radio-inline">
-					<label> <input type="radio" name="optionsRadios" id="addCategoryBtn" value="${list.category}"> ${list.category}
-					</label>
-				</div>
-			</c:forEach>
-			&nbsp;&nbsp;<button type="submit" class="btn btn-default btn-xs">추가</button>
+		<c:forEach items="${requestScope.mainCategoryList}" var="list">
+			<div class="radio-inline">
+				<label> <input type="radio" name="category" value="${list.category}"> ${list.category}
+			</label>
+		</div>
+		</c:forEach>
+		&nbsp;&nbsp;<button type="submit" class="btn btn-default btn-xs" id="addBtn" >추가</button>
 		</div>
 	</form>
 	<hr>
-	<table class="table table-striped" id="ajaxList">
+	<span id="AjaxAddCategory"></span>
+	<hr>
+	
+	<%-- <table class="table table-striped" id="ajaxList">
 		<thead>
 			<tr>
 				<td>카테고리</td>
@@ -58,7 +85,7 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table> --%> 
 
 	<div align="right">
 		<a href="beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
