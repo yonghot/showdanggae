@@ -1,8 +1,10 @@
 package org.kosta.finalproject.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -73,8 +75,8 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpServletRequest request, MemberVO vo){
-		
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, MemberVO vo){
+				
 		if(vo.getMember_id().equals("admingalbage")){
 			MemberVO admin=memberService.adminlogin(vo);
 			if(admin!=null){		
@@ -86,6 +88,11 @@ public class MemberController {
 		}
 		
 		MemberVO member=memberService.login(vo);
+		String cookieName = vo.getMember_id();
+		Cookie cookie = new Cookie("cookieName", cookieName);
+		cookie.setMaxAge(5);
+		//cookie.setValue("Melone"); //생성된 Cookie 객체의 값을 "Melone"이란 값으로 재 설정
+		response.addCookie(cookie); //웹 브라우저(클라이언트)로 생성된 쿠키를 전송
 		if(member!=null){ 
 			HttpSession session = request.getSession(true);	
 			session.setAttribute("mvo", member);
@@ -119,7 +126,10 @@ public class MemberController {
 		String mailId = request.getParameter("email_id");
 		String domain = request.getParameter("email_domain");
 		MemberVO ivo=memberService.findIdByBirth(vo,mailId,domain);
-		return new ModelAndView("member_findid","findId",ivo.getMember_id());
+		String id = ivo.getMember_id();
+		StringBuffer sb = new StringBuffer(id);
+		sb.replace(2, 4,"**"); //아이디 출력시 *포함 
+		return new ModelAndView("member_findid","findId",sb);
 	}
 
 	@Autowired

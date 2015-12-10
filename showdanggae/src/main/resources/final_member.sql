@@ -13,7 +13,7 @@ create table member(
 
 select * from member;
 
-delete from member;
+delete from member where member_id='david';
 
 
 
@@ -26,8 +26,7 @@ insert into member (member_Id,password,member_name,email,birthday) values ('java
 insert into member (member_Id,password,member_name,email,birthday) values ('java3','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('java4','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
-insert into member (member_Id,password,member_name,email,birthday) values('david','1234','박성엽','david@naver.com',to_date('850429','RRMMDD'));
-
+insert into member (member_Id,password,member_name,email,birthday) values('david','1234','박성엽','david_good@naver.com',to_date('850429','RRMMDD'));
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
@@ -69,6 +68,10 @@ delete from member where member_Id='java';
 delete from member where member_Id='javaKING';
 
 insert into member values ('java','1234','박성엽','david@naver.com',to_date(850429,'RRMMDD'));
+
+
+
+
 
 
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
