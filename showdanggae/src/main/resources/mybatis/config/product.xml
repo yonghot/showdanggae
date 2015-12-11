@@ -62,9 +62,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
-	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
-	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
-	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
+	 		select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
+	 		from (select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
+	 		from (select product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
 	 		where member_id=#{member_id} and category_id=#{currentCategory}
 	 	]]>
 	</select>
@@ -110,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getProductByProduct_id" resultType="pvo">
 		<![CDATA[
-			select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
+			select product_id, category_id, member_id, likes, dislikes, review_score, detail, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
 	 		from product
 			where product_id=#{value}
 	 	]]>
@@ -118,7 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getSellerLinkByProduct_id" resultType="slvo">
 		<![CDATA[
-			select link, price 
+			select link, price, product_id
 	 		from seller_link
 			where product_id=#{value}
 	 	]]>
@@ -126,7 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getEvaluatingItemByProduct_id" resultType="evo">
 		<![CDATA[
-			select item, itme_point
+			select item, item_point, product_id
 	 		from eval_item
 			where product_id=#{value}
 	 	]]>
