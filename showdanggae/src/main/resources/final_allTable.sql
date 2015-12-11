@@ -222,3 +222,15 @@ values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message
 
 insert into follow(following_date,following,follower) values(sysdate,'java1','java');
 
+insert into member_category(category_id, category, member_id) 
+	 		values(member_category_seq.nextval, '카메라', 'java');
+select * from member_category;
+select * from main_category;
+delete from member_category;
+
+
+
+
+
+
+
