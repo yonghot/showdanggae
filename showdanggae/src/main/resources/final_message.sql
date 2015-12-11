@@ -40,14 +40,38 @@ values ('admin','두번째메세지TEST','관리자','TEST1',SYSDATE,message_seq
 
 
 //특정 사람이 받은 메세지 검색할때
-select e.title, m.member_Id, e.message, e.spand_name,e.spand_date
-from message e,member m
-where e.member_Id=m.member_Id and m.member_Id='seojungspring' order by e.spand_date desc;
+
+
+select no,TITLE,writer,password,content,hit,to_char(time_post,'YYYY-MM-DD') 
+from(select no,TITLE,writer,password,content,hit,time_post,ceil(rownum/5) as page 
+from(select no,TITLE,writer,password,content,hit,time_post from noticeboard order by no desc)) where page=3;
+
+//paging
+select mno,title, message, spand_name,spand_date,read
+from(select e.mno,e.title, m.member_Id, e.message, e.spand_name,e.spand_date,e.read,ceil(rownum/3) as page 
+from message e,member m where e.member_Id=m.member_Id and m.member_Id='java' order by e.spand_date desc) 
+where page=2;
+
+
+
+from(select e.title, m.member_Id, e.message, e.spand_name,e.spand_date,e.read
+from message e,member m)
+where e.member_Id=m.member_Id and m.member_Id='java' order by e.spand_date desc;
+
+
 
 select * from message;
 
+select count(*) from message where member_id='java';
+
 update message set read=read+1 where mno=8;
 	
+
+
+
+
+
+
 
 
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCccc

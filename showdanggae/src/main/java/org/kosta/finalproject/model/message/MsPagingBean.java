@@ -3,9 +3,9 @@ package org.kosta.finalproject.model.message;
 
 public class MsPagingBean {
 	private int nowPage; 	
-	private int contentNumberPerPage=20; //페이지당 보여줄 게시물 수
+	private int contentNumberPerPage=10; //페이지당 보여줄 게시물 수
 	private int pageNumberPerPageGroup=5; //페이지 그룹당 페이지 수 
-	private int totalContents; //지금 26개
+	private int totalContents; //지금 9
 	
 	
 	public MsPagingBean(int totalContents,int nowPage){
@@ -25,16 +25,19 @@ public class MsPagingBean {
 	}
 	
 	public int getTotalPage(){
-
+		
 		int num=this.totalContents%this.contentNumberPerPage;
-			// 26 페이지당 보여줄 게시물 수20
+		System.out.println(this.totalContents);
+		System.out.println(this.contentNumberPerPage);
+	//9/3
 		int totalPage=0;
 		if(num==0){
 			totalPage=this.totalContents/this.contentNumberPerPage;
 		}else{
 			totalPage=this.totalContents/this.contentNumberPerPage+1;
 		}
-		return totalPage;  //2개 왜? 총 콘ㅌㄴ츠가 26개니까
+		System.out.println("asdf" + totalPage);
+		return totalPage;  
 	}
 	
 	public int getTotalPageGrop(){//총 페이지의 그룹
