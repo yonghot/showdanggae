@@ -9,9 +9,10 @@
 		$("#moveToMyProductListBtn").click(function(){
 			location.href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=${requestScope.productInfo.pvo.category_id}";
 		});
-		
-		$("#updateProductBtn").click(function(){
-			location.href="beforeGoingUpdateProduct.do";
+		$("#deleteProductBtn").click(function(){
+			if(confirm("이 글을 삭제하시겠습니까?")) {
+				location.href="deleteProduct.do?product_id=${requestScope.productInfo.pvo.product_id}";
+			}
 		});
 		
 		function AddComma(data_value) {
@@ -19,7 +20,6 @@
 		    var txtNumber = "" + data_value;    // 입력된 값을 문자열 변수에 저장합니다.
 		 
 		    if (isNaN(txtNumber) || txtNumber == "") {    // 숫자 형태의 값이 정상적으로 입력되었는지 확인합니다.
-		        alert("숫자만 입력 하세요");
 		        return;
 		    }
 		    else {
@@ -73,7 +73,8 @@
 			</c:choose>
 		</div>
 	</div>
-	<form class="form-horizontal" role="form" action="auth_registProduct.do" id="registForm">
+	<form class="form-horizontal" role="form" action="beforeGoingUpdateProduct.do" id="registForm">
+		<input type="hidden" name="product_id" value="${requestScope.productInfo.pvo.product_id}">
 		<div class="col-md-7">
 			<input type="hidden" class="form-control" name="member_id" value="${sessionScope.mvo.member_id}">
 			<div class="form-group">
@@ -125,7 +126,8 @@
 				<tr>
 					<td colspan="5" align="center">
 						<button type="button" id="moveToMyProductListBtn" class="btn btn-info btn-md">목록</button>
-						<button type="button" id="updateProductBtn" class="btn btn-info btn-md">수정</button>
+						<input type="submit" value="수정" id="updateProductBtn" class="btn btn-info btn-md">
+						<button type="button" id="deleteProductBtn" class="btn btn-info btn-md">삭제</button>
 					</td>
 				</tr>
 			</tbody>

@@ -7,14 +7,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="product">
 
 	<!-- 강민석 영역 -->
-	
-	<select id="deleteProduct">
-	 	<![CDATA[
-	 		delete *
-	 		from product
-	 		where product_id=#{value}
-	 	]]>
-	</select>
 
 	<select id="deleteProductList">
 	 	<![CDATA[
@@ -75,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</select>
 	
-	<insert id="registProduct">
+	<insert id="addProduct">
 		<selectKey keyProperty="product_id" order="BEFORE" resultType="int">
 			<![CDATA[
 				select product_seq.nextval from dual
@@ -131,7 +123,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where product_id=#{value}
 	 	]]>
 	</select>
-		
+	
+	<update id="updateProduct">
+		<![CDATA[
+	 		update product set product_name=#{product_name}, detail=#{detail}, visiblity=#{visiblity}
+	 		where product_id=#{product_id}
+	 	]]>
+	</update>
+	
+	<update id="updateSellerLink">
+		<![CDATA[
+			update seller_link set link=#{link}, price=#{price}
+	 		where product_id=#{product_id}
+	 	]]>
+	</update>
+	
+	<update id="updateEvaluatingItem">
+		<![CDATA[
+			update eval_item set item=#{item}, item_point=#{item_point}
+	 		where product_id=#{product_id}
+	 	]]>
+	</update>
+	
+	<select id="findSellerLinkByProductId" resultType="slvo">
+		<![CDATA[
+			select * from seller_link where product_id=#{value}
+	 	]]>
+	</select>
+	<select id="findEvaluatingItemByProductId" resultType="evo">
+		<![CDATA[
+			select * from eval_item where product_id=#{value}
+	 	]]>
+	</select>
+	
+	
+	<delete id="deleteProduct">
+		<![CDATA[
+			delete from product where product_id=#{value}
+	 	]]>
+	</delete>
+	<delete id="deleteSellerLink">
+		<![CDATA[
+			delete from seller_link where product_id=#{value}
+	 	]]>
+	</delete>
+	<delete id="deleteEvaluatingItem">
+		<![CDATA[
+			delete from eval_item where product_id=#{value}
+	 	]]>
+	</delete>
+	
+	<select id="getCategoryIdByProductId" resultType="int">
+		<![CDATA[
+			select category_id from product where product_id=#{value}
+	 	]]>
+	</select>
+	
 </mapper>
  
  

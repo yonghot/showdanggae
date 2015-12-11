@@ -21,6 +21,8 @@ create table product (
 );
 select * from product;
 
+select category_id from product;
+
 create sequence product_seq; 
 
 insert into product(product_id, category_id, member_id, product_name, review, detail, visiblity, regist_date)

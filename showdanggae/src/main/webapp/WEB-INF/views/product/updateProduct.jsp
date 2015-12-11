@@ -14,7 +14,6 @@
 		    var txtNumber = "" + data_value;    // 입력된 값을 문자열 변수에 저장합니다.
 		 
 		    if (isNaN(txtNumber) || txtNumber == "") {    // 숫자 형태의 값이 정상적으로 입력되었는지 확인합니다.
-		        alert("숫자만 입력 하세요");
 		        return;
 		    }
 		    else {
@@ -34,6 +33,12 @@
 		        }
 		    }
 		}
+		
+		if($("#link").text().length>=50) {
+			$("#link").text($("#link").text().substring(0, 50) + "...");
+		}
+		
+		$("#price").text(AddComma($("#price").text())+" 원");
 		
 		
 		$("#linkPlusBtn").click(function(){
@@ -57,8 +62,9 @@
 			$("#linkView").append(
 				"<tr>"+
 				"<td><img src='img/link_icon.png' width='15'></td>"+
-				"<td><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a><td>"+
-				"<td>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"<td><tr>"+
+				"<td><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
+				"<td>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
+				"<td><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
 				"<input type='hidden' name='link' value='"+$(":text[name=inputLink]").val()+"'>"+
 				"<input type='hidden' name='price' value='"+$(":text[name=inputPrice]").val()+"'>"
 			);
@@ -75,7 +81,6 @@
 			itemList += "<option>"+$("#itemList :input[name="+i+"]").val()+"</option>"
 		}
 		
-		
 		$("#itemPlusBtn").click(function(){
 			
 			if($("#itemView tr").length>=3) {
@@ -90,6 +95,12 @@
 				"<td>"+"<input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에'>"+"</td>"+
 				"</tr>"
 			);
+		});
+		
+		$("#deleteImg").click(function(){
+			if(confirm("항목을 삭제하시겠습니까?")) {
+				$(this).parent().parent().remove();
+			}
 		});
 		
 		
@@ -127,7 +138,7 @@
 		});
 		
 		
-		$("#registProductBtn").click(function(){
+		$("#updateProductBtn").click(function(){
 			
 			if($(":input[name=product_name]").val()=="") {
 				alert("제품명을 입력해주세요!");
@@ -151,7 +162,7 @@
 
 <div class="col-md-8">
 	<div class="col-sm-9">
-		<h3 contenteditable="true">상품 등록하기</h3>
+		<h3 contenteditable="true">상품 정보 수정</h3>
 		<hr>
 	</div>
 	<div class="col-sm-3" align="right">
@@ -179,16 +190,15 @@
 			<input type="button" value="파일 업로드" id="uploadBtn"><br>
 		</form>
 	</div>
-	<form class="form-horizontal" role="form" action="registProduct.do" id="registForm">
+	<form class="form-horizontal" role="form" action="updateProduct.do" id="registForm">
+		<input type="hidden" name="product_id" value="${requestScope.productInfo.pvo.product_id}">
 		<div class="col-md-7">
-			<input type="hidden" class="form-control" name="member_id" value="${sessionScope.mvo.member_id}">
-			<input type="hidden" class="form-control" name="category_id" value="${requestScope.category_id}">
 			<div class="form-group">
 				<div class="col-sm-3">
 					<label for="product_name" class="control-label">제품명</label>
 				</div>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" name="product_name" placeholder="제품명을 입력해주세요">
+					<input type="text" class="form-control" name="product_name" placeholder="제품명을 입력해주세요" value="${requestScope.productInfo.pvo.product_name}">
 					<hr>
 				</div>
 				<div class="col-sm-3">
@@ -216,8 +226,19 @@
 			<thead>
 				<tr></tr>
 			</thead>
-			<tbody id="linkView" valign="middle"></tbody>
+			<tbody id="linkView" valign="middle">
+				<c:forEach items="${requestScope.productInfo.slvoList}" var="slvoList">
+					<tr>
+					<td><img src='img/link_icon.png' width='15'></td>
+					<td id="link"><a href="${slvoList.link}">${slvoList.link}</a></td>
+					<td id="price">${slvoList.price}</td>
+					<td><img src='img/minus_icon.png' width='25' id="deleteImg"></td>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
+		<input type='hidden' name='link' value="${slvoList.link}"><!-- 복수 처리 해야됨 -->
+		<input type='hidden' name='price' value="${slvoList.price}">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -233,18 +254,25 @@
 									</tr>
 								</thead>
 								<tbody id="itemView" align="center" valign="middle">
+									<c:forEach items="${requestScope.productInfo.evoList}" var="evoList">
+										<tr>
+										<td><img src='img/minus_icon.png' width='25'></td>
+										<td>${evoList.item}</td>
+										<td><input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에' value="${evoList.item_point}"></td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 						<div class="col-sm-7">
-							<textarea cols="57" rows="9" name="detail" placeholder="메모를 입력해주세요"></textarea>
+							<textarea cols="57" rows="9" name="detail" placeholder="메모를 입력해주세요">${requestScope.productInfo.pvo.detail}</textarea>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="5" align="center">
-						<input type="submit" value="상품 등록" id="registProductBtn" class="btn btn-info btn-md">
-						<input type="button" value="취소" id="cancelRegist" class="btn btn-info btn-md">
+						<input type="submit" value="수정" id="updateProductBtn" class="btn btn-info btn-md">
+						<input type="button" value="취소" id="cancelUpdate" class="btn btn-info btn-md">
 					</td>
 				</tr>
 			</tbody>

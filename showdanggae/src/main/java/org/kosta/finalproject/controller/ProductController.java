@@ -54,15 +54,6 @@ public class ProductController {
 	// 예:하위 product삭제 및 카테고리 삭제, 아니오:취소
 	// 예 선택시 해당 category_id를 가진 product들을 삭제 한 후, 카테고리를 삭제한다.
 
-	// 나의 개별 상품을 지운다.
-	@RequestMapping("deleteProduct.do")
-	public ModelAndView deleteProduct(int category_id, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("mvo") != null) {
-			productService.deleteProduct(category_id);
-		}
-		return new ModelAndView("login");
-	}
 
 	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다.
 	@RequestMapping("deleteProductListAndCategory.do")
@@ -149,14 +140,44 @@ public class ProductController {
 	
 	// showContent
 	@RequestMapping("showProductContent.do")
-	public ModelAndView showProductContent(String product_id) throws Exception {
+	public ModelAndView showProductContent(int product_id) throws Exception {
 		return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
 	}
 	
-	// updateProduct
+	// beforeGoingUpdateProduct
 	@RequestMapping("beforeGoingUpdateProduct.do")
-	public ModelAndView updateProduct(String product_id) throws Exception {
-		return new ModelAndView("product_updateProduct", "productInfo", productService.showProductContent(product_id));
+	public ModelAndView beforeGoingUpdateProduct(int product_id) throws Exception {
+		ModelAndView mv = new ModelAndView("product_updateProduct");
+		
+		mv.addObject("itemList", productService.getItemList());
+		mv.addObject("productInfo", productService.showProductContent(product_id));
+		
+		return mv;
+	}
+	
+	// updateProduct
+	@RequestMapping("updateProduct.do")
+	public ModelAndView updateProduct(int product_id, ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
+		productService.updateProduct(product_id, pvo, slvo, evo);
+		return new ModelAndView("redirect:moveToUpdateOkWithProductId.do?product_id="+product_id);
+	}
+	// deleteProduct
+	@RequestMapping("deleteProduct.do")
+	public ModelAndView deleteProduct(int product_id) throws Exception {
+		int category_id = productService.getCategoryIdByProductId(product_id); //product를 지우기 전에 category_id를 빼와야 한다.
+		productService.deleteProduct(product_id);
+		return new ModelAndView("redirect:moveToDeleteOkWithProductId.do?category_id="+category_id);
+	}
+	
+	// moveToUpdateOkWithProductId
+	@RequestMapping("moveToUpdateOkWithProductId.do")
+	public ModelAndView moveToUpdateOkWithProductId(int product_id) throws Exception {
+		return new ModelAndView("product_updateOk","product_id", product_id);
+	}
+	// moveToDeleteOkWithProductId
+	@RequestMapping("moveToDeleteOkWithProductId.do")
+	public ModelAndView moveToDeleteOkWithProductId(int category_id) throws Exception {
+		return new ModelAndView("product_deleteOk","category_id", category_id);
 	}
 }
 
