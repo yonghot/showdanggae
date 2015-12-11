@@ -147,14 +147,17 @@ public class ProductController {
 		return new ModelAndView("redirect:showProductContent.do?product_id="+product_id);
 	}
 	
-	
 	// showContent
-		@RequestMapping("showProductContent.do")
-		public ModelAndView showProductContent(String product_id) throws Exception {
-			productService.showProductContent(product_id);
-			return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
-		}
-
+	@RequestMapping("showProductContent.do")
+	public ModelAndView showProductContent(String product_id) throws Exception {
+		return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
+	}
+	
+	// updateProduct
+	@RequestMapping("beforeGoingUpdateProduct.do")
+	public ModelAndView updateProduct(String product_id) throws Exception {
+		return new ModelAndView("product_updateProduct", "productInfo", productService.showProductContent(product_id));
+	}
 }
 
 

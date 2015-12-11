@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) {
 		productDAO.addProduct(pvo);
 		
-		if(!slvo.getLink().equals("")) { //공란이 DB에 들어가면 null로 인식되서 not null인 변수에 넣을 수가 없다
+		if(slvo.getLink()!=null) { //공란이 DB에 들어가면 null로 인식되서 not null인 변수에 넣을 수가 없다
 			slvo.setProduct_id(pvo.getProduct_id());
 			productDAO.addSellerLink(slvo);
 		}
@@ -72,12 +72,14 @@ public class ProductServiceImpl implements ProductService {
 		
 		productMap.put("pvo", productDAO.getProductByProduct_id(product_id));
 		
-		if(productDAO.getSellerLinkByProduct_id(product_id).size()!=0) {
-			productMap.put("slvo", productDAO.getSellerLinkByProduct_id(product_id));
+		List<SellerLinkVO> sellerLinkList = productDAO.getSellerLinkByProduct_id(product_id); 
+		if(sellerLinkList.size()!=0) {
+			productMap.put("slvoList", sellerLinkList);
 		}
 		
-		if(productDAO.getEvaluatingItemByProduct_id(product_id).size()!=0) {
-			productMap.put("evo", productDAO.getEvaluatingItemByProduct_id(product_id));
+		List<EvaluatingItemVO> evaluatingItemList = productDAO.getEvaluatingItemByProduct_id(product_id);
+		if(evaluatingItemList.size()!=0) {
+			productMap.put("evoList", evaluatingItemList);
 		}
 		
 		return productMap;

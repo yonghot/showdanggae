@@ -66,7 +66,7 @@
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
 	<br><br>
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="5">
+	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6">
 		    <div class="thumbnail">
 		    	<a href="auth_hit.do?product_id=${list.product_id}">

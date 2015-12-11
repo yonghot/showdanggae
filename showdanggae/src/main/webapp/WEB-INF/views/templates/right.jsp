@@ -56,6 +56,7 @@
 	            </div>
 	        </div>
 	    </form>
+	    <hr>
 			<input class="btn btn-default" type="button" value="팔로잉" onclick="follow_view()">	
 			<input class="btn btn-default" type="button" value="팔로워" onclick="follow1_view()">
 			<span id="searchIdView"></span>
