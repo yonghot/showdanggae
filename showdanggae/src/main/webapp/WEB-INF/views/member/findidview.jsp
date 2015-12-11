@@ -26,15 +26,6 @@
 
 		<div class="form-group">
 			<div class="col-sm-2">
-				<label for="inputEmail3" class="control-label">ID</label>
-			</div>
-			<div class="col-sm-10 hidden-sm hidden-xs text-left">
-				<input type="text" class="form-control" name="member_id" placeholder="아이디">
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-2">
 				<label for="inputEmail3" class="control-label">Name</label>
 			</div>
 			<div class="col-sm-10 hidden-sm hidden-xs text-left">
@@ -62,8 +53,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-12" align="center">
-				<button type="submit" class="btn btn-default" id="subBtn">아이디
-					찾기</button>
+				<button type="submit" class="btn btn-default" id="subBtn">아이디 찾기</button>
 
 			</div>
 		</div>

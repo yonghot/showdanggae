@@ -10,6 +10,6 @@ public interface MessageDAO {
 
 	MessageVO MyMessageShowPopUp(MessageVO vo);
 
-	void messageRead(int m);
+	void messageRead(int mno);
 
 }

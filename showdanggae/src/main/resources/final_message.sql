@@ -44,7 +44,7 @@ select e.title, m.member_Id, e.message, e.spand_name,e.spand_date
 from message e,member m
 where e.member_Id=m.member_Id and m.member_Id='seojungspring' order by e.spand_date desc;
 
-
+select * from message;
 
 update message set read=read+1 where mno=8;
 	

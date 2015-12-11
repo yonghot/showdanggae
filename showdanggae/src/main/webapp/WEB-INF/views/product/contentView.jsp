@@ -73,7 +73,7 @@
 			</c:choose>
 		</div>
 	</div>
-	<form class="form-horizontal" role="form" action="registProduct.do" id="registForm">
+	<form class="form-horizontal" role="form" action="auth_registProduct.do" id="registForm">
 		<div class="col-md-7">
 			<input type="hidden" class="form-control" name="member_id" value="${sessionScope.mvo.member_id}">
 			<div class="form-group">

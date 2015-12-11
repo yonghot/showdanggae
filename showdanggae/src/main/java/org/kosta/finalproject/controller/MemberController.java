@@ -1,8 +1,11 @@
 package org.kosta.finalproject.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +19,7 @@ import org.kosta.finalproject.model.member.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,27 +46,29 @@ public class MemberController {
 
 
 	@RequestMapping("idCheck.do")
-	public ModelAndView idCheck(HttpServletRequest request,
-			HttpServletResponse response, String member_Id) {
-		MemberVO vo = memberService.idCheck(member_Id);
-		if (vo != null) {
-			return new ModelAndView("ajaxView", "vo", vo);
-		} else {
-			return new ModelAndView("ajaxView", "vo", null);
-		}
-
+	@ResponseBody
+	public Object idCheck(String member_id)throws Exception{
+		MemberVO vo = memberService.idCheck(member_id);		
+		return vo;
 	}
 	
-	@RequestMapping("register.do")
+	@RequestMapping("auth_register.do")
 	public ModelAndView register(MemberVO vo){
 
 		MemberVO insertVO=memberService.register(vo);
-	
-		return new ModelAndView("redirect:registerF5.do?member_name=" + insertVO.getMember_name());
+		try {
+			String member_name = URLEncoder.encode(insertVO.getMember_name(), "UTF-8");
+			return new ModelAndView("redirect:registerF5.do?member_name=" + member_name);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		//실패했을때
+		return new ModelAndView("redirect:registerF5.do?member_name=" + "fail");
 	}
 	
 	@RequestMapping("registerF5.do")
 	public ModelAndView registerF5(String member_name) {
+		System.out.println(member_name);
 		return new ModelAndView("member_registerokview","member_name",member_name);
 	}
 	
@@ -73,8 +79,8 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpServletRequest request, MemberVO vo){
-		
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, MemberVO vo){
+				
 		if(vo.getMember_id().equals("admingalbage")){
 			MemberVO admin=memberService.adminlogin(vo);
 			if(admin!=null){		
@@ -86,6 +92,11 @@ public class MemberController {
 		}
 		
 		MemberVO member=memberService.login(vo);
+		String cookieName = vo.getMember_id();
+		Cookie cookie = new Cookie("cookieName", cookieName);
+		cookie.setMaxAge(5);
+		//cookie.setValue("Melone"); //생성된 Cookie 객체의 값을 "Melone"이란 값으로 재 설정
+		response.addCookie(cookie); //웹 브라우저(클라이언트)로 생성된 쿠키를 전송
 		if(member!=null){ 
 			HttpSession session = request.getSession(true);	
 			session.setAttribute("mvo", member);
@@ -119,7 +130,10 @@ public class MemberController {
 		String mailId = request.getParameter("email_id");
 		String domain = request.getParameter("email_domain");
 		MemberVO ivo=memberService.findIdByBirth(vo,mailId,domain);
-		return new ModelAndView("member_findid","findId",ivo.getMember_id());
+		String id = ivo.getMember_id();
+		StringBuffer sb = new StringBuffer(id);
+		sb.replace(2, 4,"**"); //아이디 출력시 *포함 
+		return new ModelAndView("member_findid","findId",sb);
 	}
 
 	@Autowired
@@ -148,13 +162,13 @@ public class MemberController {
 		return "home";		
 	}
 	
-	@RequestMapping("updatecancel.do")
+	@RequestMapping("auth_updatecancel.do")
 	public String updatecancel(){
 		return "home";		
 	}
 	
 	
-	@RequestMapping("updateMember.do")
+	@RequestMapping("auth_updateMember.do")
 	public ModelAndView update(HttpServletRequest request,HttpServletResponse response,MemberVO vo){
 		HttpSession session = request.getSession(false);
 		System.out.println("update : " + vo);
@@ -170,12 +184,12 @@ public class MemberController {
 			
 	}
 	
-	@RequestMapping("withdrawForm.do")
+	@RequestMapping("auth_withdrawForm.do")
 	public String withdrawForm(){
 		return "member_withdraw";	
 	}
 	
-	@RequestMapping("withdraw.do")
+	@RequestMapping("auth_withdraw.do")
 	public String withdraw(HttpServletRequest request,MemberVO vo){
 		String reason=request.getParameter("reason");
 		memberService.withdraw(vo.getMember_id(),reason);
@@ -190,8 +204,8 @@ public class MemberController {
 	
 
 	@RequestMapping("memberManagerForm.do")
-	public ModelAndView memberManagerForm(HttpServletRequest request,HttpServletResponse response){
-		String pageNo=request.getParameter("pageNo");
+	public ModelAndView memberManagerForm(String pageNo){
+		
 		MemberListVO mvolist=memberService.memberManagerList(pageNo);
 		System.out.println(mvolist);
 	
