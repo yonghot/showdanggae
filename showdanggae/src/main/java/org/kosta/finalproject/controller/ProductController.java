@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.finalproject.model.category.CategoryService;
@@ -17,6 +16,7 @@ import org.kosta.finalproject.model.product.SellerLinkVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -26,48 +26,68 @@ public class ProductController {
 	private CategoryService categoryService;
 	@Resource
 	private ProductService productService;
-
+	
+	@ResponseBody
+	@RequestMapping(value = "auth_getMemberCategoryList.do", method = RequestMethod.POST)
+	public  List<CategoryVO> getMemberCategoryList(String member_id) {
+		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
+		return lvo;
+	}
+	
 	// 로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
 	// 상품정보 추가는 용호.
 	// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
-	@RequestMapping(value="addCategory.do", method = RequestMethod.POST)
-	public void addCategory(String category, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			MemberVO vo = (MemberVO) session.getAttribute("mvo");
-			String member_id=vo.getMember_id();
+	@ResponseBody
+	@RequestMapping(value = "auth_addCategory.do", method = RequestMethod.POST)
+	public List<CategoryVO> addCategory(String category, String member_id) {
 			categoryService.addMyCategory(category, member_id);
-		}
+			List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
+			System.out.println(member_id+" "+lvo);
+			return lvo;
 	}
-	/*@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
-	public ModelAndView AjaxMainCategoryList(String member_id, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		String id=mvo.getMember_id();
-		System.out.println("auth_ajaxMemberCategoryList.do 아이디는 : "+" "+id+" "+"님 꺼를 보여준다.");
-		if(session != null) {
-			List<CategoryVO> lvo=categoryService.getMemberCategoryList(id);
-			System.out.println("현재 멤버카테고리를 가져온다" + " "+lvo);
-			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", lvo);
+	
+	// 나의 해당 카테고리를 지운다.
+		@RequestMapping("deleteCategory.do")
+		public ModelAndView deleteCategory(int category_id,
+				HttpServletRequest request) {
+			HttpSession session = request.getSession(false);
+			if (session.getAttribute("mvo") != null) {
+				categoryService.deleteCategory(category_id);
+			}
+			return new ModelAndView("login");
 		}
-			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", null);
+	
+	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다.
+	@RequestMapping("deleteProductListAndCategory.do")
+	public ModelAndView deleteProductListAndCategory(int category_id,
+			HttpServletRequest request) {
+			HttpSession session = request.getSession(false);
+			if (session.getAttribute("mvo") != null) {
+				productService.deleteProductList(category_id);
+				categoryService.deleteCategory(category_id);
+			}
+			return new ModelAndView("login");
+		}
+
+	 @RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST) 
+	 public ModelAndView AjaxMainCategoryList(String member_id) { 
+	 return new ModelAndView("auth_ajaxMemberCategoryList"); 
+	 }
+	 
+	/*@ResponseBody
+	@RequestMapping(value = "auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
+	public ModelAndView AjaxMainCategoryList(String category,
+			HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session.getAttribute("mvo") != null) {
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			String id = mvo.getMember_id();
+			List<CategoryVO> lvo = categoryService.getMemberCategoryList(id);
+			return new ModelAndView("auth_ajaxMemberCategoryList", "lvo", lvo);
+		}
+		return null;
 	}*/
-	
-	@RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
-	public ModelAndView AjaxMainCategoryList(String category, HttpServletRequest request) {
-		
-		System.out.println(category);
-		
-		HttpSession session = request.getSession(false);
-		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		String id=mvo.getMember_id();
-		if(session != null) {
-			List<CategoryVO> lvo=categoryService.getMemberCategoryList(id);
-			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", lvo);
-		}
-			return new ModelAndView("auth_ajaxMemberCategoryList", "categoryList", null);
-	}
-	
+
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")
 	public void addInterest(String interest, HttpServletRequest request) {
@@ -87,7 +107,8 @@ public class ProductController {
 
 	// 나의 개별 상품을 지운다.
 	@RequestMapping("deleteProduct.do")
-	public ModelAndView deleteProduct(int category_id, HttpServletRequest request) {
+	public ModelAndView deleteProduct(int category_id,
+			HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session.getAttribute("mvo") != null) {
 			productService.deleteProduct(category_id);
@@ -95,87 +116,68 @@ public class ProductController {
 		return new ModelAndView("login");
 	}
 
-	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다.
-	@RequestMapping("deleteProductListAndCategory.do")
-	public ModelAndView deleteProductListAndCategory(int category_id, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("mvo") != null) {
-			productService.deleteProductList(category_id);
-			categoryService.deleteCategory(category_id);
-		}
-		return new ModelAndView("login");
-	}
-
-	// 나의 해당 카테고리를 지운다.
-	@RequestMapping("deleteCategory.do")
-	public ModelAndView deleteCategory(int category_id,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("mvo") != null) {
-			categoryService.deleteCategory(category_id);
-		}
-		return new ModelAndView("login");
-	}
-	
-	//김용호 영역
-	//로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
+	// 김용호 영역
+	// 로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
-	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
-		
+	public ModelAndView getMyProductList(String member_id,
+			String currentCategory) throws Exception {
+
 		ModelAndView mv = new ModelAndView("product_myProductList");
-		
-		mv.addObject("pvoList", productService.getMyProductList(member_id, currentCategory));
+
+		mv.addObject("pvoList",
+				productService.getMyProductList(member_id, currentCategory));
 		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
-		mv.addObject("memberCategoryList", categoryService.getMemberCategoryList(member_id));
+		mv.addObject("memberCategoryList",
+				categoryService.getMemberCategoryList(member_id));
 		mv.addObject("category_id", currentCategory);
-		
+
 		return mv;
 	}
 
-	//getAllBoardList
-	@RequestMapping(value={"getAllBoardList.do", "home.do"})
+	// getAllBoardList
+	@RequestMapping(value = { "getAllBoardList.do", "home.do" })
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
-		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
+		return new ModelAndView("product_allProductList", "pvoList",
+				productService.getAllBoardList(sortBy));
 	}
-	
-	
+
 	// beforeGoingRegistProduct
 	@RequestMapping("auth_beforeGoingRegistProduct.do")
-	public ModelAndView beforeGoingRegistProduct(String category_id) throws Exception {
-		
+	public ModelAndView beforeGoingRegistProduct(String category_id)
+			throws Exception {
+
 		ModelAndView mv = new ModelAndView("product_registProduct");
-		
+
 		mv.addObject("category_id", category_id);
 		mv.addObject("itemList", productService.getItemList());
-		
+
 		return mv;
 	}
-	
+
 	// registProduct
 	@RequestMapping("auth_registProduct.do")
-	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
-		//vo에 변수명이 int로 되어있어도 String 데이터가 자동으로 parseInt되면서 들어가는 듯
+	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO slvo,
+			EvaluatingItemVO evo) throws Exception {
+		// vo에 변수명이 int로 되어있어도 String 데이터가 자동으로 parseInt되면서 들어가는 듯
 		productService.addProductWithSellerLinkAndEvaluating(pvo, slvo, evo);
-		return new ModelAndView("product/registOk", "currentCategory", pvo.getCategory_id());
+		return new ModelAndView("product/registOk", "currentCategory",
+				pvo.getCategory_id());
 	}
-	
+
 	// hit
 	@RequestMapping("auth_hit.do")
 	public ModelAndView hit(String product_id) throws Exception {
 		productService.hit(product_id);
-		return new ModelAndView("redirect:showProductContent.do?product_id="+product_id);
+		return new ModelAndView("redirect:showProductContent.do?product_id="
+				+ product_id);
 	}
-	
-	
+
 	// showContent
-		@RequestMapping("showProductContent.do")
-		public ModelAndView showProductContent(String product_id) throws Exception {
-			productService.showProductContent(product_id);
-			return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
-		}
+	@RequestMapping("showProductContent.do")
+	public ModelAndView showProductContent(String product_id) throws Exception {
+		productService.showProductContent(product_id);
+		return new ModelAndView("product_contentView", "productInfo",
+				productService.showProductContent(product_id));
+	}
 
 }
-
-
-
-
