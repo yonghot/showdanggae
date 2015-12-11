@@ -65,7 +65,7 @@
 				"<td><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
 				"<td>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
 				"<td><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
-				"<input type='hidden' name='link' value='"+$(":text[name=inputLink]").val()+"'>"+
+				"<input type='hidden' name='link' value='"+$(":text[name=inputLink]").val()+"32432432'>"+
 				"<input type='hidden' name='price' value='"+$(":text[name=inputPrice]").val()+"'>"
 			);
 			
@@ -73,6 +73,8 @@
 			$(":text[name=inputPrice]").val("");
 			$(":text[name=inputLink]").focus();
 			$(":text[name=inputPrice]").focus();
+			
+			alert($("#link").val());
 		});
 		
 		

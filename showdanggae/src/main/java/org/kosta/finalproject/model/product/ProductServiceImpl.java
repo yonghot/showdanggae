@@ -86,7 +86,12 @@ public class ProductServiceImpl implements ProductService {
 		
 		if(!slvo.getLink().equals("")) {
 			slvo.setProduct_id(product_id);
-			productDAO.updateSellerLink(slvo);
+			
+			if(productDAO.getSellerLinkByProduct_id(product_id)!=null) {
+				productDAO.updateSellerLink(slvo);
+			} else {
+				productDAO.addSellerLink(slvo);
+			}
 		} else {
 			productDAO.deleteSellerLink(product_id);
 		}
@@ -94,6 +99,12 @@ public class ProductServiceImpl implements ProductService {
 		if(evo.getItem()!=null) {
 			evo.setProduct_id(product_id);
 			productDAO.updateEvaluatingItem(evo);
+			
+			if(productDAO.getEvaluatingItemByProduct_id(product_id)!=null) {
+				productDAO.updateEvaluatingItem(evo);
+			} else {
+				productDAO.addEvaluatingItem(evo);
+			}
 		} else {
 			productDAO.deleteEvaluatingItem(product_id);
 		}

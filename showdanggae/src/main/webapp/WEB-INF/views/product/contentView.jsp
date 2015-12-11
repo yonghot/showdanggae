@@ -46,7 +46,7 @@
 			shortenLink = $("#link").text().substring(0, 50) + "...";
 		}
 		
-		$("#link").text(shortenLink);
+		$("#link").html("<a href='${slvoList.link}'>"+shortenLink+"</a>");
 		$("#price").text(AddComma($("#price").text())+" 원");
 				
 	});
