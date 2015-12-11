@@ -102,13 +102,8 @@
 			<img src="${initParam.root}img/write_btn.jpg" border="0" width="100">
 		</a>
 	</div>
-<<<<<<< HEAD
-	<br> <br>
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="5">
-=======
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		<div class="col-md-6">
 			<div class="thumbnail">
 				<a href="auth_hit.do?product_id=${list.product_id}"> <img

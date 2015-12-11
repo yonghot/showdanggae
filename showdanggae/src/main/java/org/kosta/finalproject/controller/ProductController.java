@@ -105,20 +105,6 @@ public class ProductController {
 	// 예:하위 product삭제 및 카테고리 삭제, 아니오:취소
 	// 예 선택시 해당 category_id를 가진 product들을 삭제 한 후, 카테고리를 삭제한다.
 
-<<<<<<< HEAD
-	// 나의 개별 상품을 지운다.
-	@RequestMapping("deleteProduct.do")
-	public ModelAndView deleteProduct(int category_id,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("mvo") != null) {
-			productService.deleteProduct(category_id);
-		}
-		return new ModelAndView("login");
-	}
-=======
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-
 	// 김용호 영역
 	// 로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
@@ -174,21 +160,9 @@ public class ProductController {
 		return new ModelAndView("redirect:showProductContent.do?product_id="
 				+ product_id);
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	// showContent
 	@RequestMapping("showProductContent.do")
-<<<<<<< HEAD
-	public ModelAndView showProductContent(String product_id) throws Exception {
-		productService.showProductContent(product_id);
-		return new ModelAndView("product_contentView", "productInfo",
-				productService.showProductContent(product_id));
-	}
-
-=======
 	public ModelAndView showProductContent(int product_id) throws Exception {
 		return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
 	}
@@ -228,5 +202,5 @@ public class ProductController {
 	public ModelAndView moveToDeleteOkWithProductId(int category_id) throws Exception {
 		return new ModelAndView("product_deleteOk","category_id", category_id);
 	}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
 }
