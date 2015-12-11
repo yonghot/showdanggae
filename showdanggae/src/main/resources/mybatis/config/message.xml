@@ -11,10 +11,14 @@ INSERT INTO MESSAGE(member_id,message,spand_name,title,spand_date,mno,read)
 values (#{member_id},#{message},#{spand_name},#{title},SYSDATE,message_seq.nextval,#{read})
 </insert>
 
-<select id="myMessageBox" resultType="msvo">
-select e.title, m.member_id, e.message, e.spand_name,e.spand_date,e.mno,e.read
-from message e,member m
-where e.member_id=m.member_id and m.member_id=#{value} order by e.spand_date desc
+<select id="myMessageBox" resultType="msvo"  parameterType="hashMap">
+select mno,title, message, spand_name,spand_date,read
+from(select e.mno,e.title, m.member_Id, e.message, e.spand_name,e.spand_date,e.read,ceil(rownum/10) as page 
+from message e,member m where e.member_Id=m.member_Id and m.member_Id=#{member_id} order by e.spand_date desc) 
+where page=#{pageNo}
+
+
+
 </select>
 
 <select id="MyMessageShowPopUp" resultType="msvo">
@@ -26,6 +30,10 @@ where e.member_id=m.member_id and m.member_id=#{member_id} and e.mno=#{mno}
 <update id="messageRead">
 	update message set read=read+1 where mno=#{value}
 </update>
+
+<select id="mCount" resultType="int" parameterType="int">
+select count(*) from message where member_id=#{value}
+</select>
 
  </mapper>
  

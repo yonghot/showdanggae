@@ -7,16 +7,16 @@ table.type05 {
     margin: 20px 10px;
 }
 table.type05 th {
-    width: 7px;
-    padding: 0px;
+    width: 40px;
+    padding: 2px;
     font-weight: bold;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
     background: #efefef;
 }
 table.type05 td {
-    width: 7px;
-    padding: 0px;
+    width: 40px;
+    padding: 2px;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
 }

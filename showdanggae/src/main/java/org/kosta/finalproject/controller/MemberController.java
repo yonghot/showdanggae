@@ -2,6 +2,7 @@ package org.kosta.finalproject.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -237,9 +238,12 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_findMemberById.do")
-	public ModelAndView findMemberById(String member_id, String sessionId) throws Exception{
-		System.out.println(member_id+sessionId);
-		return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
+	@ResponseBody
+	public List<MemberVO> findMemberById(String member_id, String sessionId) throws Exception{
+		System.out.println(member_id+" "+sessionId);
+		List<MemberVO> list = memberService.findMemberById(member_id, sessionId);
+		//return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
+		return list;
 	}
 	
 	/**
@@ -277,9 +281,13 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_findFollowingId.do")
-	public ModelAndView findFollowingId(String member_id) throws Exception {
+	@ResponseBody
+	public List<FollowVO> findFollowingId(String member_id) throws Exception {
+		//System.out.println(member_id);
 		List<FollowVO> list = memberService.findFollowingId(member_id);
-		return new ModelAndView("follow_followingid", "followingList", list);
+		//System.out.println(list);
+		//return new ModelAndView("follow_followingid", "followingList", list);
+		return list;
 	}
 
 	/**
@@ -291,9 +299,11 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("auth_findFollowerId.do")
-	public ModelAndView findFollowerId(String member_id) throws Exception {
+	@ResponseBody
+	public List<FollowVO> findFollowerId(String member_id) throws Exception {
 		List<FollowVO> list = memberService.findFollowerId(member_id);
-		return new ModelAndView("follow_followerid", "followerList", list);
+		return list;
+		//return new ModelAndView("follow_followerid", "followerList", list);
 	}
 	
 	/**
@@ -306,6 +316,7 @@ public class MemberController {
 	@RequestMapping("auth_onkeyupId.do")
 	@ResponseBody
 	public Object onkeyupId(String searchId) throws Exception{
+		System.out.println(searchId);
 		if(searchId.equals("")) {
 			return "";
 		}
