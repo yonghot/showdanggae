@@ -54,7 +54,7 @@
                        <a href="notice.do">공지사항</a>                    
                    </li>
                    <li class="active">
-                       <a href="qnaboard.do">Q&A</a>
+                       <a href="auth_qnaboard.do">Q&A</a>
                    </li>
                </ul>
            </div>

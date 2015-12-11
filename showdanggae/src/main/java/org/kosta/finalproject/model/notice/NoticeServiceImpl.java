@@ -17,9 +17,7 @@ public class NoticeServiceImpl implements NoticeService{
 		ListVO list=new ListVO(noticeList, pagingBean);
 		
 		int pn=1;
-		if(pageNo!=null){
-			pn=Integer.parseInt(pageNo);
-			
+		if(pageNo!=null){		
 			pn=Integer.parseInt(pageNo);
 			noticeList=(ArrayList<NoticeVO>) noticeDAO.noticeList(pn); //GETPOSTINGLIST�� ���������ȿ��͸�
 			
