@@ -3,11 +3,11 @@
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
      <link rel="stylesheet" href="css/type5.css" type="text/css">
 <script type="text/javascript">
-
 	$(document).ready(function(){
 		$("#followForm :input[name=addBtn]").click(function(){
 			var dor=$(this).parent().siblings().next().text();
-			alert(dor);
+			//var dor=$("#listView tr td").parent().siblings().next().text();
+			//alert(dor);
 			/* alert((dor+"2")); */
 			/* alert(member_id); */
 		 	if ($(this).val() == "+팔로우") {
@@ -18,7 +18,6 @@
 					data:"follower=${sessionScope.mvo.member_id}&following="+dor,
 					dataType:"json",
 					success:function(data){
-						
 					}//callback			
 				});//ajax
 			} else {
@@ -29,7 +28,6 @@
 		               data:"follower=${sessionScope.mvo.member_id}&following="+dor,
 		               dataType:"json",
 		               success:function(data){
-		                 
 		               }//callback         
 		            });//ajax
 			}  		 	
@@ -44,14 +42,13 @@
  			}
  		});
 	});
-	
 </script>
 <jsp:include page="../templates/right.jsp"></jsp:include>
 <!-- <form action ="add.do"> -->
 <form id="followForm" >
 <table border="1" class="type05">
 <thead>
-<tr><th></th><th>ID</th></tr>
+<tr><th>사  진</th><th>ID</th></tr>
 </thead>
 <tbody id="listView">
 <c:forEach items="${requestScope.mvoList}" var="mvo" varStatus="status">
