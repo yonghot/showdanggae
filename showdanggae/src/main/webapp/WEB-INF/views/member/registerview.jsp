@@ -115,53 +115,33 @@ $(document).ready(function() {
 	var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //비밀번호
 
 
-			$("#id").keyup(function() {
+			$("#id").keyup(function(){
 			var id = $(":input[name=member_id]").val();
 			var idComp = $(":input[name=member_id]").val().trim();
 			
-							/* if (idComp.length<6||idComp.length>12) {
-							$("#checkResult").html("6자이상 12자이하만 가능합니다");
-<<<<<<< HEAD
-								return false;
-							}else if(!RegexId.test($.trim($("#id").val()))){
-								$("#checkResult").html("한글, 특수문자 불가");
-								return false;
-							}
-							
-=======
-							//alert($("#id").serialize());
-							return false;
-							}  */
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+				if (idComp.length<6||idComp.length>12) {
+				$("#checkResult").html("6자이상 12자이하만 가능합니다");
+					return false;
+				}
+				if(!RegexId.test($.trim($("#id").val()))){
+					$("#checkResult").html("한글, 특수문자 불가");
+					return false;
+				}
+				
 						$.ajax({
 							type:"get",
 							url:"idCheck.do",
-<<<<<<< HEAD
 							data: $("#id").serialize(),			
-=======
-							data: $("#id").serialize(), 
-							dataType:"json",
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 							 success:function(data){
-<<<<<<< HEAD
-						            if(data!=""){
-						            	$("#checkResult").html("아이디중복");			         
-						            }else{
-						            	$("#checkResult").html("사용가능");
-						            
-						            } 
-						        }
-						  
-=======
 								 if(data==""){
 									 $("#checkResult").html("사용가능");
 								 }else{
 									 $("#checkResult").html("아이디중복");
 								 }
 							}
-								
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						});
+				
+			});
 					});
 
 			$("#password").keyup(function() {
@@ -193,15 +173,6 @@ $(document).ready(function() {
 
 							
 						});
-	
-				
-
-
-		
-						
-						
-
-			});
 	
 </script>
 
