@@ -4,23 +4,19 @@
 <script type="text/javascript">
 
      $(document).ready(function(){
-    
-    	 
      	$("tr").click(function(){
-    	
- 			var member_id=$(":input[name=member_id]").val(); 
- 			var mno=$(this).children().eq(2).children().eq(1).val(); 
- 		
+ 			/* var member_id=$(":input[name=member_id]").val(); 
+ 			var mno=$(this).children().eq(2).children().eq(1).val(); 	 */
  			$.ajax({
 				type:"get",
 				url:"auth_messageBoxContent.do?mno=" +$(this).children().eq(2).children().eq(1).val() + "&member_id=" +$(":input[name=member_id]").val(),
 				dataType:"json",
 				success:function(data){
-					alert(data.title);
+					
 					  if(data!=""){	
 						  $('.modal').modal({
 		                       remote :   $("#massage_title").html(data.title),
-		                       remote :   $("#massage_sender").html(data.spand_name),
+		                       remote :   $("#massage_sender").html(data.sender),
 		                       remote :   $("#message-text").html(data.message)
 		                });
 						 
@@ -138,7 +134,6 @@ aria-hidden="true">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
       </div>
     </div>
   </div>

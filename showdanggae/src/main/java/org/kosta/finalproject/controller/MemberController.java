@@ -53,7 +53,7 @@ public class MemberController {
 		return vo;
 	}
 	
-	@RequestMapping("auth_register.do")
+	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo){
 
 		MemberVO insertVO=memberService.register(vo);

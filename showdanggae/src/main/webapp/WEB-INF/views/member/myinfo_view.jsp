@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
 
-	$(document).ready(function() {
-		
+$(document).ready(function() {
+
 		$("#withdrawBtn").click(function(){
 			
 			var result = confirm('탈퇴하시겠습니까?');
@@ -11,7 +11,6 @@
 	        	location.href="auth_withdrawForm.do";
 	        } else {
 	        	location.href="updatecancel.do";
-	        	//home으로 이동
 	        }
 		});
 		
@@ -35,6 +34,37 @@
 			location.href="auth_updatecancel.do";
 		});
 	
+		
+		$("#password").keyup(function() {
+			var passwordComp = $(":input[name=password]").val();
+			var repasswordComp = $(":input[name=repassword]").val();
+	   		 var reg_pwd = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[!,@,#,$,%,^,&,*,?,_,~])(?=.*[a-zA-Z]).*$/;
+			if(!reg_pwd.test(passwordComp)){
+				$("#passResult").html("영문,숫자,특수문자 혼합하여 8자리~20자리 이내만 가능");
+				  return false;
+				 }else{
+							$("#passResult").html("사용가능");
+						}
+
+		
+			});
+				
+		$("#repassword").keyup(function() {
+	
+			var passwordComp = $(":input[name=password]").val();
+			var repasswordComp = $(":input[name=repassword]").val();
+			
+			if($("#passResult").text()!="사용가능"){
+				$("#repassResult").html("비밀번호 인증을 받으세요");
+			}else if(passwordComp!=repasswordComp){
+				$("#repassResult").html("비밀번호가 다릅니다!");
+			}else{
+				$("#repassResult").html("인증성공");
+			}			
+		});
+		
+		
+		
 		$("#subBtn").click(function() {
 			var idComp = $(":input[name=member_id]").val();
 			var passwordComp = $(":input[name=password]").val();
@@ -44,7 +74,7 @@
 			var email_domainComp = $(":input[name=email_domain]").val();
 			var birthdayComp = $(":input[name=birthday]").val();
 			var email=email_idComp+"@"+email_domainComp;
-			
+			var RegexName = /^[가-힣]{2,4}$/; //이름 유효성 검사 2~4자 사이
 			$("#email").val(email); //조합한 이메일
 	
 			if (passwordComp == "") {
@@ -61,6 +91,14 @@
 				alert("이름을 입력해주세요");
 				return false;
 			}
+			
+	 		if ( !RegexName.test($.trim($("#name").val())) )
+			{
+			alert("이름 오류입니다 한글로 입력해주세요");
+			$("#name").focus();
+			return false;
+			} 
+	 		
 			if (emailIdComp == ""||emailaddressComp=="") {
 				alert("이메일을 입력해주세요");
 				return false;
@@ -79,38 +117,6 @@
 			}
 			$("#registerForm").serialize();
 	
-		});
-		
-		
-		$("#password").keyup(function() {
-			var passwordComp = $(":input[name=password]").val();
-			var repasswordComp = $(":input[name=repassword]").val();
-			
-						if(passwordComp.length<6||passwordComp.length>12){
-							$("#passResult").html("6자이상 12자이하만 가능!").css(
-									"background", "pink");
-							
-							return;
-						}else{
-							$("#passResult").html("사용가능").css(
-									"background", "pink");
-						}				
-					});
-				
-		$("#repassword").keyup(function() {
-			
-			var passwordComp = $(":input[name=password]").val();
-			var repasswordComp = $(":input[name=repassword]").val();
-			
-			if(passwordComp!=repasswordComp){
-				$("#repassResult").html("비밀번호가 다릅니다!").css(
-						"background", "pink");
-		
-				return;
-			}else{
-				$("#repassResult").html("인증성공").css(
-						"background", "blue");
-			}				
 		});
 	});
 	
@@ -133,10 +139,10 @@
                </div>
                <div class="form-group">
                    <div class="col-sm-2">
-                       <label for="inputPassword3" class="control-label">비밀번호</label>
+                       <label for="inputPassword3" class="control-label" >비밀번호</label>
                    </div>
                    <div class="col-sm-6">
-                       <input type="password" class="form-control" name="password" id="password" value="${sessionScope.mvo.password }"  placeholder="6자 이상 12자 이하로 입력해주세요">
+                       <input type="password" class="form-control" name="password" id="password">
                   	 <span id="passResult"></span><br>
                    </div>
                </div>
@@ -154,7 +160,7 @@
                        <label for="inputPassword3" class="control-label">이름</label>
                    </div>
                    <div class="col-sm-6">
-                       <input type="text" class="form-control" name="member_name" value="${sessionScope.mvo.member_name }"  placeholder="이름">
+                       <input type="text" class="form-control"  id="name" name="member_name" value="${sessionScope.mvo.member_name }"  placeholder="이름">
                          </div>
                      </div>
 				<div class="form-group">
