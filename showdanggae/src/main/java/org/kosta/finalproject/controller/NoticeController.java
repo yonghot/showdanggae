@@ -53,6 +53,7 @@ public class NoticeController {
 
 	@RequestMapping("write.do")
 	public ModelAndView write(NoticeVO vo) {
+		System.out.println(vo);
 		noticeService.write(vo);
 		return new ModelAndView("redirect:noticeShow.do?no=" + vo.getNo());
 	}
