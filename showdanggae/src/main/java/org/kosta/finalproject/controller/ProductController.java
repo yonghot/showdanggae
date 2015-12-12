@@ -111,21 +111,6 @@ public class ProductController {
 	public ModelAndView getMyProductList(String member_id,
 			String currentCategory) throws Exception {
 
-<<<<<<< HEAD
-	//getAllBoardList
-	@RequestMapping(value={"getAllBoardList.do", "home.do"})
-	public ModelAndView getAllBoardList(String sortBy) throws Exception {
-		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
-	}
-	
-	
-	// beforeGoingRegistProduct
-	@RequestMapping("auth_beforeGoingRegistProduct.do")
-	public ModelAndView beforeGoingRegistProduct(String category_id) throws Exception {
-		ModelAndView mv = new ModelAndView("product_registProduct");
-		mv.addObject("category_id", category_id);
-		mv.addObject("itemList", productService.getItemList());
-=======
 		ModelAndView mv = new ModelAndView("product_myProductList");
 
 		mv.addObject("pvoList",
@@ -135,7 +120,6 @@ public class ProductController {
 				categoryService.getMemberCategoryList(member_id));
 		mv.addObject("category_id", currentCategory);
 
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		return mv;
 	}
 
