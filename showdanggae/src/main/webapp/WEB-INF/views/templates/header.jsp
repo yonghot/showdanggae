@@ -18,51 +18,6 @@
  
  
  <div class="navbar navbar-default navbar-static-top" style="background-color: gold;">
-<<<<<<< HEAD
-       <div class="container">
-           <div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-                   <span class="sr-only">Toggle navigation</span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-               </button>
-           </div>
-           <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-               <ul class="nav navbar-nav navbar-left">
-               	<li class="active">
-                       <a href="home.do">홈</a>
-                   </li>
-               </ul>
-               <ul class="nav navbar-nav navbar-right">
-                   <li class="active">
-                       <c:choose>
-							<c:when test="${!empty sessionScope.managerlogin}">
-							<!-- 관리자 로그인 되었을때 -->
-							 <a href="logout.do" id="logout">로그아웃</a>
-							</c:when>
-							<c:when test="${!empty sessionScope.mvo}">
-							<!-- 일반 회원 로그인 되었을때 -->
-				                    	 <a href="logout.do" id="logout">로그아웃</a>
-							</c:when>
-							<c:otherwise>
-							<!-- 그 외 -->
-				                    	<a href="member_login.do" >로그인</a>
-							</c:otherwise>
-						</c:choose>	
-                   </li>
-                   <li class="active">
-                       <a href="notice.do">공지사항</a>                    
-                   </li>
-                   <li class="active">
-                       <a href="qnaboard.do">Q&A</a>
-                   </li>
-               </ul>
-           </div>
-       </div>
-   </div>
-=======
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
    <div class="container">
        <div class="navbar-header">
            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
