@@ -5,15 +5,6 @@
  <script type="text/javascript">
  	$(document).ready(function(){
  			
- 		$("#allselBtn").click(function(){
- 			$("#memberManagingTable :input[name=check_member]").prop("checked",true);	
- 		});
-
- 		$("#cancelallsellBtn").click(function(){
- 			$("#memberManagingTable :input[name=check_member]").prop("checked", false);		
- 		});
- 		
- 		
  		$("#memberManagingTable :input[name=deleteBtn]").click(function(){	
  		
 			var id=$(this).parent().parent().children().eq(1).text();
@@ -24,16 +15,27 @@
  			}
  		
  	 	});
+ 		
+ 		$('#exampleModal').on('show.bs.modal', function (event) {
+ 			
+ 			  var button = $(event.relatedTarget)
+ 			  var recipient = button.data('whatever') 
+ 			
+ 			  var modal = $(this)
+ 			  modal.find('.modal-title').text('New message to ' + recipient)
+ 			  modal.find('.modal-body input#recipient-name').val(recipient)
+ 			})
 
- 		$("#memberManagerForm a").click(function(){
- 			var id=$(this).text();	
- 			if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
- 			 window.open("${initParam.root}messagePopForm.do?member_id="+id,"popup",
-			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
+  		$("#sendMessage").click(function(){
+ 			
+ 			if(confirm('메세지를 보내시겠습니까?')==true){			
+ 				$("#sendForm").submit();
+ 			 
  			}else{
  				return false;
  			}
- 		});
+ 			
+ 		}); 
  		
  	});
  
@@ -43,29 +45,29 @@
  <h3>회원관리</h3>
  <form id="memberManagingTable">
 
-  <input type="button" value="전체선택" id="allselBtn" class="btn btn-default">
-  <input type="button" value="선택취소" id="cancelallsellBtn" class="btn btn-default">
-
  <br>
   <table class="table" id="memberManagerForm">
   		<tr>
-  			<td></td>  	
 			<td>id</td>  	
 			<td>name</td>  
 			<td>email</td>  				
 			<td>birthday</td>  	
 			<td>report</td>  	
 			<td>delete</td>			
+			<td>send</td>			
   		</tr>
 			<c:forEach var="mvo" items="${requestScope.memberList.list}">				
 			<tr>
-				<td><input type="checkbox"  id="checkbox_no" name="check_member"></td>
-			    <td><a href="">${mvo.member_id}</a></td> 	
+			
+			    <td>${mvo.member_id}</td> 	
 				<td>${mvo.member_name }</td>
 				<td>${mvo.email}</td>
 				<td>${mvo.birthday }</td>
 				<td>${mvo.report }</td>
 				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>
+				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
+				data-whatever="${mvo.member_id}">메세지보내기</button></td>
+				
 			</tr>	
 			</c:forEach>
 </table>
@@ -95,3 +97,39 @@
 </form>
 	
 	</div>
+	
+<div class="modal fade" id="exampleModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form action="sendMessage.do" id="sendForm">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name" readonly="readonly" name="member_id">
+        
+          </div>
+         <div class="form-group">
+            <label for="message-title" class="control-label">title:</label> 
+            <input type="text" class="form-control" id="message-text"  placeholder="제목" name="title" >
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message:</label>
+            <textarea class="form-control" id="message-text" placeholder="보낼내용" name="message"></textarea>
+          </div>
+			<input type="hidden" value="${sessionScope.managerlogin.member_name}" name="spand_name">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="button"class="btn btn-primary" id="sendMessage" >보내기</button>
+     
+        
+      </div>
+    </div>
+  </div>
+  </div>
+	

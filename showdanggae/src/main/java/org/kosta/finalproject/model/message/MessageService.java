@@ -1,12 +1,12 @@
 package org.kosta.finalproject.model.message;
 
-import java.util.List;
+
 
 public interface MessageService {
 
 	void sendMessage(MessageVO vo);
 
-	List<MessageVO> myMessageBox(String member_Id);
+	MessageListVO myMessageBox(String member_id,String pageNo);
 
 	MessageVO MyMessageShowPopUp(MessageVO vo);
 

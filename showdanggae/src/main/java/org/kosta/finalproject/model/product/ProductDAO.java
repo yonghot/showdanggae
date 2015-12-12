@@ -5,8 +5,6 @@ import java.util.Map;
 
 public interface ProductDAO {
 	
-	public void deleteProduct(int product_id);
-	
 	public void deleteProductList(int category_id);
 	
 	List<ProductVO> getMyProductList(Map<String, String> map);
@@ -23,7 +21,20 @@ public interface ProductDAO {
 
 	public void hit(String product_id);
 
-	public ProductVO getProductByProduct_id(String product_id);
-	public List<SellerLinkVO> getSellerLinkByProduct_id(String product_id);
-	public List<EvaluatingItemVO> getEvaluatingItemByProduct_id(String product_id);
+	public ProductVO getProductByProduct_id(int product_id);
+	public List<SellerLinkVO> getSellerLinkByProduct_id(int product_id);
+	public List<EvaluatingItemVO> getEvaluatingItemByProduct_id(int product_id);
+
+	public void updateProduct(ProductVO pvo);
+	public void updateSellerLink(SellerLinkVO slvo);
+	public void updateEvaluatingItem(EvaluatingItemVO evo);
+
+	public void deleteProduct(int product_id);
+	public void deleteSellerLink(int product_id);
+	public void deleteEvaluatingItem(int product_id);
+
+	public List<SellerLinkVO> findSellerLinkByProductId(int product_id);
+	public List<EvaluatingItemVO> findEvaluatingItemByProductId(int product_id);
+
+	public int getCategoryIdByProductId(int product_id);
 }

@@ -4,17 +4,36 @@
 <script type="text/javascript">
 
      $(document).ready(function(){
+    
     	 
-     	$("#messageForm a").click(function(){
- 			//메세지 확인form
- 			var mno=$(this).children().eq(0).val();	
- 			 window.open("${initParam.root}auth_messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="+mno,"popup",
-			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
-
+     	$("#show").click(function(){
+ 			 var mno=$(this).children().eq(0).val();		
+ 			var member_id=$(":input[name=member_id]").val(); 
+	
+ 			$.ajax({
+				type:"get",
+				url:"auth_messageBoxContent.do?mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
+				//data: "mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
+				success:function(data){
+					alert(data.msvo);
+					  if(data!=""){	
+						  $('.modal').modal({
+		                      remote :  $("#massage").html(data) 
+		                });
+						 
+						  
+			            }
+				}
+			});
+/*  			 window.open("${initParam.root}auth_messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="
+ 					 +mno,"popup",
+			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200");  */
+ 
      	});
+     	 
     });
          
-         //${requestScope.list}
+         
 </script>
         
     <style type="text/css">
@@ -23,6 +42,7 @@ th,td { font-size: 10pt; line-height: 160%; }
 </style>
     <div class="col-md-8">
     <h3>나의 메세지함</h3>
+   
     <hr>
     <form id="messageForm">
     <table class="table">
@@ -33,14 +53,19 @@ th,td { font-size: 10pt; line-height: 160%; }
     		<td>날짜</td>
     		<td>읽음여부</td>
     	</tr>
-    	<c:forEach var="msvo" items="${requestScope.list}">	
+    	<c:forEach var="msvo" items="${requestScope.mlist.list}">	
     	<tr>
     		<td> ${msvo.spand_name }</td>
     		<td>${msvo.title }</td>
     		<td> 
-    		<span class=shorttitle><a>${msvo.message}<input type="hidden" value="${msvo.mno}"></a></span>
-  
+		    		<span class=shorttitle>
+		    		<a id="show">${msvo.message}
+		    		<input type="hidden" value="${msvo.mno}">
+		    		<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> 
+		    		</a>
+		    		</span>
     		</td>     	
+    		
     		<td> ${msvo.spand_date }</td>
     		<td>
   				<c:choose>
@@ -57,28 +82,67 @@ th,td { font-size: 10pt; line-height: 160%; }
     </table>
     </form>
     
-    <%-- 
-    <c:if test="${requestScope.noticeList.pagingBean.isPreviousPageGroup()}">
-<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.startPageOfPageGroup-1}">◀ </a>
+ 
+    <c:if test="${requestScope.mlist.mspagingBean.isPreviousPageGroup()}">
+<a href="${initParam.root}auth_messagebox.do?pageNo=${requestScope.mlist.mspagingBean.startPageOfPageGroup-1}&member_id=${sessionScope.mvo.member_id }">◀ </a>
 </c:if>
 		
 		
-<c:forEach begin="${requestScope.noticeList.pagingBean.startPageOfPageGroup }" end="${requestScope.noticeList.pagingBean.endPageOfPageGroup }" var="i">
+<c:forEach begin="${requestScope.mlist.mspagingBean.startPageOfPageGroup }" end="${requestScope.mlist.mspagingBean.endPageOfPageGroup }" var="i">
 	<c:choose>
-	<c:when test="${requestScope.noticeList.pagingBean.nowPage==i}">
+	<c:when test="${requestScope.mlist.mspagingBean.nowPage==i}">
 		${i}
 	</c:when>
 	<c:otherwise>
-			<a href="${initParam.root}notice.do?pageNo=${i }">${i }</a>
+			<a href="${initParam.root}auth_messagebox.do?pageNo=${i }&member_id=${sessionScope.mvo.member_id }">${i }</a>
 	</c:otherwise>
 	</c:choose>	
 	</c:forEach>
 	
 	
- 	<c:if test="${requestScope.noticeList.pagingBean.isNextPageGroup()}">
-	<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.endPageOfPageGroup+1}">▶ </a>
+ 	<c:if test="${requestScope.mlist.mspagingBean.isNextPageGroup()}">
+	<a href="${initParam.root}auth_messagebox.do?pageNo=${requestScope.mlist.mspagingBean.endPageOfPageGroup+1}&member_id=${sessionScope.mvo.member_id }">▶ </a>
 	</c:if> 
-	 --%>
+
 	
+</div>
+
+																								<!-- 	dialog  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">title:</label>
+             	<div class="modal-title" >
+             		<span id="massage"></span>
+           				
+    		 	 </div>
+          </div>
+                    <div class="form-group">
+            <label for="recipient-name" class="control-label">보낸사람:</label>
+             	<div class="modal-sender">
+           				
+    		 	 </div>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">내용:</label>
+            <div class="modal-message"></div>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
 </div>
     
