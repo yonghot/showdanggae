@@ -110,29 +110,21 @@ $(document).ready(function() {
 			
 							/* if (idComp.length<6||idComp.length>12) {
 							$("#checkResult").html("6자이상 12자이하만 가능합니다");
-<<<<<<< HEAD
-=======
+
 								return false;
 							}else if(!RegexId.test($.trim($("#id").val()))){
 								$("#checkResult").html("한글, 특수문자 불가");
 								return false;
 							}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
 							//alert($("#id").serialize());
 							return false;
 							}  */
-<<<<<<< HEAD
-=======
-							
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
 						$.ajax({
 							type:"get",
 							url:"idCheck.do",
-<<<<<<< HEAD
-							data: $("#id").serialize(), 
-=======
 							data: $("#id").serialize(),			
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 							dataType:"json",
 							 success:function(data){
 								 if(data==""){
