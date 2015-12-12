@@ -72,6 +72,7 @@ drop table noticeboard;
 create table noticeboard(
 	no number primary key,
 	TITLE varchar2(100) not null,
+	writer varchar2(100) not null,
 	content CLOB not null,
 	hit number default 0,
 	writeDate DATE not null

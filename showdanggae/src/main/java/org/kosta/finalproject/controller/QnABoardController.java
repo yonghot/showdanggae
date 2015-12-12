@@ -96,6 +96,7 @@ public class QnABoardController {
 	
 	@RequestMapping("reply.do")
 	public ModelAndView reply(QnaVO qvo){
+		System.out.println(qvo);
 		qnaBoardService.reply(qvo);
 		
 		return new ModelAndView("redirect:nohitshowContent.do?no="+qvo.getNo());
