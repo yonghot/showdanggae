@@ -100,7 +100,7 @@ function commentForm(){
 					
 					<c:if test="${sessionScope.mvo.member_id=='admingalbage'}">					
 						<input type="button" value="답글달기" onclick="replyForm()" class="btn btn-info btn-md">
-						<input type="button" value="삭제" onclick="deleteForm()" class="btn btn-info btn-md">
+			 		 <input type="button" value="삭제" onclick="deleteForm()" class="btn btn-info btn-md">
 					</c:if>
 			 <input type="hidden" name="no" value="${requestScope.content.no}">
 			 
