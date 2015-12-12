@@ -136,7 +136,7 @@
 	<%-- </c:otherwise> --%>
 	<%-- </c:choose> --%>
 	
-  <h4>탭형식의 카테고리 뷰<h4>
+  <h4>탭형식의 카테고리 뷰</h4>
   <ul class="nav nav-tabs">
   <c:forEach items="${requestScope.memberCategoryList }" var="clist">
   <li role="presentation" class="active" value="${clist.category_id}"><a href="#">${clist.category}</a></li>

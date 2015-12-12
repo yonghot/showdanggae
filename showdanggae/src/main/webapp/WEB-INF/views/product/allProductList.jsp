@@ -16,7 +16,7 @@
               $(
                   "<div class='col-md-6'>"+
                      "<div class='thumbnail'>"+
-                         "<img src='http://cfile28.uf.tistory.com/image/2113AC3755228C8F163A5B' class='img-responsive'>"+
+                         "<img src='img/no' class='img-responsive'>"+
                          "<div class='caption' align='center'>"+
                              "<h3>${list.product_name}</h3>"+
                          "</div>"+
@@ -52,8 +52,8 @@
     	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="5">
 			<div class="col-md-6">
 			    <div class="thumbnail">
-			    	<a href="auth_hit.do?no=${list.product_id}">
-			        	<img src="http://cfile28.uf.tistory.com/image/2113AC3755228C8F163A5B" class="img-responsive">
+			    	<a href="auth_hit.do?product_id=${list.product_id}">
+			        	<img src="img/no_image.png" class="img-responsive">
 			        </a>
 			        <div class="caption" align="center">
 			            <h3>${list.product_name}</h3>
