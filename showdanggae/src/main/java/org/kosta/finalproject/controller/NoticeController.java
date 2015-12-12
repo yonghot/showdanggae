@@ -36,7 +36,7 @@ public class NoticeController {
 		String no2 = request.getParameter("no"); 
 		int no = Integer.parseInt(no2);
 		NoticeVO vo = noticeService.noHitnoticeContent(no);
-
+		System.out.println("nohit"  +vo);
 		return new ModelAndView("notice_noticeshowview", "content", vo);
 	}
 
