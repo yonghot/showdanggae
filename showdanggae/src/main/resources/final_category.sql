@@ -54,14 +54,9 @@ insert into interest(category, member_id) values('notebook','dd');
 alter table board modify hit default 0;
 alter table board drop constraint fk_id cascade;
 
-
-
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
 
 
-
-
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-
 

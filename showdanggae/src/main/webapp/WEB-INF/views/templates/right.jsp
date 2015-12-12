@@ -15,7 +15,7 @@
 		   if($("#inputId3").val()==""){
 	         alert("아이디를 입력해주시오");
 	         return false;
-	      }else{   
+	      }/* else{   
 		   $.ajax({
 				type:"POST",
 				url:"auth_findMemberById.do",
@@ -31,7 +31,7 @@
 						$("#searchIdView1").html(index);    
 					}		
 			});//ajax 
-	      }
+	      } */
 	   });
 	   
 	   $("#followingBtn").click(function(){
@@ -49,8 +49,7 @@
 			  	        }
 					$("#searchIdView1").html(index);
 					}		
-			});//ajax
-			
+			});//ajax	
 	   }); 
 	   
 	   $("#followerBtn").click(function(){
@@ -97,7 +96,7 @@
 
 <div class="col-md-2" align="center">
 	<c:if test="${sessionScope.mvo!=null}">
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" action="auth_findMemberById.do">
 			<div class="form-group">
 				<div class="col-sm-12">
 					<input type="hidden" name="sessionId"

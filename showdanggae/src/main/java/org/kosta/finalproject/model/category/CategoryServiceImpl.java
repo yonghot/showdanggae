@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.category;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,8 +27,11 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryDAO.deleteCategory(category_id);
 	}
 	@Override
-	public void addMyCategory(String category, MemberVO vo) {
-		categoryDAO.addMyCategory(category,vo);
+	public void addMyCategory(String category, String id) {
+		HashMap<String, String> map=new HashMap<String, String>();
+		map.put("category", category);
+		map.put("id", id);
+		categoryDAO.addMyCategory(map);
 	}
 	@Override
 	public void addInterest(MemberVO vo) {

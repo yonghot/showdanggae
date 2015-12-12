@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.category;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,14 +22,13 @@ public class CategoryDAOImpl implements CategoryDAO{
 		return sqlSessionTemplate.selectList("category.getMemberCategoryList", member_id);
 	}
 	
-	
 	@Override
 	public void deleteCategory(int category_id) {
 		sqlSessionTemplate.delete("category.deleteCategory", category_id);
 	}
 	@Override
-	public void addMyCategory(String category, MemberVO vo) {
-		sqlSessionTemplate.insert("category.addMyCategory", category);
+	public void addMyCategory(HashMap<String, String> map) {
+		sqlSessionTemplate.insert("category.addMyCategory", map);
 	}
 	@Override
 	public void addInterest(MemberVO vo) {
