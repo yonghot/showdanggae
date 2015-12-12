@@ -120,7 +120,7 @@
             <label for="message-text" class="control-label">Message:</label>
             <textarea class="form-control" id="message-text" placeholder="보낼내용" name="message"></textarea>
           </div>
-			<input type="hidden" value="${sessionScope.managerlogin.member_name}" name="sender">
+			<input type="hidden" value="${sessionScope.mvo.member_name}" name="sender">
         </form>
       </div>
       <div class="modal-footer">
