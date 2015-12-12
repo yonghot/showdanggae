@@ -7,15 +7,13 @@
     
     	 
      	$("tr").click(function(){
+    	
  			var member_id=$(":input[name=member_id]").val(); 
+ 			var mno=$(this).children().eq(2).children().eq(1).val(); 
  		
- 				var id = $(this).find('td.hidden').html();
- 			  alert(id);
-	
  			$.ajax({
 				type:"get",
-				url:"auth_messageBoxContent.do?mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
-				//data: "mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
+				url:"auth_messageBoxContent.do?mno=" +$(this).children().eq(2).children().eq(1).val() + "&member_id=" +$(":input[name=member_id]").val(),
 				dataType:"json",
 				success:function(data){
 					alert(data.title);
@@ -61,8 +59,9 @@ th,td { font-size: 10pt; line-height: 160%; }
     		<td> ${msvo.sender }</td>
     		<td>${msvo.title }</td>
     		<td> 
-<span class=shorttitle><a>${msvo.message}<input type="hidden"  name="mno" value="${msvo.mno}"></a></span>
+			<span class=shorttitle>${msvo.message}</span><input type="hidden"  name="mno" value="${msvo.mno}">
     		</td>     	
+
     	
     		
     		<td> ${msvo.send_date }</td>
@@ -109,7 +108,7 @@ th,td { font-size: 10pt; line-height: 160%; }
 	
 </div>
 
-																								<!-- 	dialog  -->
+																								
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
 aria-hidden="true">
   <div class="modal-dialog">
