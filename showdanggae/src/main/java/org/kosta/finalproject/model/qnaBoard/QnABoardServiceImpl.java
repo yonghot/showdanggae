@@ -55,10 +55,12 @@ public class QnABoardServiceImpl implements QnABoardService{
 		int ref = qvo.getRef();
 		int restep = qvo.getRestep();
 		int relevel = qvo.getRelevel();
+		
 		qnaBoardDAO.updateRestep(ref, restep);
 		//먼저 update 해서 ref와 restep 을 1씩 증가시켜줌
 		qvo.setRestep(restep+1);
 		qvo.setRelevel(relevel+1);
+		System.out.println("service 부분 : "  + qvo);
 		qnaBoardDAO.insertRefContent(qvo);//답변 글 입력		
 	}
 	@Override
