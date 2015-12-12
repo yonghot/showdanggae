@@ -108,7 +108,7 @@ $(document).ready(function() {
 			var id = $(":input[name=member_id]").val();
 			var idComp = $(":input[name=member_id]").val().trim();
 			
-<<<<<<< HEAD
+
 				if (idComp.length<6||idComp.length>12) {
 				$("#checkResult").html("6자이상 12자이하만 가능합니다");
 					return false;
@@ -116,33 +116,15 @@ $(document).ready(function() {
 				if(!RegexId.test($.trim($("#id").val()))){
 					$("#checkResult").html("한글, 특수문자 불가");
 					return false;
-				}
-				
-=======
-							/* if (idComp.length<6||idComp.length>12) {
-							$("#checkResult").html("6자이상 12자이하만 가능합니다");
-
-								return false;
-							}else if(!RegexId.test($.trim($("#id").val()))){
-								$("#checkResult").html("한글, 특수문자 불가");
-								return false;
-							}
-
-							//alert($("#id").serialize());
-							return false;
-							}  */
-
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+				}			
+						
 						$.ajax({
 							type:"get",
-<<<<<<< HEAD
+
 							url:"idCheck.do",
 							data: $("#id").serialize(),			
-=======
-							url:"idCheck.do",
-							data: $("#id").serialize(),			
-							dataType:"json",
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
+							
 							 success:function(data){
 								 if(data==""){
 									 $("#checkResult").html("사용가능");
@@ -150,8 +132,7 @@ $(document).ready(function() {
 									 $("#checkResult").html("아이디중복");
 								 }
 							}
-						});
-				
+						});		
 			});
 					});
 
@@ -180,9 +161,7 @@ $(document).ready(function() {
 								$("#repassResult").html("비밀번호가 다릅니다!");
 							}else{
 								$("#repassResult").html("인증성공");
-							}
-
-							
+							}						
 						});
 	
 </script>
