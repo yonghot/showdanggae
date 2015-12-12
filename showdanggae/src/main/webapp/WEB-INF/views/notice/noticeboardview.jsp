@@ -52,7 +52,7 @@
 		<c:forEach var="bvo" items="${requestScope.noticeList.list}">				
 			<tr>
 			    <td>
-			      <c:if test="${!empty sessionScope.managerlogin}">
+			      <c:if test="${sessionScope.mvo.member_id=='admingalbage'}">
 			    <input type="checkbox" id="checkbox_no" name="check_no" value="${bvo.no }">
 			    </c:if>
 			    ${bvo.no }
@@ -69,7 +69,7 @@
 	</table><br>
 			</form>	
 	
-	    <c:if test="${!empty sessionScope.managerlogin}">
+	    <c:if test="${sessionScope.mvo.member_id=='admingalbage'}">
 	<a href="${initParam.root}noticeWriteForm.do">글쓰기</a><br>
 	</c:if>
 	
