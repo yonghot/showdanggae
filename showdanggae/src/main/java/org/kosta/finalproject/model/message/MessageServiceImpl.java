@@ -21,7 +21,6 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public void sendMessage(MessageVO vo) {
 		messageDAO.sendMessage(vo);
-		
 	}
 
 	@Override
@@ -65,14 +64,10 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public MessageVO MyMessageShowPopUp(MessageVO vo) {
 		// TODO Auto-generated method stub
+		messageDAO.messageRead(vo.getMno());
 		return messageDAO.MyMessageShowPopUp(vo);
 	}
 
-	@Override
-	public void messageRead(int mno) {
-	
-		messageDAO.messageRead(mno);
-		
-	}
+
 
 }

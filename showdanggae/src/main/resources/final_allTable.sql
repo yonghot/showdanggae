@@ -9,10 +9,12 @@ create table member(
 	birthday DATE not null,
 	report number default 0
 );
+
 drop table main_category cascade constraint;
 create table main_category (
 	category varchar2(100) primary key
 );
+
 drop table member_category cascade constraint;
 create table member_category (
 	category_id number primary key,
@@ -21,6 +23,7 @@ create table member_category (
 	constraint fk_category_main foreign key(category) references main_category(category),
 	constraint fk_category_member_id foreign key(member_id) references member(member_id)
 );
+
 drop table product cascade constraint;
 create table product (
 	product_id number primary key,
@@ -47,7 +50,7 @@ create table item (
 
 drop table seller_link cascade constraint;
 create table seller_link (
-	link varchar2(100) not null,
+	link varchar2(00) not null,
 	product_id number not null,
 	price number not null,
 	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id),
@@ -70,7 +73,6 @@ create table noticeboard(
 	no number primary key,
 	TITLE varchar2(100) not null,
 	writer varchar2(100) not null,
-	password varchar2(100) not null,
 	content CLOB not null,
 	hit number default 0,
 	writeDate DATE not null
@@ -110,9 +112,9 @@ create table message (
 	mno number primary key,
 	member_id varchar2(100),
 	message CLOB not null,
-	spand_name varchar2(100) not null,
+	sender varchar2(100) not null,
 	title varchar2(100) not null,
-	spand_date DATE not null,
+	send_date DATE not null,
 	read number default 0,
 	constraint fk_message_member_id foreign KEY(member_id) references member(member_id)
 );
@@ -222,11 +224,7 @@ values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message
 
 insert into follow(following_date,following,follower) values(sysdate,'java1','java');
 
-insert into member_category(category_id, category, member_id) 
-	 		values(member_category_seq.nextval, '카메라', 'java');
-select * from member_category;
-select * from main_category;
-delete from member_category;
+insert into member_category(category_id, category, member_id) values(member_category_seq.nextval, '카메라', 'java');
 
 
 

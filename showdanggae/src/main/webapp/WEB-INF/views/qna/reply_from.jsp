@@ -48,16 +48,15 @@ ${requestScope.qvo.content}
 	</tr>
 	
 	<tr>
-	
 		<td valign="middle"><input type="submit" value="답글달기"  id="replyBtn" class="btn btn-default"></input></td>
 	</tr>
 </table>
   <input type="hidden" name="ref" value="${requestScope.qvo.ref }">
  <input type="hidden" name="restep" value="${requestScope.qvo.restep }">
  <input type="hidden" name="relevel" value="${requestScope.qvo.relevel }">
- <input type="hidden" name="no" value="${requestScope.qvo.no }"> 
+ <input type="hidden" name="no" value="${requestScope.qvo.no }">
 
-  <input type="hidden" name="member_id" value="${sessionScope.managerlogin.member_id }"> 
-  <input type="hidden" name="writer" value="${sessionScope.managerlogin.member_name}"> 
+  <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id }"> 
+  <input type="hidden" name="writer" value="${sessionScope.mvo.member_name}"> 
 </form>
 </div>

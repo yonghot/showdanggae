@@ -104,26 +104,25 @@ $(document).ready(function() {
 	var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //비밀번호
 
 
-			$("#id").keyup(function() {
+			$("#id").keyup(function(){
 			var id = $(":input[name=member_id]").val();
 			var idComp = $(":input[name=member_id]").val().trim();
 			
-							/* if (idComp.length<6||idComp.length>12) {
-							$("#checkResult").html("6자이상 12자이하만 가능합니다");
-								return false;
-							}else if(!RegexId.test($.trim($("#id").val()))){
-								$("#checkResult").html("한글, 특수문자 불가");
-								return false;
-							}
-							//alert($("#id").serialize());
-							return false;
-							}  */
-							
+
+				if (idComp.length<6||idComp.length>12) {
+				$("#checkResult").html("6자이상 12자이하만 가능합니다");
+					return false;
+				}
+				if(!RegexId.test($.trim($("#id").val()))){
+					$("#checkResult").html("한글, 특수문자 불가");
+					return false;
+				}							
 						$.ajax({
 							type:"get",
 							url:"idCheck.do",
 							data: $("#id").serialize(),			
-							dataType:"json",
+
+							
 							 success:function(data){
 								 if(data==""){
 									 $("#checkResult").html("사용가능");
@@ -131,8 +130,8 @@ $(document).ready(function() {
 									 $("#checkResult").html("아이디중복");
 								 }
 							}
-						});
-					});
+						});		
+			});
 
 			$("#password").keyup(function() {
 				var passwordComp = $(":input[name=password]").val();
@@ -159,19 +158,9 @@ $(document).ready(function() {
 								$("#repassResult").html("비밀번호가 다릅니다!");
 							}else{
 								$("#repassResult").html("인증성공");
-							}
-
-							
+							}						
+					});
 						});
-	
-				
-
-
-		
-						
-						
-
-			});
 	
 </script>
 
@@ -194,7 +183,7 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<form name="registerForm" class="form-horizontal text-left"
 								role="form" id="registerForm"
-								action="${initParam.root}auth_register.do">
+								action="${initParam.root}register.do">
 
 								<div class="form-group">
 									<div class="col-sm-2">
@@ -213,7 +202,6 @@ $(document).ready(function() {
 									</div>
 									<div class="col-sm-4">
 										<input type="password" class="form-control" name="password"
-										
 											id="password" placeholder="영문,숫자,특수문자 조합 8자리~20자리 이내 "> <span
 											id="passResult"></span>
 									</div>

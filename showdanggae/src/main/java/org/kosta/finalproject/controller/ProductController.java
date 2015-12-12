@@ -169,16 +169,18 @@ public class ProductController {
 	@RequestMapping("beforeGoingUpdateProduct.do")
 	public ModelAndView beforeGoingUpdateProduct(int product_id) throws Exception {
 		ModelAndView mv = new ModelAndView("product_updateProduct");
-		
 		mv.addObject("itemList", productService.getItemList());
 		mv.addObject("productInfo", productService.showProductContent(product_id));
-		
 		return mv;
 	}
 	
 	// updateProduct
 	@RequestMapping("updateProduct.do")
 	public ModelAndView updateProduct(int product_id, ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
+		
+		System.out.println(slvo);
+		System.out.println(evo);
+		
 		productService.updateProduct(product_id, pvo, slvo, evo);
 		return new ModelAndView("redirect:moveToUpdateOkWithProductId.do?product_id="+product_id);
 	}

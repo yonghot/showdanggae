@@ -38,7 +38,7 @@ create table item (
 -- seller_link
 drop table seller_link cascade constraint;
 create table seller_link (
-	link varchar2(100) not null,
+	link varchar2(300) not null,
 	product_id number not null,
 	price number not null,
 	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id),

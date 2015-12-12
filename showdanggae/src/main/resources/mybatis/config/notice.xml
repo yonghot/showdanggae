@@ -10,9 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 		<select id="noticeList" resultType="nvo">
-		select no,TITLE,writer,password,content,hit,to_char(writeDate,'YYYY-MM-DD') as writeDate from(
-select no,TITLE,writer,password,content,hit,writeDate,ceil(rownum/5) as page from(
-select no,TITLE,writer,password,content,hit,writeDate from noticeboard order by no desc)) where page=#{value}
+		select no,TITLE,content,hit,to_char(writeDate,'YYYY-MM-DD') as writeDate from(
+select no,TITLE,content,hit,writeDate,ceil(rownum/5) as page from(
+select no,TITLE,content,hit,writeDate from noticeboard order by no desc)) where page=#{value}
 		
 
 	</select>
@@ -23,15 +23,17 @@ select no,TITLE,writer,password,content,hit,writeDate from noticeboard order by 
 	
 	
 	<select id="noticeContent" resultType="nvo">
-	select no,TITLE,writer,password,content,hit,writeDate from noticeboard where no=#{value}
+	select no,TITLE,content,hit,writeDate from noticeboard where no=#{value}
 	</select>
 	
 <insert id="write"  parameterType="nvo">
+
 <selectKey keyProperty="no" resultType="int" order="BEFORE">
 SELECT notice_seq.nextval from dual
+
 </selectKey>  
-insert into noticeboard(no,TITLE,writer,password,content,hit,writeDate) 
-values(#{no},#{title},#{writer},'1234',#{content},0,SYSDATE)
+insert into noticeboard(no,title,writer,content,writeDate) 
+values(#{no},#{title},#{writer},#{content},SYSDATE)
 </insert>
 
  <update id="update" parameterType="nvo">
@@ -41,7 +43,6 @@ values(#{no},#{title},#{writer},'1234',#{content},0,SYSDATE)
  <delete id="selectDelete">
  delete from noticeboard where no=#{value}
  </delete>
- 
 
  </mapper>
  

@@ -4,30 +4,27 @@
 <script type="text/javascript">
 
      $(document).ready(function(){
-    
-    	 
-     	$("#show").click(function(){
- 			 var mno=$(this).children().eq(0).val();		
- 			var member_id=$(":input[name=member_id]").val(); 
-	
+     	$("tr").click(function(){
+ 			/* var member_id=$(":input[name=member_id]").val(); 
+ 			var mno=$(this).children().eq(2).children().eq(1).val(); 	 */
  			$.ajax({
 				type:"get",
-				url:"auth_messageBoxContent.do?mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
-				//data: "mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
+				url:"auth_messageBoxContent.do?mno=" +$(this).children().eq(2).children().eq(1).val() + "&member_id=" +$(":input[name=member_id]").val(),
+				dataType:"json",
 				success:function(data){
-					alert(data.msvo);
+					
 					  if(data!=""){	
 						  $('.modal').modal({
-		                      remote :  $("#massage").html(data) 
+		                       remote :   $("#massage_title").html(data.title),
+		                       remote :   $("#massage_sender").html(data.sender),
+		                       remote :   $("#message-text").html(data.message)
 		                });
 						 
 						  
 			            }
 				}
 			});
-/*  			 window.open("${initParam.root}auth_messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="
- 					 +mno,"popup",
-			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200");  */
+
  
      	});
      	 
@@ -55,18 +52,15 @@ th,td { font-size: 10pt; line-height: 160%; }
     	</tr>
     	<c:forEach var="msvo" items="${requestScope.mlist.list}">	
     	<tr>
-    		<td> ${msvo.spand_name }</td>
+    		<td> ${msvo.sender }</td>
     		<td>${msvo.title }</td>
     		<td> 
-		    		<span class=shorttitle>
-		    		<a id="show">${msvo.message}
-		    		<input type="hidden" value="${msvo.mno}">
-		    		<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> 
-		    		</a>
-		    		</span>
+			<span class=shorttitle>${msvo.message}</span><input type="hidden"  name="mno" value="${msvo.mno}">
     		</td>     	
+
+    	
     		
-    		<td> ${msvo.spand_date }</td>
+    		<td> ${msvo.send_date }</td>
     		<td>
   				<c:choose>
 					<c:when test="${msvo.read>0}">
@@ -80,6 +74,9 @@ th,td { font-size: 10pt; line-height: 160%; }
     	<tr>
     	</c:forEach>		
     </table>
+    
+<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> 
+
     </form>
     
  
@@ -107,7 +104,7 @@ th,td { font-size: 10pt; line-height: 160%; }
 	
 </div>
 
-																								<!-- 	dialog  -->
+																								
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
 aria-hidden="true">
   <div class="modal-dialog">
@@ -119,28 +116,24 @@ aria-hidden="true">
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="control-label">title:</label>
-             	<div class="modal-title" >
-             		<span id="massage"></span>
-           				
+            <label for="recipient-name" class="control-label">title: <span id="massage_title"></span></label>
+             	<div class="modal-title" >           	
     		 	 </div>
           </div>
                     <div class="form-group">
-            <label for="recipient-name" class="control-label">보낸사람:</label>
+            <label for="recipient-name" class="control-label">보낸사람:<span id="massage_sender"></span></label>
              	<div class="modal-sender">
-           				
     		 	 </div>
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">내용:</label>
             <div class="modal-message"></div>
-            <textarea class="form-control" id="message-text"></textarea>
+            <textarea class="form-control" id="message-text" readonly="readonly"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
       </div>
     </div>
   </div>

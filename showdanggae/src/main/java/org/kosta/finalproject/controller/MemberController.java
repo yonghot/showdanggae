@@ -53,7 +53,7 @@ public class MemberController {
 		return vo;
 	}
 	
-	@RequestMapping("auth_register.do")
+	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo){
 
 		MemberVO insertVO=memberService.register(vo);
@@ -86,7 +86,7 @@ public class MemberController {
 			MemberVO admin=memberService.adminlogin(vo);
 			if(admin!=null){		
 				HttpSession session = request.getSession(true);			
-				session.setAttribute("managerlogin", admin);
+				session.setAttribute("mvo", admin);
 				return new ModelAndView("home");
 			}			
 			return new ModelAndView("member_loginfail");
@@ -239,11 +239,11 @@ public class MemberController {
 	 */
 	@RequestMapping("auth_findMemberById.do")
 	@ResponseBody
-	public List<MemberVO> findMemberById(String member_id, String sessionId) throws Exception{
+	public ModelAndView findMemberById(String member_id, String sessionId) throws Exception{
 		System.out.println(member_id+" "+sessionId);
 		List<MemberVO> list = memberService.findMemberById(member_id, sessionId);
-		//return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
-		return list;
+		return new ModelAndView("follow_findbyid", "mvoList", memberService.findMemberById(member_id, sessionId));
+		//return list;
 	}
 	
 	/**

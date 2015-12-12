@@ -154,7 +154,7 @@
 		<div class="col-md-6">
 			<div class="thumbnail">
 				<a href="auth_hit.do?product_id=${list.product_id}"> <img
-					src="http://cfile28.uf.tistory.com/image/2113AC3755228C8F163A5B"
+					src="img/no_image.png"
 					class="img-responsive">
 				</a>
 				<div class="caption" align="center">

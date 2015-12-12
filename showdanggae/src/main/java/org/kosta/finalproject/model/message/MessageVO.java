@@ -3,9 +3,9 @@ package org.kosta.finalproject.model.message;
 public class MessageVO {
 	private String member_id;
 	private String message;
-	private String spand_name;
+	private String sender;
 	private String title;
-	private String spand_date;
+	private String send_date;
 	private int mno;
 	private int read;
 
@@ -14,17 +14,18 @@ public class MessageVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MessageVO(String member_id, String message, String spand_name,
-			String title, String spand_date, int mno, int read) {
+	public MessageVO(String member_id, String message, String sender,
+			String title, String send_date, int mno, int read) {
 		super();
 		this.member_id = member_id;
 		this.message = message;
-		this.spand_name = spand_name;
+		this.sender = sender;
 		this.title = title;
-		this.spand_date = spand_date;
+		this.send_date = send_date;
 		this.mno = mno;
 		this.read = read;
 	}
+
 	public String getMember_id() {
 		return member_id;
 	}
@@ -41,12 +42,12 @@ public class MessageVO {
 		this.message = message;
 	}
 
-	public String getSpand_name() {
-		return spand_name;
+	public String getSender() {
+		return sender;
 	}
 
-	public void setSpand_name(String spand_name) {
-		this.spand_name = spand_name;
+	public void setSender(String sender) {
+		this.sender = sender;
 	}
 
 	public String getTitle() {
@@ -57,12 +58,12 @@ public class MessageVO {
 		this.title = title;
 	}
 
-	public String getSpand_date() {
-		return spand_date;
+	public String getSend_date() {
+		return send_date;
 	}
 
-	public void setSpand_date(String spand_date) {
-		this.spand_date = spand_date;
+	public void setSend_date(String send_date) {
+		this.send_date = send_date;
 	}
 
 	public int getMno() {
@@ -84,9 +85,10 @@ public class MessageVO {
 	@Override
 	public String toString() {
 		return "MessageVO [member_id=" + member_id + ", message=" + message
-				+ ", spand_name=" + spand_name + ", title=" + title
-				+ ", spand_date=" + spand_date + ", mno=" + mno + ", read="
-				+ read + "]";
+				+ ", sender=" + sender + ", title=" + title + ", send_date="
+				+ send_date + ", mno=" + mno + ", read=" + read + "]";
 	}
+
+	
 
 }
