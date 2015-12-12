@@ -29,17 +29,10 @@ select no,TITLE,content,hit,writeDate from noticeboard order by no desc)) where 
 <insert id="write" parameterType="nvo">
 
 <selectKey keyProperty="no" resultType="int" order="BEFORE">
-<<<<<<< HEAD
 	SELECT notice_seq.nextval from dual
-	</selectKey>  
+</selectKey>  
 	insert into noticeboard(no,title,writer,content,writeDate) 
 	values(#{no},#{title},#{writer},#{content},SYSDATE)
-=======
-SELECT notice_seq.nextval from dual
-</selectKey>  
-insert into noticeboard(no,title,writer,content,time_post) 
-values(#{no},#{title},#{writer},#{content},SYSDATE)
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 </insert>
 
  <update id="update" parameterType="nvo">
