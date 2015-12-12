@@ -38,7 +38,7 @@ public class MessageController {
 
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
-		System.out.println(vo);
+	
 		vo.setRead(0);
 		messageService.sendMessage(vo);
 		return new ModelAndView("popup/message_ok");
@@ -56,7 +56,7 @@ public class MessageController {
 	@ResponseBody
 	public MessageVO messageBoxContent(MessageVO vo) {
 		MessageVO msvo = messageService.MyMessageShowPopUp(vo);
-		System.out.println(msvo);
+
 		return msvo;
 	}
 
