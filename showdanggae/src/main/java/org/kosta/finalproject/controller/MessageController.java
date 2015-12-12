@@ -56,12 +56,12 @@ public class MessageController {
 
 	@RequestMapping("auth_messageBoxContent.do")
 	@ResponseBody
-	public HashMap<String, MessageVO> messageBoxContent(MessageVO vo) {
-		System.out.println("들어온거" + vo.getMember_id());
+	public MessageVO messageBoxContent(MessageVO vo) {
+		
 		MessageVO msvo = messageService.MyMessageShowPopUp(vo);
-		HashMap<String, MessageVO> map = new HashMap<String, MessageVO>();
-		map.put("msvo",msvo);
-		return map;
+		System.out.println(msvo);
+
+		return msvo;
 	}
 
 	@RequestMapping("messageRead.do")
