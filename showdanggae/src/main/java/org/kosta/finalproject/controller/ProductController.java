@@ -35,17 +35,27 @@ public class ProductController {
 	}
 	
 	// 로그인 상태일때, 메인 카테고리로 부터 카테고리를 추가 할 수 있다.
-	// 상품정보 추가는 용호.
 	// 이 때, 3개의 카테고리 까지만 추가 가능하다.(3개까지 추가가능 옵션은 보류)
 	@ResponseBody
 	@RequestMapping(value = "auth_addCategory.do", method = RequestMethod.POST)
 	public List<CategoryVO> addCategory(String category, String member_id) {
-			categoryService.addMyCategory(category, member_id);
-			List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
-			System.out.println(member_id+" "+lvo);
-			return lvo;
+		System.out.println(category);
+		categoryService.addMyCategory(category, member_id);
+		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
+		return lvo;
 	}
-	
+	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다. 
+	//갱신된 카테고리 정보를 반환한다.
+	@ResponseBody
+	@RequestMapping(value = "auth_deleteProductListAndCategory.do", method = RequestMethod.POST)
+	public List<CategoryVO> deleteProductListAndCategory(int category_id, String member_id) {
+		System.out.println(category_id);
+		//productService.deleteProductList(category_id);
+		categoryService.deleteCategory(category_id);
+		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
+		return lvo;
+	}
+
 	// 나의 해당 카테고리를 지운다.
 		@RequestMapping("deleteCategory.do")
 		public ModelAndView deleteCategory(int category_id,
@@ -57,18 +67,6 @@ public class ProductController {
 			return new ModelAndView("login");
 		}
 	
-	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다.
-	@RequestMapping("deleteProductListAndCategory.do")
-	public ModelAndView deleteProductListAndCategory(int category_id,
-			HttpServletRequest request) {
-			HttpSession session = request.getSession(false);
-			if (session.getAttribute("mvo") != null) {
-				productService.deleteProductList(category_id);
-				categoryService.deleteCategory(category_id);
-			}
-			return new ModelAndView("login");
-		}
-
 	 @RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST) 
 	 public ModelAndView AjaxMainCategoryList(String member_id) { 
 	 return new ModelAndView("auth_ajaxMemberCategoryList"); 

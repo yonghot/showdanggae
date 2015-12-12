@@ -50,7 +50,7 @@ create table item (
 
 drop table seller_link cascade constraint;
 create table seller_link (
-	link varchar2(00) not null,
+	link varchar2(300) not null,
 	product_id number not null,
 	price number not null,
 	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id),
@@ -188,18 +188,21 @@ insert into item(item) values('디자인');
 insert into item(item) values('AS');
 
 
-insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
+insert into noticeboard(no,TITLE,writer,content,writeDate) 
+values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
+insert into noticeboard(no,TITLE,writer,content,writeDate)
+values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
+insert into noticeboard(no,TITLE,writer,content,writeDate) 
+values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
+insert into noticeboard(no,TITLE,writer,content,writeDate) 
+values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
+insert into noticeboard(no,TITLE,writer,content,writeDate) 
+values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
+insert into noticeboard(no,TITLE,writer,content,writeDate) 
+values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
 
 
+
 insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
 insert into qnaboard(no, member_id, title, writer, content, writeDate) 
@@ -214,17 +217,15 @@ insert into qnaboard(no, member_id, title, writer, content, writeDate)
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
 
 
-INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
+INSERT INTO MESSAGE(member_Id,message,sender,title,send_date,mno)
 values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
-INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
+INSERT INTO MESSAGE(member_Id,message,sender,title,send_date,mno)
 values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
-INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
+INSERT INTO MESSAGE(member_Id,message,sender,title,send_date,mno)
 values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
 
 
 insert into follow(following_date,following,follower) values(sysdate,'java1','java');
-
-insert into member_category(category_id, category, member_id) values(member_category_seq.nextval, '카메라', 'java');
 
 
 
