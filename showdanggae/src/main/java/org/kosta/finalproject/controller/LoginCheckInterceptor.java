@@ -36,7 +36,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		if(session==null||session.getAttribute("mvo")==null){
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('세션이 끊겻습니다 다시로그인 해주세요');");
+			out.println("<script>alert('세션이 끊겼습니다 다시 로그인 해주세요!');");
 			out.println("location.href='member_login.do';</script>");
 			out.close();
 			//printwriter.print("<script>alert('로그인 해주세요.');</script>");
