@@ -50,7 +50,7 @@ create table item (
 
 drop table seller_link cascade constraint;
 create table seller_link (
-	link varchar2(300) not null,
+	link varchar2(00) not null,
 	product_id number not null,
 	price number not null,
 	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id),
@@ -223,11 +223,7 @@ values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message
 
 insert into follow(following_date,following,follower) values(sysdate,'java1','java');
 
-insert into member_category(category_id, category, member_id) 
-	 		values(member_category_seq.nextval, '카메라', 'java');
-select * from member_category;
-select * from main_category;
-delete from member_category;
+insert into member_category(category_id, category, member_id) values(member_category_seq.nextval, '카메라', 'java');
 
 
 

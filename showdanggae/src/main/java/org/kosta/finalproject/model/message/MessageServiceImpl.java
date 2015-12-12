@@ -21,7 +21,6 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public void sendMessage(MessageVO vo) {
 		messageDAO.sendMessage(vo);
-		
 	}
 
 	@Override
