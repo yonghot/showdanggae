@@ -6,28 +6,31 @@
      $(document).ready(function(){
     
     	 
-     	$("#show").click(function(){
- 			 var mno=$(this).children().eq(0).val();		
+     	$("tr").click(function(){
  			var member_id=$(":input[name=member_id]").val(); 
+ 		
+ 				var id = $(this).find('td.hidden').html();
+ 			  alert(id);
 	
  			$.ajax({
 				type:"get",
 				url:"auth_messageBoxContent.do?mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
 				//data: "mno=" + $(this).children().eq(0).val() + "&member_id=" +$(":input[name=member_id]").val(),
+				dataType:"json",
 				success:function(data){
-					alert(data.msvo);
+					alert(data.title);
 					  if(data!=""){	
 						  $('.modal').modal({
-		                      remote :  $("#massage").html(data) 
+		                       remote :   $("#massage_title").html(data.title),
+		                       remote :   $("#massage_sender").html(data.spand_name),
+		                       remote :   $("#message-text").html(data.message)
 		                });
 						 
 						  
 			            }
 				}
 			});
-/*  			 window.open("${initParam.root}auth_messageBoxContent.do?member_id=${sessionScope.mvo.member_id}&mno="
- 					 +mno,"popup",
-			"resizable=true,toolbar=no,width=300,height=300,left=200,top=200");  */
+
  
      	});
      	 
@@ -58,13 +61,9 @@ th,td { font-size: 10pt; line-height: 160%; }
     		<td> ${msvo.spand_name }</td>
     		<td>${msvo.title }</td>
     		<td> 
-		    		<span class=shorttitle>
-		    		<a id="show">${msvo.message}
-		    		<input type="hidden" value="${msvo.mno}">
-		    		<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> 
-		    		</a>
-		    		</span>
+<span class=shorttitle><a>${msvo.message}<input type="hidden"  name="mno" value="${msvo.mno}"></a></span>
     		</td>     	
+    	
     		
     		<td> ${msvo.spand_date }</td>
     		<td>
@@ -80,6 +79,9 @@ th,td { font-size: 10pt; line-height: 160%; }
     	<tr>
     	</c:forEach>		
     </table>
+    
+<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> 
+
     </form>
     
  
@@ -119,22 +121,19 @@ aria-hidden="true">
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="control-label">title:</label>
-             	<div class="modal-title" >
-             		<span id="massage"></span>
-           				
+            <label for="recipient-name" class="control-label">title: <span id="massage_title"></span></label>
+             	<div class="modal-title" >           	
     		 	 </div>
           </div>
                     <div class="form-group">
-            <label for="recipient-name" class="control-label">보낸사람:</label>
+            <label for="recipient-name" class="control-label">보낸사람:<span id="massage_sender"></span></label>
              	<div class="modal-sender">
-           				
     		 	 </div>
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">내용:</label>
             <div class="modal-message"></div>
-            <textarea class="form-control" id="message-text"></textarea>
+            <textarea class="form-control" id="message-text" readonly="readonly"></textarea>
           </div>
         </form>
       </div>

@@ -13,7 +13,7 @@
     <title>쇼당개 삼년이면 핑월을 읊는다</title>
 </head>
 <body>
-	<div class="wrap">
+	<div class="wrap" style="background-color: #F9F9F1;">
 	    <div id="header"><tiles:insertAttribute name="header"/></div>
 	    <div class="section">
 	    	<div class="container">
