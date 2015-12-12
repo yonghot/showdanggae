@@ -2,13 +2,13 @@ drop table message;
 
 create table message (
 	mno number primary key,
-	member_Id varchar2(100),
+	member_id varchar2(100),
 	message CLOB not null,
-	spand_name varchar2(100) not null,
+	sender varchar2(100) not null,
 	title varchar2(100) not null,
-	spand_date DATE not null,
+	send_date DATE not null,
 	read number default 0,
-	CONSTRAINT member_Id foreign KEY(member_Id) references member(member_Id)
+	constraint fk_message_member_id foreign KEY(member_id) references member(member_id)
 );
 
 create sequence message_seq;
