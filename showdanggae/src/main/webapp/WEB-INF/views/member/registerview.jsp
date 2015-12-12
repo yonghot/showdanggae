@@ -116,11 +116,9 @@ $(document).ready(function() {
 				if(!RegexId.test($.trim($("#id").val()))){
 					$("#checkResult").html("한글, 특수문자 불가");
 					return false;
-				}			
-						
+				}							
 						$.ajax({
 							type:"get",
-
 							url:"idCheck.do",
 							data: $("#id").serialize(),			
 
@@ -134,7 +132,6 @@ $(document).ready(function() {
 							}
 						});		
 			});
-					});
 
 			$("#password").keyup(function() {
 				var passwordComp = $(":input[name=password]").val();
@@ -162,6 +159,7 @@ $(document).ready(function() {
 							}else{
 								$("#repassResult").html("인증성공");
 							}						
+					});
 						});
 	
 </script>
@@ -185,7 +183,7 @@ $(document).ready(function() {
 						<div class="col-md-12">
 							<form name="registerForm" class="form-horizontal text-left"
 								role="form" id="registerForm"
-								action="${initParam.root}auth_register.do">
+								action="${initParam.root}register.do">
 
 								<div class="form-group">
 									<div class="col-sm-2">
@@ -204,7 +202,6 @@ $(document).ready(function() {
 									</div>
 									<div class="col-sm-4">
 										<input type="password" class="form-control" name="password"
-										
 											id="password" placeholder="영문,숫자,특수문자 조합 8자리~20자리 이내 "> <span
 											id="passResult"></span>
 									</div>
