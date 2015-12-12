@@ -5,6 +5,7 @@ public class NoticeVO {
 	private String title; 
 	private String content;
 	private int hit;
+	private String writer;
 	private String time_post;
 	
 	public NoticeVO() {
@@ -13,12 +14,13 @@ public class NoticeVO {
 	}
 
 	public NoticeVO(int no, String title, String content, int hit,
-			String time_post) {
+			String writer, String time_post) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
+		this.writer = writer;
 		this.time_post = time_post;
 	}
 
@@ -54,6 +56,14 @@ public class NoticeVO {
 		this.hit = hit;
 	}
 
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
 	public String getTime_post() {
 		return time_post;
 	}
@@ -65,6 +75,9 @@ public class NoticeVO {
 	@Override
 	public String toString() {
 		return "NoticeVO [no=" + no + ", title=" + title + ", content="
-				+ content + ", hit=" + hit + ", time_post=" + time_post + "]";
+				+ content + ", hit=" + hit + ", writer=" + writer
+				+ ", time_post=" + time_post + "]";
 	}
+
+	
 }
