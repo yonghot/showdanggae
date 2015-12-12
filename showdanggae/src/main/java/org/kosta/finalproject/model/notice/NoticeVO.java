@@ -6,7 +6,7 @@ public class NoticeVO {
 	private String content;
 	private int hit;
 	private String writer;
-	private String time_post;
+	private String writeDate;
 	
 	public NoticeVO() {
 		super();
@@ -14,14 +14,14 @@ public class NoticeVO {
 	}
 
 	public NoticeVO(int no, String title, String content, int hit,
-			String writer, String time_post) {
+			String writer, String writeDate) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
 		this.writer = writer;
-		this.time_post = time_post;
+		this.writeDate = writeDate;
 	}
 
 	public int getNo() {
@@ -64,19 +64,19 @@ public class NoticeVO {
 		this.writer = writer;
 	}
 
-	public String getTime_post() {
-		return time_post;
+	public String getWriteDate() {
+		return writeDate;
 	}
 
-	public void setTime_post(String time_post) {
-		this.time_post = time_post;
+	public void setWriteDate(String writeDate) {
+		this.writeDate = writeDate;
 	}
 
 	@Override
 	public String toString() {
 		return "NoticeVO [no=" + no + ", title=" + title + ", content="
 				+ content + ", hit=" + hit + ", writer=" + writer
-				+ ", time_post=" + time_post + "]";
+				+ ", writeDate=" + writeDate + "]";
 	}
 
 	

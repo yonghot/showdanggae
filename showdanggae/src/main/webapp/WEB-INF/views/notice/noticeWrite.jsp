@@ -26,7 +26,7 @@
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="writer" size="8" value="${sessionScope.managerlogin.member_name}" readonly="readonly"></td>  
+					<td><input type="text" name="writer" size="8" value="${sessionScope.mvo.member_name}" readonly="readonly"></td>  
 				</tr>
 				<tr>
 					<td colspan="4" align="left">
