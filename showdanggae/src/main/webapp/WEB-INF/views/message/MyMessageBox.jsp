@@ -5,8 +5,7 @@
 
      $(document).ready(function(){
      	$("tr").click(function(){
- 			/* var member_id=$(":input[name=member_id]").val(); 
- 			var mno=$(this).children().eq(2).children().eq(1).val(); 	 */
+ 		
  			$.ajax({
 				type:"get",
 				url:"auth_messageBoxContent.do?mno=" +$(this).children().eq(2).children().eq(1).val() + "&member_id=" +$(":input[name=member_id]").val(),
