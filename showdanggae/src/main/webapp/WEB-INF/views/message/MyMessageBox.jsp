@@ -56,12 +56,18 @@ th,td { font-size: 10pt; line-height: 160%; }
     	</tr>
     	<c:forEach var="msvo" items="${requestScope.mlist.list}">	
     	<tr>
-    		<td> ${msvo.spand_name }</td>
+    		<td> ${msvo.sender }</td>
     		<td>${msvo.title }</td>
     		<td> 
 			<span class=shorttitle>${msvo.message}</span><input type="hidden"  name="mno" value="${msvo.mno}">
     		</td>     	
+<<<<<<< HEAD
     		<td> ${msvo.spand_date }</td>
+=======
+    	
+    		
+    		<td> ${msvo.send_date }</td>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
     		<td>
   				<c:choose>
 					<c:when test="${msvo.read>0}">
