@@ -36,11 +36,11 @@
 					});
 				$("#CategoryView").html(newInfo);
 				}
-			
-		} //success
+			} //success
 		}); //ajax
 		
-		}); //#deleteCateroryBtn
+		}); //#addBtn
+		
 		//삭제 버튼을 누르면 카테고리가 삭제된다. 하위 상품까지 함께 삭제 된다. 넘겨줄 값은 해당 category_id + member_id
 		//아래코드 대신에, 동적으로 생성된 요소 역시 이벤트 작동이 먹히게 하기 위해 on메서드를 사용한다.  
 		$("#deleteCateroryBtn").click(function() {
@@ -78,10 +78,13 @@
 			}else{
 				return false;
 			} //confirm else
-		
 		}); //#deleteCateroryBtn click
+	
 	}); //ready
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
+	
+	
+	
 </script>
 
 <div class="col-md-8">
@@ -140,23 +143,20 @@
   <ul class="nav nav-tabs">
   <c:forEach items="${requestScope.memberCategoryList }" var="clist">
   <li role="presentation" class="active" value="${clist.category_id}"><a href="#">${clist.category}</a></li>
+  
   </c:forEach>
  </ul>
-	
 	<hr>
+	
 	<div align="right">
 		<a href="auth_beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
-	
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6">
 			<div class="thumbnail">
-				<a href="auth_hit.do?product_id=${list.product_id}"> <img
-					src="img/no_image.png"
-					class="img-responsive">
-				</a>
+				<a href="auth_hit.do?product_id=${list.product_id}"> <img src="img/no_image.png" class="img-responsive"></a>
 				<div class="caption" align="center">
 					<h3>${list.product_name}</h3>
 				</div>

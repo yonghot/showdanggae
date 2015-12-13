@@ -202,7 +202,6 @@ insert into noticeboard(no,TITLE,writer,content,writeDate)
 values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
 
 
-
 insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
 insert into qnaboard(no, member_id, title, writer, content, writeDate) 
