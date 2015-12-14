@@ -99,7 +99,7 @@
 					/* if(data!=""){				
 						for(var i=0; i<data.length;i++){	
 							alert(data[i].member_id);
-<<<<<<< HEAD
+
 							index += data[i].member_id;
 						}
 						$("#searchIdView").html(index);
@@ -107,14 +107,6 @@
 						$("#searchIdView").html(index);
 					} */
 				}		
-=======
-							index += "<tr><td>"+data[i].member_id+"</td></tr>";
-						}		
-						
-					}
-						$("#searchIdView1").html(index);    
-					}		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			});//ajax  
 	      }   
 	   });
@@ -140,17 +132,11 @@
 					if(data!=""){
 						index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
 						for(var i=0; i<data.length;i++){						
-<<<<<<< HEAD
-							index += "<tbody id='followingView'><tr><td><a href=''>"+data[i].following+"</a></td></tr>";
-						 }
-						index+="<tbody></table>";
-=======
 							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
 							index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 							"<form><input type='hidden' class='followingName' value="+data[i].following+"></form></span></a></td></tr>";
 						}
 						index+="<tbody></table>"
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 							$("#searchIdView1").html(index);
 			  	   }else{
 			  		 $("#searchIdView1").html("");
@@ -209,12 +195,7 @@
 	  	           
 	         }//callback         
 	      });//ajax
-<<<<<<< HEAD
 	} 
-=======
-	      	
-	}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 </script>
 
 <div class="col-md-2" align="center">
@@ -246,28 +227,6 @@
 	</c:if>
 
 
-<<<<<<< HEAD
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a id="alarm" class="collapsed"  data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" >
-          
-        </a>
-      </h4>
-    		  <div id="alarmcount"></div>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body" id="realarm">
-      </div>
-      </div>
-    </div>
-</div>
-  </div>
-</div> 
-=======
 	<div data-spy="affix" data-offset-top="200">
 		<div class="panel-group" id="accordion" role="tablist"
 			aria-multiselectable="true">
@@ -314,7 +273,6 @@
 		</div>
 	</div>
 </div>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
 <br>
 <br>
