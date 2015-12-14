@@ -1,207 +1,208 @@
 
--- 테이블 생성 순서 : member -> main_category -> member_category ->  product -> item -> 나머지
-drop table member cascade constraint;  -- 제약조건 있는 테이블은 이렇게 삭제...하면 제약조건들이 없어져서 되는거다
-create table member(
-	member_id varchar2(100) primary key,
-	password varchar2(100) not null,
-	member_name varchar2(100) not null,
-	email varchar2(100) not null,
-	birthday DATE not null,
-	report number default 0
+-- 테이블 생성 순서 : MEMBER -> MAIN_CATEGORY -> MEMBER_CATEGORY ->  PRODUCT -> ITEM -> 나머지
+DROP TABLE MEMBER CASCADE CONSTRAINT;  -- 제약조건 있는 테이블은 이렇게 삭제...하면 제약조건들이 없어져서 되는거다
+CREATE TABLE MEMBER(
+	MEMBER_ID VARCHAR2(100) PRIMARY KEY,
+	PASSWORD VARCHAR2(100) NOT NULL,
+	MEMBER_NAME VARCHAR2(100) NOT NULL,
+	EMAIL VARCHAR2(100) NOT NULL,
+	BIRTHDAY DATE NOT NULL,
+	REPORT NUMBER DEFAULT 0
 );
 
-drop table main_category cascade constraint;
-create table main_category (
-	category varchar2(100) primary key
+DROP TABLE MAIN_CATEGORY CASCADE CONSTRAINT;
+CREATE TABLE MAIN_CATEGORY (
+	CATEGORY VARCHAR2(100) PRIMARY KEY
 );
 
-drop table member_category cascade constraint;
-create table member_category (
-	category_id number primary key,
-	category varchar2(100) not null,
-	member_id varchar2(100) not null,
-	constraint fk_category_main foreign key(category) references main_category(category),
-	constraint fk_category_member_id foreign key(member_id) references member(member_id)
+DROP TABLE MEMBER_CATEGORY CASCADE CONSTRAINT;
+CREATE TABLE MEMBER_CATEGORY (
+	CATEGORY_ID NUMBER PRIMARY KEY,
+	CATEGORY VARCHAR2(100) NOT NULL,
+	MEMBER_ID VARCHAR2(100) NOT NULL,
+	CONSTRAINT FK_CATEGORY_MAIN FOREIGN KEY(CATEGORY) REFERENCES MAIN_CATEGORY(CATEGORY),
+	CONSTRAINT FK_CATEGORY_MEMBER_ID FOREIGN KEY(MEMBER_ID) REFERENCES MEMBER(MEMBER_ID)
 );
 
-drop table product cascade constraint;
-create table product (
-	product_id number primary key,
-	category_id number not null,
-	member_id varchar2(100) not null,
-	product_name varchar2(100) not null,
-	likes number default 0,
-	dislikes number default 0,
-	hits number default 0,
-	review clob,
-	review_score number default 0,
-	detail clob,
-	visiblity number default 0,
-	regist_date date not null,
-	constraint fk_product_category_id foreign key(category_id) references member_category(category_id),
-	constraint fk_product_member_id foreign key(member_id) references member(member_id)
+DROP TABLE PRODUCT CASCADE CONSTRAINT;
+CREATE TABLE PRODUCT (
+	PRODUCT_ID NUMBER PRIMARY KEY,
+	CATEGORY_ID NUMBER NOT NULL,
+	MEMBER_ID VARCHAR2(100) NOT NULL,
+	PRODUCT_NAME VARCHAR2(100) NOT NULL,
+	LIKES NUMBER DEFAULT 0,
+	DISLIKES NUMBER DEFAULT 0,
+	HITS NUMBER DEFAULT 0,
+	REVIEW CLOB,
+	REVIEW_SCORE NUMBER DEFAULT 0,
+	DETAIL CLOB,
+	VISIBLITY NUMBER DEFAULT 0,
+	REGIST_DATE DATE NOT NULL,
+	CONSTRAINT FK_PRODUCT_CATEGORY_ID FOREIGN KEY(CATEGORY_ID) REFERENCES MEMBER_CATEGORY(CATEGORY_ID),
+	CONSTRAINT FK_PRODUCT_MEMBER_ID FOREIGN KEY(MEMBER_ID) REFERENCES MEMBER(MEMBER_ID)
 );
 
-drop table item cascade constraint;
-create table item (
-	item varchar2(100) primary key
-);
-
-
-drop table seller_link cascade constraint;
-create table seller_link (
-	link varchar2(300) not null,
-	product_id number not null,
-	price number not null,
-	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id),
-	constraint pk_seller_link primary key (link, product_id)
-);
-
-drop table eval_item cascade constraint;
-create table eval_item (
-	item varchar2(100) not null,
-	product_id number not null,
-	item_point number default 0,
-	constraint fk_eval_item_item foreign key(item) references item(item),
-	constraint fk_eval_itemt_product_id foreign key(product_id) references product(product_id),
-	constraint pk_eval_item primary key (item, product_id)
+DROP TABLE ITEM CASCADE CONSTRAINT;
+CREATE TABLE ITEM (
+	ITEM VARCHAR2(100) PRIMARY KEY
 );
 
 
-drop table noticeboard;
-create table noticeboard(
-	no number primary key,
-	TITLE varchar2(100) not null,
-	writer varchar2(100) not null,
-	content CLOB not null,
-	hit number default 0,
-	writeDate DATE not null
+DROP TABLE SELLER_LINK CASCADE CONSTRAINT;
+CREATE TABLE SELLER_LINK (
+	LINK VARCHAR2(300) NOT NULL,
+	PRODUCT_ID NUMBER NOT NULL,
+	PRICE NUMBER NOT NULL,
+	CONSTRAINT FK_SELLER_LINK_PRODUCT_ID FOREIGN KEY(PRODUCT_ID) REFERENCES PRODUCT(PRODUCT_ID),
+	CONSTRAINT PK_SELLER_LINK PRIMARY KEY (LINK, PRODUCT_ID)
+);
+
+DROP TABLE EVAL_ITEM CASCADE CONSTRAINT;
+CREATE TABLE EVAL_ITEM (
+	ITEM VARCHAR2(100) NOT NULL,
+	PRODUCT_ID NUMBER NOT NULL,
+	ITEM_POINT NUMBER DEFAULT 0,
+	CONSTRAINT FK_EVAL_ITEM_ITEM FOREIGN KEY(ITEM) REFERENCES ITEM(ITEM),
+	CONSTRAINT FK_EVAL_ITEMT_PRODUCT_ID FOREIGN KEY(PRODUCT_ID) REFERENCES PRODUCT(PRODUCT_ID),
+	CONSTRAINT PK_EVAL_ITEM PRIMARY KEY (ITEM, PRODUCT_ID)
 );
 
 
-drop table qnaboard cascade constraint;
-create table qnaboard(
-	no number primary key,
-	title varchar2(100) not null,
-	member_id varchar2(100) not null,
-	writer varchar2(100) not null,
-	content CLOB not null,
-	writeDate DATE not null,
-	viewCount number default 0,
-	ref number default 0, 
-	restep number default 0, 
-	relevel number default 0,
-	total number default 0,
-	CONSTRAINT member_id foreign KEY(member_id) references member(member_id)
-);
-
-drop table qnacomment cascade constraint;
-create table qnacomment(
-	cno number primary key,
-	no number not null,
-	member_name varchar2(100) not null,
-	member_id VARCHAR2(100) not null,
-	replyComment clob not null,
-	commentDate date not null,
-	constraint no foreign KEY(no) references qnaboard(no),
-	constraint fk_qnacomment foreign key(member_id) references member(member_id)
-);
-
-drop table message cascade constraint;
-create table message (
-	mno number primary key,
-	member_id varchar2(100),
-	message CLOB not null,
-	sender varchar2(100) not null,
-	title varchar2(100) not null,
-	send_date DATE not null,
-	read number default 0,
-	constraint fk_message_member_id foreign KEY(member_id) references member(member_id)
+DROP TABLE NOTICEBOARD;
+CREATE TABLE NOTICEBOARD(
+	NO NUMBER PRIMARY KEY,
+	TITLE VARCHAR2(100) NOT NULL,
+	WRITER VARCHAR2(100) NOT NULL,
+	CONTENT CLOB NOT NULL,
+	HIT NUMBER DEFAULT 0,
+	WRITEDATE DATE NOT NULL
 );
 
 
-drop table follow cascade constraint;
-create table follow(
-	following_date DATE not null,
-	following varchar2(100) not null,
-	follower varchar2(100) not null,
-	constraint fk_following_member_id foreign key(following) references member(member_id),
-	constraint fk_follower_member_id foreign key(follower) references member(member_id),
-	constraint pk_follow primary key(following, follower)
+DROP TABLE QNABOARD CASCADE CONSTRAINT;
+CREATE TABLE QNABOARD(
+	NO NUMBER PRIMARY KEY,
+	TITLE VARCHAR2(100) NOT NULL,
+	MEMBER_ID VARCHAR2(100) NOT NULL,
+	WRITER VARCHAR2(100) NOT NULL,
+	CONTENT CLOB NOT NULL,
+	WRITEDATE DATE NOT NULL,
+	VIEWCOUNT NUMBER DEFAULT 0,
+	REF NUMBER DEFAULT 0, 
+	RESTEP NUMBER DEFAULT 0, 
+	RELEVEL NUMBER DEFAULT 0,
+	TOTAL NUMBER DEFAULT 0,
+	CONSTRAINT MEMBER_ID FOREIGN KEY(MEMBER_ID) REFERENCES MEMBER(MEMBER_ID)
+);
+
+DROP TABLE QNACOMMENT CASCADE CONSTRAINT;
+CREATE TABLE QNACOMMENT(
+	CNO NUMBER PRIMARY KEY,
+	NO NUMBER NOT NULL,
+	MEMBER_NAME VARCHAR2(100) NOT NULL,
+	MEMBER_ID VARCHAR2(100) NOT NULL,
+	REPLYCOMMENT CLOB NOT NULL,
+	COMMENTDATE DATE NOT NULL,
+	CONSTRAINT NO FOREIGN KEY(NO) REFERENCES QNABOARD(NO),
+	CONSTRAINT FK_QNACOMMENT FOREIGN KEY(MEMBER_ID) REFERENCES MEMBER(MEMBER_ID)
+);
+
+DROP TABLE MESSAGE CASCADE CONSTRAINT;
+CREATE TABLE MESSAGE (
+	MNO NUMBER PRIMARY KEY,
+	MEMBER_ID VARCHAR2(100),
+	MESSAGE CLOB NOT NULL,
+	SENDER VARCHAR2(100) NOT NULL,
+	TITLE VARCHAR2(100) NOT NULL,
+	SEND_DATE DATE NOT NULL,
+	READ NUMBER DEFAULT 0,
+	CONSTRAINT FK_MESSAGE_MEMBER_ID FOREIGN KEY(MEMBER_ID) REFERENCES MEMBER(MEMBER_ID)
 );
 
 
-drop table interest cascade constraint;
-create table interest (
-	category varchar2(100) not null,
-	member_id varchar2(100) not null,
-	constraint fk_interest_main foreign key(category) references main_category(category),
-	constraint fk_interest_member_id foreign key(member_id) references member(member_id),
-	constraint pk_interest primary key (category, member_id)
+DROP TABLE FOLLOW CASCADE CONSTRAINT;
+CREATE TABLE FOLLOW(
+	FOLLOWING_DATE DATE NOT NULL,
+	FOLLOWING VARCHAR2(100) NOT NULL,
+	FOLLOWER VARCHAR2(100) NOT NULL,
+	CONSTRAINT FK_FOLLOWING_MEMBER_ID FOREIGN KEY(FOLLOWING) REFERENCES MEMBER(MEMBER_ID),
+	CONSTRAINT FK_FOLLOWER_MEMBER_ID FOREIGN KEY(FOLLOWER) REFERENCES MEMBER(MEMBER_ID),
+	CONSTRAINT PK_FOLLOW PRIMARY KEY(FOLLOWING, FOLLOWER)
+);
+
+
+DROP TABLE INTEREST CASCADE CONSTRAINT;
+CREATE TABLE INTEREST (
+	CATEGORY VARCHAR2(100) NOT NULL,
+	MEMBER_ID VARCHAR2(100) NOT NULL,
+	CONSTRAINT FK_INTEREST_MAIN FOREIGN KEY(CATEGORY) REFERENCES MAIN_CATEGORY(CATEGORY),
+	CONSTRAINT FK_INTEREST_MEMBER_ID FOREIGN KEY(MEMBER_ID) REFERENCES MEMBER(MEMBER_ID),
+	CONSTRAINT PK_INTEREST PRIMARY KEY (CATEGORY, MEMBER_ID)
 );
 
 
 -- 총 12개 테이블
 ------------------------------------------------------------------------------------------------------------
 
-drop sequence product_seq;
-drop sequence member_category_seq; 
-drop sequence message_seq;
-drop sequence notice_seq;
-drop sequence qna_seq;
-drop sequence qnacomment_seq;
+DROP SEQUENCE PRODUCT_SEQ;
+DROP SEQUENCE MEMBER_CATEGORY_SEQ; 
+DROP SEQUENCE MESSAGE_SEQ;
+DROP SEQUENCE NOTICE_SEQ;
+DROP SEQUENCE QNA_SEQ;
+DROP SEQUENCE QNACOMMENT_SEQ;
 
-create sequence product_seq;
-create sequence member_category_seq; 
-create sequence message_seq;
-create sequence notice_seq;
-create sequence qna_seq;
-create sequence qnacomment_seq;
+CREATE SEQUENCE PRODUCT_SEQ;
+CREATE SEQUENCE MEMBER_CATEGORY_SEQ; 
+CREATE SEQUENCE MESSAGE_SEQ;
+CREATE SEQUENCE NOTICE_SEQ;
+CREATE SEQUENCE QNA_SEQ;
+CREATE SEQUENCE QNACOMMENT_SEQ;
 ------------------------------------------------------------------------------------------------------------
 
-insert into member(member_id, password, member_name, email, birthday) values('java','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
-insert into member(member_id, password, member_name, email, birthday) values('java1','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
-insert into member(member_id, password, member_name, email, birthday) values('java2','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
-insert into member(member_id, password, member_name, email, birthday) values('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
-insert into member(member_id, password, member_name, email, birthday) values('dd','dd','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
-insert into member(member_id, password, member_name, email, birthday) values('admin','1234','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
+INSERT INTO MEMBER(MEMBER_ID, PASSWORD, MEMBER_NAME, EMAIL, BIRTHDAY) VALUES('JAVA','1234','김용호','BLUE@BLUEPRINT.COM', TO_DATE('880307','RRMMDD'));
+INSERT INTO MEMBER(MEMBER_ID, PASSWORD, MEMBER_NAME, EMAIL, BIRTHDAY) VALUES('JAVA1','1234','김용호','BLUE@BLUEPRINT.COM', TO_DATE('880307','RRMMDD'));
+INSERT INTO MEMBER(MEMBER_ID, PASSWORD, MEMBER_NAME, EMAIL, BIRTHDAY) VALUES('JAVA2','1234','김용호','BLUE@BLUEPRINT.COM', TO_DATE('880307','RRMMDD'));
+INSERT INTO MEMBER(MEMBER_ID, PASSWORD, MEMBER_NAME, EMAIL, BIRTHDAY) VALUES('ADMINGALBAGE','1234','관리자','ADMIN@SHOWDANGGAE.COM', TO_DATE('120204','RRMMDD')); 
+INSERT INTO MEMBER(MEMBER_ID, PASSWORD, MEMBER_NAME, EMAIL, BIRTHDAY) VALUES('DD','DD','DD','ASDSDSDIN@SHOWDANGGAE.COM', TO_DATE('120204','RRMMDD')); 
+INSERT INTO MEMBER(MEMBER_ID, PASSWORD, MEMBER_NAME, EMAIL, BIRTHDAY) VALUES('ADMIN','1234','DD','ASDSDSDIN@SHOWDANGGAE.COM', TO_DATE('120204','RRMMDD')); 
+INSERT INTO MEMBER(MEMBER_ID, PASSWORD, MEMBER_NAME, EMAIL, BIRTHDAY) VALUES('LIPCHEL','1234','유서정','LIPCHEL@NAVER.COM', TO_DATE('880307','RRMMDD'));
+
+INSERT INTO MAIN_CATEGORY(CATEGORY) VALUES('노트북');
+INSERT INTO MAIN_CATEGORY(CATEGORY) VALUES('카메라');
+INSERT INTO MAIN_CATEGORY(CATEGORY) VALUES('화장품');
 
 
-insert into main_category(category) values('노트북');
-insert into main_category(category) values('카메라');
-insert into main_category(category) values('화장품');
+INSERT INTO MEMBER_CATEGORY(CATEGORY_ID, CATEGORY, MEMBER_ID) VALUES('1', '노트북','JAVA');
+INSERT INTO MEMBER_CATEGORY(CATEGORY_ID, CATEGORY, MEMBER_ID) VALUES('2', '화장품','JAVA');
+INSERT INTO MEMBER_CATEGORY(CATEGORY_ID, CATEGORY, MEMBER_ID) VALUES('3', '노트북','DD');
+INSERT INTO MEMBER_CATEGORY(CATEGORY_ID, CATEGORY, MEMBER_ID) VALUES('4', '노트북','DD');
 
 
-insert into member_category(category_id, category, member_id) values('1', '노트북','java');
-insert into member_category(category_id, category, member_id) values('2', '화장품','java');
-insert into member_category(category_id, category, member_id) values('3', '노트북','dd');
-insert into member_category(category_id, category, member_id) values('4', '노트북','dd');
+INSERT INTO INTEREST(CATEGORY, MEMBER_ID) VALUES('노트북','JAVA');
+INSERT INTO INTEREST(CATEGORY, MEMBER_ID) VALUES('화장품','JAVA');
+INSERT INTO INTEREST(CATEGORY, MEMBER_ID) VALUES('노트북','DD');
 
 
-insert into interest(category, member_id) values('노트북','java');
-insert into interest(category, member_id) values('화장품','java');
-insert into interest(category, member_id) values('노트북','dd');
+INSERT INTO ITEM(ITEM) VALUES('가성비');
+INSERT INTO ITEM(ITEM) VALUES('디자인');
+INSERT INTO ITEM(ITEM) VALUES('AS');
 
 
-insert into item(item) values('가성비');
-insert into item(item) values('디자인');
-insert into item(item) values('AS');
+INSERT INTO NOTICEBOARD(NO,TITLE,WRITER,CONTENT,WRITEDATE) 
+VALUES(NOTICE_SEQ.NEXTVAL,'공지사항입니다','관리자','방가방가',SYSDATE);
+INSERT INTO NOTICEBOARD(NO,TITLE,WRITER,CONTENT,WRITEDATE)
+VALUES(NOTICE_SEQ.NEXTVAL,'공지사항입니다','관리자','방가방가',SYSDATE);
+INSERT INTO NOTICEBOARD(NO,TITLE,WRITER,CONTENT,WRITEDATE) 
+VALUES(NOTICE_SEQ.NEXTVAL,'공지사항입니다','관리자','방가방가',SYSDATE);
+INSERT INTO NOTICEBOARD(NO,TITLE,WRITER,CONTENT,WRITEDATE) 
+VALUES(NOTICE_SEQ.NEXTVAL,'공지사항입니다','관리자','방가방가',SYSDATE);
+INSERT INTO NOTICEBOARD(NO,TITLE,WRITER,CONTENT,WRITEDATE) 
+VALUES(NOTICE_SEQ.NEXTVAL,'공지사항입니다','관리자','방가방가',SYSDATE);
+INSERT INTO NOTICEBOARD(NO,TITLE,WRITER,CONTENT,WRITEDATE) 
+VALUES(NOTICE_SEQ.NEXTVAL,'공지사항입니다','관리자','방가방가',SYSDATE);
 
 
-insert into noticeboard(no,TITLE,writer,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,content,writeDate)
-values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
-insert into noticeboard(no,TITLE,writer,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',SYSDATE);
-
-
+<<<<<<< HEAD
 insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
 insert into qnaboard(no, member_id, title, writer, content, writeDate) 
@@ -214,21 +215,42 @@ insert into qnaboard(no, member_id, title, writer, content, writeDate)
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
 insert into qnaboard(no, member_id, title, writer, content, writeDate) 
 values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+=======
+
+INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
+VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
+VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
+VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
+VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
+VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
+VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
 
-INSERT INTO MESSAGE(member_Id,message,sender,title,send_date,mno)
-values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
-INSERT INTO MESSAGE(member_Id,message,sender,title,send_date,mno)
-values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
-INSERT INTO MESSAGE(member_Id,message,sender,title,send_date,mno)
-values ('java', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, message_seq.nextval);
+INSERT INTO MESSAGE(MEMBER_ID,MESSAGE,SENDER,TITLE,SEND_DATE,MNO)
+VALUES ('JAVA', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, MESSAGE_SEQ.NEXTVAL);
+INSERT INTO MESSAGE(MEMBER_ID,MESSAGE,SENDER,TITLE,SEND_DATE,MNO)
+VALUES ('JAVA', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, MESSAGE_SEQ.NEXTVAL);
+INSERT INTO MESSAGE(MEMBER_ID,MESSAGE,SENDER,TITLE,SEND_DATE,MNO)
+VALUES ('JAVA', '두번째메세지TEST', '관리자', 'TEST1', SYSDATE, MESSAGE_SEQ.NEXTVAL);
 
 
-insert into follow(following_date,following,follower) values(sysdate,'java1','java');
+INSERT INTO FOLLOW(FOLLOWING_DATE,FOLLOWING,FOLLOWER) VALUES(SYSDATE,'JAVA1','JAVA');
 
 
 
+----팔로우 임의 데이터
 
+INSERT INTO FOLLOW(FOLLOWING_DATE,FOLLOWING,FOLLOWER)
+VALUES(SYSDATE,'LIPCHEL','DD');
+
+INSERT INTO FOLLOW(FOLLOWING_DATE,FOLLOWING,FOLLOWER)
+VALUES(SYSDATE,'LIPCHEL','JAVA1');
 
 
 

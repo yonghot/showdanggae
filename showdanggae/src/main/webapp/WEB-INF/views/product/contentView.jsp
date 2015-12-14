@@ -40,20 +40,32 @@
 		    }
 		}
 		
-		shortenLink = $("#link").text();
 		
-		if($("#link").text().length>=50) {
-			shortenLink = $("#link").text().substring(0, 50) + "...";
+		var linkList = "";
+		for(var i=0;i<4;i++) {
+			
+			//alert("${requestScope.productInfo.slvoList[i].link}");
+			
+			shortenLink = $(".link").text();
+			
+			if($(".link").text().length>=50) {
+				shortenLink = $(".link").text().substring(0, 50) + "...";
+			}
+			
+			$(".price").text(AddComma($(".price").text())+" 원");
+			
+			linkList += "<tr><td><a href='${requestScope.productInfo.slvoList[i].link}'>"+shortenLink+"</a></td>"+
+			"<td>${requestScope.productInfo.slvoList[i].price}</td></tr>"
 		}
 		
-		$("#link").html("<a href='${slvoList.link}'>"+shortenLink+"</a>");
-		$("#price").text(AddComma($("#price").text())+" 원");
+		$("#linkView").html(linkList);
+		
 				
 	});
 
 </script>
 
-<div class="col-md-8">
+<div class="col-md-8" style="background-image: url('img/yellow_notepaper_bg.JPG');">
 	<div class="col-sm-9">
 		<h3 contenteditable="true">상품 보기</h3>
 		<hr>
@@ -84,12 +96,7 @@
 				</div>
 				<div class="col-sm-11">
 					<table class="table table-hover table-condensed">
-						<tbody valign="middle">
-							<c:forEach items="${requestScope.productInfo.slvoList}" var="slvoList">
-								<tr>
-									<td id="link"><a href="${slvoList.link}">${slvoList.link}</a></td><td id="price">${slvoList.price}</td>
-								</tr>
-							</c:forEach>
+						<tbody valign="middle" id="linkView">
 						</tbody>
 					</table>
 				</div>

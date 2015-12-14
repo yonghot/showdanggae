@@ -31,11 +31,7 @@
 	<div class="col-md-8">
    
 	<form id="notice_deleteForm" action="${initParam.root}notice_delete.do">	
-	    <c:if test="${!empty sessionScope.managerlogin}">
-			<!--관리자가 로그인 했을때 -->
 			<h3>공지사항 관리</h3>
-		  <input type="submit"  value="선택 글 삭제"  id="notice_delete" class="btn btn-default">  
-		</c:if>	
 
     <table class="table" id="noticeTable">
 	
@@ -67,15 +63,19 @@
 			</c:forEach>
 		</tbody>					
 	</table><br>
+	    <c:if test="${sessionScope.mvo.member_id=='admingalbage'}">
+			<!--관리자가 로그인 했을때 -->
+<span style="float:right"> <input type="submit"  value="선택 글 삭제"  id="notice_delete"  class="btn btn-info btn-default"></span>
+		</c:if>	
 			</form>	
-	
+	<div style="margin: left;">
 	    <c:if test="${sessionScope.mvo.member_id=='admingalbage'}">
 	<a href="${initParam.root}noticeWriteForm.do">글쓰기</a><br>
 	</c:if>
-	
+</div>
 
 	
-
+<div align="center">
 <c:if test="${requestScope.noticeList.pagingBean.isPreviousPageGroup()}">
 <a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.startPageOfPageGroup-1}">◀ </a>
 </c:if>
@@ -96,6 +96,7 @@
  	<c:if test="${requestScope.noticeList.pagingBean.isNextPageGroup()}">
 	<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.endPageOfPageGroup+1}">▶ </a>
 	</c:if>  
+	</div>
 	
 	
 	<br><br>	

@@ -51,10 +51,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberVO findIdByBirth(MemberVO vo, String email1, String email2){
+	public MemberVO findIdByEmail(MemberVO vo){
+		//MemberVO findIdByEmail(MemberVO vo);
+		String email1=vo.getEmail_id();
+		String email2=vo.getEmail_domain();
 		String email = email1+"@"+email2;
 		vo.setEmail(email);
-		return memberDAO.findIdByBirth(vo);
+		return memberDAO.findIdByEmail(vo);
 	}
 	
 	@Override
@@ -151,12 +154,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public List<MemberVO> findMemberById(String member_id, String sessionId) {
+		System.out.println("서비스영역"+member_id+" "+sessionId);
 		ArrayList<MemberVO> list = (ArrayList<MemberVO>) memberDAO.findMemberById(member_id);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("sessionId", sessionId);
 		boolean isFollow = false;
 		
-		for(int i=0;i<list.size();i++) {
+/*		for(int i=0;i<list.size();i++) {
 			map.put("listId", list.get(i).getMember_id());
 			if(memberDAO.findIsFollowBySessionId(map)!=null) {
 				isFollow = true;
@@ -165,7 +169,7 @@ public class MemberServiceImpl implements MemberService {
 				list.get(i).setIsFollow(isFollow);
 				isFollow = false;
 			}
-		}
+		}*/
 		return list;
 	}
 
@@ -192,6 +196,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVO> onkeyupId(String searchId) {
 		return memberDAO.onkeyupId(searchId);
+	}
+
+
+	@Override
+	public List<FollowVO> fAlarm(String following) {
+		
+		return memberDAO.fAlarm(following);
 	}
 	
 
