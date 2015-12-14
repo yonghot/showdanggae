@@ -88,6 +88,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public List<MemberVO> findMemberById(String id) {
+		System.out.println("dao"+id);
 		return sqlSessionTemplate.selectList("member.findMemberById",id);
 	}
 	
