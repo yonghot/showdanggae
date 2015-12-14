@@ -27,12 +27,14 @@ public class MessageController {
 	public ModelAndView messagePopForm(HttpServletRequest request){		
 		//관리자가 회원에게 보낼때
 		String member_id=request.getParameter("member_id");
+		System.out.println(member_id);
 		return new ModelAndView("popup/message_popup","member_id",member_id);		
 	}
 	@RequestMapping("messagePopForm1.do")
 	public ModelAndView messagePopForm1(HttpServletRequest request, MemberVO vo){		
 	
 		String member_id=request.getParameter("member_id");
+		System.out.println(member_id);
 		return new ModelAndView("../views/popup/message_popup1","member_id",member_id);		
 	}
 
