@@ -32,7 +32,6 @@
 			}
 		});
 		
-		
 		//클릭했을때 팔로우 알림 
 		$("#alarm").click(function(){
 			$.ajax({
@@ -57,10 +56,10 @@
 
 	   $("#findBtn").click(function(){
 		   var min = $("#inputId3").val();
-		   if($("#inputId3").val()==""){
+		if($("#inputId3").val()==""){
 	         alert("아이디를 입력해주시오");
 	         return false;
-	      }/* else{   
+	      }else{
 		   $.ajax({
 				type:"POST",
 				url:"auth_findMemberById.do",
@@ -69,16 +68,17 @@
 				success:function(data){
 					var index="";
 					if(data!=""){				
-						for(var i=0; i<data.length;i++){						
+						for(var i=0; i<data.length;i++){	
+							alert(data[i].member_id);
 							index += "<tr><td>"+data[i].member_id+"</td></tr>";
 						}		
 					}
 						$("#searchIdView1").html(index);    
 					}		
-			});//ajax 
-	      } */
+			});//ajax  
+	      }   
 	   });
-	   
+	   //팔로잉 버튼 클릭시 팔로잉 아이디
 	   $("#followingBtn").click(function(){
 		   $.ajax({
 				type:"POST",
@@ -86,17 +86,19 @@
 				data:"member_id=${mvo.member_id}",
 				dataType:"json",
 				success:function(data){
-					var index="";
+					var index="<table border=1 cellpadding=5>";
 					if(data!=""){
+						index +="<tr><td>ID</td></tr>";
 						for(var i=0; i<data.length;i++){						
-							index += "<tr><td>"+data[i].following+"</td></tr>";
+							index += "<tbody id='followingView'><tr><td><a href='login.do'>"+data[i].following+"</a></td></tr>";
 						 }
+						index+="<tbody></table>"
+							$("#searchIdView1").html(index);
 			  	        }
-					$("#searchIdView1").html(index);
 					}		
 			});//ajax	
 	   }); 
-	   
+	   //팔로우 버튼 클릭시 팔로우 아이디
 	   $("#followerBtn").click(function(){
 		   $.ajax({
 				type:"POST",
@@ -104,11 +106,13 @@
 				data:"member_id=${mvo.member_id}",
 				dataType:"json",
 				success:function(data){
-					var index="";
+					var index="<table border=1 cellpadding=5>";
 					if(data!=""){
+						index +="<tr><td>ID</td></tr>";
 						for(var i=0; i<data.length;i++){
-							index += "<tr><td>"+data[i].follower+"</td></tr>";
+							index += "<tr><td><a href=''>"+data[i].follower+"</a></td></tr>";
 						}
+						index+="</table>"
 						$("#searchIdView1").html(index);
 			  	        }
 					}		
@@ -127,7 +131,7 @@
 	         success:function(data){
 	        	var index = "";
 	        	if(data!=""){
-		  	        	 var autocomplete_text=[];
+		  	       	var autocomplete_text=[];
 	        		for(var i=0;i<data.length;i++){
 		  	        	 //  index += "<tr><td>"+data[i].member_id+"</td></tr>";	  	        	 
 							autocomplete_text.push(data[i].member_id);
@@ -148,14 +152,14 @@
 
 <div class="col-md-2" align="center">
 	<c:if test="${sessionScope.mvo!=null}">
-		<form class="form-horizontal" role="form" action="auth_findMemberById.do">
+		<form class="form-horizontal" role="form">
 			<div class="form-group">
 				<div class="col-sm-12">
 					<input type="hidden" name="sessionId"
 						value="${sessionScope.mvo.member_id}">
 					<div class="input-group">
 						<input type="text" class="form-control" id="inputId3"
-							name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
+						name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
 						<span class="input-group-btn"> <input
 							class="btn btn-success" type="submit" id="findBtn" value="검색">
 						</span>
@@ -171,6 +175,7 @@
 			id="followerBtn">
 		<!-- onclick="follow1_view()" -->
 		<span id="searchIdView"></span>
+		
 		<span id="searchIdView1"></span>
 	</c:if>
 	

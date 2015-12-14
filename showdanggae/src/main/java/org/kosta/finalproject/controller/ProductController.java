@@ -162,6 +162,8 @@ public class ProductController {
 	// showContent
 	@RequestMapping("showProductContent.do")
 	public ModelAndView showProductContent(int product_id) throws Exception {
+		System.out.println(productService.showProductContent(product_id));
+		
 		return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
 	}
 	
@@ -178,8 +180,8 @@ public class ProductController {
 	@RequestMapping("updateProduct.do")
 	public ModelAndView updateProduct(int product_id, ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
 		
-		System.out.println(slvo);
-		System.out.println(evo);
+		System.out.println("updateProduct.do: "+slvo);
+		System.out.println("updateProduct.do: "+evo);
 		
 		productService.updateProduct(product_id, pvo, slvo, evo);
 		return new ModelAndView("redirect:moveToUpdateOkWithProductId.do?product_id="+product_id);

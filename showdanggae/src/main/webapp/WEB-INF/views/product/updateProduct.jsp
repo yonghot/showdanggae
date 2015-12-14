@@ -162,7 +162,7 @@
 	</c:forEach>
 </span>
 
-<div class="col-md-8">
+<div class="col-md-8" style="background-image: url('img/yellow_notepaper_bg.JPG');">
 	<div class="col-sm-9">
 		<h3 contenteditable="true">상품 정보 수정</h3>
 		<hr>
