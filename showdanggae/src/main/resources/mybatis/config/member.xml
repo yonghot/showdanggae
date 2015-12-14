@@ -95,6 +95,12 @@ select member_id,password,member_name,report,email,birthday from member where me
  		from member
  		where member_id like '%${value}%'
  	</select>
+ 	
+ 	<select id="fAlarm" resultType="fvo">
+select follower,following_date,following
+from(select * from follow where following_date  BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421)
+where following=#{value}
+ 	</select>
  
 
 

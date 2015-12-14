@@ -8,8 +8,8 @@
                 <p class="text-center" contenteditable="true">
                     <br>Home ⋅ About ⋅ Services ⋅ Contact&nbsp;
                     <br>
-                    <br>© 2015 쇼당개, Inc. All Rights Reserved.
-                    <br>
+                    <br>© 2015 쇼당개, Inc. All Rights Reserved,
+                    <br>  
                 </p>
             </div>
         </div>

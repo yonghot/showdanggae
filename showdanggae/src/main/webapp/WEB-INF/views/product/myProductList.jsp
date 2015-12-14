@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		//라디오 버튼 체크 후 선택하기 버튼을 누르면 DB에 저장 되고 새로 갱신된 카테고리를 표시한다. 12월 10일
 		//$("#addBtn").on("click","#addBtn", function(){
 		$("#addBtn").click(function() {
@@ -34,13 +35,46 @@
 						newInfo+="<td>"+sh.member_id+"</td></tr>"
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 					});
-				$("#CategoryView").html(newInfo);
-				}
-			
-		} //success
+					$("#CategoryView").html(newInfo);
+				} //else
+			} //success
 		}); //ajax
+
+		}); //#addBtn
 		
-		}); //#deleteCateroryBtn
+		//탭 형식의 카테고리 뷰 (작성중....) 라디오 형식의 카테고리 뷰와 동일 하지만 
+		//$.each(result, function(index,sh) {} 부분이 다르다.
+		$("#TapAddBtn").click(function() {
+			var category=$(":input[name=category]:checked").val();
+			alert(category+"을 추가 하셨습니다.");
+			if(category==undefined) {
+				alert("카테고리를 추가 하세요~");
+				return;
+			}
+			$.ajax({
+				type : "POST",
+				url : "auth_addCategory.do",
+				data : $("#addCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
+				dataType : "JSON",
+				success : function(result) {
+					if(result.exception!=null) {
+						alert("통신실패 퐁당~" +" "+ result.exception);
+					}else{
+						var newInfo="";
+						 var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
+						$.each(result, function(index,sh) {
+							newInfo+="<tr><td>"+deleteComp+"</td>"
+							newInfo+="<td><a href='#'>"+sh.category+"</td>"
+							newInfo+="<td>"+sh.category_id+"</td>"
+							newInfo+="<td>"+sh.member_id+"</td></tr>"	
+						});
+						$("#CategoryView").html(newInfo);
+					} //else
+				} //success
+			}); //ajax
+
+			}); //#addBtn
+		//카테고리 삭제(작성중....)
 		//삭제 버튼을 누르면 카테고리가 삭제된다. 하위 상품까지 함께 삭제 된다. 넘겨줄 값은 해당 category_id + member_id
 		//아래코드 대신에, 동적으로 생성된 요소 역시 이벤트 작동이 먹히게 하기 위해 on메서드를 사용한다.  
 		$("#deleteCateroryBtn").click(function() {
@@ -78,10 +112,42 @@
 			}else{
 				return false;
 			} //confirm else
-		
 		}); //#deleteCateroryBtn click
+	
+		//카테고리명 수정(작성중....)
+		$("#updateCateroryBtn").click(function() {
+				var category=$(":input[name=category]:checked").val();
+				if(confirm("선택한 카테고리명을 수정합니다!")==true){
+					$.ajax({
+						type : "POST",
+						url : ".do",
+						data : $("#updateCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
+						dataType : "JSON",
+						success : function(result) {
+							if(result.exception!=null) {
+								alert("통신실패 퐁당~" +" "+ result.exception);
+							//수정된 카테고리명을 ajax로 보여준다. 공통 코드.	
+							}else{
+								var newInfo="";
+							    var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
+								$.each(result, function(index,sh) {
+									newInfo+="<tr><td>"+deleteComp+"</td>"
+									newInfo+="<td><a href='#'>"+sh.category+"</td>"
+									newInfo+="<td>"+sh.category_id+"</td>"
+									newInfo+="<td>"+sh.member_id+"</td></tr>"
+								});
+							$("#CategoryView").html(newInfo);
+							}
+					} //success
+				}); //ajax
+				}else{
+					return false;
+				} //confirm else
+			}); //#deleteCateroryBtn click
+		
 	}); //ready
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
+	
 </script>
 
 <div class="col-md-8">
@@ -136,27 +202,29 @@
 	<%-- </c:otherwise> --%>
 	<%-- </c:choose> --%>
 	
+	<h4>선택한 카테고리 수정하기</h4>
+	<input type="button" value="수정" id="updateCateroryBtn">
+	<!-- update member set address='성남' where id='jdbc';
+	--패스워드가 1234이고 이름이 아이유인 회원의 주소를 강남으로 수정 -->
+  
   <h4>탭형식의 카테고리 뷰</h4>
   <ul class="nav nav-tabs">
   <c:forEach items="${requestScope.memberCategoryList }" var="clist">
   <li role="presentation" class="active" value="${clist.category_id}"><a href="#">${clist.category}</a></li>
   </c:forEach>
  </ul>
-	
+ 
 	<hr>
+	
 	<div align="right">
 		<a href="auth_beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
-	
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6">
 			<div class="thumbnail">
-				<a href="auth_hit.do?product_id=${list.product_id}"> <img
-					src="img/no_image.png"
-					class="img-responsive">
-				</a>
+				<a href="auth_hit.do?product_id=${list.product_id}"> <img src="img/no_image.png" class="img-responsive"></a>
 				<div class="caption" align="center">
 					<h3>${list.product_name}</h3>
 				</div>
