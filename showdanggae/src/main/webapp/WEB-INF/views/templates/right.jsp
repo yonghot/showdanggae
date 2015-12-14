@@ -13,6 +13,7 @@
 	/* function follow1_view(){
 		 location.href="auth_findFollowerId.do?member_id=${mvo.member_id}";
 	} */	
+
 	$(document).ready(function(){	
 		$.ajax({
 			type:"get",
@@ -94,7 +95,7 @@
 					if(data!=""){
 						index +="<tr><td>ID</td></tr>";
 						for(var i=0; i<data.length;i++){						
-							index += "<tbody id='followingView'><tr><td><a href='login.do'>"+data[i].following+"</a></td></tr>";
+							index += "<tbody id='followingView'><tr><td><a href=''>"+data[i].following+"</a></td></tr>";
 						 }
 						index+="<tbody></table>"
 							$("#searchIdView1").html(index);

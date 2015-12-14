@@ -205,6 +205,20 @@ INSERT INTO NOTICEBOARD(NO,TITLE,WRITER,CONTENT,WRITEDATE)
 VALUES(NOTICE_SEQ.NEXTVAL,'공지사항입니다','관리자','방가방가',SYSDATE);
 
 
+<<<<<<< HEAD
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
+values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
+values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
+values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
+values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
+values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+insert into qnaboard(no, member_id, title, writer, content, writeDate) 
+values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+=======
 
 INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
 VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
@@ -218,6 +232,7 @@ INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE)
 VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
 INSERT INTO QNABOARD(NO, MEMBER_ID, TITLE, WRITER, CONTENT, WRITEDATE) 
 VALUES(QNA_SEQ.NEXTVAL, 'JAVA','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', SYSDATE);
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
 
 INSERT INTO MESSAGE(MEMBER_ID,MESSAGE,SENDER,TITLE,SEND_DATE,MNO)
