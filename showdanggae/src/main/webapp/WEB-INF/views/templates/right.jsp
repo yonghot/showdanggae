@@ -30,7 +30,7 @@
 					$("#alarm").html("알람" + "(0)");
 				}
 			}
-		});
+		}); 
 		
 		//클릭했을때 팔로우 알림 
 		$("#alarm").click(function(){
@@ -51,7 +51,7 @@
 					}
 				}
 			});
-		})
+		}) 
 
 
 	   $("#findBtn").click(function(){
@@ -67,17 +67,38 @@
 				dataType:"json",
 				success:function(data){
 					var index="";
-					if(data!=""){				
+					if(data!=null){				
+						for(var i=0; i<data.length;i++){	
+							//alert(data[i].member_id);
+							index += data[i].member_id;
+						}
+						$("#searchIdView").html(index);
+					}else{
+						$("#searchIdView").html(index);
+					}
+					/* if(data!=""){				
 						for(var i=0; i<data.length;i++){	
 							alert(data[i].member_id);
-							index += "<tr><td>"+data[i].member_id+"</td></tr>";
-						}		
-					}
-						$("#searchIdView1").html(index);    
-					}		
+							index += data[i].member_id;
+						}
+						$("#searchIdView").html(index);
+					}else{
+						$("#searchIdView").html(index);
+					} */
+				}		
 			});//ajax  
 	      }   
 	   });
+		
+		$("#followingView a").click(function(){
+			var id=$(this).text();
+			if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
+			 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
+		"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
+			}else{
+				return false;
+			}
+		});	
 	   //팔로잉 버튼 클릭시 팔로잉 아이디
 	   $("#followingBtn").click(function(){
 		   $.ajax({
@@ -90,13 +111,13 @@
 					if(data!=""){
 						index +="<tr><td>ID</td></tr>";
 						for(var i=0; i<data.length;i++){						
-							index += "<tbody id='followingView'><tr><td><a href='login.do'>"+data[i].following+"</a></td></tr>";
+							index += "<tbody id='followingView'><tr><td><a href=''>"+data[i].following+"</a></td></tr>";
 						 }
-						index+="<tbody></table>"
+						index+="<tbody></table>";
 							$("#searchIdView1").html(index);
 			  	        }
 					}		
-			});//ajax	
+			});//ajax
 	   }); 
 	   //팔로우 버튼 클릭시 팔로우 아이디
 	   $("#followerBtn").click(function(){
@@ -133,7 +154,7 @@
 	        	if(data!=""){
 		  	       	var autocomplete_text=[];
 	        		for(var i=0;i<data.length;i++){
-		  	        	 //  index += "<tr><td>"+data[i].member_id+"</td></tr>";	  	        	 
+		  	        	 // index += "<tr><td>"+data[i].member_id+"</td></tr>";	  	        	 
 							autocomplete_text.push(data[i].member_id);
 						
 		  	        }
@@ -147,7 +168,7 @@
 	  	           
 	         }//callback         
 	      });//ajax
-	}
+	} 
 </script>
 
 <div class="col-md-2" align="center">
@@ -172,7 +193,7 @@
 			id="followingBtn">
 		<!-- onclick="follow_view()" -->
 		<input class="btn btn-default" type="button" value="팔로워"
-			id="followerBtn">
+			id="followerBtn"><br>
 		<!-- onclick="follow1_view()" -->
 		<span id="searchIdView"></span>
 		
@@ -226,7 +247,7 @@
     </div>
 </div>
   </div>
-</div>
+</div> 
 
 <br>
 <br>

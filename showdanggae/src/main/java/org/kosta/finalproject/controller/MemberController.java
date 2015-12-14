@@ -243,6 +243,7 @@ public class MemberController {
 	@RequestMapping("auth_findMemberById.do")
 	@ResponseBody
 	public List<MemberVO> findMemberById(String member_id, String sessionId) throws Exception{
+		System.out.println("controller 영역 "+member_id+" "+sessionId);
 		List<MemberVO> list = memberService.findMemberById(member_id, sessionId);
 		return list;
 		

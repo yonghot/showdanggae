@@ -46,13 +46,13 @@
 <jsp:include page="../templates/right.jsp"></jsp:include>
 <!-- <form action ="add.do"> -->
 <form id="followForm" >
-<table border="1" class="type05">
+<%-- <table border="1" class="type05">
 <thead>
 <tr><th>사  진</th><th>ID</th></tr>
 </thead>
 <tbody id="listView">
 <c:forEach items="${requestScope.mvoList}" var="mvo" varStatus="status">
-	 <%-- ${mvoList[status.index]} --%>
+	 ${mvoList[status.index]}
 	<c:choose>
 		<c:when test="${sessionScope.mvo.member_id==mvo.member_id}">
 		<tr>
@@ -72,5 +72,5 @@
 	</c:choose>
 </c:forEach>
 </tbody>
-</table>
+</table> --%>
 </form>
