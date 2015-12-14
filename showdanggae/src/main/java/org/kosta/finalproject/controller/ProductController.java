@@ -26,7 +26,7 @@ public class ProductController {
 	private CategoryService categoryService;
 	@Resource
 	private ProductService productService;
-	
+
 	@ResponseBody
 	@RequestMapping(value = "auth_getMemberCategoryList.do", method = RequestMethod.POST)
 	public  List<CategoryVO> getMemberCategoryList(String member_id) {
@@ -50,41 +50,17 @@ public class ProductController {
 	@RequestMapping(value = "auth_deleteProductListAndCategory.do", method = RequestMethod.POST)
 	public List<CategoryVO> deleteProductListAndCategory(int category_id, String member_id) {
 		System.out.println(category_id);
-		//productService.deleteProductList(category_id);
+		//먼저 카테고리_아이디와 멤버_아이디로 상품을 삭제한다.
+		productService.deleteProductList(category_id);
 		categoryService.deleteCategory(category_id);
 		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
 		return lvo;
 	}
-
-	// 나의 해당 카테고리를 지운다.
-		@RequestMapping("deleteCategory.do")
-		public ModelAndView deleteCategory(int category_id,
-				HttpServletRequest request) {
-			HttpSession session = request.getSession(false);
-			if (session.getAttribute("mvo") != null) {
-				categoryService.deleteCategory(category_id);
-			}
-			return new ModelAndView("login");
-		}
 	
 	 @RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST) 
 	 public ModelAndView AjaxMainCategoryList(String member_id) { 
 	 return new ModelAndView("auth_ajaxMemberCategoryList"); 
 	 }
-	 
-	/*@ResponseBody
-	@RequestMapping(value = "auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
-	public ModelAndView AjaxMainCategoryList(String category,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("mvo") != null) {
-			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			String id = mvo.getMember_id();
-			List<CategoryVO> lvo = categoryService.getMemberCategoryList(id);
-			return new ModelAndView("auth_ajaxMemberCategoryList", "lvo", lvo);
-		}
-		return null;
-	}*/
 
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")

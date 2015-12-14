@@ -60,3 +60,21 @@ alter table board drop constraint fk_id cascade;
 
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
+delete 
+from member_category 
+where member_id= 'java'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
