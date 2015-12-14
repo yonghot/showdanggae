@@ -69,8 +69,9 @@ public class QnABoardController {
 	
 	@RequestMapping("qnaDelete.do")
 	public String qnaDelete(String no){
+		System.out.println("삭제"  + no);
 		qnaBoardService.qnaDelete(no);
-		return "redirect:auth_qnaboard.do";
+		return "redirect:qnaboard.do";
 	}
 	
 	@RequestMapping("qnaUpdateForm.do")
@@ -96,6 +97,7 @@ public class QnABoardController {
 	
 	@RequestMapping("reply.do")
 	public ModelAndView reply(QnaVO qvo){
+		
 		qnaBoardService.reply(qvo);
 		
 		return new ModelAndView("redirect:nohitshowContent.do?no="+qvo.getNo());
@@ -103,7 +105,7 @@ public class QnABoardController {
 	
 	@RequestMapping("comment.do")
 	public ModelAndView comment(int no,HttpServletRequest request,String replyComment){
-		///comment.do?replyComment=ㅇㄻㄴ&no=38&member_name=김용호
+		
 		HttpSession session=request.getSession(false);
 		MemberVO mvo=(MemberVO) session.getAttribute("mvo"); //지금 로그인 한 사람
 		qnaBoardService.commentInsert(no,replyComment,mvo);

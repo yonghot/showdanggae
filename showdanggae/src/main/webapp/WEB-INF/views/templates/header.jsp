@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 
   $(document).ready(function() {
@@ -13,56 +13,52 @@
 				return false;
 			}
 		});
+		
 	});
+
 </script>
  
- 
- <div class="navbar navbar-default navbar-static-top" style="background-color: gold;">
+<div class="navbar navbar-default navbar-static-top" style="background-color: #ff3333;">
    <div class="container">
-       <div class="navbar-header">
-           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-           </button>
-       </div>
        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
            <ul class="nav navbar-nav navbar-left">
            	<li class="active">
-                   <a href="home.do">홈</a>
+                   <a href="home.do" style="background-color: #ffcccc;">홈</a>
                </li>
            </ul>
            <ul class="nav navbar-nav navbar-right">
                <li class="active">
                    <c:choose>
-			<c:when test="${!empty sessionScope.managerlogin}">
-			<!-- 관리자 로그인 되었을때 -->
-			 <a href="logout.do" id="logout">로그아웃</a>
-			</c:when>
-			<c:when test="${!empty sessionScope.mvo}">
-			<!-- 일반 회원 로그인 되었을때 -->
-                    	 <a href="logout.do" id="logout">로그아웃</a>
-			</c:when>
-			<c:otherwise>
-			<!-- 그 외 -->
-                    	<a href="member_login.do" >로그인</a>
-			</c:otherwise>
-		</c:choose>	
+						<c:when test="${!empty sessionScope.managerlogin}">
+						<!-- 관리자 로그인 되었을때 -->
+						 <a href="logout.do" id="logout">로그아웃</a>
+						</c:when>
+						<c:when test="${!empty sessionScope.mvo}">
+						<!-- 일반 회원 로그인 되었을때 -->
+			                    	 <a href="logout.do" id="logout" style="background-color: #ffcccc;">로그아웃</a>
+						</c:when>
+						<c:otherwise>
+						<!-- 그 외 -->
+			                    	<a href="member_login.do" style="background-color: #ffe5e5;">로그인</a>
+						</c:otherwise>
+					</c:choose>	
                 </li>
                 <li class="active">
-                    <a href="notice.do">공지사항</a>                    
+                    <a href="notice.do" style="background-color: #ffcccc;">공지사항</a>                    
                 </li>
                 <li class="active">
-                    <a href="auth_qnaboard.do">Q&A</a>
+                    <a href="qnaboard.do" style="background-color: #ffcccc;">Q&A</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<div class="container">
+<div class="navbar navbar-default navbar-static-top" style="background-image: url('img/showdanggae_header_bg.jpg'); background-size: 100%;">
       <div class="col-md-12">
-          <h2 class="text-center"><a href ="home.do"><img src="${initParam.root}img/showdanggae_logo_nobg.PNG" width="200"></a></h2>
+          <h2 class="text-center"><a href ="home.do" style="text-decoration:none">
+	          <img src="${initParam.root}img/showdanggae_logo_nobg.PNG" width="150">
+	          <img src="${initParam.root}img/showdanggae_explanation.png" width="150">
+          </a></h2>
       </div>
       <div class="col-md-offset-3 col-md-6">
           <form role="form">
@@ -75,6 +71,20 @@
                   </div>
               </div>
           </form>
-          <hr>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
       </div>
  </div>

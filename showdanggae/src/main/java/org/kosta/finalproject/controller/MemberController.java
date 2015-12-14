@@ -53,7 +53,7 @@ public class MemberController {
 		return vo;
 	}
 	
-	@RequestMapping("auth_register.do")
+	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo){
 
 		MemberVO insertVO=memberService.register(vo);
@@ -86,7 +86,7 @@ public class MemberController {
 			MemberVO admin=memberService.adminlogin(vo);
 			if(admin!=null){		
 				HttpSession session = request.getSession(true);			
-				session.setAttribute("managerlogin", admin);
+				session.setAttribute("mvo", admin);
 				return new ModelAndView("home");
 			}			
 			return new ModelAndView("member_loginfail");

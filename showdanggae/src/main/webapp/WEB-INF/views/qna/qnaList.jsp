@@ -59,7 +59,7 @@
 		${i}
 	</c:when>
 	<c:otherwise>
-			<a href="${initParam.root}auth_qnaboard.do?pageNo=${i }">${i }</a>
+			<a href="${initParam.root}qnaboard.do?pageNo=${i }">${i }</a>
 	</c:otherwise>
 	</c:choose>	
 	</c:forEach>

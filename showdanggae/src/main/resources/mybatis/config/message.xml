@@ -7,22 +7,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <mapper namespace="message">
  
  <insert id="sendMessage" parameterType="msvo">
-INSERT INTO MESSAGE(member_id,message,spand_name,title,spand_date,mno,read) 
-values (#{member_id},#{message},#{spand_name},#{title},SYSDATE,message_seq.nextval,#{read})
+INSERT INTO MESSAGE(member_id,message,sender,title,send_date,mno,read) 
+values (#{member_id},#{message},#{sender},#{title},SYSDATE,message_seq.nextval,#{read})
 </insert>
 
 <select id="myMessageBox" resultType="msvo"  parameterType="hashMap">
-select mno,title, message, spand_name,spand_date,read
-from(select e.mno,e.title, m.member_Id, e.message, e.spand_name,e.spand_date,e.read,ceil(rownum/10) as page 
-from message e,member m where e.member_Id=m.member_Id and m.member_Id=#{member_id} order by e.spand_date desc) 
+select mno,title, message, sender ,send_date, read
+from(select e.mno,e.title, m.member_Id, e.message, e.sender,e.send_date,e.read,ceil(rownum/10) as page 
+from message e,member m where e.member_Id=m.member_Id and m.member_Id=#{member_id} order by e.send_date desc) 
 where page=#{pageNo}
-
-
 
 </select>
 
 <select id="MyMessageShowPopUp" resultType="msvo">
-select e.title, m.member_id, e.message, e.spand_name,e.spand_date,e.mno
+select e.title, m.member_id, e.message, e.sender,e.send_date,e.mno
 from message e,member m
 where e.member_id=m.member_id and m.member_id=#{member_id} and e.mno=#{mno}
 </select>

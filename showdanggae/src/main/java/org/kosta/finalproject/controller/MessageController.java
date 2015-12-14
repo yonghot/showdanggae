@@ -38,17 +38,15 @@ public class MessageController {
 
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
+		System.out.println(vo);
 		vo.setRead(0);
-		messageService.sendMessage(vo);	
-		return  new ModelAndView("popup/message_ok");
+		messageService.sendMessage(vo);
+		return new ModelAndView("popup/message_ok");
 	}
 	
 	@RequestMapping("auth_messagebox.do")
 	public ModelAndView messagebox(String member_id,String pageNo){
-		System.out.println(member_id + pageNo);
 		MessageListVO list= messageService.myMessageBox(member_id,pageNo);
-		System.out.println(list);
-	
 		
 		return new ModelAndView("message_MyMessageBox","mlist",list);	
 	}
@@ -57,20 +55,10 @@ public class MessageController {
 	@RequestMapping("auth_messageBoxContent.do")
 	@ResponseBody
 	public MessageVO messageBoxContent(MessageVO vo) {
-		
 		MessageVO msvo = messageService.MyMessageShowPopUp(vo);
-		System.out.println(msvo);
 
 		return msvo;
 	}
 
-	@RequestMapping("messageRead.do")
-	public String messageRead(MessageVO vo){
-	
-		int mno=vo.getMno();
-		messageService.messageRead(mno);
-	
-		return "popup/message_read";
-	}
 
 }

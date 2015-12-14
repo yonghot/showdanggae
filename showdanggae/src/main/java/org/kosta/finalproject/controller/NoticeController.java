@@ -36,7 +36,7 @@ public class NoticeController {
 		String no2 = request.getParameter("no"); 
 		int no = Integer.parseInt(no2);
 		NoticeVO vo = noticeService.noHitnoticeContent(no);
-
+		System.out.println("nohit"  +vo);
 		return new ModelAndView("notice_noticeshowview", "content", vo);
 	}
 
@@ -53,6 +53,7 @@ public class NoticeController {
 
 	@RequestMapping("write.do")
 	public ModelAndView write(NoticeVO vo) {
+		System.out.println(vo);
 		noticeService.write(vo);
 		return new ModelAndView("redirect:noticeShow.do?no=" + vo.getNo());
 	}

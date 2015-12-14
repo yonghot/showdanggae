@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td>작성자 :  ${requestScope.content.writer}</td>
-			<td> ${requestScope.content.time_post}</td>
+			<td> ${requestScope.content.writeDate}</td>
 			<td>조회수 : ${requestScope.content.hit}</td>
 		</tr>
 		<tr>
@@ -40,7 +40,7 @@
 			<div class="form-group">
 				<div class="col-sm-12 text-center">
 					<input type="button" value="목록" onclick="sendList()"class="btn btn-info btn-md">
-				 	<c:if test="${!empty sessionScope.managerlogin}">
+				 	<c:if test="${!empty sessionScope.mvo}">
 						<input type="button" value="수정" onclick="updateForm()" class="btn btn-info btn-md">
 						<input type="button" value="삭제" onclick="deleteForm()" class="btn btn-info btn-md">
 					</c:if>
