@@ -9,7 +9,7 @@
                     <br>Home ⋅ About ⋅ Services ⋅ Contact&nbsp;
                     <br>
                     <br>© 2015 쇼당개, Inc. All Rights Reserved.
-                    <br>
+                    <br>  
                 </p>
             </div>
         </div>
