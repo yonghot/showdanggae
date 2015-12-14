@@ -262,10 +262,16 @@ public class MemberController {
 	 */
 	@RequestMapping("auth_findMemberById.do")
 	@ResponseBody
+<<<<<<< HEAD
 	public List<MemberVO> findMemberById(String member_id, String sessionId)
 			throws Exception {
 		List<MemberVO> list = memberService
 				.findMemberById(member_id, sessionId);
+=======
+	public List<MemberVO> findMemberById(String member_id, String sessionId) throws Exception{
+		System.out.println("controller 영역 "+member_id+" "+sessionId);
+		List<MemberVO> list = memberService.findMemberById(member_id, sessionId);
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		return list;
 
 	}
