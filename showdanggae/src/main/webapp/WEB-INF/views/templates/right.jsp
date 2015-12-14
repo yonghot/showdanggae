@@ -13,8 +13,7 @@
 	/* function follow1_view(){
 		 location.href="auth_findFollowerId.do?member_id=${mvo.member_id}";
 	} */	
-<<<<<<< HEAD
-=======
+
 	$(document).ready(function(){	
 		$.ajax({
 			type:"get",
@@ -56,7 +55,6 @@
 		})
 
 
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	   $("#findBtn").click(function(){
 		   var min = $("#inputId3").val();
 		if($("#inputId3").val()==""){
