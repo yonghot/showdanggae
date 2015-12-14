@@ -27,7 +27,7 @@
 				<label for="inputEmail3" class="control-label">ID</label>
 			</div>
 			<div class="col-sm-10 hidden-sm hidden-xs text-left">
-				<input type="text" class="form-control" name="member_id" placeholder="아이디">
+				<input type="text" class="form-control" name="member_id" placeholder="아이디" value="lipchel">
 			</div>
 		</div>
 		
@@ -36,7 +36,7 @@
 				<label for="inputPassword3" class="control-label">Password</label>
 			</div>
 			<div class="col-sm-10">
-				<input type="password" class="form-control" name="password" placeholder="Password">
+				<input type="password" class="form-control" name="password" placeholder="Password" value="1234">
 			</div>
 		</div>
 		

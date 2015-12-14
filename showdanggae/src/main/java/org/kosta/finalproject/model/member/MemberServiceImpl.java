@@ -51,10 +51,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public MemberVO findIdByBirth(MemberVO vo, String email1, String email2){
+	public MemberVO findIdByEmail(MemberVO vo){
+		//MemberVO findIdByEmail(MemberVO vo);
+		String email1=vo.getEmail_id();
+		String email2=vo.getEmail_domain();
 		String email = email1+"@"+email2;
 		vo.setEmail(email);
-		return memberDAO.findIdByBirth(vo);
+		return memberDAO.findIdByEmail(vo);
 	}
 	
 	@Override
@@ -192,6 +195,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVO> onkeyupId(String searchId) {
 		return memberDAO.onkeyupId(searchId);
+	}
+
+
+	@Override
+	public List<FollowVO> fAlarm(String following) {
+		
+		return memberDAO.fAlarm(following);
 	}
 	
 

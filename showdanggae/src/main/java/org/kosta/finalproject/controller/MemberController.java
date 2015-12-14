@@ -126,15 +126,18 @@ public class MemberController {
 		return "member_findpassview";
 	}
 
-	@RequestMapping("findIdByBirth.do")
-	public ModelAndView findIdByBirth(HttpServletRequest request, MemberVO vo) {
-		String mailId = request.getParameter("email_id");
-		String domain = request.getParameter("email_domain");
-		MemberVO ivo=memberService.findIdByBirth(vo,mailId,domain);
-		String id = ivo.getMember_id();
-		StringBuffer sb = new StringBuffer(id);
-		sb.replace(2, 4,"**"); //아이디 출력시 *포함 
-		return new ModelAndView("member_findid","findId",sb);
+	@RequestMapping("findIdByEmail.do")
+	@ResponseBody
+	public Object findIdByEmail(MemberVO vo) {
+		MemberVO ivo=memberService.findIdByEmail(vo);
+		if(ivo!=null){
+			String id = ivo.getMember_id();
+			StringBuffer sb = new StringBuffer(id);
+			sb.replace(2, 4,"**"); //아이디 출력시 *포함 
+			return sb;
+		}else{
+			return ivo;
+		}
 	}
 
 	@Autowired
@@ -320,6 +323,19 @@ public class MemberController {
 		if(searchId.equals("")) {
 			return "";
 		}
-		return memberService.onkeyupId(searchId);
+		List<MemberVO> mid=memberService.onkeyupId(searchId);
+		System.out.println(mid);
+		return mid;
 	}
+	
+	//12-13추가부분
+	@RequestMapping("falarm.do")
+	@ResponseBody
+	public List<FollowVO> fAlarm(String following){
+		//현재시간부터 - 어제 까지 나를 팔로잉한 사람 목록을 알림으로 가져다 줌
+		List<FollowVO> fvo=memberService.fAlarm(following);
+		System.out.println(fvo);
+		return fvo;
+	}
+	
 }

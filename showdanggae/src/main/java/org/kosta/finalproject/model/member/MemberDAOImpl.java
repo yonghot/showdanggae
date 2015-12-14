@@ -33,7 +33,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public MemberVO findIdByBirth(MemberVO vo){
+	public MemberVO findIdByEmail(MemberVO vo){
 		return sqlSessionTemplate.selectOne("member.findIdByBirth",vo);	
 	}
 	
@@ -121,6 +121,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<MemberVO> onkeyupId(String searchId) {
 		return sqlSessionTemplate.selectList("member.onkeyupId", searchId);
+	}
+
+	@Override
+	public List<FollowVO> fAlarm(String following) {
+		
+		return sqlSessionTemplate.selectList("member.fAlarm", following);
 	}
 
 }

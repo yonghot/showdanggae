@@ -36,7 +36,7 @@ insert into member(member_id, password, member_name, email, birthday) values('ad
 insert into member(member_id, password, member_name, email, birthday) values('dewd','dd','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
 insert into member(member_id, password, member_name, email, birthday) values('addr23min','1234','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
 
-select count(*) from member;
+select * from member;
 =======
 insert into member (member_Id,password,member_name,email,birthday) values('david','1234','박성엽','david_good@naver.com',to_date('850429','RRMMDD'));
 >>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git

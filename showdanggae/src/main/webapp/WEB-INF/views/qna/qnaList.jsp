@@ -8,7 +8,7 @@
     
     	<div class="col-md-8">
     <table class="table" id="qnaTable">
-	
+		<h3>Q&A</h3>
 		<thead>
 		<tr>
 			<th>  NO</th>
@@ -40,17 +40,18 @@
 		</tbody>					
 	</table><br>
 
-	
+	<div style="margin: left;">
 	    <c:if test="${!empty sessionScope.mvo}">
 	<a href="${initParam.root}qnaWriteForm.do">글쓰기</a><br>
 	</c:if>
+	</div>
 	
 
-	
+<div align="center">
 
-		<c:if test="${requestScope.qvo.qpagingBean.isPreviousPageGroup()}">
+	<c:if test="${requestScope.qvo.qpagingBean.isPreviousPageGroup()}">
 			<a href="${initParam.root}auth_qnaboard.do?pageNo=${requestScope.qvo.qpagingBean.startPageOfPageGroup-1}">◀ </a>
-		</c:if>
+	</c:if>
 		
 		
 <c:forEach begin="${requestScope.qvo.qpagingBean.startPageOfPageGroup }" end="${requestScope.qvo.qpagingBean.endPageOfPageGroup }" var="i">
@@ -71,5 +72,6 @@
 	
 	
 	<br><br>	
+</div>
 </div>
 
