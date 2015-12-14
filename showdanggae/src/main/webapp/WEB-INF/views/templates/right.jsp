@@ -27,7 +27,8 @@
 					$("#realarm").html(index).css('fontSize', 5);
 					$("#alarm").html("알람(" + data.length + ")");
 				}else{
-					$("#alarm").html("알람" + "(0)");
+					//$("#alarm").html("알람" + "(0)");
+					$("#alarm").html("<a href='#'>" +"알림" + "<span class='badge'>" +  data.length + "</span></a>");
 				}
 			}
 		});
@@ -45,9 +46,12 @@
 							index += data[i].following_date + data[i].follower + "님이 팔로우 하셨습니다<br>";
 						 }
 						$("#realarm").html(index).css('fontSize', 5);
-						$("#alarm").html("알림(" + data.length + ")");
+						//$("#alarm").html("알림(" + data.length + ")");
+						$("#alarm").html("<a href='#'>" +"알림" + "<span class='badge'>" +  data.length + "</span></a>");
+						//<a href="#">Inbox <span class="badge">42</span></a>
 					}else{
-						$("#alarm").html("알림" + "(0)");
+						//$("#alarm").html("알림" + "(0)");
+						$("#alarm").html("<a href='#'>" +"알림" + "<span class='badge'>" +  data.length + "</span></a>");
 					}
 				}
 			});
