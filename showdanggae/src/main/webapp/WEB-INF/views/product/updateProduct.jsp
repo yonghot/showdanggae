@@ -61,13 +61,18 @@
 			
 			$("#linkView").append(
 				"<tr>"+
-				"<td><img src='img/link_icon.png' width='15'></td>"+
-				"<td><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
-				"<td>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
-				"<td><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
-				"<input type='hidden' name='slvoList[${status.index}].link' value='"+$(":text[name=inputLink]").val()+"'>"+
-				"<input type='hidden' name='slvoList[${status.index}].price' value='"+$(":text[name=inputPrice]").val()+"'>"
+				"<td width='10'><img src='img/link_icon.png' width='15' title='항목을 제거합니다.'></td>"+
+				"<td width='250'><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
+				"<td width='100'>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
+				"<td width='10'><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].link' value='"+$(":text[name=inputLink]").val()+"'>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].price' value='"+$(":text[name=inputPrice]").val()+"'>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].category_id' value='${requestScope.category_id}'>"
 			);
+			
+			$("#linkView tr").click(function(){
+				alert($("#linkView tr").index(this));
+			});
 			
 			$(":text[name=inputLink]").val("");
 			$(":text[name=inputPrice]").val("");
