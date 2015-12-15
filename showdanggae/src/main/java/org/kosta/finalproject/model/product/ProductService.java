@@ -8,7 +8,7 @@ public interface ProductService {
 	public void deleteProductList(int category_id);
 	public List<ProductVO> getAllBoardList(String sortBy);
 	public List<String> getItemList();
-	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo);
+	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SlvoListVO slvoList, EvoListVO evoList);
 	public void hit(String product_id);
 	public HashMap<String, Object> showProductContent(int product_id);
 	public void updateProduct(int product_id, ProductVO pvo, SellerLinkVO slvo,EvaluatingItemVO evo);
