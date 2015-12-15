@@ -81,15 +81,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="addSellerLink">
 		<![CDATA[
-	 		insert into seller_link(product_id, link, price)
-	 		values(#{product_id}, #{link}, #{price})
+	 		insert into seller_link(product_id, category_id, link, price)
+	 		values(#{product_id}, #{category_id}, #{link}, #{price})
 	 	]]>
 	</insert>
 	
 	<insert id="addEvaluatingItem">
 		<![CDATA[
-	 		insert into eval_item(product_id, item, item_point)
-	 		values(#{product_id}, #{item}, #{item_point})
+	 		insert into eval_item(product_id, category_id, item, item_point)
+	 		values(#{product_id}, #{category_id}, #{item}, #{item_point})
 	 	]]>
 	</insert>
 	
