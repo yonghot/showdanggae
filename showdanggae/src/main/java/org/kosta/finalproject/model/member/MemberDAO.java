@@ -34,6 +34,8 @@ public interface MemberDAO {
 	String findIsFollowBySessionId(HashMap<String, String> map);
 	List<MemberVO> onkeyupId(String searchId);
 	List<FollowVO> fAlarm(String following);
+	int followerCount(String member_id);
+	int followingCount(String member_id);
 
 
 }

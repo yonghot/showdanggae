@@ -102,6 +102,14 @@ from(select * from follow where following_date  BETWEEN TRUNC(SYSDATE) AND TRUNC
 where following=#{value}
  	</select>
  
+ <select id="followerCount" resultType="int">
+ select count(*) from follow where following=#{value}
+ </select>
+
+
+ <select id="followingCount" resultType="int">
+  select count(*) from follow where follower=#{value}
+ </select>
 
 
  </mapper>
