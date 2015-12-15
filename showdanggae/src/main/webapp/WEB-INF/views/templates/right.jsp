@@ -92,9 +92,9 @@
 							alert(data[i].member_id);
 							index += "<tr><td>"+data[i].member_id+"</td></tr>";
 						}		
-						
+						$("#searchIdView1").html(index); 
 					}
-						$("#searchIdView1").html(index);    
+						   
 					}		
 			});//ajax  
 	      }   
@@ -189,7 +189,7 @@
 						<input type="text" class="form-control" id="inputId3"
 							name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
 						<span class="input-group-btn"> <input
-							class="btn btn-success" type="submit" id="findBtn" value="검색">
+							class="btn btn-success" type="button" id="findBtn" value="검색">
 						</span>
 					</div>
 				</div>
