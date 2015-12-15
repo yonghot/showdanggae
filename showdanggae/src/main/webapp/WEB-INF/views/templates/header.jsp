@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script type="text/javascript">
 
   $(document).ready(function() {
@@ -36,15 +37,20 @@
 						</c:when>
 						<c:when test="${!empty sessionScope.mvo}">
 						<!-- 일반 회원 로그인 되었을때 -->          
+					
 		 <a href="logout.do" id="logout" style="background-color: #ffcccc;">로그아웃</a>
 			  <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="background-color: #ffcccc;">내정보<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="auth_member_update_password.do">내정보수정</a></li>
-            <li><a href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=1">내장바구니</a></li>
-            <li><a href="auth_messagebox.do?member_id=${sessionScope.mvo.member_id}">쪽지함</a></li>
+            <li><span class="glyphicon glyphicon-user" aria-hidden="true"><a href="auth_member_update_password.do">  내정보수정</a></span></li> 
+            <li><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"><a href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=1"> 내장바구니</a></span></li>
+            <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"><a href="auth_messagebox.do?member_id=${sessionScope.mvo.member_id}"> 쪽지함</a></span></li>       
           </ul>
+<<<<<<< HEAD
         	</li> 
+=======
+      		  </li> 
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 						</c:when>
 						<c:otherwise>
 						<!-- 그 외 -->
@@ -80,6 +86,8 @@
                   </div>
               </div>
           </form>
+          
+          
         <br>
         <br>
         <br>
