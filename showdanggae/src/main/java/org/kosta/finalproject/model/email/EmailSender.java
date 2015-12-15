@@ -9,7 +9,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 
 public class EmailSender {
-	
+
 	@Autowired
 	protected JavaMailSender mailSender;
 
@@ -18,8 +18,9 @@ public class EmailSender {
 		MimeMessage msg = mailSender.createMimeMessage();
 		try {
 			msg.setSubject(email.getSubject());
-			msg.setText(email.getContent());
-			msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email.getReceiver()));
+			msg.setContent(email.getContent(), "text/html;charset=utf-8");
+			msg.setRecipients(MimeMessage.RecipientType.TO,
+					InternetAddress.parse(email.getReceiver()));
 
 		} catch (MessagingException e) {
 			System.out.println("MessagingException");

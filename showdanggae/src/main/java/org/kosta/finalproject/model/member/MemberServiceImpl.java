@@ -160,7 +160,7 @@ public class MemberServiceImpl implements MemberService {
 		map.put("sessionId", sessionId);
 		boolean isFollow = false;
 		
-/*		for(int i=0;i<list.size();i++) {
+		for(int i=0;i<list.size();i++) {
 			map.put("listId", list.get(i).getMember_id());
 			if(memberDAO.findIsFollowBySessionId(map)!=null) {
 				isFollow = true;
@@ -169,7 +169,7 @@ public class MemberServiceImpl implements MemberService {
 				list.get(i).setIsFollow(isFollow);
 				isFollow = false;
 			}
-		}*/
+		}
 		return list;
 	}
 

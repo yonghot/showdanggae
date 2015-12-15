@@ -29,7 +29,7 @@ following  // follower
 a // a를 받아보는사람
 
 insert into follow(following_date,following,follower)
-values(sysdate,'dd','lipchel');
+values(sysdate,'java','java2');
 
 insert into follow(following_date,following,follower)
 values(sysdate,'lipchel','dd');
