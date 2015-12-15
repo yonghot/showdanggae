@@ -168,6 +168,8 @@ public class MemberServiceImpl implements MemberService {
 			if(isFollow){
 				list.get(i).setIsFollow(isFollow);
 				isFollow = false;
+			}else{
+				list.get(i).setIsFollow(false);
 			}
 		}
 		return list;
@@ -175,6 +177,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void addFollow(FollowVO fvo) {
+		//System.out.println(fvo);
 		memberDAO.addFollow(fvo);
 	}
 	
@@ -203,6 +206,22 @@ public class MemberServiceImpl implements MemberService {
 	public List<FollowVO> fAlarm(String following) {
 		
 		return memberDAO.fAlarm(following);
+	}
+
+
+	@Override
+	public HashMap<String, String> proCount(String member_id) {
+		HashMap<String, String> proInfo =new  HashMap<String, String>();
+		//팔로잉 팔로워 명 수 구하기
+		int followerCount=memberDAO.followerCount(member_id);
+		System.out.println(followerCount);
+		int followingCount=memberDAO.followingCount(member_id);
+		
+		System.out.println(followingCount);
+		
+	/*	proInfo.put("followerCount", followerCount);
+		proInfo.put("followingCount", followingCount);*/
+		return proInfo;
 	}
 	
 

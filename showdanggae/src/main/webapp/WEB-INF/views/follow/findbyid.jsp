@@ -43,10 +43,9 @@
  		});
 	});
 </script>
-<jsp:include page="../templates/right.jsp"></jsp:include>
 <!-- <form action ="add.do"> -->
 <form id="followForm" >
-<%-- <table border="1" class="type05">
+ <table border="1" class="type05">
 <thead>
 <tr><th>사  진</th><th>ID</th></tr>
 </thead>
@@ -72,5 +71,5 @@
 	</c:choose>
 </c:forEach>
 </tbody>
-</table> --%>
+</table>
 </form>
