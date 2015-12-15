@@ -40,32 +40,25 @@
 		    }
 		}
 		
-		
-		var linkList = "";
-		for(var i=0;i<4;i++) {
+		for(var i=0;i<$("#linkView tr").length;i++) {
 			
-			//alert("${requestScope.productInfo.slvoList[i].link}");
+			var link = $("#linkView").children().eq(i).children().siblings().eq(1).children();
+			var linkText = $("#linkView").children().eq(i).children().siblings().eq(1).children().text();
+			var price = $("#linkView").children().eq(i).children().siblings().eq(2);
 			
-			shortenLink = $(".link").text();
-			
-			if($(".link").text().length>=50) {
-				shortenLink = $(".link").text().substring(0, 50) + "...";
+			if(link.text().length>=45) {
+				linkText = linkText.substring(0, 45) + "...";
 			}
 			
-			$(".price").text(AddComma($(".price").text())+" 원");
-			
-			linkList += "<tr><td><a href='${requestScope.productInfo.slvoList[i].link}'>"+shortenLink+"</a></td>"+
-			"<td>${requestScope.productInfo.slvoList[i].price}</td></tr>"
+			link.text(linkText);
+			price.text(AddComma(price.text())+"원");
 		}
-		
-		$("#linkView").html(linkList);
-		
 				
 	});
 
 </script>
 
-<div class="col-md-8" style="background-image: url('img/yellow_notepaper_bg.JPG');">
+<div class="col-md-8" style="background-color: ffffb3;">
 	<div class="col-sm-9">
 		<h3 contenteditable="true">상품 보기</h3>
 		<hr>
@@ -94,14 +87,18 @@
 					<h4>${requestScope.productInfo.pvo.product_name}</h4>
 					<hr>
 				</div>
-				<div class="col-sm-11">
+				<div class="col-sm-12">
 					<table class="table table-hover table-condensed">
 						<tbody valign="middle" id="linkView">
+						 	<c:forEach items="${requestScope.productInfo.slvoList}" var="slvoList" varStatus="status">
+								<tr>
+									<td><img src='img/link_icon.png' width='15'></td>
+									<td><a href="${slvoList.link}" class="link">${slvoList.link}</a></td>
+									<td class="price">${slvoList.price}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-				</div>
-				<div class="checkbox col-sm-4">
-					<label><input type="checkbox" name="visiblity" value="1">비공개</label>
 				</div>
 			</div>
 		</div>

@@ -52,8 +52,10 @@ drop table seller_link cascade constraint;
 create table seller_link (
 	link varchar2(300) not null,
 	product_id number not null,
+	category_id number not null,
 	price number not null,
 	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id),
+	constraint fk_seller_link_category_id foreign key(category_id) references member_category(category_id),
 	constraint pk_seller_link primary key (link, product_id)
 );
 
@@ -61,9 +63,11 @@ drop table eval_item cascade constraint;
 create table eval_item (
 	item varchar2(100) not null,
 	product_id number not null,
+	category_id number not null,
 	item_point number default 0,
 	constraint fk_eval_item_item foreign key(item) references item(item),
-	constraint fk_eval_itemt_product_id foreign key(product_id) references product(product_id),
+	constraint fk_eval_item_product_id foreign key(product_id) references product(product_id),
+	constraint fk_eval_item_category_id foreign key(category_id) references member_category(category_id),
 	constraint pk_eval_item primary key (item, product_id)
 );
 

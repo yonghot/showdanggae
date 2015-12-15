@@ -3,17 +3,18 @@ package org.kosta.finalproject.model.product;
 public class SellerLinkVO {
 	
 	private String link;
-	private int product_id, price;
+	private int product_id, price, category_id;
 	
 	public SellerLinkVO() {
 		super();
 	}
 
-	public SellerLinkVO(String link, int product_id, int price) {
+	public SellerLinkVO(String link, int product_id, int price, int category_id) {
 		super();
 		this.link = link;
 		this.product_id = product_id;
 		this.price = price;
+		this.category_id = category_id;
 	}
 
 	public String getLink() {
@@ -40,10 +41,18 @@ public class SellerLinkVO {
 		this.price = price;
 	}
 
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+
 	@Override
 	public String toString() {
 		return "SellerLinkVO [link=" + link + ", product_id=" + product_id
-				+ ", price=" + price + "]";
+				+ ", price=" + price + ", category_id=" + category_id + "]";
 	}
-	
+
 }

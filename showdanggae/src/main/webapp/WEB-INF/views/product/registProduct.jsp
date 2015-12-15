@@ -35,8 +35,9 @@
 		    }
 		}
 		
-		
+		var linkCount = 0;
 		$("#linkPlusBtn").click(function(){
+			
 
 			if($(":text[name=inputLink]").val()=="") {
 				alert("판매자 링크를 입력해주세요");
@@ -56,30 +57,42 @@
 			
 			$("#linkView").append(
 				"<tr>"+
-				"<td><img src='img/link_icon.png' width='15'></td>"+
-				"<td><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a><td>"+
-				"<td>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"<td><tr>"+
-				"<input type='hidden' name='link' value='"+$(":text[name=inputLink]").val()+"'>"+
-				"<input type='hidden' name='price' value='"+$(":text[name=inputPrice]").val()+"'>"
+				"<td width='10'><img src='img/link_icon.png' width='15' title='항목을 제거합니다.'></td>"+
+				"<td width='250'><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
+				"<td width='100'>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
+				"<td width='10'><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].link' value='"+$(":text[name=inputLink]").val()+"'>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].price' value='"+$(":text[name=inputPrice]").val()+"'>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].category_id' value='${requestScope.category_id}'>"
 			);
 			
 			$(":text[name=inputLink]").val("");
 			$(":text[name=inputPrice]").val("");
 			$(":text[name=inputLink]").focus();
 			$(":text[name=inputPrice]").focus();
+			
+			linkCount++;
 		});
 		
+		$("#linkView").on("click","img",function(){
+			alert()
+			if(confirm("항목을 삭제하시겠습니까?")) {
+				linkCount--;
+				$(this).parent().parent().remove();
+				$(".link"+$(this).parent().parent()).remove();
+			}
+		}); //on
 		
 		var itemList = "";
 		for(var i=0;i<$("#itemList :input").length;i++){
 			itemList += "<option>"+$("#itemList :input[name="+i+"]").val()+"</option>"
 		}
 		
-		
+		var itemCount = 0;
 		$("#itemPlusBtn").click(function(){
 			
 			if($("#itemView tr").length>=3) {
-				alert("평가 항목은 3개까지 등록 가능합니다.")
+				alert("평가 항목은 3개까지 등록 가능합니다.");
 				return;
 			}
 			
@@ -87,9 +100,13 @@
 				"<tr>"+
 				"<td><img src='img/minus_icon.png' width='25'></td>"+
 				"<td><select name='item'><option>------</option>"+itemList+"</select></td>"+
-				"<td>"+"<input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에'>"+"</td>"+
-				"</tr>"
+				"<td><input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에'></td>"+
+				"</tr>"+
+				"<input type='hidden' name='evoList["+itemCount+"].item' value='"+$("select").val()+"'>"+
+				"<input type='hidden' name='evoList["+itemCount+"].item' value='"+$("select").val()+"'>"
 			);
+			
+			itemCount++;
 		});
 		
 		
@@ -101,8 +118,12 @@
 		}); //on
 		
 		$("#itemView").on("click","img",function(){
+			alert($("#itemView tr").html());
+			//alert($("#itemView tr").siblings().eq(1).children().siblings().eq(2).children().val());
+			 
 			if(confirm("항목을 삭제하시겠습니까?")) {
 				$(this).parent().parent().remove();
+				itemCount--;
 			}
 		}); //on
 		
@@ -121,7 +142,7 @@
                 processData: false,
                 contentType: false,
                 success: function(data, textStatus, jqXHR) {
-                    alert(data);
+                   alert(data);
                 }, error: function(jqXHR, textStatus, errorThrown) {}
             });
 		});
@@ -134,11 +155,12 @@
 				return false;
 			} else if($(":input[name=price]").val()=="") {
 				$(":input[name=price]").val(0);
+			} else if($(":input[name=price]").val()=="") {
+				$(":input[name=price]").val(0);
 			} else {
 				$("#registForm").submit();
 			}
 		});
-		
 	});
 
 </script>
@@ -149,7 +171,7 @@
 	</c:forEach>
 </span>
 
-<div class="col-md-8" style="background-image: url('img/yellow_notepaper_bg.JPG');">
+<div class="col-md-8" style="background-color: #ffffcc;">
 	<div class="col-sm-9">
 		<h3 contenteditable="true">상품 등록하기</h3>
 		<hr>
@@ -179,7 +201,7 @@
 			<input type="button" value="파일 업로드" id="uploadBtn"><br>
 		</form>
 	</div>
-	<form class="form-horizontal" role="form" action="auth_registProduct.do" id="registForm">
+	<form class="form-horizontal" role="form" action="auth_registProduct.do" id="registForm" method="post">
 		<div class="col-md-7">
 			<input type="hidden" class="form-control" name="member_id" value="${sessionScope.mvo.member_id}">
 			<input type="hidden" class="form-control" name="category_id" value="${requestScope.category_id}">

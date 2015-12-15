@@ -10,9 +10,11 @@ import org.kosta.finalproject.model.category.CategoryService;
 import org.kosta.finalproject.model.category.CategoryVO;
 import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.product.EvaluatingItemVO;
+import org.kosta.finalproject.model.product.EvoListVO;
 import org.kosta.finalproject.model.product.ProductService;
 import org.kosta.finalproject.model.product.ProductVO;
 import org.kosta.finalproject.model.product.SellerLinkVO;
+import org.kosta.finalproject.model.product.SlvoListVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,11 +113,9 @@ public class ProductController {
 
 		ModelAndView mv = new ModelAndView("product_myProductList");
 
-		mv.addObject("pvoList",
-				productService.getMyProductList(member_id, currentCategory));
+		mv.addObject("pvoList", productService.getMyProductList(member_id, currentCategory));
 		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
-		mv.addObject("memberCategoryList",
-				categoryService.getMemberCategoryList(member_id));
+		mv.addObject("memberCategoryList", categoryService.getMemberCategoryList(member_id));
 		mv.addObject("category_id", currentCategory);
 
 		return mv;
@@ -143,27 +143,28 @@ public class ProductController {
 
 	// registProduct
 	@RequestMapping("auth_registProduct.do")
-	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO slvo,
-			EvaluatingItemVO evo) throws Exception {
+	public ModelAndView registProduct(ProductVO pvo, SlvoListVO slvoList, EvoListVO evoList) throws Exception {
 		// vo에 변수명이 int로 되어있어도 String 데이터가 자동으로 parseInt되면서 들어가는 듯
-		productService.addProductWithSellerLinkAndEvaluating(pvo, slvo, evo);
-		return new ModelAndView("product/registOk", "currentCategory",
-				pvo.getCategory_id());
+		
+		System.out.println("registProduct: "+pvo);
+		System.out.println("registProduct: "+slvoList);
+		System.out.println("registProduct: "+evoList);
+		
+		productService.addProductWithSellerLinkAndEvaluating(pvo, slvoList, evoList);
+		return new ModelAndView("product/registOk", "currentCategory", pvo.getCategory_id());
 	}
 
 	// hit
 	@RequestMapping("auth_hit.do")
 	public ModelAndView hit(String product_id) throws Exception {
-		productService.hit(product_id);
-		return new ModelAndView("redirect:showProductContent.do?product_id="
-				+ product_id);
+		 productService.hit(product_id);
+		return new ModelAndView("redirect:showProductContent.do?product_id="+ product_id);
 	}
 
 	// showContent
 	@RequestMapping("showProductContent.do")
 	public ModelAndView showProductContent(int product_id) throws Exception {
-		System.out.println(productService.showProductContent(product_id));
-		
+		System.out.println("showProductContent: "+productService.showProductContent(product_id));
 		return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
 	}
 	
@@ -178,12 +179,12 @@ public class ProductController {
 	
 	// updateProduct
 	@RequestMapping("updateProduct.do")
-	public ModelAndView updateProduct(int product_id, ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) throws Exception {
+	public ModelAndView updateProduct(int product_id, ProductVO pvo, SlvoListVO slvoList, EvoListVO evoList) throws Exception {
 		
-		System.out.println("updateProduct.do: "+slvo);
-		System.out.println("updateProduct.do: "+evo);
+		System.out.println(slvoList);
+		System.out.println(evoList);
 		
-		productService.updateProduct(product_id, pvo, slvo, evo);
+		//productService.updateProduct(product_id, pvo, slvo, evo);
 		return new ModelAndView("redirect:moveToUpdateOkWithProductId.do?product_id="+product_id);
 	}
 	// deleteProduct
