@@ -84,7 +84,7 @@
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
 </script>
 
-<div class="col-md-8">
+<div class="col-md-8" style="background-color: #f2f2f2;">
 
 <h4>카테고리 만들기</h4>
 	<form id="addCategoryForm">

@@ -24,6 +24,7 @@ public class QnABoardController {
 	
 	@RequestMapping("qnaboard.do")
 	public ModelAndView qnaboard(String pageNo){
+		System.out.println(qnaBoardService.getBoardList(pageNo));
 		return new ModelAndView("qna_qnaList","qvo",qnaBoardService.getBoardList(pageNo));
 	}
 	

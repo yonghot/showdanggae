@@ -48,30 +48,51 @@
 	
 
 <div align="center">
+<nav>
+  <ul class="pagination">
 
 	<c:if test="${requestScope.qvo.qpagingBean.isPreviousPageGroup()}">
-			<a href="${initParam.root}auth_qnaboard.do?pageNo=${requestScope.qvo.qpagingBean.startPageOfPageGroup-1}">◀ </a>
+			<%-- <a href="${initParam.root}auth_qnaboard.do?pageNo=${requestScope.qvo.qpagingBean.startPageOfPageGroup-1}">◀ </a> --%>
+	 <li>
+      <a href="${initParam.root}auth_qnaboard.do?pageNo=${requestScope.qvo.qpagingBean.startPageOfPageGroup-1}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
 	</c:if>
 		
 		
 <c:forEach begin="${requestScope.qvo.qpagingBean.startPageOfPageGroup }" end="${requestScope.qvo.qpagingBean.endPageOfPageGroup }" var="i">
 	<c:choose>
 	<c:when test="${requestScope.qvo.qpagingBean.nowPage==i}">
-		${i}
+	
+	<%-- <li class="active"><a href="${initParam.root}auth_qnaboard.do?pageNo=${i }">${i } <span class="sr-only">(current)</span></a></li> --%>
+	<li class="active"><a href="#">${i }<span class="sr-only">(current)</span></a></li>
+		<%-- ${i} --%>
 	</c:when>
 	<c:otherwise>
-			<a href="${initParam.root}qnaboard.do?pageNo=${i }">${i }</a>
+	
+			  <li><a href="${initParam.root}qnaboard.do?pageNo=${i }">${i} </a></li>
 	</c:otherwise>
 	</c:choose>	
 	</c:forEach>
 	
 	
  	<c:if test="${requestScope.qvo.qpagingBean.isNextPageGroup()}">
-	<a href="${initParam.root}notice.do?pageNo=${requestScope.qvo.qpagingBean.endPageOfPageGroup+1}">▶ </a>
+<%-- 	<a href="${initParam.root}notice.do?pageNo=${requestScope.qvo.qpagingBean.endPageOfPageGroup+1}">▶ </a> --%>
+	  <li>
+      <a href="${initParam.root}qnaboard.do?pageNo=${requestScope.qvo.qpagingBean.endPageOfPageGroup+1}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+  
+	 </li>
 	</c:if>  
-	
+
+	</ul>
+</nav>
 	
 	<br><br>	
 </div>
+
+
 </div>
 

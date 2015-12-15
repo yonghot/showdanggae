@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+       <style type="text/css" >
+.m38{display:block;margin-left:auto;margin-right:auto}
+</style>
+<style type="text/css" >
+.o39{background-color:#fbfbfb;border-radius:50%;border:1px solid #cccfd0;box-sizing:border-box;overflow:hidden;position:relative}
+</style>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+       
 <div class="col-md-2">
 	<c:choose>
 		<c:when test="${sessionScope.mvo.member_id=='admingalbage'}">
@@ -13,12 +21,33 @@
 		<c:when test="${!empty sessionScope.mvo && sessionScope.mvo.member_id!='admingalbage'}">
 			<!-- 일반회원으로 로그인 되었을때 -->
 			<h3>My Page</h3>
-			<hr>
 				${sessionScope.mvo.member_name} 님 로그인중
-	    	<h4><a href="auth_member_update_password.do">내정보 수정</a></h4>
-			<h4><a href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=1">내 장바구니</a></h4>
-			<h4><a href="auth_messagebox.do?member_id=${sessionScope.mvo.member_id}">내 쪽지함</a>
-			</h4>
+								<span class="social social-linked-in"></span>
+			<hr>
+
+				<div class="row">
+				<!-- 	 <div class="col-sm-6 col-md-4" > -->
+					    <div class="thumbnail">
+					    
+					      <img class="o39 m38" src="https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xtf1/t51.2885-19/10948561_1404359156532776_1425325698_a.jpg" data-reactid=".0.1.0.0:0.0.0">
+					    
+					  <!--     <img src="..." alt="..."> -->
+ 					      <div class="caption">		프로필편집박스
+    					   <span class="label label-default">프로필편집</span>  
+					        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					      
+					        <button type="button" class="btn btn-default btn-sm">
+ 							 <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+							</button>
+					      
+					      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+					      </div> 
+					    <!-- </div> -->
+
+
+					 </div>
+				</div>
 		</c:when>
 	</c:choose>	     
 </div>

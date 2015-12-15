@@ -350,9 +350,9 @@ public class MemberController {
 	// 12-13추가부분
 	@RequestMapping("falarm.do")
 	@ResponseBody
-	public List<FollowVO> fAlarm(String following) {
-		// 현재시간부터 - 어제 까지 나를 팔로잉한 사람 목록을 알림으로 가져다 줌
-		List<FollowVO> fvo = memberService.fAlarm(following);
+	public List<FollowVO> fAlarm(String following){
+		//현재시간부터 - 어제 까지 나를 팔로잉한 사람 목록을 알림으로 가져다 줌
+		List<FollowVO> fvo=memberService.fAlarm(following);
 		//System.out.println(fvo);
 		return fvo;
 	}
