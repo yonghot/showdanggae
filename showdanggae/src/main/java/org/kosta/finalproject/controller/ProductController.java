@@ -30,7 +30,7 @@ public class ProductController {
 	@ResponseBody
 	@RequestMapping(value = "auth_getMemberCategoryList.do", method = RequestMethod.POST)
 	public  List<CategoryVO> getMemberCategoryList(String member_id) {
-		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
+		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);	
 		return lvo;
 	}
 	
@@ -49,42 +49,23 @@ public class ProductController {
 	@ResponseBody
 	@RequestMapping(value = "auth_deleteProductListAndCategory.do", method = RequestMethod.POST)
 	public List<CategoryVO> deleteProductListAndCategory(int category_id, String member_id) {
-		System.out.println(category_id);
-		//productService.deleteProductList(category_id);
-		categoryService.deleteCategory(category_id);
+		//카테고리 아래에 있는 상품의 아이디를 가져온다.
+		System.out.println(category_id+" "+member_id); //37+java2 ok!
+		List<String> listPvo = categoryService.getMemberProduct_idList(category_id); 
+		System.out.println(listPvo); //25+26 ok!
+		
+		//categoryService.deleteProductList(product_id, category_id);
+		//categoryService.deleteCategory(category_id);
+		
+		
 		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
 		return lvo;
 	}
-
-	// 나의 해당 카테고리를 지운다.
-		@RequestMapping("deleteCategory.do")
-		public ModelAndView deleteCategory(int category_id,
-				HttpServletRequest request) {
-			HttpSession session = request.getSession(false);
-			if (session.getAttribute("mvo") != null) {
-				categoryService.deleteCategory(category_id);
-			}
-			return new ModelAndView("login");
-		}
 	
 	 @RequestMapping(value="auth_ajaxMemberCategoryList.do", method = RequestMethod.POST) 
 	 public ModelAndView AjaxMainCategoryList(String member_id) { 
 	 return new ModelAndView("auth_ajaxMemberCategoryList"); 
 	 }
-	 
-	/*@ResponseBody
-	@RequestMapping(value = "auth_ajaxMemberCategoryList.do", method = RequestMethod.POST)
-	public ModelAndView AjaxMainCategoryList(String category,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if (session.getAttribute("mvo") != null) {
-			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			String id = mvo.getMember_id();
-			List<CategoryVO> lvo = categoryService.getMemberCategoryList(id);
-			return new ModelAndView("auth_ajaxMemberCategoryList", "lvo", lvo);
-		}
-		return null;
-	}*/
 
 	// CategoryVO.class 에 private interest 삽입
 	@RequestMapping("addInterest.do")
@@ -97,18 +78,33 @@ public class ProductController {
 			categoryService.addInterest(vo);
 		}
 	}
+	
+	// 해당 category아래의 product count를 세어온다.
+	@RequestMapping(value="auth_getProductCountNumber.do", method = RequestMethod.POST)
+	public ModelAndView getProdeuctCountNumber(int category_id) {
+		int productCountNumber = categoryService.getProductCountNumber(category_id);
+		return new ModelAndView ("auth_getMyProductList.do", "productCountNumber", productCountNumber);
+	}
+	
+	// 나의 해당 카테고리를 지운다.
+			@RequestMapping("deleteCategory.do")
+			public ModelAndView deleteCategory(int category_id,
+					HttpServletRequest request) {
+				HttpSession session = request.getSession(false);
+				if (session.getAttribute("mvo") != null) {
+					categoryService.deleteCategory(category_id);
+				}
+				return new ModelAndView("login");
+			}
 
-	// 카테고리를 삭제 하려면, 카테고리 아래에 저장된 product가 존재해서는 안된다.
-	// 만약 존재하면 alert창으로 하위 product를 모두 삭제 하겠습니까? 물어본뒤
-	// 예:하위 product삭제 및 카테고리 삭제, 아니오:취소
-	// 예 선택시 해당 category_id를 가진 product들을 삭제 한 후, 카테고리를 삭제한다.
+	
 
 	// 김용호 영역
 	// 로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id,
 			String currentCategory) throws Exception {
-
+		
 		ModelAndView mv = new ModelAndView("product_myProductList");
 
 		mv.addObject("pvoList",
@@ -141,7 +137,7 @@ public class ProductController {
 		return mv;
 	}
 
-	// registProduct
+	// registProduct 
 	@RequestMapping("auth_registProduct.do")
 	public ModelAndView registProduct(ProductVO pvo, SellerLinkVO slvo,
 			EvaluatingItemVO evo) throws Exception {
