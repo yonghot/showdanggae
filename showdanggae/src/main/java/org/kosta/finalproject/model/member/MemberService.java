@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.member;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -29,5 +30,6 @@ public interface MemberService {
 	public List<FollowVO> findFollowerId(String member_id);
 	public List<MemberVO> onkeyupId(String searchId);
 	List<FollowVO> fAlarm(String following);
+	HashMap<String, String> proCount(String member_id);
 
 }

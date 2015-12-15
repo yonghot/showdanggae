@@ -126,8 +126,28 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<FollowVO> fAlarm(String following) {
-		
 		return sqlSessionTemplate.selectList("member.fAlarm", following);
+	}
+
+	@Override
+	public int followerCount(String member_id) {
+		//나를 받아보는 사람
+		String following=member_id;
+		int followerCount1=sqlSessionTemplate.selectOne("member.followerCount", following);
+		//String followerCount = String.valueOf(followerCount1);
+		//System.out.println("asdfasfd" + followerCount1);
+		System.out.println("asdf");
+		System.out.println(followerCount1);
+		return followerCount1;
+	}
+
+	@Override
+	public int followingCount(String member_id) {
+		String follower=member_id;
+		int followingCount1=sqlSessionTemplate.selectOne("member.followingCount", follower);
+		/*String followerCount = String.valueOf(followingCount1);
+		System.out.println(followerCount);*/
+		return followingCount1;
 	}
 
 }

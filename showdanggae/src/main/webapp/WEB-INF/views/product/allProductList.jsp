@@ -41,10 +41,12 @@
    </div>
 </div> --%>
     
+
 <div class="col-md-8">
     <div class="btn-group">
     	<a href="getAllBoardList.do?sortBy=likes" class="btn btn-default">좋아요</a>
     	<a href="getAllBoardList.do?sortBy=interest..." class="btn btn-default">관심사</a>
+ 
     	<br>
     </div>
     <hr>
@@ -63,3 +65,4 @@
 		</c:forEach>
 	</div>
 </div>
+

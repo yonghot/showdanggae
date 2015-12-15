@@ -2,6 +2,7 @@ package org.kosta.finalproject.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -77,7 +78,8 @@ public class MemberController {
 	public String registerview() {
 		return "member_registerview";
 	}
-
+	
+	//로그인
 	@RequestMapping("login.do")
 	public ModelAndView login(HttpServletRequest request,
 			HttpServletResponse response, MemberVO vo) {
@@ -93,14 +95,14 @@ public class MemberController {
 		}
 
 		MemberVO member = memberService.login(vo);
-		String cookieName = vo.getMember_id();
-		Cookie cookie = new Cookie("cookieName", cookieName);
-		cookie.setMaxAge(5);
-		// cookie.setValue("Melone"); //생성된 Cookie 객체의 값을 "Melone"이란 값으로 재 설정
-		response.addCookie(cookie); // 웹 브라우저(클라이언트)로 생성된 쿠키를 전송
 		if (member != null) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("mvo", member);
+			// 세션쿠키 생성
+			Cookie cookie= new Cookie("member","ID");
+			cookie.setMaxAge(60*60*60*365);
+			response.addCookie(cookie);
+			
 			return new ModelAndView("home");
 		} else {
 			return new ModelAndView("member_loginfail");
@@ -156,19 +158,19 @@ public class MemberController {
 			email.setContent("<body> <div id='readFrame'> "
 					+ "<div style='width: 100%; background: #fff; text-align: center; font: normal 12px dotum, '돋움''> "
 					+ "<table align='center' width='700' border='0' cellpadding='0' cellspacing='0' style='width: 700px; margin: 0 auto; text-align: left;'> "
-					+ "<tbody><tr><td style='height: 60px; background: #000; border-bottom: 2px solid #ed402e;'>"
+					+ "<tbody><tr><td style='height: 60px; background: #ebebeb; border-bottom: 2px solid #ed402e;'>"
 					+ "<a href='http://localhost:8888/showdanggae/home.do' target='_blank' style='margin: 0 0 0 45px;'> "
-					+ "<img src='${initParam.root}img/showdanggae_logo_nobg.PNG' alt='쇼당개'></a></td>"
-					+ "</tr><tr><td><table width='700' border='0' cellpadding='0' cellspacing='0' style='background: #3a3d44;'> "
+					+ "<img src='http://localhost:8888/showdanggae/img/showdanggae_logo_nobg.PNG' width='150' alt='쇼당개'></a></td>"
+					+ "</tr><tr><td><table width='700' border='0' cellpadding='0' cellspacing='0' style='background: #f5f5f5;'> "
 					+ "<tbody><tr><td style='width: 45px;'></td><td><table width='610' border='0' cellpadding='0' cellspacing='0'> "
 					+ "<tbody><tr><td height='75' style='border-bottom: 1px solid #1e2024;'> "
-					+ "<img src='${initParam.root}img/showdanggae_explanation.png' alt='쇼당개에서 알려드립니다.'>"+"</td> "
+					+ "<img src='http://localhost:8888/showdanggae/img/showdanggae_explanation.png' width='150' alt='쇼당개에서 알려드립니다.'>"+"</td> "
 					+ "</tr><tr><td height='84' style='border-top: 1px solid #4e5157;'> "
-					+ "<p style='margin: 0; color: #fff;'>"+pvo.getMember_name()+"고객님, 안녕하세요.</p> "
-					+ "<p style='margin: 9px 0 0; color: #f3f3f3;'> "
+					+ "<p style='margin: 0; color: #363636;'>"+pvo.getMember_name()+"고객님, 안녕하세요.</p> "
+					+ "<p style='margin: 9px 0 0; color: #363636;'> "
 					+ "요청하신 비밀번호는 아래와 같습니다.</p> "
-					+ "</td></tr><tr><td height='50'style='background: #2b2e33; color: #fb661e; font: bold 12px Tahoma; text-align: center;'> "
-					+ pvo.getPassword()+"</td> </tr><tr><td style='padding: 22px 0 50px; color: #f3f3f3;'> "
+					+ "</td></tr><tr><td height='50'style='background: #d2d5d9; color: #fb661e; font: bold 15px Tahoma; text-align: center;'> "
+					+ pvo.getPassword()+"</td> </tr><tr><td style='padding: 22px 0 50px; color: #363636;'> "
 					+ "<p style='margin: 0;'>항상 쇼당개를 사랑해주셔서 감사드리며, 보다 나은 서비스를 위해 최선을 다하겠습니다.</p> "
 					+ "<p style='margin: 11px 0 0;'>감사합니다.</p> "
 					+ "</td></tr></tbody></table></td><td style='width: 45px;'></td></tr></tbody></table></td> "
@@ -355,6 +357,32 @@ public class MemberController {
 		List<FollowVO> fvo=memberService.fAlarm(following);
 		//System.out.println(fvo);
 		return fvo;
+	}
+	
+	//프로필 수정하는 곳
+	@RequestMapping("Profile.do")
+	public String Profile(){
+		return "member_profile";
+	}
+	
+	//사진올리기
+	@RequestMapping("profileupimgload.do")
+	public ModelAndView profileupimgload(){
+		return null;
+	}
+	
+	//left 정보
+	@RequestMapping("profileInfo.do")
+	@ResponseBody
+	public HashMap<String, String>profileInfo(String member_id){
+		System.out.println(member_id);
+		HashMap<String, String> proInfo =new  HashMap<String, String>();
+		//내 게시물수
+		
+		//팔로워 팔로잉 수
+		proInfo=memberService.proCount(member_id);
+		System.out.println(proInfo);
+		return proInfo;
 	}
 
 }

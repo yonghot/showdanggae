@@ -77,7 +77,7 @@ select member_Id,password,member_name,email,to_char(birthday,'RRMMDD')as birthda
  
 delete from member where member_Id='java';
 
- 
+ select * from member;
 delete from member where member_Id='javaKING';
 
 insert into member values ('java','1234','박성엽','david@naver.com',to_date(850429,'RRMMDD'));

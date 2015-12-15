@@ -24,6 +24,8 @@ public class FileUploadController {
 	@ResponseBody
 	public void fileUpload(FileVO vo) {
 		
+		System.out.println("파일 업로드 컨트롤러 실행");
+		
 		System.out.println(path+" "+vo.getUserInfo());
 		
 		List<MultipartFile> list = vo.getFile();
@@ -35,7 +37,7 @@ public class FileUploadController {
 			//업로드 파일이 없으면 파일명은 공란 처리된다
 			String fileName = list.get(i).getOriginalFilename();
 			
-			//업로드 파일이 있으면 파일을 특정 경로로 업로드 한다.
+			//업로드 파일이 있으면 파일을 특정 경로로 업로드(복사) 한다.
 			if(!fileName.equals("")) {
 				try {
 					list.get(i).transferTo(new File(path+fileName));
