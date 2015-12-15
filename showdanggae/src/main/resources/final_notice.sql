@@ -19,7 +19,7 @@ create sequence notice_seq;
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
 insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
-values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
+values(notice_seq.nextval,'Z','관리자','1234','방가방가',SYSDATE);
 insert into noticeboard(no,TITLE,writer,password,content,writeDate) 
 values(notice_seq.nextval,'공지사항입니다','관리자','1234','방가방가',SYSDATE);
 insert into noticeboard(no,TITLE,writer,password,content,writeDate) 

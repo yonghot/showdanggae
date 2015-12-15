@@ -76,26 +76,42 @@
 
 	
 <div align="center">
+	<nav>
+  <ul class="pagination">
+    
 <c:if test="${requestScope.noticeList.pagingBean.isPreviousPageGroup()}">
-<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.startPageOfPageGroup-1}">◀ </a>
+ <li>
+      <a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.startPageOfPageGroup-1}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
 </c:if>
 		
 		
+ 
 <c:forEach begin="${requestScope.noticeList.pagingBean.startPageOfPageGroup }" end="${requestScope.noticeList.pagingBean.endPageOfPageGroup }" var="i">
 	<c:choose>
 	<c:when test="${requestScope.noticeList.pagingBean.nowPage==i}">
-		${i}
+	 <li class="active"><a href="${initParam.root}notice.do?pageNo=${i }">${i } <span class="sr-only">(current)</span></a></li>
+		
 	</c:when>
 	<c:otherwise>
-			<a href="${initParam.root}notice.do?pageNo=${i }">${i }</a>
+		  <li><a href="${initParam.root}notice.do?pageNo=${i }">${i} </a></li>
 	</c:otherwise>
 	</c:choose>	
 	</c:forEach>
 	
 	
  	<c:if test="${requestScope.noticeList.pagingBean.isNextPageGroup()}">
-	<a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.endPageOfPageGroup+1}">▶ </a>
+	  <li>
+      <a href="${initParam.root}notice.do?pageNo=${requestScope.noticeList.pagingBean.endPageOfPageGroup+1}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
 	</c:if>  
+
+	</ul>
+</nav>
 	</div>
 	
 	
