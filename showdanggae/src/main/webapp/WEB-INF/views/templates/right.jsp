@@ -99,15 +99,6 @@
 					/* if(data!=""){				
 						for(var i=0; i<data.length;i++){	
 							alert(data[i].member_id);
-<<<<<<< HEAD
-							index += "<tr><td>"+data[i].member_id+"</td></tr>";
-						}		
-						$("#searchIdView1").html(index); 
-					}
-						   
-					}		
-=======
-
 							index += data[i].member_id;
 						}
 						$("#searchIdView").html(index);
@@ -115,7 +106,6 @@
 						$("#searchIdView").html(index);
 					} */
 				}		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			});//ajax  
 	      }   
 	   });
