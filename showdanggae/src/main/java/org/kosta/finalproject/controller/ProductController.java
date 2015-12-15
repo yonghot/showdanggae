@@ -108,8 +108,7 @@ public class ProductController {
 	// 김용호 영역
 	// 로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
-	public ModelAndView getMyProductList(String member_id,
-			String currentCategory) throws Exception {
+	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
 
 		ModelAndView mv = new ModelAndView("product_myProductList");
 
@@ -122,10 +121,9 @@ public class ProductController {
 	}
 
 	// getAllBoardList
-	@RequestMapping(value = { "getAllBoardList.do", "home.do" })
+	@RequestMapping(value = {"getAllBoardList.do", "home.do"})
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
-		return new ModelAndView("product_allProductList", "pvoList",
-				productService.getAllBoardList(sortBy));
+		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
 	}
 
 	// beforeGoingRegistProduct
@@ -158,12 +156,13 @@ public class ProductController {
 	@RequestMapping("auth_hit.do")
 	public ModelAndView hit(String product_id) throws Exception {
 		 productService.hit(product_id);
-		return new ModelAndView("redirect:showProductContent.do?product_id="+ product_id);
+		return new ModelAndView("redirect:showProductContent.do?product_id="+product_id);
 	}
 
 	// showContent
 	@RequestMapping("showProductContent.do")
 	public ModelAndView showProductContent(int product_id) throws Exception {
+		System.out.println(product_id);
 		System.out.println("showProductContent: "+productService.showProductContent(product_id));
 		return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
 	}
