@@ -46,7 +46,7 @@
             <li><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"><a href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=1"> 내장바구니</a></span></li>
             <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"><a href="auth_messagebox.do?member_id=${sessionScope.mvo.member_id}"> 쪽지함</a></span></li>       
           </ul>
-      		  </li> 
+        	</li> 
 						</c:when>
 						<c:otherwise>
 						<!-- 그 외 -->

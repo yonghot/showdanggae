@@ -40,11 +40,18 @@ $(document).ready(function(){
 		</c:when>
 		<c:when test="${!empty sessionScope.mvo && sessionScope.mvo.member_id!='admingalbage'}">
 			<!-- 일반회원으로 로그인 되었을때 -->
+<<<<<<< HEAD
 			<ul class="nav nav-tabs">
   			<li role="presentation" class="active"><a href="home.do">Home</a></li>
   			<li role="presentation"><a href="Profile.do">Profile</a></li>
 			</ul>
 	 	<span class="social social-linked-in"></span> 
+=======
+			<h3>My Page</h3>
+				${sessionScope.mvo.member_name} 님 로그인중
+								<span class="social social-linked-in"></span>
+			<hr>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				<div class="row">
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
 					    <div class="thumbnail">
