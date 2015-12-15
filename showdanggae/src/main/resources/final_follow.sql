@@ -52,6 +52,10 @@ and following='lipchel';
 /* 어제 */ 날짜칼럼 BETWEEN TRUNC(SYSDATE-1) AND TRUNC(SYSDATE-1)+0.99999421
 /* 오늘 */ 날짜칼럼 BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421
 
+select count(*) from follow where following='lipchel';
+select count(*) from follow where follower='lipchel';
+나를 팔로워하는사람
+
 select follower,following_date
 from(select * from follow where following_date  BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421)
 where following='lipchel';

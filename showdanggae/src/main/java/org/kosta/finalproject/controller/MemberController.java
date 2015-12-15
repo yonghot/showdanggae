@@ -2,6 +2,7 @@ package org.kosta.finalproject.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -356,6 +357,32 @@ public class MemberController {
 		List<FollowVO> fvo=memberService.fAlarm(following);
 		//System.out.println(fvo);
 		return fvo;
+	}
+	
+	//프로필 수정하는 곳
+	@RequestMapping("Profile.do")
+	public String Profile(){
+		return "member_profile";
+	}
+	
+	//사진올리기
+	@RequestMapping("profileupimgload.do")
+	public ModelAndView profileupimgload(){
+		return null;
+	}
+	
+	//left 정보
+	@RequestMapping("profileInfo.do")
+	@ResponseBody
+	public HashMap<String, String>profileInfo(String member_id){
+		System.out.println(member_id);
+		HashMap<String, String> proInfo =new  HashMap<String, String>();
+		//내 게시물수
+		
+		//팔로워 팔로잉 수
+		proInfo=memberService.proCount(member_id);
+		System.out.println(proInfo);
+		return proInfo;
 	}
 
 }

@@ -61,9 +61,9 @@
 				"<td width='250'><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
 				"<td width='100'>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
 				"<td width='10'><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
-				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].link' value='"+$(":text[name=inputLink]").val()+"'>"+
-				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].price' value='"+$(":text[name=inputPrice]").val()+"'>"+
-				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].category_id' value='${requestScope.category_id}'>"
+				"<input type='hidden' class='link"+linkCount+"' name='slvoList["+linkCount+"].link' value='"+$(":text[name=inputLink]").val()+"'>"+
+				"<input type='hidden' class='link"+linkCount+"' name='slvoList["+linkCount+"].price' value='"+$(":text[name=inputPrice]").val()+"'>"+
+				"<input type='hidden' class='link"+linkCount+"' name='slvoList["+linkCount+"].category_id' value='${requestScope.category_id}'>"
 			);
 			
 			$(":text[name=inputLink]").val("");
@@ -75,13 +75,14 @@
 		});
 		
 		$("#linkView").on("click","img",function(){
-			alert()
+			
 			if(confirm("항목을 삭제하시겠습니까?")) {
 				linkCount--;
+				$(".link"+$(this).parent().parent().index()/4).remove();
 				$(this).parent().parent().remove();
-				$(".link"+$(this).parent().parent()).remove();
 			}
 		}); //on
+		
 		
 		var itemList = "";
 		for(var i=0;i<$("#itemList :input").length;i++){
@@ -91,6 +92,8 @@
 		var itemCount = 0;
 		$("#itemPlusBtn").click(function(){
 			
+			alert($())
+			
 			if($("#itemView tr").length>=3) {
 				alert("평가 항목은 3개까지 등록 가능합니다.");
 				return;
@@ -99,11 +102,10 @@
 			$("#itemView").append(
 				"<tr>"+
 				"<td><img src='img/minus_icon.png' width='25'></td>"+
-				"<td><select name='item'><option>------</option>"+itemList+"</select></td>"+
-				"<td><input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에'></td>"+
+				"<td><select name='evoList["+itemCount+"].item'><option>------</option>"+itemList+"</select></td>"+
+				"<td><input type='text' class='form-control' name='evoList["+itemCount+"].item_point' size='1' placeholder='10점 만점에'></td>"+
 				"</tr>"+
-				"<input type='hidden' name='evoList["+itemCount+"].item' value='"+$("select").val()+"'>"+
-				"<input type='hidden' name='evoList["+itemCount+"].item' value='"+$("select").val()+"'>"
+				"<input type='hidden' class='item"+itemCount+"' name='evoList["+itemCount+"].category_id' value='${requestScope.category_id}'>"
 			);
 			
 			itemCount++;
@@ -118,8 +120,6 @@
 		}); //on
 		
 		$("#itemView").on("click","img",function(){
-			alert($("#itemView tr").html());
-			//alert($("#itemView tr").siblings().eq(1).children().siblings().eq(2).children().val());
 			 
 			if(confirm("항목을 삭제하시겠습니까?")) {
 				$(this).parent().parent().remove();
@@ -128,7 +128,7 @@
 		}); //on
 		
 		$("#uploadBtn").click(function(){
-			 var data = new FormData();
+			var data = new FormData();
             $.each($('#uploadForm')[0].files, function(i, file) {          
                 data.append('file-' + i, file);
             });
@@ -172,18 +172,9 @@
 </span>
 
 <div class="col-md-8" style="background-color: #ffffcc;">
-	<div class="col-sm-9">
+	<div class="col-sm-12">
 		<h3 contenteditable="true">상품 등록하기</h3>
 		<hr>
-	</div>
-	<div class="col-sm-3" align="right">
-		<div class="btn-group btn-group-xs">
-			<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" contenteditable="true">카테고리 선택<br>
-			<span class="fa fa-caret-down"></span></a>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href="#" contenteditable="true">Action</a></li>
-			</ul>
-		</div>
 	</div>
 	<div class="col-md-5">
 		<a href="fileupload.do" class="thumbnail">
@@ -196,7 +187,7 @@
 				</c:otherwise>
 			</c:choose>
 		</a>
-	    <form id="uploadForm" action="${initParam.root}fileupload.do" enctype="multipart/form-data" method="post" class="thumbnail">
+	    <form id="uploadForm" action="fileupload.do" enctype="multipart/form-data" method="post" class="thumbnail">
 			<input type="file" name="file[0]"><br>
 			<input type="button" value="파일 업로드" id="uploadBtn"><br>
 		</form>
