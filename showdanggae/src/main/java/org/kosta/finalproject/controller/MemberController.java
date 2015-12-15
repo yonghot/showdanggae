@@ -279,6 +279,7 @@ public class MemberController {
 	@ResponseBody
 	public void addFollow(FollowVO fvo, HttpServletRequest request)
 			throws Exception {
+		
 		memberService.addFollow(fvo);
 	}
 

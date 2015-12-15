@@ -168,6 +168,8 @@ public class MemberServiceImpl implements MemberService {
 			if(isFollow){
 				list.get(i).setIsFollow(isFollow);
 				isFollow = false;
+			}else{
+				list.get(i).setIsFollow(false);
 			}
 		}
 		return list;
@@ -175,6 +177,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void addFollow(FollowVO fvo) {
+		//System.out.println(fvo);
 		memberDAO.addFollow(fvo);
 	}
 	
