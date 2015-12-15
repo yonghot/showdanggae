@@ -16,8 +16,9 @@ public class QnABoardServiceImpl implements QnABoardService{
 
 	@Override
 	public QnaListVO getBoardList(String pageNo) {
-		if(pageNo==null||pageNo=="") 
+		if(pageNo==null||pageNo==""){
 			pageNo="1";
+		}
 		List<QnaVO> list=qnaBoardDAO.getBoardList(pageNo);
 		int total=qnaBoardDAO.totalContent();
 		QPagingBean qpagingBean=new QPagingBean(total,Integer.parseInt(pageNo));

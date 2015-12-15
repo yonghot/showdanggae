@@ -8,13 +8,30 @@
 <!-- 자동완성 sheet -->
 <script type="text/javascript">
 
+
+
 	/* function follow_view(){
 		 location.href="auth_findFollowingId.do?member_id=${mvo.member_id}";
 	} */
 	/* function follow1_view(){
 		 location.href="auth_findFollowerId.do?member_id=${mvo.member_id}";
 	} */	
+
 	$(document).ready(function(){	
+
+	//var quick_menu = $('#quick').offset().top;
+	var boxtop = $('#quick');
+	var q=100;
+    $(window).scroll(function(){ 
+    boxtop.stop();
+   // boxtop.animate({"top": $('#quick').scrollTop() + q + "px"}, 500); 
+   //alert("asdf");
+    boxtop.offset({"top": $('#quick').scrollTop() + q + "px"}, 100);
+   
+  });  
+
+	
+				
 		//팔로잉 이름을 클릭시 발동 되는 이벤트
 		 $('#searchIdView1').on('click','.messagePopBtn1',function(){
 			 var id=$(this).children().children().val();
@@ -35,6 +52,8 @@
 						return false;
 					}
 		   });	
+
+
 		$.ajax({
 			type:"get",
 			url:"falarm.do?following=${sessionScope.mvo.member_id}",
@@ -43,12 +62,13 @@
 				if(data!=""){
 					var index="";
 					for(var i=0; i<data.length;i++){						
-						index += data[i].following_date + data[i].follower + "님이 팔로우 하셨습니다<br>";
+						index += "<hr>"+data[i].following_date+ "<hr>" + data[i].follower + "님이 팔로우 하셨습니다<br>";
 					 }
 					$("#realarm").html(index).css('fontSize', 5);
-					$("#alarm").html("알람(" + data.length + ")");
+					$("#alarm").html("알람" + " <span class='badge'>" +data.length + "</span></a>");
+					//<a href="#">Inbox <span class="badge">42</span></a>
 				}else{
-					$("#alarm").html("알람" + "(0)");
+					$("#alarm").html("알람" + " <span class='badge'>"  + "</span></a>");
 				}
 			}
 		}); 
@@ -66,9 +86,9 @@
 							index += data[i].following_date + data[i].follower + "님이 팔로우 하셨습니다<br>";
 						 }
 						$("#realarm").html(index).css('fontSize', 5);
-						$("#alarm").html("알림(" + data.length + ")");
+						$("#alarm").html("알람" + " <span class='badge'>" + +data.length + "</span></a>");
 					}else{
-						$("#alarm").html("알림" + "(0)");
+						$("#alarm").html("알람" + " <span class='badge'>"  + "</span></a>");
 					}
 				}
 			});
@@ -197,11 +217,11 @@
 	} 
 </script>
 
-<div class="col-md-2" align="center">
+<div class="col-md-2" align="center" >
 	<c:if test="${sessionScope.mvo!=null}">
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
-				<div class="col-sm-12">
+				<div class="col-lg-12">
 					<input type="hidden" name="sessionId"
 						value="${sessionScope.mvo.member_id}">
 					<div class="input-group">
@@ -225,53 +245,31 @@
 		<span id="searchIdView1"></span>
 	</c:if>
 
+<!--  data-offset-top="400" -->
+<div class="quick" data-spy="scroll" style='position:absolute; top: 200px;' >
 
-	<div data-spy="affix" data-offset-top="200">
-		<div class="panel-group" id="accordion" role="tablist"
-			aria-multiselectable="true">
-			<div class="panel panel-default">
-				<div class="panel-heading" role="tab" id="headingOne">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion"
-							href="#collapseOne" aria-expanded="true"
-							aria-controls="collapseOne"> 알림 </a>
-					</h4>
-				</div>
-				<div id="collapseOne" class="panel-collapse collapse in"
-					role="tabpanel" aria-labelledby="headingOne">
-					<div class="panel-body">내용</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading" role="tab" id="headingTwo">
-					<h4 class="panel-title">
-						<a class="collapsed" data-toggle="collapse"
-							data-parent="#accordion" href="#collapseTwo"
-							aria-expanded="false" aria-controls="collapseTwo"> 2 </a>
-					</h4>
-				</div>
-				<div id="collapseTwo" class="panel-collapse collapse"
-					role="tabpanel" aria-labelledby="headingTwo">
-					<div class="panel-body"></div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading" role="tab" id="headingThree">
-					<h4 class="panel-title">
-						<a id="alarm" class="collapsed" data-toggle="collapse"
-							data-parent="#accordion" href="#collapseThree"
-							aria-expanded="false" aria-controls="collapseThree"> </a>
-					</h4>
-					<div id="alarmcount"></div>
-				</div>
-				<div id="collapseThree" class="panel-collapse collapse"
-					role="tabpanel" aria-labelledby="headingThree">
-					<div class="panel-body" id="realarm"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a id="alarm" class="collapsed"  data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" >
+          
+        </a>
+      </h4>
+    		  <div id="alarmcount"></div>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body" id="realarm">
+      </div>
+      </div>
+    </div>
 </div>
+  </div>
+   
+ 
+</div>
+
 
 <br>
 <br>

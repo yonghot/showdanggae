@@ -235,6 +235,7 @@ insert into follow(following_date,following,follower) values(sysdate,'java1','ja
 
 ----팔로우 임의 데이터
 
+
 insert into follow(following_date,following,follower)
 values(sysdate,'lipchel','dd');
 
