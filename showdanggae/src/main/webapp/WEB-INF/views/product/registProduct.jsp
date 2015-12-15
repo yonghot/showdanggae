@@ -75,11 +75,10 @@
 		});
 		
 		$("#linkView").on("click","img",function(){
-			alert()
 			if(confirm("항목을 삭제하시겠습니까?")) {
 				linkCount--;
 				$(this).parent().parent().remove();
-				$(".link"+$(this).parent().parent()).remove();
+				$(".link0").remove();
 			}
 		}); //on
 		
@@ -99,11 +98,9 @@
 			$("#itemView").append(
 				"<tr>"+
 				"<td><img src='img/minus_icon.png' width='25'></td>"+
-				"<td><select name='item'><option>------</option>"+itemList+"</select></td>"+
-				"<td><input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에'></td>"+
-				"</tr>"+
-				"<input type='hidden' name='evoList["+itemCount+"].item' value='"+$("select").val()+"'>"+
-				"<input type='hidden' name='evoList["+itemCount+"].item' value='"+$("select").val()+"'>"
+				"<td><select name='evoList["+itemCount+"].item'><option>------</option>"+itemList+"</select></td>"+
+				"<td><input type='text' class='form-control' name='evoList["+itemCount+"].item_point' size='1' placeholder='10점 만점에'></td>"+
+				"</tr>"
 			);
 			
 			itemCount++;
@@ -118,8 +115,6 @@
 		}); //on
 		
 		$("#itemView").on("click","img",function(){
-			alert($("#itemView tr").html());
-			//alert($("#itemView tr").siblings().eq(1).children().siblings().eq(2).children().val());
 			 
 			if(confirm("항목을 삭제하시겠습니까?")) {
 				$(this).parent().parent().remove();

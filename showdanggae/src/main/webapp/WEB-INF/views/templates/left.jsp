@@ -25,7 +25,6 @@
 				${sessionScope.mvo.member_name} 님 로그인중
 								<span class="social social-linked-in"></span>
 			<hr>
-
 				<div class="row">
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
 					    <div class="thumbnail">

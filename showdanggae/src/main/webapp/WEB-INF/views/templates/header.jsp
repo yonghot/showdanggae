@@ -44,7 +44,7 @@
             <li><a href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=1">내장바구니</a></li>
             <li><a href="auth_messagebox.do?member_id=${sessionScope.mvo.member_id}">쪽지함</a></li>
           </ul>
-        </li> 
+        	</li> 
 						</c:when>
 						<c:otherwise>
 						<!-- 그 외 -->
