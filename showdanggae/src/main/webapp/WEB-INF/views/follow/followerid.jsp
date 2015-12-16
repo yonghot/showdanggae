@@ -5,7 +5,7 @@
 <jsp:include page="../templates/right.jsp"></jsp:include>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#followingView a").click(function(){
+/* 	$("#followingView a").click(function(){
 		var id=$(this).text();
 		if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
 		 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		}else{
 			return false;
 		}
-	});	
+	});	 */
 });
 </script>
 <table border="1" class="type05">

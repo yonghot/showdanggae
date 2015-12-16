@@ -8,7 +8,7 @@
 		//$("#addBtn").on("click","#addBtn", function(){
 		$("#addBtn").click(function() {
 		//val() 값은 String 이다. 카메라, 노트북 등등
-		var category=$(":input[name=category]:checked").val();
+		var category=$(":radio[name=category]:checked").val();
 		alert(category+"을 추가 하셨습니다.");
 		if(category==undefined) {
 			alert("카테고리를 추가 하세요~");
@@ -45,13 +45,14 @@
 		//라디오 버튼 형식의 카테고리 삭제(작성중....)
 		$("#deleteCateroryBtn").click(function() {
 		//$("#deleteCateroryBtn").on("click", "#deleteCateroryBtn", function(){
-			var category_id=$(":input[name=category_id]:checked").val();
+			var category=$(":radio[name=category_id]:checked").val();
+			alert(category);
 			//카테고리 삭제시 confirm 확인창을 한번 띄워준다. 12월 11일 미완~~
 			if(confirm("선택한 카테고리에 포함된 상품까지 모두 삭제 됩니다. 삭제 하시겠습니까?")==true){
 				$.ajax({
 					type : "POST",
 					url : "auth_deleteProductListAndCategory.do",
-					data : $("#deleteCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
+					data : "category_id="+category+"&member_id=${sessionScope.mvo.member_id}",
 					dataType : "JSON",
 					success : function(result) {
 						if(result.exception!=null) {
@@ -323,4 +324,3 @@
 	<td>${list.likes}</td>
 	<td>${list.dislikes}</td>
 </tr> --%>
-

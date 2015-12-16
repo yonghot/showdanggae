@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="category">
 	
-	<select id="getMemberProduct_idList" resultType="String">
-		select
-		product_id
-		from product
-		where category_id=#{value}
+	<select id="addMyCategory">
+	 	<![CDATA[
+	 		insert into member_category(category_id, category, member_id) 
+	 		values(member_category_seq.nextval, #{category}, #{member_id})
+	 	]]>
 	</select>
 	
 	<select id="deleteProductList">
@@ -20,29 +20,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 ]]>
 	</select>
 	
-	<delete id="deleteSellerLinkList">
-		<![CDATA[
-			delete 
-			from seller_link 
-			where product_id=#{value}
-	 	]]>
-	</delete>
-	
-	<delete id="deleteEvaluatingItemList">
-		<![CDATA[
-			delete 
-			from eval_item 
-			where product_id=#{value}
-	 	]]>
-	</delete>
-	
-	<select id="deleteCatgory">
+	<select id="deleteCategory">
 	 	<![CDATA[
 	 		delete 
 	 		from member_category 
 	 		where category_id=#{value}
 	 	]]>
 	</select>
+	
+	<select id="findSellerLinkByCategoryId" resultType="slvo">
+		<![CDATA[
+			select link, product_id, price
+	 		from seller_link
+			where category_id=#{value}
+	 	]]>
+	</select>
+	
+	<delete id="deleteSellerLink">
+		<![CDATA[
+			delete 
+			from seller_link 
+			where category_id=#{value}
+	 	]]>
+	</delete>
+	
+	<select id="findEvaluatingItemByCategoryId" resultType="evo">
+		<![CDATA[
+			select * 
+			from eval_item 
+			where category_id=#{value}
+	 	]]>
+	</select>
+	
+	<delete id="deleteEvaluatingItem">
+		<![CDATA[
+			delete 
+			from eval_item 
+			where category_id=#{value}
+	 	]]>
+	</delete>
 	
 	<select id="getMemberCategoryList" resultType="cvo">
 		<![CDATA[
@@ -57,18 +73,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select category
 		from main_category
 	</select>
-
-	<select id="addMyCategory">
-	 	<![CDATA[
-	 		insert into member_category(category_id, category, member_id) 
-	 		values(member_category_seq.nextval, #{category}, #{id})
-	 	]]>
-	</select>
 	
 	<select id="addInterest">
 	 	<![CDATA[
-	 		insert into interest(category, member_id)
-	 		values (#{category}, #{member_id})
+	 		insert into interest
+	 		value #{value}
 	 	]]>
 	</select>
 	

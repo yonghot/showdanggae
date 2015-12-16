@@ -33,17 +33,21 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SellerLinkVO slvo, EvaluatingItemVO evo) {
+	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SlvoListVO slvoList, EvoListVO evoList) {
 		productDAO.addProduct(pvo); //insert는 부모테이블 것을 먼저 해준다
 		
-		if(slvo.getLink()!=null) { //공란이 DB에 들어가면 null로 인식되서 not null인 변수에 넣을 수가 없다
-			slvo.setProduct_id(pvo.getProduct_id());
-			productDAO.addSellerLink(slvo);
+		if(slvoList.getSlvoList()!=null) { //공란이 DB에 들어가면 null로 인식되서 not null인 변수에 넣을 수가 없다
+			for(int i=0;i<slvoList.getSlvoList().size();i++) {
+				slvoList.getSlvoList().get(i).setProduct_id(pvo.getProduct_id());
+				productDAO.addSellerLink(slvoList.getSlvoList().get(i));
+			}
 		}
 		
-		if(evo.getItem()!=null) {
-			evo.setProduct_id(pvo.getProduct_id());
-			productDAO.addEvaluatingItem(evo);
+		if(evoList.getEvoList()!=null) {
+			for(int i=0;i<evoList.getEvoList().size();i++) {
+				evoList.getEvoList().get(i).setProduct_id(pvo.getProduct_id());
+				productDAO.addEvaluatingItem(evoList.getEvoList().get(i));
+			}
 		}
 	}
 	

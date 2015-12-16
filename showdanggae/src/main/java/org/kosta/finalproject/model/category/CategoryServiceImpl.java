@@ -5,31 +5,30 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.kosta.finalproject.model.member.MemberVO;
-import org.kosta.finalproject.model.product.ProductDAO;
-import org.kosta.finalproject.model.product.ProductVO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
 	@Resource
 	private CategoryDAO categoryDAO;
-	private ProductDAO productDAO;
 	
 	@Override
-	public List<String> getMemberProduct_idList(int category_id) {
-		return categoryDAO.getMemberProduct_idList(category_id);
+	public void addMyCategory(String category, String member_id) {
+		HashMap<String, String> map=new HashMap<String, String>();
+		map.put("category", category);
+		map.put("member_id", member_id);
+		categoryDAO.addMyCategory(map);
 	}
 	@Override
-	public void deleteProductList(int product_id, int category_id) {
-		if(productDAO.findSellerLinkByProductId(product_id)!=null) {
-			productDAO.deleteSellerLink(product_id);
+	public void deleteProductList(int category_id) {
+		if(categoryDAO.findSellerLinkByCategoryId(category_id)!=null) {
+			categoryDAO.deleteSellerLink(category_id);
 		}
-		if(productDAO.findEvaluatingItemByProductId(product_id)!=null) {
-			productDAO.deleteEvaluatingItem(product_id);
+		if(categoryDAO.findEvaluatingItemByCategoryId(category_id)!=null) {
+			categoryDAO.deleteEvaluatingItem(category_id);
 		}
-		productDAO.deleteProduct(category_id);
-		
+		categoryDAO.deleteProductList(category_id);
+		categoryDAO.deleteCategory(category_id);
 	}
 
 	@Override
@@ -43,19 +42,8 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public void deleteCategory(int category_id) {
-		categoryDAO.deleteCategory(category_id);
-	}
-	@Override
-	public void addMyCategory(String category, String id) {
-		HashMap<String, String> map=new HashMap<String, String>();
-		map.put("category", category);
-		map.put("id", id);
-		categoryDAO.addMyCategory(map);
-	}
-	@Override
-	public void addInterest(MemberVO vo) {
-		categoryDAO.addInterest(vo);
+	public void addInterest(String interest) {
+		categoryDAO.addInterest(interest);
 	}
 	@Override
 	public int getProductCountNumber(int category_id) {

@@ -5,7 +5,7 @@
 
 	$(document).ready(function(){
 		
-		$("#cancelRegist").click(function(){
+		$("#cancelUpdate").click(function(){
 			location.href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=${requestScope.category_id}";
 		});
 		
@@ -61,13 +61,18 @@
 			
 			$("#linkView").append(
 				"<tr>"+
-				"<td><img src='img/link_icon.png' width='15'></td>"+
-				"<td><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
-				"<td>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
-				"<td><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
-				"<input type='hidden' name='link' value='"+$(":text[name=inputLink]").val()+"32432432'>"+
-				"<input type='hidden' name='price' value='"+$(":text[name=inputPrice]").val()+"'>"
+				"<td width='10'><img src='img/link_icon.png' width='15' title='항목을 제거합니다.'></td>"+
+				"<td width='250'><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
+				"<td width='100'>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
+				"<td width='10'><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].link' value='"+$(":text[name=inputLink]").val()+"'>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].price' value='"+$(":text[name=inputPrice]").val()+"'>"+
+				"<input type='hidden' class=link"+linkCount+" name='slvoList["+linkCount+"].category_id' value='${requestScope.category_id}'>"
 			);
+			
+			$("#linkView tr").click(function(){
+				alert($("#linkView tr").index(this));
+			});
 			
 			$(":text[name=inputLink]").val("");
 			$(":text[name=inputPrice]").val("");
@@ -109,7 +114,7 @@
 		$("#itemView").on("keyup",":input[type=text]",function(){
 			if($("#itemView :input[type=text]").val()>10) {
 				alert("10점 만점입니다!");
-				$(this).val("");
+				$(this).val("").focus();
 			}
 		}); //on
 		
@@ -162,7 +167,7 @@
 	</c:forEach>
 </span>
 
-<div class="col-md-8" style="background-image: url('img/yellow_notepaper_bg.JPG');">
+<div class="col-md-8" style="background-color: ffffb3;">
 	<div class="col-sm-9">
 		<h3 contenteditable="true">상품 정보 수정</h3>
 		<hr>
@@ -192,7 +197,7 @@
 			<input type="button" value="파일 업로드" id="uploadBtn"><br>
 		</form>
 	</div>
-	<form class="form-horizontal" role="form" action="updateProduct.do" id="registForm">
+	<form class="form-horizontal" role="form" action="updateProduct.do" id="registForm" method="post">
 		<input type="hidden" name="product_id" value="${requestScope.productInfo.pvo.product_id}">
 		<div class="col-md-7">
 			<div class="form-group">
@@ -229,18 +234,19 @@
 				<tr></tr>
 			</thead>
 			<tbody id="linkView" valign="middle">
-				<c:forEach items="${requestScope.productInfo.slvoList}" var="slvoList">
+				<c:forEach items="${requestScope.productInfo.slvoList}" var="slvoList" varStatus="status">
 					<tr>
 					<td><img src='img/link_icon.png' width='15'></td>
 					<td id="link"><a href="${slvoList.link}">${slvoList.link}</a></td>
 					<td id="price">${slvoList.price}</td>
 					<td><img src='img/minus_icon.png' width='25' id="deleteImg"></td>
 					</tr>
+					<input type='hidden' name='slvoList[${status.index}].link' value="${slvoList.link}">
+					<input type='hidden' name='slvoList[${status.index}].price' value="${slvoList.price}">
 				</c:forEach>
 			</tbody>
 		</table>
-		<input type='hidden' name='link' value="${slvoList.link}"><!-- 복수 처리 해야됨 -->
-		<input type='hidden' name='price' value="${slvoList.price}">
+		
 		<table class="table">
 			<tbody>
 				<tr>
@@ -262,6 +268,8 @@
 										<td>${evoList.item}</td>
 										<td><input type='text' class='form-control' name='item_point' size='1' placeholder='10점 만점에' value="${evoList.item_point}"></td>
 										</tr>
+										<input type='hidden' name='item' value="${evoList.item}"><!-- 복수 처리 해야됨 -->
+										<input type='hidden' name='item_point' value="${evoList.item_point}">
 									</c:forEach>
 								</tbody>
 							</table>

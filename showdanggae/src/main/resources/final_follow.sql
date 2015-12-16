@@ -29,13 +29,13 @@ following  // follower
 a // a를 받아보는사람
 
 insert into follow(following_date,following,follower)
-values(sysdate,'dd','lipchel');
+values(sysdate,'java','java2');
 
 insert into follow(following_date,following,follower)
 values(sysdate,'lipchel','dd');
 
 insert into follow(following_date,following,follower)
-values(sysdate,'lipchel','java1');
+values(sysdate,'java2','java');
 
 select follower from follow where following='lipchel';
 
@@ -51,6 +51,10 @@ and following='lipchel';
 
 /* 어제 */ 날짜칼럼 BETWEEN TRUNC(SYSDATE-1) AND TRUNC(SYSDATE-1)+0.99999421
 /* 오늘 */ 날짜칼럼 BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421
+
+select count(*) from follow where following='lipchel';
+select count(*) from follow where follower='lipchel';
+나를 팔로워하는사람
 
 select follower,following_date
 from(select * from follow where following_date  BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 0.99999421)
