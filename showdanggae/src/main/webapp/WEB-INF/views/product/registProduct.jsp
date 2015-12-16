@@ -38,7 +38,6 @@
 		var linkCount = 0;
 		$("#linkPlusBtn").click(function(){
 			
-
 			if($(":text[name=inputLink]").val()=="") {
 				alert("판매자 링크를 입력해주세요");
 				return;
@@ -92,8 +91,6 @@
 		var itemCount = 0;
 		$("#itemPlusBtn").click(function(){
 			
-			alert($())
-			
 			if($("#itemView tr").length>=3) {
 				alert("평가 항목은 3개까지 등록 가능합니다.");
 				return;
@@ -127,24 +124,41 @@
 			}
 		}); //on
 		
-		$("#uploadBtn").click(function(){
-			var data = new FormData();
-            $.each($('#uploadForm')[0].files, function(i, file) {          
-                data.append('file-' + i, file);
-            });
-             
+		
+		/* $("#uploadBtn").click(function(event){
+
+			var uploadFormData = $("#uploadForm");
+			uploadFormData.method="post";
+			uploadFormData.enctype="multipart/form-data";
+			
+			var uploadFormDataForAjax = new FormData(uploadFormData);
+			
+			alert(uploadFormDataForAjax);
+			
             $.ajax({
-                url: 'fileupload.do',
+                url: "fileupload.do",
                 type: "post",
-                dataType: "text",
-                data: data,
-                // cache: false,
+                data: uploadFormDataForAjax,
+                //dataType: "text",
+                //cache: false,
                 processData: false,
                 contentType: false,
                 success: function(data, textStatus, jqXHR) {
                    alert(data);
                 }, error: function(jqXHR, textStatus, errorThrown) {}
             });
+            
+		}); */
+		
+		$("#thumbnailImg").click(function(){
+			$("#thumbnailImgView").toggle();
+		});
+		
+		$("#prepareThumbnailImg").click(function(){
+			$("#thumbnailImg").html("<img src="+$("#thumbnailImgView :input[name=thumbnailImgLinkInput]").val()+" width='285' height='200'>");
+			$("#hiddenGroup").append(
+				"<input type='hidden' class='form-control' name='thumbnail_link' value='"+$("#thumbnailImgView :input[name=thumbnailImgLinkInput]").val()+"'>"
+			);
 		});
 		
 		
@@ -155,9 +169,9 @@
 				return false;
 			} else if($(":input[name=price]").val()=="") {
 				$(":input[name=price]").val(0);
-			} else if($(":input[name=price]").val()=="") {
-				$(":input[name=price]").val(0);
-			} else {
+			} /* else if($(":input[name=price]").val()=="") {
+				
+			} */ else {
 				$("#registForm").submit();
 			}
 		});
@@ -177,25 +191,28 @@
 		<hr>
 	</div>
 	<div class="col-md-5">
-		<a href="fileupload.do" class="thumbnail">
-			<c:choose>
-				<c:when test="">
-					<img src="img/no_image.png" width="285">
-				</c:when>
-				<c:otherwise>
-					<img src="img/no_image.png" width="285">
-				</c:otherwise>
-			</c:choose>
+		<a href="#" id="thumbnailImg" title="이미지를 등록합니다" style="text-decoration:none">
+			<img src="img/no_image.png" width="285" height="200">
 		</a>
-	    <form id="uploadForm" action="fileupload.do" enctype="multipart/form-data" method="post" class="thumbnail">
-			<input type="file" name="file[0]"><br>
-			<input type="button" value="파일 업로드" id="uploadBtn"><br>
-		</form>
+		<br><br>
+		<div id="thumbnailImgView" style="display:none">
+			<div class='input-group'>
+				<input type='text' class='form-control' name='thumbnailImgLinkInput' placeholder='이미지 링크를 넣어주세요' aria-describedby='basic-addon1'>
+				<span class='input-group-btn'><a class='btn btn-success' id="prepareThumbnailImg">등록</a></span>
+			</div>
+		</div>
+	    <%-- <form id="uploadForm" action="fileupload.do" enctype="multipart/form-data" method="post">
+			<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"><br>
+			<input type="file" name="thumbnailImgFile"><br>
+			<input type="submit" value="파일 업로드" id="uploadBtn">
+		</form> --%>
 	</div>
 	<form class="form-horizontal" role="form" action="auth_registProduct.do" id="registForm" method="post">
 		<div class="col-md-7">
-			<input type="hidden" class="form-control" name="member_id" value="${sessionScope.mvo.member_id}">
-			<input type="hidden" class="form-control" name="category_id" value="${requestScope.category_id}">
+			<span id="hiddenGroup">
+				<input type="hidden" class="form-control" name="member_id" value="${sessionScope.mvo.member_id}">
+				<input type="hidden" class="form-control" name="category_id" value="${requestScope.category_id}">
+			</span>
 			<div class="form-group">
 				<div class="col-sm-3">
 					<label for="product_name" class="control-label">제품명</label>

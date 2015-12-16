@@ -25,7 +25,7 @@
 					var newInfo="";
 					//삭제 아이콘을 하나더 추가 해준다. 12월 11일
 					/* var deleteComp="<a><input type='button' value='삭제' id='deleteCateroryBtn'></a>"; */
-					 var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
+					var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
 					$.each(result, function(index,sh) {
 						//링크로 만들어 준다. 12월 11일
 						newInfo+="<tr><td>"+deleteComp+"</td>"
@@ -36,8 +36,7 @@
 					});
 				$("#CategoryView").html(newInfo);
 				}
-			
-		} //success
+			} //success
 		}); //ajax
 		
 		}); //#deleteCateroryBtn
@@ -153,9 +152,8 @@
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6">
 			<div class="thumbnail">
-				<a href="auth_hit.do?product_id=${list.product_id}"> <img
-					src="img/no_image.png"
-					class="img-responsive">
+				<a href="auth_hit.do?product_id=${list.product_id}">
+				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
 				</a>
 				<div class="caption" align="center">
 					<h3>${list.product_name}</h3>
