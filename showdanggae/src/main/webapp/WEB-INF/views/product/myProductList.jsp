@@ -64,10 +64,10 @@
 							/* var deleteComp="<a><input type='button' value='삭제' id='deleteCateroryBtn'></a>"; */
 							 var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
 							$.each(result, function(index,sh) {
-								newInfo+="<tr><td>"+deleteComp+"</td>"
-								newInfo+="<td><a href='#'>"+sh.category+"</td>"
-								newInfo+="<td>"+sh.category_id+"</td>"
-								newInfo+="<td>"+sh.member_id+"</td></tr>"
+								newInfo+="<tr><td>"+deleteComp+"</td>";
+								newInfo+="<td><a href='#'>"+sh.category+"</td>";
+								newInfo+="<td>"+sh.category_id+"</td>";
+								newInfo+="<td>"+sh.member_id+"</td></tr>";
 								/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 							});
 						$("#CategoryView").html(newInfo);
@@ -79,6 +79,11 @@
 			} //confirm else
 		
 		}); //#deleteCateroryBtn click
+		
+		$("#productCard").hover(function(){
+			
+		});
+		
 	}); //ready
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
 </script>
@@ -130,10 +135,7 @@
 	<h4>선택한 카테고리 지우기</h4>
 	<input type="button" value="삭제" id="deleteCateroryBtn">
 	</form>
-	
 	<hr>
-	<%-- </c:otherwise> --%>
-	<%-- </c:choose> --%>
 	
   <h4>탭형식의 카테고리 뷰</h4>
   <ul class="nav nav-tabs">
@@ -150,14 +152,17 @@
 	
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
-		<div class="col-md-6">
+		<div class="col-md-6" id="productCard">
 			<div class="thumbnail">
 				<a href="auth_hit.do?product_id=${list.product_id}">
 				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
 				</a>
 				<div class="caption" align="center">
-					<h3>${list.product_name}</h3>
+					<h4>${list.product_name}</h4>
 				</div>
+			</div>
+			<div>
+			
 			</div>
 		</div>
 	</c:forEach>

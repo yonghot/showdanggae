@@ -57,10 +57,10 @@
 			        	<img src="${list.thumbnail_link}" class="img-responsive" width='285' height='220'>
 			        </a>
 			        <div class="caption" align="center">
-			            <h3>${list.product_name}</h3>
+			            <h4>${list.product_name}</h4>
 			        </div>
 			    </div>
-			 </div> 
+			 </div>
 		</c:forEach>
 	</div>
 </div>
