@@ -15,7 +15,6 @@ $(document).ready(function(){
 		url:"profileInfo.do?member_id=${sessionScope.mvo.member_id}",
 		dataType:"json",
 		success:function(data){
-			alert(data);
 			if(data!=""){
 				for(var i=0; i<data.length;i++){						
 					
