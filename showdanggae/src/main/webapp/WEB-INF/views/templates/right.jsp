@@ -124,6 +124,8 @@
 							alert(data[i].isFollow); */
 							if(data[i].member_id=='${sessionScope.mvo.member_id}'){
 								index +="<tr><td>"+data[i].member_id+"</td><td></td></tr>";
+							 }else if(data[i].member_id=="admingalbage"){//?
+									
 							 }else if(data[i].isFollow==true){
 								index +="<tr><td>"+data[i].member_id+"</td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
 							}else{
@@ -242,16 +244,20 @@
 			</div>
 		</form>
 		<hr>
-		<input class="btn btn-default" type="button" value="팔로잉"
+		<ul class="nav nav-tabs">
+			<li><a href="#" id="followingBtn">팔로잉</a></li>
+			<li><a href="#" id="followerBtn">팔로워</a></li>
+		</ul>
+		<!-- <input class="btn btn-default" type="button" value="팔로잉"
 			id="followingBtn">
 		<input class="btn btn-default" type="button" value="팔로워"
-			id="followerBtn">
+			id="followerBtn"> -->
 		<br>
 		<span id="searchIdView"></span>
 		<span id="searchIdView1"></span>
 	</c:if>
-<!--
- 	<div class="quick" data-spy="scroll"
+</div>
+ <!-- 	<div class="quick" data-spy="scroll"
 		style='position: absolute; top: 200px;'>
 		<div class="panel-group" id="accordion" role="tablist"
 			aria-multiselectable="true">
@@ -270,7 +276,7 @@
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div> --> 
 <!--  모달을 켜고 끄는 버튼
 <a href="#myModal" role="button" class="btn" data-toggle="modal">모달
 	시연 시작</a>
