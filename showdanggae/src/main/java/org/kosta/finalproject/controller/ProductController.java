@@ -65,14 +65,8 @@ public class ProductController {
 	// 김용호 영역
 	// 로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
 	@RequestMapping("auth_getMyProductList.do")
-<<<<<<< HEAD
-	public ModelAndView getMyProductList(String member_id,
-			String currentCategory) throws Exception {
-		
-=======
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
 
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		ModelAndView mv = new ModelAndView("product_myProductList");
 
 		mv.addObject("pvoList", productService.getMyProductList(member_id, currentCategory));
