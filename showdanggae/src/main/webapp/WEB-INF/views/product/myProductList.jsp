@@ -26,7 +26,7 @@
 					var newInfo="";
 					//삭제 아이콘을 하나더 추가 해준다. 12월 11일
 					/* var deleteComp="<a><input type='button' value='삭제' id='deleteCateroryBtn'></a>"; */
-					 var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
+					var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
 					$.each(result, function(index,sh) {
 						//링크로 만들어 준다. 12월 11일
 						newInfo+="<tr><td>"+deleteComp+"</td>"
@@ -35,8 +35,13 @@
 						newInfo+="<td>"+sh.member_id+"</td></tr>"
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 					});
+<<<<<<< HEAD
 					$("#CategoryView").html(newInfo);
 				} //else
+=======
+				$("#CategoryView").html(newInfo);
+				}
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			} //success
 		}); //ajax
 
@@ -62,10 +67,10 @@
 							/* var deleteComp="<a><input type='button' value='삭제' id='deleteCateroryBtn'></a>"; */
 							 var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
 							$.each(result, function(index,sh) {
-								newInfo+="<tr><td>"+deleteComp+"</td>"
-								newInfo+="<td><a href='#'>"+sh.category+"</td>"
-								newInfo+="<td>"+sh.category_id+"</td>"
-								newInfo+="<td>"+sh.member_id+"</td></tr>"
+								newInfo+="<tr><td>"+deleteComp+"</td>";
+								newInfo+="<td><a href='#'>"+sh.category+"</td>";
+								newInfo+="<td>"+sh.category_id+"</td>";
+								newInfo+="<td>"+sh.member_id+"</td></tr>";
 								/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 							});
 						$("#CategoryView").html(newInfo);
@@ -77,6 +82,7 @@
 			} //confirm else
 		}); //#deleteCateroryBtn click
 		
+<<<<<<< HEAD
 		//탭 형식의 카테고리 뷰 (작성중....) 라디오 형식의 카테고리 뷰와 동일 하지만 
 		//$.each(result, function(index,sh) {} 부분이 다르다.
 		$("#tap_addBtn").click(function() {
@@ -175,6 +181,11 @@
 					return false;
 				} //confirm else
 			}); //#deleteCateroryBtn click
+=======
+		$("#productCard").hover(function(){
+			
+		});
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		
 	}); //ready
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
@@ -228,10 +239,7 @@
 	<h4>선택한 카테고리 지우기</h4>
 	<input type="button" value="삭제" id="deleteCateroryBtn">
 	</form>
-	
 	<hr>
-	<%-- </c:otherwise> --%>
-	<%-- </c:choose> --%>
 	
 	<h4>선택한 카테고리 수정하기</h4>
 	<input type="button" value="수정" id="updateCateroryBtn">
@@ -292,13 +300,27 @@
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
 	<br><br>
+<<<<<<< HEAD
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6">
+=======
+	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
+		<div class="col-md-6" id="productCard">
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			<div class="thumbnail">
+<<<<<<< HEAD
 				<a href="auth_hit.do?product_id=${list.product_id}"> <img src="img/no_image.png" class="img-responsive"></a>
+=======
+				<a href="auth_hit.do?product_id=${list.product_id}">
+				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
+				</a>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				<div class="caption" align="center">
-					<h3>${list.product_name}</h3>
+					<h4>${list.product_name}</h4>
 				</div>
+			</div>
+			<div>
+			
 			</div>
 		</div>
 	</c:forEach>

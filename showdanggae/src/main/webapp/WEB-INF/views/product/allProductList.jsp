@@ -12,12 +12,12 @@
 
         if (documentHeight <= scrollHeight) { //그냥 = 으로 해서 계속 안됐었음.. 주의합시다
         	
-           for(var i=0;i<3;i++) {
+           for(var i=0;i<12;i++) {
               $(
-                  "<div class='col-md-4'>"+
+                  "<div class='col-md-6'>"+
                      "<div class='thumbnail'>"+
                          "<img src='img/no_image.png' class='img-responsive'>"+
-                         "<div class='caption' align='center'>"+
+                         "<div class='caption' align='center'>"+ 
                              "<h3>${list.product_name}ㅋㅋㅋ</h3>"+
                          "</div>"+
                      "</div>"+
@@ -46,22 +46,21 @@
     <div class="btn-group">
     	<a href="getAllBoardList.do?sortBy=likes" class="btn btn-default">좋아요</a>
     	<a href="getAllBoardList.do?sortBy=interest..." class="btn btn-default">관심사</a>
- 
     	<br>
     </div>
     <hr>
     <div class="row" id="main_row">
     	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="5">
-			<div class="col-md-4">
+			<div class="col-md-6">
 			    <div class="thumbnail">
 			    	<a href="auth_hit.do?product_id=${list.product_id}">
-			        	<img src="img/no_image.png" class="img-responsive">
+			        	<img src="${list.thumbnail_link}" class="img-responsive" width='285' height='220'>
 			        </a>
 			        <div class="caption" align="center">
-			            <h3>${list.product_name}</h3>
+			            <h4>${list.product_name}</h4>
 			        </div>
 			    </div>
-			 </div> 
+			 </div>
 		</c:forEach>
 	</div>
 </div>

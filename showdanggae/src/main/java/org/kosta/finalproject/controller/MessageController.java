@@ -35,17 +35,16 @@ public class MessageController {
 	
 		String member_id=request.getParameter("member_id");
 		System.out.println(member_id);
-		return new ModelAndView("../views/popup/message_popup1","member_id",member_id);		
+		return new ModelAndView("/popup/message_popup1","member_id",member_id);		
 	}
 
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
 		System.out.println(vo);
-		vo.setRead(0);
+		//vo.setRead(0);
 		messageService.sendMessage(vo);
 		return new ModelAndView("popup/message_ok");
 	}
-	
 	@RequestMapping("auth_messagebox.do")
 	public ModelAndView messagebox(String member_id,String pageNo){
 		MessageListVO list= messageService.myMessageBox(member_id,pageNo);

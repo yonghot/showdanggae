@@ -42,4 +42,5 @@ public class MessageDAOImpl implements MessageDAO{
 		return sqlSessionTemplate.selectOne("message.mCount",member_id);
 	}
 
+
 }

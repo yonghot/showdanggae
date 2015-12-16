@@ -2,5 +2,7 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
 alert("메세지 전송이 완료되었습니다");
-location.href="memberManagerForm.do";
+/* location.href="memberManagerForm.do"; */
+ window.opener = self; 
+ self.close(); 
 </script>

@@ -1,29 +1,34 @@
 package org.kosta.finalproject.model.product;
 
-import java.util.List;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileVO {
 	
-	private String userInfo;
-	private List<MultipartFile> file;
-	
-	public String getUserInfo() {
-		return userInfo;
+	private String member_id;
+	private MultipartFile thumbnailImgFile;
+	public FileVO() {
+		super();
 	}
-	public void setUserInfo(String userInfo) {
-		this.userInfo = userInfo;
+	public FileVO(String member_id, MultipartFile thumbnailImgFile) {
+		super();
+		this.member_id = member_id;
+		this.thumbnailImgFile = thumbnailImgFile;
 	}
-	public List<MultipartFile> getFile() {
-		return file;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setFile(List<MultipartFile> file) {
-		this.file = file;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
-	
+	public MultipartFile getThumbnailImgFile() {
+		return thumbnailImgFile;
+	}
+	public void setThumbnailImgFile(MultipartFile thumbnailImgFile) {
+		this.thumbnailImgFile = thumbnailImgFile;
+	}
 	@Override
 	public String toString() {
-		return "FileVO [userInfo=" + userInfo + ", file=" + file + "]";
+		return "FileVO [member_id=" + member_id + ", thumbnailImgFile="
+				+ thumbnailImgFile + "]";
 	}
 }

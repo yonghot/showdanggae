@@ -105,7 +105,7 @@
         <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
       <div class="modal-body">
-        <form action="sendMessage.do" id="sendForm">
+        <form action="" id="sendForm"><!-- sendMessage.do -->
           <div class="form-group">
             <label for="recipient-name" class="control-label">Recipient:</label>
             <input type="text" class="form-control" id="recipient-name" readonly="readonly" name="member_id">
