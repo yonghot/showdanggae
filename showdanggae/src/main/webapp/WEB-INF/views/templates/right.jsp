@@ -7,12 +7,6 @@
 	href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 <!-- 자동완성 sheet -->
 <script type="text/javascript">
-	/* function follow_view(){
-		 location.href="auth_findFollowingId.do?member_id=${mvo.member_id}";
-	} */
-	/* function follow1_view(){
-		 location.href="auth_findFollowerId.do?member_id=${mvo.member_id}";
-	} */	
 	$(document).ready(function(){	
 	//var quick_menu = $('#quick').offset().top;
 	var boxtop = $('#quick');
@@ -48,8 +42,7 @@
 			var follow = $(this).val();
 			/* var id = $("#followForm").parent().siblings().text(); */
 			var id =$(this).parent().parent().siblings().eq(0).text();
-		/* 	alert(follow);
-			alert(id); */
+			//alert(id);
 			if(follow=="+팔로우"){
 				$(this).val("v팔로잉");
 				$.ajax({
@@ -110,7 +103,7 @@
 				}
 			});
 		})  */
-
+		//아이디로 회원검색
 	   $("#findBtn").click(function(){
 		   var min = $("#inputId3").val();
 		if($("#inputId3").val()==""){
@@ -139,79 +132,70 @@
 						}
 						index+="</table>";
 						$("#searchIdView").html(index);
+						$("#searchIdView1").html("");
 					}else{
 						$("#searchIdView").html(index);
+						$("#searchIdView1").html("");
 					}
 				}		
 			});//ajax  
 	      }   
 	   });
-		
-		$("#followingView a").click(function(){
-			var id=$(this).text();
-			if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
-			 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
-		"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
-			}else{
-				return false;
-			}
-		});	
-	   //팔로잉 버튼 클릭시 팔로잉 아이디
-	   $("#followingBtn").click(function(){
-		   $.ajax({
-				type:"POST",
-				url:"auth_findFollowingId.do",
-				data:"member_id=${mvo.member_id}",
-				dataType:"json",
-				success:function(data){
-					var index="<table class='table'><thead>";
-					if(data!=""){
-						index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
-						for(var i=0; i<data.length;i++){						
-							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
-							index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
-							"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>";
-						}
-						index+="<tbody></table>"
-							$("#searchIdView").html("");	
-						$("#searchIdView1").html(index);
-			  	   }else{
-			  		 $("#searchIdView").html("");
-			  		 $("#searchIdView1").html("");
-			  	   }
-					
-					}		
-			});//ajax
-	   }); 
-	   //팔로우 버튼 클릭시 팔로우 아이디
-	   $("#followerBtn").click(function(){
-		   $.ajax({
-				type:"POST",
-				url:"auth_findFollowerId.do",
-				data:"member_id=${mvo.member_id}",
-				dataType:"json",
-				success:function(data){
-					var index="<table class='table'><thead>";
-					if(data!=""){
-						index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
-						for(var i=0; i<data.length;i++){
-							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id=j'>"+data[i].follower+"</a></td></tr>";
-							index += "<tr><td><a href='#myModal' role='button' class='btn' data-toggle='modal'>"+data[i].follower+"</a>"+
-							"<form><input type='hidden' value="+data[i].follower+"></form></span></a></td></tr>";
-						}
-						index+="</tbody></table>"
-							$("#searchIdView").html("");
-						$("#searchIdView1").html(index);
-			  	        }else{
-			  	        	$("#searchIdView").html("");
-					  		 $("#searchIdView1").html("");
-					  	   }
-					}		
-			});//ajax
-	   });  	  
+		 //팔로잉 버튼 클릭시 팔로잉 아이디
+		   $("#followingBtn").click(function(){
+			   $.ajax({
+					type:"POST",
+					url:"auth_findFollowingId.do",
+					data:"member_id=${mvo.member_id}",
+					dataType:"json",
+					success:function(data){
+						var index="<table class='table'><thead>";
+						if(data!=""){
+							index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
+							for(var i=0; i<data.length;i++){						
+								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
+								index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
+								"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>";
+							}
+							index+="<tbody></table>"
+								$("#searchIdView").html("");	
+							$("#searchIdView1").html(index);
+				  	   }else{
+				  		 $("#searchIdView").html("");
+				  		 $("#searchIdView1").html("");
+				  	   }
+						
+						}		
+				});//ajax
+		   }); 
+		   //팔로우 버튼 클릭시 팔로우 아이디
+		   $("#followerBtn").click(function(){
+			   $.ajax({
+					type:"POST",
+					url:"auth_findFollowerId.do",
+					data:"member_id=${mvo.member_id}",
+					dataType:"json",
+					success:function(data){
+						var index="<table class='table'><thead>";
+						if(data!=""){
+							index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
+							for(var i=0; i<data.length;i++){
+								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].follower+"</a></td></tr>";
+								index += "<tr><td><a href='#'><span class='messagePopBtn2'>"+data[i].follower+
+								"<form><input type='hidden' value="+data[i].follower+"></form></span></a></td></tr>";
+							}
+							index+="</tbody></table>"
+								$("#searchIdView").html("");
+							$("#searchIdView1").html(index);
+				  	        }else{
+				  	        	$("#searchIdView").html("");
+						  		 $("#searchIdView1").html("");
+						  	   }
+						}		
+				});//ajax
+		   });  	  
 	});	
-	
-	function onKeyup(){
+	/* function onKeyup(){
 		var min = $("#inputId3").val();
 		 $.ajax({
 	         type:"POST",
@@ -236,8 +220,7 @@
 	  	           
 	         }//callback         
 	      });//ajax
-	}
-	
+	} */
 </script>
 
 <div class="col-md-2" align="center">
@@ -249,7 +232,8 @@
 						value="${sessionScope.mvo.member_id}">
 					<div class="input-group">
 						<input type="text" class="form-control" id="inputId3"
-							name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
+							name="member_id" placeholder="ID로 회원 검색">
+						<!-- onkeyup="onKeyup()" -->
 						<span class="input-group-btn"> <input
 							class="btn btn-success" type="button" id="findBtn" value="검색">
 						</span>
@@ -260,22 +244,17 @@
 		<hr>
 		<input class="btn btn-default" type="button" value="팔로잉"
 			id="followingBtn">
-		<!-- onclick="follow_view()" -->
 		<input class="btn btn-default" type="button" value="팔로워"
 			id="followerBtn">
 		<br>
-		<!-- onclick="follow1_view()" -->
 		<span id="searchIdView"></span>
 		<span id="searchIdView1"></span>
 	</c:if>
-
-	<!--  data-offset-top="400" -->
-	<div class="quick" data-spy="scroll"
+	<!-- data-offset-top="400" -->
+<!-- 	<div class="quick" data-spy="scroll"
 		style='position: absolute; top: 200px;'>
-
 		<div class="panel-group" id="accordion" role="tablist"
 			aria-multiselectable="true">
-
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingThree">
 					<h4 class="panel-title">
@@ -291,29 +270,28 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
+</div>
+<!-- 모달을 켜고 끄는 버튼 -->
+<a href="#myModal" role="button" class="btn" data-toggle="modal">모달
+	시연 시작</a>
 
 <!-- 모달 -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">모달 제목</h3>
-  </div>
-  <div class="modal-body">
-    <p>한 멋진 본문…</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">닫기</button>
-    <button class="btn btn-primary">변경사항 저장</button>
-  </div>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">모달 제목</h3>
+	</div>
+	<div class="modal-body">
+		<p>한 멋진 본문…</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">닫기</button>
+		<button class="btn btn-primary">변경사항 저장</button>
+	</div>
 </div>
 
-</div>
 
-
-
-<br>
-<br>
-<br>
-<br>
 
