@@ -12,16 +12,6 @@ public class ProductServiceImpl implements ProductService {
 	@Resource
 	private ProductDAO productDAO;
 	
-	
-	// 강민석 영역
-	
-	//카테고리 삭제용 상품리스트 일괄 삭제
-	@Override
-	public void deleteProductList(int category_id) {
-		productDAO.deleteProductList(category_id);
-	}
-	
-	
 	// 김용호 영역
 	
 	@Override

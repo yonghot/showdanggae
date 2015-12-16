@@ -13,6 +13,8 @@ public interface NoticeService {
 
 	NoticeVO noticeUpdate(NoticeVO vo);
 
-	void noticeDelete(String string); 
+	void noticeDelete(String string);
+
+	void deleteContent(int no); 
 
 }

@@ -15,14 +15,7 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	
 	// 강민석 영역
-	
-	
-	@Override
-	public void deleteProductList(int category_id) {
-		sqlSessionTemplate.delete("product.deleteProductList", category_id);
-	}
-	
-	
+
 	// 김용호 영역
 	
 	@Override

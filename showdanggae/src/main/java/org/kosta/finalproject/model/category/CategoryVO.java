@@ -5,16 +5,18 @@ public class CategoryVO {
 	private String member_id;
 	private String category;
 	private String interest;
+	private int productCountNumber;
 	public CategoryVO() {
 		super();
 	}
 	public CategoryVO(String category_id, String member_id, String category,
-			String interest) {
+			String interest, int productCountNumber) {
 		super();
 		this.category_id = category_id;
 		this.member_id = member_id;
 		this.category = category;
 		this.interest = interest;
+		this.productCountNumber = productCountNumber;
 	}
 	public String getCategory_id() {
 		return category_id;
@@ -40,11 +42,17 @@ public class CategoryVO {
 	public void setInterest(String interest) {
 		this.interest = interest;
 	}
+	public int getProductCountNumber() {
+		return productCountNumber;
+	}
+	public void setProductCountNumber(int productCountNumber) {
+		this.productCountNumber = productCountNumber;
+	}
 	@Override
 	public String toString() {
 		return "CategoryVO [category_id=" + category_id + ", member_id="
 				+ member_id + ", category=" + category + ", interest="
-				+ interest + "]";
+				+ interest + ", productCountNumber=" + productCountNumber + "]";
 	}
 	
 }
