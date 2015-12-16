@@ -6,16 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="product">
 
-	<!-- 강민석 영역 -->
-
-	<select id="deleteProductList">
-	 	<![CDATA[
-	 		delete *
-	 		from product
-	 		where category_id=#{value}
-	 	]]>
-	</select>
-	
 	<!-- <insert id="write"> <![CDATA[ insert into board(no, title, author, 
 		write_date, content, id) values(board_seq.nextval, #{title}, #{author}, sysdate, 
 		#{content} ,#{id}) ]]> </insert> <update id="hit"> <![CDATA[ update board 
