@@ -47,7 +47,7 @@
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox"> 로그인 유지 
+						<span id="auto_login"><input type="checkbox" name="autologin" value="checked"> 자동 로그인</span>
 					</label>
 				</div>
 			</div>
