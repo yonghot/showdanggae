@@ -28,22 +28,16 @@
 					$.each(result, function(index,sh) {
 						deleteComp="<a><input type='radio' name='category_id' value='"+sh.category_id+"'></a>";
 						//링크로 만들어 준다. 12월 11일
-						newInfo+="<tr><td>"+deleteComp+"</td>"
-						newInfo+="<td><a href='#'>"+sh.category+"</td>"
-						newInfo+="<td>"+sh.category_id+"</td>"
-						newInfo+="<td>"+sh.member_id+"</td></tr>"
+						newInfo+="<tr><td>"+deleteComp+"</td>";
+						newInfo+="<td><a href='#'>"+sh.category+"</td>";
+						newInfo+="<td>"+sh.category_id+"</td>";
+						newInfo+="<td>"+sh.member_id+"</td></tr>";
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 
 					});
-<<<<<<< HEAD
-=======
 
 				$("#CategoryView").html(newInfo);
-<<<<<<< HEAD
 				}
-=======
-				}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			} //success
 		}); //ajax
 		
@@ -86,14 +80,6 @@
 		}); //#deleteCateroryBtn click
 	
 		
-<<<<<<< HEAD
-// 		$("#deleteCateroryBtn").on("click", ":radio[name=category_id]:checked", function(){
-// 			alert("ll");
-// 		})
-		
-=======
-
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		//탭 형식의 카테고리 뷰 (작성중....) 라디오 형식의 카테고리 뷰와 동일 하지만 
 		//$.each(result, function(index,sh) {} 부분이 다르다.
 		$("#tap_addBtn").click(function() {
@@ -149,49 +135,11 @@
 				} //confirm else
 			}); //#deleteCateroryBtn click
 	
-<<<<<<< HEAD
-		$("#productCard").hover(function(){
-=======
-		//카테고리명 수정(작성중....)
-		$("#updateCateroryBtn").click(function() {
-				var category=$(":input[name=category]:checked").val();
-				if(confirm("선택한 카테고리명을 수정합니다!")==true){
-					$.ajax({
-						type : "POST",
-						url : ".do",
-						data : $("#updateCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
-						dataType : "JSON",
-						success : function(result) {
-							if(result.exception!=null) {
-								alert("통신실패 퐁당~" +" "+ result.exception);
-							//수정된 카테고리명을 ajax로 보여준다. 공통 코드.	
-							}else{
-								var newInfo="";
-							    var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
-								$.each(result, function(index,sh) {
-									newInfo+="<tr><td>"+deleteComp+"</td>"
-									newInfo+="<td><a href='#'>"+sh.category+"</td>"
-									newInfo+="<td>"+sh.category_id+"</td>"
-									newInfo+="<td>"+sh.member_id+"</td></tr>"
-								});
-							$("#CategoryView").html(newInfo);
-							}
-					} //success
-				}); //ajax
-				}else{
-					return false;
-				} //confirm else
-			}); //#deleteCateroryBtn click
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-			
-<<<<<<< HEAD
-		});
 
-=======
 		$(".productCard").hover(function(){
 			$(this).css("border","solid 2px #ff7777");
 		}, function(){
-			$(this).css("border","none");
+			$(this).css("border","none")});
 
 
 		function AddComma(data_value) {
@@ -239,11 +187,8 @@
 		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
 		    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
 		}
-
 		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}); //ready
-	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
 	
 </script>
 
@@ -349,17 +294,6 @@
 		<a href="auth_beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
-<<<<<<< HEAD
-	<br><br>
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
-		<div class="col-md-6" id="productCard">
-			<div class="thumbnail">
-				<a href="auth_hit.do?product_id=${list.product_id}">
-				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
-				</a>
-				<div class="caption" align="center">
-					<h4>${list.product_name}</h4>
-=======
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="7" varStatus="status">
 		<div class="col-md-6">
@@ -368,7 +302,6 @@
 					<a href="auth_hit.do?product_id=${list.product_id}">
 						<img src="${list.thumbnail_link}" class="img-responsive thumbnailImg" width='285' height='200'>
 					</a>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				</div>
 				<div>
 					<div class="caption" align="left">
