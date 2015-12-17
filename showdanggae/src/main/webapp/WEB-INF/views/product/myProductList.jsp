@@ -300,21 +300,13 @@
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
 	<br><br>
-<<<<<<< HEAD
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
-		<div class="col-md-6">
-=======
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6" id="productCard">
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			<div class="thumbnail">
-<<<<<<< HEAD
 				<a href="auth_hit.do?product_id=${list.product_id}"> <img src="img/no_image.png" class="img-responsive"></a>
-=======
 				<a href="auth_hit.do?product_id=${list.product_id}">
 				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
 				</a>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				<div class="caption" align="center">
 					<h4>${list.product_name}</h4>
 				</div>
