@@ -49,5 +49,10 @@ public class NoticeDAOImpl implements NoticeDAO {
 		sqlSessionTemplate.delete("notice.selectDelete", string);
 	}
 
+	@Override
+	public void deleteContent(int no) {
+		 sqlSessionTemplate.delete("notice.deleteContent", no);
+	}
+
 
 }

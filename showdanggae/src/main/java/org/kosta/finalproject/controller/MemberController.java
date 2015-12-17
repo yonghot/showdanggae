@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tiles.jsp.taglib.definition.SetCurrentContainerTag;
 import org.kosta.finalproject.model.email.Email;
 import org.kosta.finalproject.model.email.EmailSender;
 import org.kosta.finalproject.model.member.FollowVO;
@@ -78,12 +80,11 @@ public class MemberController {
 	public String registerview() {
 		return "member_registerview";
 	}
-	
-	//로그인
+
+	// 로그인
 	@RequestMapping("login.do")
 	public ModelAndView login(HttpServletRequest request,
 			HttpServletResponse response, MemberVO vo) {
-
 		if (vo.getMember_id().equals("admingalbage")) {
 			MemberVO admin = memberService.adminlogin(vo);
 			if (admin != null) {
@@ -99,10 +100,18 @@ public class MemberController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("mvo", member);
 			// 세션쿠키 생성
-			Cookie cookie= new Cookie("member","ID");
-			cookie.setMaxAge(60*60*60*365);
-			response.addCookie(cookie);
-			
+			Cookie cookie = new Cookie(member.getMember_id(), member.getPassword());//추후 수정 해야함
+			String autologin = request.getParameter("autologin");
+			int cookie_time=24*7; 
+			if(autologin!=null){
+				response.addCookie(cookie);
+				cookie.setMaxAge(60*60*cookie_time);
+				System.out.println("test1 - "+cookie);
+			}else{
+				response.addCookie(cookie);
+				cookie.setMaxAge(60);
+				System.out.println("test2 - "+cookie);
+			}
 			return new ModelAndView("home");
 		} else {
 			return new ModelAndView("member_loginfail");
@@ -164,13 +173,17 @@ public class MemberController {
 					+ "</tr><tr><td><table width='700' border='0' cellpadding='0' cellspacing='0' style='background: #f5f5f5;'> "
 					+ "<tbody><tr><td style='width: 45px;'></td><td><table width='610' border='0' cellpadding='0' cellspacing='0'> "
 					+ "<tbody><tr><td height='75' style='border-bottom: 1px solid #1e2024;'> "
-					+ "<img src='http://localhost:8888/showdanggae/img/showdanggae_explanation.png' width='150' alt='쇼당개에서 알려드립니다.'>"+"</td> "
+					+ "<img src='http://localhost:8888/showdanggae/img/showdanggae_explanation.png' width='150' alt='쇼당개에서 알려드립니다.'>"
+					+ "</td> "
 					+ "</tr><tr><td height='84' style='border-top: 1px solid #4e5157;'> "
-					+ "<p style='margin: 0; color: #363636;'>"+pvo.getMember_name()+"고객님, 안녕하세요.</p> "
+					+ "<p style='margin: 0; color: #363636;'>"
+					+ pvo.getMember_name()
+					+ "고객님, 안녕하세요.</p> "
 					+ "<p style='margin: 9px 0 0; color: #363636;'> "
 					+ "요청하신 비밀번호는 아래와 같습니다.</p> "
 					+ "</td></tr><tr><td height='50'style='background: #d2d5d9; color: #fb661e; font: bold 15px Tahoma; text-align: center;'> "
-					+ pvo.getPassword()+"</td> </tr><tr><td style='padding: 22px 0 50px; color: #363636;'> "
+					+ pvo.getPassword()
+					+ "</td> </tr><tr><td style='padding: 22px 0 50px; color: #363636;'> "
 					+ "<p style='margin: 0;'>항상 쇼당개를 사랑해주셔서 감사드리며, 보다 나은 서비스를 위해 최선을 다하겠습니다.</p> "
 					+ "<p style='margin: 11px 0 0;'>감사합니다.</p> "
 					+ "</td></tr></tbody></table></td><td style='width: 45px;'></td></tr></tbody></table></td> "
@@ -264,9 +277,11 @@ public class MemberController {
 	 */
 	@RequestMapping("auth_findMemberById.do")
 	@ResponseBody
-	public List<MemberVO> findMemberById(String member_id, String sessionId) throws Exception{
-		System.out.println("controller 영역 "+member_id+" "+sessionId);
-		List<MemberVO> list = memberService.findMemberById(member_id, sessionId);
+	public List<MemberVO> findMemberById(String member_id, String sessionId)
+			throws Exception {
+		System.out.println("controller 영역 " + member_id + " " + sessionId);
+		List<MemberVO> list = memberService
+				.findMemberById(member_id, sessionId);
 		return list;
 	}
 
@@ -281,7 +296,7 @@ public class MemberController {
 	@ResponseBody
 	public void addFollow(FollowVO fvo, HttpServletRequest request)
 			throws Exception {
-		
+
 		memberService.addFollow(fvo);
 	}
 
@@ -353,35 +368,35 @@ public class MemberController {
 	// 12-13추가부분
 	@RequestMapping("falarm.do")
 	@ResponseBody
-	public List<FollowVO> fAlarm(String following){
-		//현재시간부터 - 어제 까지 나를 팔로잉한 사람 목록을 알림으로 가져다 줌
-		List<FollowVO> fvo=memberService.fAlarm(following);
-		//System.out.println(fvo);
+	public List<FollowVO> fAlarm(String following) {
+		// 현재시간부터 - 어제 까지 나를 팔로잉한 사람 목록을 알림으로 가져다 줌
+		List<FollowVO> fvo = memberService.fAlarm(following);
+		// System.out.println(fvo);
 		return fvo;
 	}
-	
-	//프로필 수정하는 곳
+
+	// 프로필 수정하는 곳
 	@RequestMapping("Profile.do")
-	public String Profile(){
+	public String Profile() {
 		return "member_profile";
 	}
-	
-	//사진올리기
+
+	// 사진올리기
 	@RequestMapping("profileupimgload.do")
-	public ModelAndView profileupimgload(){
+	public ModelAndView profileupimgload() {
 		return null;
 	}
-	
-	//left 정보
+
+	// left 정보
 	@RequestMapping("profileInfo.do")
 	@ResponseBody
-	public HashMap<String, String>profileInfo(String member_id){
+	public HashMap<String, String> profileInfo(String member_id) {
 		System.out.println(member_id);
-		HashMap<String, String> proInfo =new  HashMap<String, String>();
-		//내 게시물수
-		
-		//팔로워 팔로잉 수
-		proInfo=memberService.proCount(member_id);
+		HashMap<String, String> proInfo = new HashMap<String, String>();
+		// 내 게시물수
+
+		// 팔로워 팔로잉 수
+		proInfo = memberService.proCount(member_id);
 		System.out.println(proInfo);
 		return proInfo;
 	}

@@ -2,13 +2,15 @@ package org.kosta.finalproject.model.category;
 
 import java.util.List;
 
-import org.kosta.finalproject.model.member.MemberVO;
-
 public interface CategoryService {
+	public void addMyCategory(String category, String member_id);
+	
+	public void deleteProductList(int category_id);
+	
 	public List<CategoryVO> getMainCategoryList();
 	public List<CategoryVO> getMemberCategoryList(String member_id);
-	public void deleteCategory(int category_id);
-	public void addMyCategory(String category, String id);
-	public void addInterest(MemberVO vo);
+	public void addInterest(String interest);
+	public int getProductCountNumber(int category_id);
+	
 	
 }

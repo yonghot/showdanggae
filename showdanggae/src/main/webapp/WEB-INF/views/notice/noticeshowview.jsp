@@ -12,8 +12,14 @@
 	}	
 	
 	function deleteForm(){
-		location.href="${initParam.root}noticeUpdateForm.do?sno=${requestScope.content.no}";
-	}	
+		var result = confirm('삭제하시겠습니까??');
+		if(result){
+		location.href="${initParam.root}noticeDeleteForm.do?sno=${requestScope.content.no}";
+		}else{
+			return false;
+		}
+		
+		}	
 
 </script>
 
@@ -40,10 +46,11 @@
 			<div class="form-group">
 				<div class="col-sm-12 text-center">
 					<input type="button" value="목록" onclick="sendList()"class="btn btn-info btn-md">
-				 	<c:if test="${!empty sessionScope.mvo}">
+				 	<c:if test="${sessionScope.mvo.member_id=='admingalbage'}">
 						<input type="button" value="수정" onclick="updateForm()" class="btn btn-info btn-md">
 						<input type="button" value="삭제" onclick="deleteForm()" class="btn btn-info btn-md">
 					</c:if>
+					
 				</div>
 			</div>
 		</td>				 

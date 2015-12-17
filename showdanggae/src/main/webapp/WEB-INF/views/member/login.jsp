@@ -28,8 +28,9 @@
 				<label for="inputEmail3" class="control-label">ID</label>
 			</div>
 			<div class="col-sm-10 hidden-sm hidden-xs text-left">
-				<input type="text" class="form-control" name="member_id"
-					placeholder="아이디">
+
+				<input type="text" class="form-control" name="member_id" placeholder="아이디" value="java">
+
 			</div>
 		</div>
 
@@ -47,7 +48,7 @@
 			<div class="col-sm-offset-2 col-sm-10">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox"> 로그인 유지 
+						<span id="auto_login"><input type="checkbox" name="autologin" value="checked"> 자동 로그인</span>
 					</label>
 				</div>
 			</div>

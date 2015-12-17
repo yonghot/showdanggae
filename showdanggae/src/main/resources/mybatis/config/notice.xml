@@ -44,7 +44,9 @@ values(#{no},#{title},#{writer},#{content},SYSDATE)
  <delete id="selectDelete">
  delete from noticeboard where no=#{value}
  </delete>
-
+<delete id="deleteContent" parameterType="int">
+	delete from noticeboard where no=#{value}
+</delete>
  </mapper>
  
  
