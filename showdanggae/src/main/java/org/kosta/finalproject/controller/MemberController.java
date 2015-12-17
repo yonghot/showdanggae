@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tiles.jsp.taglib.definition.SetCurrentContainerTag;
 import org.kosta.finalproject.model.email.Email;
 import org.kosta.finalproject.model.email.EmailSender;
 import org.kosta.finalproject.model.member.FollowVO;
