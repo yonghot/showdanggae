@@ -92,16 +92,16 @@ function commentForm(){
 			<div class="form-group">
 				<div class="col-sm-12 text-center">
 					<input type="button" value="목록" onclick="sendList()"class="btn btn-info btn-md">
-					
-				 	<c:if test="${sessionScope.mvo.member_id==requestScope.content.member_id}">
+					<c:choose>
+				 	<c:when test="${sessionScope.mvo.member_id==requestScope.content.member_id}">
 						<input type="button" value="수정" onclick="updateForm()" class="btn btn-info btn-md">
 						<input type="button" value="삭제" onclick="deleteForm()" class="btn btn-info btn-md">
-					</c:if>
-					
-					<c:if test="${sessionScope.mvo.member_id=='admingalbage'}">					
+					</c:when>
+					<c:when test="${sessionScope.mvo.member_id=='admingalbage'}">					
 						<input type="button" value="답글달기" onclick="replyForm()" class="btn btn-info btn-md">
 			 		 <input type="button" value="삭제" onclick="deleteForm()" class="btn btn-info btn-md">
-					</c:if>
+					</c:when>
+					</c:choose>
 			 <input type="hidden" name="no" value="${requestScope.content.no}">
 			 
 				</div>

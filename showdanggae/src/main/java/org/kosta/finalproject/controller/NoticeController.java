@@ -64,6 +64,16 @@ public class NoticeController {
 		NoticeVO vo = noticeService.noticeContent(no);
 		return new ModelAndView("notice_noticeUpdateForm", "NoticeVO", vo);
 	}
+	
+	@RequestMapping("noticeDeleteForm.do")
+	public String noticeDeleteForm(String sno) {
+		int no = Integer.parseInt(sno);
+		System.out.println("삭제            "  + no);
+		noticeService.deleteContent(no);
+		return "redirect:notice.do";
+		
+		
+	}
 
 	@RequestMapping("update.do")
 	public ModelAndView update(NoticeVO vo) {
@@ -72,7 +82,7 @@ public class NoticeController {
 		return new ModelAndView("notice_noticeshowview", "content", updateVO);
 	}
 
-	@RequestMapping("notice_delete")
+	@RequestMapping("notice_delete.do")
 		public String notice_delete(HttpServletRequest request, HttpServletResponse response) {
 			String[] check_no = request.getParameterValues("check_no");
 			for (int i = 0; i < check_no.length; i++) {

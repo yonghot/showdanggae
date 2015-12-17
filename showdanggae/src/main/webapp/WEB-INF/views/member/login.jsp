@@ -20,32 +20,47 @@
 <div class="col-md-8">
 	<h1 class="text-center">로그인</h1>
 
-	<form class="form-horizontal" role="form" action="login.do" method="post">
-		
+	<form class="form-horizontal" role="form" action="login.do"
+		method="post">
+
 		<div class="form-group">
 			<div class="col-sm-2">
 				<label for="inputEmail3" class="control-label">ID</label>
 			</div>
 			<div class="col-sm-10 hidden-sm hidden-xs text-left">
-				<input type="text" class="form-control" name="member_id" placeholder="아이디">
+
+				<input type="text" class="form-control" name="member_id" placeholder="아이디" value="java">
+
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<div class="col-sm-2">
 				<label for="inputPassword3" class="control-label">Password</label>
 			</div>
 			<div class="col-sm-10">
-				<input type="password" class="form-control" name="password" placeholder="Password">
+				<input type="password" class="form-control" name="password"
+					placeholder="비밀번호">
 			</div>
 		</div>
-		
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<span id="auto_login"><input type="checkbox" name="autologin" value="checked"> 자동 로그인</span>
+					</label>
+				</div>
+			</div>
+		</div>
+
 		<div class="form-group">
 			<div class="col-sm-12" align="center">
 				<button type="submit" class="btn btn-default" id="subBtn">로그인</button>
 			</div>
 		</div>
 	</form>
+
 	<hr>
 	<div align="center">
 		<a href="${initParam.root}findidview.do">아이디찾기 |</a> <a

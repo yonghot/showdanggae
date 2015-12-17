@@ -18,4 +18,5 @@ public interface MessageDAO {
 
 	int mCount(String member_id);
 
+
 }

@@ -6,7 +6,6 @@
 
   $(document).ready(function() {
 	  
-	  
 		$("#logout").click(function(){
 			if (confirm("로그아웃하시겠습니까??") == true) {
 				location.href = "${initParam.root}logout.do";
@@ -15,7 +14,6 @@
 				return false;
 			}
 		});
-		
 	});
 
 </script>

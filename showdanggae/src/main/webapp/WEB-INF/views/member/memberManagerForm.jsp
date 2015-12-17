@@ -65,9 +65,8 @@
 				<td>${mvo.birthday }</td>
 				<td>${mvo.report }</td>
 				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>
-				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
-				data-whatever="${mvo.member_id}">메세지보내기</button></td>
-				
+				<td><a href =""  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
+				data-whatever="${mvo.member_id}">메세지보내기</a></td>
 			</tr>	
 			</c:forEach>
 </table>
@@ -106,7 +105,7 @@
         <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
       <div class="modal-body">
-        <form action="sendMessage.do" id="sendForm">
+        <form action="" id="sendForm"><!-- sendMessage.do -->
           <div class="form-group">
             <label for="recipient-name" class="control-label">Recipient:</label>
             <input type="text" class="form-control" id="recipient-name" readonly="readonly" name="member_id">

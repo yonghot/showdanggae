@@ -35,7 +35,7 @@ insert into follow(following_date,following,follower)
 values(sysdate,'lipchel','dd');
 
 insert into follow(following_date,following,follower)
-values(sysdate,'lipchel','java1');
+values(sysdate,'java2','java');
 
 select follower from follow where following='lipchel';
 

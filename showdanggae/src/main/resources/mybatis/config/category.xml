@@ -4,10 +4,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="category">
-
-	<select id="getMemberCategoryList" resultType="cvo">
+	
+	<select id="addMyCategory">
+	 	<![CDATA[
+	 		insert into member_category(category_id, category, member_id) 
+	 		values(member_category_seq.nextval, #{category}, #{member_id})
+	 	]]>
+	</select>
+	
+	<select id="deleteProductList">
 	<![CDATA[
-		select
+	 delete 
+	 from product
+	 where category_id=#{value}
+	 ]]>
+	</select>
+	
+	<select id="deleteCategory">
+	 	<![CDATA[
+	 		delete 
+	 		from member_category 
+	 		where category_id=#{value}
+	 	]]>
+	</select>
+	
+	<select id="findSellerLinkByCategoryId" resultType="slvo">
+		<![CDATA[
+			select link, product_id, price
+	 		from seller_link
+			where category_id=#{value}
+	 	]]>
+	</select>
+	
+	<delete id="deleteSellerLink">
+		<![CDATA[
+			delete 
+			from seller_link 
+			where category_id=#{value}
+	 	]]>
+	</delete>
+	
+	<select id="findEvaluatingItemByCategoryId" resultType="evo">
+		<![CDATA[
+			select * 
+			from eval_item 
+			where category_id=#{value}
+	 	]]>
+	</select>
+	
+	<delete id="deleteEvaluatingItem">
+		<![CDATA[
+			delete 
+			from eval_item 
+			where category_id=#{value}
+	 	]]>
+	</delete>
+	
+	<select id="getMemberCategoryList" resultType="cvo">
+		<![CDATA[
+		select 
 		category_id, category, member_id
 		from member_category
 		where member_id=#{value}
@@ -18,28 +73,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select category
 		from main_category
 	</select>
-
-	<select id="deleteCatgory">
-	 	<![CDATA[
-	 		delete *
-	 		from member_category 
-	 		where category_id=#{value}
-	 	]]>
-	</select>
-	
-	<select id="addMyCategory">
-	 	<![CDATA[
-	 		insert into member_category(category_id, category, member_id) 
-	 		values(member_category_seq.nextval, #{category}, #{id})
-	 	]]>
-	</select>
 	
 	<select id="addInterest">
 	 	<![CDATA[
-	 		insert into interest(category, member_id)
-	 		values (#{category}, #{member_id})
+	 		insert into interest
+	 		value #{value}
 	 	]]>
 	</select>
+	
+	<select id="getProductCountNumber" resultType="int">
+		<![CDATA[
+			select count(*) 
+			from member_category
+			where category_id=#{value}
+		]]>
+	</select> 
 	
 </mapper> 	
 	

@@ -12,16 +12,6 @@ public class ProductServiceImpl implements ProductService {
 	@Resource
 	private ProductDAO productDAO;
 	
-	
-	// 강민석 영역
-	
-	//카테고리 삭제용 상품리스트 일괄 삭제
-	@Override
-	public void deleteProductList(int category_id) {
-		productDAO.deleteProductList(category_id);
-	}
-	
-	
 	// 김용호 영역
 	
 	@Override
@@ -29,7 +19,13 @@ public class ProductServiceImpl implements ProductService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("member_id", member_id);
 		map.put("currentCategory", currentCategory);
-		return productDAO.getMyProductList(map);
+		
+		List<ProductVO> pvoList = productDAO.getMyProductList(map);
+		for(int i=0;i<pvoList.size();i++){
+			pvoList.get(i).setLowestPrice(productDAO.getLowestPriceByProductId(pvoList.get(i).getProduct_id()));
+		}
+		
+		return pvoList;
 	}
 	
 	@Override

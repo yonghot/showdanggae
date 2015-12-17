@@ -7,18 +7,7 @@
 	href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 <!-- 자동완성 sheet -->
 <script type="text/javascript">
-
-
-
-	/* function follow_view(){
-		 location.href="auth_findFollowingId.do?member_id=${mvo.member_id}";
-	} */
-	/* function follow1_view(){
-		 location.href="auth_findFollowerId.do?member_id=${mvo.member_id}";
-	} */	
-
 	$(document).ready(function(){	
-
 	//var quick_menu = $('#quick').offset().top;
 	var boxtop = $('#quick');
 	var q=100;
@@ -27,11 +16,8 @@
    // boxtop.animate({"top": $('#quick').scrollTop() + q + "px"}, 500); 
    //alert("asdf");
     boxtop.offset({"top": $('#quick').scrollTop() + q + "px"}, 100);
-   
-  });  
-
-	
-				
+    $('#myModal').modal('toggle');
+  });  			
 		//팔로잉 이름을 클릭시 발동 되는 이벤트
 		 $('#searchIdView1').on('click','.messagePopBtn1',function(){
 			 var id=$(this).children().children().val();
@@ -52,9 +38,34 @@
 						return false;
 					}
 		   });	
-
-
-		$.ajax({
+		$("#searchIdView").on('click','.messagePopBtn3',function(){ 
+			var follow = $(this).val();
+			/* var id = $("#followForm").parent().siblings().text(); */
+			var id =$(this).parent().parent().siblings().eq(0).text();
+			//alert(id);
+			if(follow=="+팔로우"){
+				$(this).val("v팔로잉");
+				$.ajax({
+					type:"POST",
+					url:"auth_add.do",
+					data:"follower=${sessionScope.mvo.member_id}&following="+id,
+					dataType:"json",
+					success:function(data){
+					}//callback			
+				});//ajax
+			} else if(follow=="v팔로잉") {
+				$(this).val("+팔로우");
+				 $.ajax({
+		               type:"POST",
+		               url:"auth_delete.do",
+		               data:"follower=${sessionScope.mvo.member_id}&following="+id,
+		               dataType:"json",
+		               success:function(data){
+		               }//callback         
+		            });//ajax
+			}  			
+		});
+/* 		$.ajax({
 			type:"get",
 			url:"falarm.do?following=${sessionScope.mvo.member_id}",
 			dataType:"json",
@@ -71,10 +82,9 @@
 					$("#alarm").html("알람" + " <span class='badge'>"  + "</span></a>");
 				}
 			}
-		}); 
-		
+		}); 	 */
 		//클릭했을때 팔로우 알림 
-		$("#alarm").click(function(){
+/* 		$("#alarm").click(function(){
 			$.ajax({
 				type:"get",
 				url:"falarm.do?following=${sessionScope.mvo.member_id}",
@@ -92,8 +102,8 @@
 					}
 				}
 			});
-		}) 
-
+		})  */
+		//아이디로 회원검색
 	   $("#findBtn").click(function(){
 		   var min = $("#inputId3").val();
 		if($("#inputId3").val()==""){
@@ -106,90 +116,88 @@
 				data:"sessionId=${sessionScope.mvo.member_id}&member_id="+min,
 				dataType:"json",
 				success:function(data){
-					var index="";
-					if(data!=null){				
+					var index="<table class='table'><thead>";
+					 if(data!=""){		
+						 index +="<tr class='success'><td>ID</td><td></td></tr></thead><tbody>";
 						for(var i=0; i<data.length;i++){	
-							//alert(data[i].member_id);
-							index += data[i].member_id;
+							/* alert(data[i].member_id);
+							alert(data[i].isFollow); */
+							if(data[i].member_id=='${sessionScope.mvo.member_id}'){
+								index +="<tr><td>"+data[i].member_id+"</td><td></td></tr>";
+							 }else if(data[i].member_id=="admingalbage"){//?
+									
+							 }else if(data[i].isFollow==true){
+								index +="<tr><td>"+data[i].member_id+"</td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
+							}else{
+								index +="<tr><td>"+data[i].member_id+"</td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";
+							}
 						}
+						index+="</table>";
 						$("#searchIdView").html(index);
+						$("#searchIdView1").html("");
 					}else{
 						$("#searchIdView").html(index);
+						$("#searchIdView1").html("");
 					}
-					/* if(data!=""){				
-						for(var i=0; i<data.length;i++){	
-							alert(data[i].member_id);
-							index += data[i].member_id;
-						}
-						$("#searchIdView").html(index);
-					}else{
-						$("#searchIdView").html(index);
-					} */
 				}		
 			});//ajax  
 	      }   
 	   });
-		
-		$("#followingView a").click(function(){
-			var id=$(this).text();
-			if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
-			 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
-		"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
-			}else{
-				return false;
-			}
-		});	
-	   //팔로잉 버튼 클릭시 팔로잉 아이디
-	   $("#followingBtn").click(function(){
-		   $.ajax({
-				type:"POST",
-				url:"auth_findFollowingId.do",
-				data:"member_id=${mvo.member_id}",
-				dataType:"json",
-				success:function(data){
-					var index="<table class='table'><thead>";
-					if(data!=""){
-						index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
-						for(var i=0; i<data.length;i++){						
-							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
-							index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
-							"<form><input type='hidden' class='followingName' value="+data[i].following+"></form></span></a></td></tr>";
-						}
-						index+="<tbody></table>"
+		 //팔로잉 버튼 클릭시 팔로잉 아이디
+		   $("#followingBtn").click(function(){
+			   $.ajax({
+					type:"POST",
+					url:"auth_findFollowingId.do",
+					data:"member_id=${mvo.member_id}",
+					dataType:"json",
+					success:function(data){
+						var index="<table class='table'><thead>";
+						if(data!=""){
+							index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
+							for(var i=0; i<data.length;i++){						
+								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
+								index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
+								"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>";
+							}
+							index+="<tbody></table>"
+								$("#searchIdView").html("");	
 							$("#searchIdView1").html(index);
-			  	   }else{
-			  		 $("#searchIdView1").html("");
-			  	   }
-					
-					}		
-			});//ajax
-	   }); 
-	   //팔로우 버튼 클릭시 팔로우 아이디
-	   $("#followerBtn").click(function(){
-		   $.ajax({
-				type:"POST",
-				url:"auth_findFollowerId.do",
-				data:"member_id=${mvo.member_id}",
-				dataType:"json",
-				success:function(data){
-					var index="<table class='table'><thead>";
-					if(data!=""){
-						index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
-						for(var i=0; i<data.length;i++){
-							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id=j'>"+data[i].follower+"</a></td></tr>";
-							index += "<tr><td><a href='#'><span class='messagePopBtn2'>"+data[i].follower+
-							"<form><input type='hidden' class='followingName' value="+data[i].follower+"></form></span></a></td></tr>";
-						}
-						index+="</tbody></table>"
-						$("#searchIdView1").html(index);
-			  	        }else{
-					  		 $("#searchIdView1").html("");
-					  	   }
-					}		
-			});//ajax
-	   });  	  
+				  	   }else{
+				  		 $("#searchIdView").html("");
+				  		 $("#searchIdView1").html("");
+				  	   }
+						
+						}		
+				});//ajax
+		   }); 
+		   //팔로우 버튼 클릭시 팔로우 아이디
+		   $("#followerBtn").click(function(){
+			   $.ajax({
+					type:"POST",
+					url:"auth_findFollowerId.do",
+					data:"member_id=${mvo.member_id}",
+					dataType:"json",
+					success:function(data){
+						var index="<table class='table'><thead>";
+						if(data!=""){
+							index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
+							for(var i=0; i<data.length;i++){
+								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].follower+"</a></td></tr>";
+								index += "<tr><td><a href='#'><span class='messagePopBtn2'>"+data[i].follower+
+								"<form><input type='hidden' value="+data[i].follower+"></form></span></a></td></tr>";
+							}
+							index+="</tbody></table>"
+								$("#searchIdView").html("");
+							$("#searchIdView1").html(index);
+				  	        }else{
+				  	        	$("#searchIdView").html("");
+						  		 $("#searchIdView1").html("");
+						  	   }
+						}		
+				});//ajax
+		   });  	  
 	});	
-	function onKeyup(){
+	/* function onKeyup(){
 		var min = $("#inputId3").val();
 		 $.ajax({
 	         type:"POST",
@@ -214,10 +222,10 @@
 	  	           
 	         }//callback         
 	      });//ajax
-	} 
+	} */
 </script>
 
-<div class="col-md-2" align="center" >
+<div class="col-md-2" align="center">
 	<c:if test="${sessionScope.mvo!=null}">
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
@@ -226,7 +234,8 @@
 						value="${sessionScope.mvo.member_id}">
 					<div class="input-group">
 						<input type="text" class="form-control" id="inputId3"
-							name="member_id" onkeyup="onKeyup()" placeholder="ID로 회원 검색">
+							name="member_id" placeholder="ID로 회원 검색">
+						<!-- onkeyup="onKeyup()" -->
 						<span class="input-group-btn"> <input
 							class="btn btn-success" type="button" id="findBtn" value="검색">
 						</span>
@@ -235,15 +244,19 @@
 			</div>
 		</form>
 		<hr>
-		<input class="btn btn-default" type="button" value="팔로잉"
+		<ul class="nav nav-tabs">
+			<li><a href="#" id="followingBtn">팔로잉</a></li>
+			<li><a href="#" id="followerBtn">팔로워</a></li>
+		</ul>
+		<!-- <input class="btn btn-default" type="button" value="팔로잉"
 			id="followingBtn">
-		<!-- onclick="follow_view()" -->
 		<input class="btn btn-default" type="button" value="팔로워"
-			id="followerBtn"><br>
-		<!-- onclick="follow1_view()" -->
+			id="followerBtn"> -->
+		<br>
 		<span id="searchIdView"></span>
 		<span id="searchIdView1"></span>
 	</c:if>
+<<<<<<< HEAD
 
 <!--  data-offset-top="400" -->
 <c:if test="${!empty sessionScope.mvo && sessionScope.mvo.member_id!='admingalbage'}">
@@ -265,15 +278,57 @@
       </div>
       </div>
     </div>
+=======
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 </div>
+<<<<<<< HEAD
   </div>
    </c:if>
  
 </div>
 
+=======
+ <!-- 	<div class="quick" data-spy="scroll"
+		style='position: absolute; top: 200px;'>
+		<div class="panel-group" id="accordion" role="tablist"
+			aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingThree">
+					<h4 class="panel-title">
+						<a id="alarm" class="collapsed" data-toggle="collapse"
+							data-parent="#accordion" href="#collapseThree"
+							aria-expanded="false" aria-controls="collapseThree"> </a>
+					</h4>
+					<div id="alarmcount"></div>
+				</div>
+				<div id="collapseThree" class="panel-collapse collapse"
+					role="tabpanel" aria-labelledby="headingThree">
+					<div class="panel-body" id="realarm"></div>
+				</div>
+			</div>
+		</div>
+	</div> --> 
+<!--  모달을 켜고 끄는 버튼
+<a href="#myModal" role="button" class="btn" data-toggle="modal">모달
+	시연 시작</a>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 
-<br>
-<br>
-<br>
-<br>
+모달
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">모달 제목</h3>
+	</div>
+	<div class="modal-body">
+		<p>한 멋진 본문…</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">닫기</button>
+		<button class="btn btn-primary">변경사항 저장</button>
+	</div>
+</div> -->
+
+
 

@@ -35,10 +35,11 @@ create table product (
 	dislikes number default 0,
 	hits number default 0,
 	review clob,
-	review_score number default 0,
 	detail clob,
+	review_score number default 0,
 	visiblity number default 0,
 	regist_date date not null,
+	thumbnail_link varchar2(100),
 	constraint fk_product_category_id foreign key(category_id) references member_category(category_id),
 	constraint fk_product_member_id foreign key(member_id) references member(member_id)
 );

@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <mapper namespace="message">
  
  <insert id="sendMessage" parameterType="msvo">
-INSERT INTO MESSAGE(member_id,message,sender,title,send_date,mno,read) 
+insert into message(member_id,message,sender,title,send_date,mno,read) 
 values (#{member_id},#{message},#{sender},#{title},SYSDATE,message_seq.nextval,#{read})
 </insert>
 

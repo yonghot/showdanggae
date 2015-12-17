@@ -6,16 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="product">
 
-	<!-- 강민석 영역 -->
-
-	<select id="deleteProductList">
-	 	<![CDATA[
-	 		delete *
-	 		from product
-	 		where category_id=#{value}
-	 	]]>
-	</select>
-	
 	<!-- <insert id="write"> <![CDATA[ insert into board(no, title, author, 
 		write_date, content, id) values(board_seq.nextval, #{title}, #{author}, sysdate, 
 		#{content} ,#{id}) ]]> </insert> <update id="hit"> <![CDATA[ update board 
@@ -32,9 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<select id="getAllBoardList" resultType="pvo">
 	 	<![CDATA[
-	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
-	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
-	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by likes desc))
+	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link 
+	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link
+	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link from product order by likes desc))
 	 	]]>
 		<!-- <where>
 			 <if test="value=='likes'">
@@ -54,9 +44,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
-	 		select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
-	 		from (select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits
-	 		from (select product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
+	 		select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link 
+	 		from (select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link
+	 		from (select product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link from product order by product_id asc))
 	 		where member_id=#{member_id} and category_id=#{currentCategory}
 	 	]]>
 	</select>
@@ -74,8 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			]]>
 		</selectKey>
 		<![CDATA[
-	 		insert into product(product_id, category_id, member_id, product_name, detail, visiblity, regist_date)
-	 		values(#{product_id}, #{category_id}, #{member_id}, #{product_name}, #{detail}, #{visiblity}, sysdate)
+	 		insert into product(product_id, category_id, member_id, product_name, detail, visiblity, regist_date, thumbnail_link)
+	 		values(#{product_id}, #{category_id}, #{member_id}, #{product_name}, #{detail}, #{visiblity}, sysdate, #{thumbnail_link})
 	 	]]>
 	</insert>
 	
@@ -102,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getProductByProduct_id" resultType="pvo">
 		<![CDATA[
-			select product_id, category_id, member_id, likes, dislikes, review_score, detail, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits 
+			select product_id, category_id, member_id, likes, dislikes, review_score, detail, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link
 	 		from product
 			where product_id=#{value}
 	 	]]>
@@ -178,6 +168,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select category_id from product where product_id=#{value}
 	 	]]>
 	</select>
+	
+	<select id="getLowestPriceByProductId" resultType="int">
+		<![CDATA[
+			select min(price) as lowestPrice 
+			from seller_link
+			where product_id=#{value}
+	 	]]>
+	</select><!-- 쿼리문 마지막에 ; 찍지 말자 -->
 	
 </mapper>
  
