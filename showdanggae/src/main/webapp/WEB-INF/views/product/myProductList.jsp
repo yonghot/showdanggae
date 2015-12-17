@@ -36,6 +36,7 @@
 
 					});
 
+
 				$("#CategoryView").html(newInfo);
 				}
 			} //success
