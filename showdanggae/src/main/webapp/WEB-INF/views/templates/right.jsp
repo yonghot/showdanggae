@@ -17,11 +17,7 @@
    // boxtop.animate({"top": $('#quick').scrollTop() + q + "px"}, 500); 
    //alert("asdf");
     boxtop.offset({"top": $('#quick').scrollTop() + q + "px"}, 100);
-<<<<<<< HEAD
 
-=======
-/*     $('#myModal').modal('toggle'); */
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
   });  			
 	/* 	//팔로잉 이름을 클릭시 발동 되는 이벤트
 		 $('#searchIdView1').on('click','.messagePopBtn1',function(){
@@ -318,7 +314,6 @@
     </div>
 </div>
   </div>
-<<<<<<< HEAD
    </c:if> --%>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -359,20 +354,6 @@
 				<button type="button" class="btn btn-primary" id="sendMessage">보내기</button>
 			</div>
 		</div>
-=======
-   </c:if>
- 
-</div>
-
-<!-- 
-모달
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="myModalLabel">모달 제목</h3>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	</div>
 </div>
 
@@ -381,5 +362,5 @@
 
 
 
- -->
+
 
