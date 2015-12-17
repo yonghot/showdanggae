@@ -239,14 +239,10 @@ values(product_id_seq.nextval, 96,'java', '맥북프로',
 100, 1, '좋네요~', 70, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));		
 insert into product(product_id, category_id, member_id, product_name, 
 likes, dislikes, review, review_score, detail, visiblity, regist_date) 
-<<<<<<< HEAD
-values(product_id_seq.nextval, 96,'java', '애니악', 
-100, 1, '좋네요~', 70, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));
-=======
 values(product_id_seq.nextval, 1,'java', '맥북프로', 
 100, 1, '좋네요~', 70, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));		
 
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
 
 insert into MAIN_CATEGORY ("CATEGORY") values('쇠못박힌 몽둥이')
 insert into MAIN_CATEGORY ("CATEGORY") values('쓸만하지만 찌그러진 투구')
