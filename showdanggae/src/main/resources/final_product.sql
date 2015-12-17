@@ -229,7 +229,6 @@ alter table board drop constraint fk_id cascade;
 
 
 
-
 insert into product(product_id, category_id, member_id, product_name, 
 likes, dislikes, review, review_score, detail, visiblity, regist_date) 
 values(product_id_seq.nextval, 1,'java', '서피스북', 
@@ -238,6 +237,7 @@ insert into product(product_id, category_id, member_id, product_name,
 likes, dislikes, review, review_score, detail, visiblity, regist_date) 
 values(product_id_seq.nextval, 1,'java', '맥북프로', 
 100, 1, '좋네요~', 70, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));		
+
 
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB

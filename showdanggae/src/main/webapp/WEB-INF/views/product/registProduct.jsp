@@ -181,7 +181,7 @@
 
 <span id="itemList">
 	<c:forEach items="${requestScope.itemList}" varStatus="status" var="i">
-		<input type="hidden" name="${status.count-1}" value="${i}">
+		<input type="hidden" name="${status.index}" value="${i}">
 	</c:forEach>
 </span>
 

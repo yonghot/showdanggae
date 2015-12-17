@@ -169,6 +169,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</select>
 	
+	<select id="getLowestPriceByProductId" resultType="int">
+		<![CDATA[
+			select min(price) as lowestPrice 
+			from seller_link
+			where product_id=#{value}
+	 	]]>
+	</select><!-- 쿼리문 마지막에 ; 찍지 말자 -->
+	
 </mapper>
  
  
