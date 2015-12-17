@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryDAO.addInterest(interest);
 	}
 	@Override
-	public int getProductCountNumber(int category_id) {
+	public CategoryVO getProductCountNumber(int category_id) {
 		return categoryDAO.getProductCountNumber(category_id);
 	}
 	

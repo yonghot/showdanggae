@@ -2,12 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
-	$(document).ready(function(){
+	$(document).ready(function(){	
 		
 		//라디오 버튼 체크 후 선택하기 버튼을 누르면 DB에 저장 되고 새로 갱신된 카테고리를 표시한다. 12월 10일
-		//$("#addBtn").on("click","#addBtn", function(){
-		$("#addBtn").click(function() {
-		//val() 값은 String 이다. 카메라, 노트북 등등
+		$("#addBtn").click(function() {	
 		var category=$(":radio[name=category]:checked").val();
 		alert(category+"을 추가 하셨습니다.");
 		if(category==undefined) {
@@ -17,17 +15,18 @@
 		$.ajax({
 			type : "POST",
 			url : "auth_addCategory.do",
-			data : $("#addCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
+			data : "category="+category+"&member_id=${sessionScope.mvo.member_id}",
 			dataType : "JSON",
 			success : function(result) {
 				if(result.exception!=null) {
-					alert("통신실패 퐁당~" +" "+ result.exception);
+					alert("통신실패~" +" "+ result.exception);
 				}else{
 					var newInfo="";
 					//삭제 아이콘을 하나더 추가 해준다. 12월 11일
 					/* var deleteComp="<a><input type='button' value='삭제' id='deleteCateroryBtn'></a>"; */
-					var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
+					//var deleteComp="<a><input type='radio' name='category_id' value='${clist.category_id}'></a>";
 					$.each(result, function(index,sh) {
+						deleteComp="<a><input type='radio' name='category_id' value='"+sh.category_id+"'></a>";
 						//링크로 만들어 준다. 12월 11일
 						newInfo+="<tr><td>"+deleteComp+"</td>"
 						newInfo+="<td><a href='#'>"+sh.category+"</td>"
@@ -35,21 +34,15 @@
 						newInfo+="<td>"+sh.member_id+"</td></tr>"
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 					});
-<<<<<<< HEAD
-					$("#CategoryView").html(newInfo);
-				} //else
-=======
 				$("#CategoryView").html(newInfo);
 				}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			} //success
 		}); //ajax
-
+		
 		}); //#addBtn
 		
 		//라디오 버튼 형식의 카테고리 삭제(작성중....)
 		$("#deleteCateroryBtn").click(function() {
-		//$("#deleteCateroryBtn").on("click", "#deleteCateroryBtn", function(){
 			var category=$(":radio[name=category_id]:checked").val();
 			alert(category);
 			//카테고리 삭제시 confirm 확인창을 한번 띄워준다. 12월 11일 미완~~
@@ -60,20 +53,22 @@
 					data : "category_id="+category+"&member_id=${sessionScope.mvo.member_id}",
 					dataType : "JSON",
 					success : function(result) {
+						
 						if(result.exception!=null) {
 							alert(result.exception);
 						}else{
 							var newInfo="";
 							/* var deleteComp="<a><input type='button' value='삭제' id='deleteCateroryBtn'></a>"; */
-							 var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
+							//var deleteComp="<a><input type='radio' name='category_id' value='${clist.category_id}'></a>";
 							$.each(result, function(index,sh) {
+								deleteComp="<a><input type='radio' name='category_id' value='"+sh.category_id+"'></a>";
 								newInfo+="<tr><td>"+deleteComp+"</td>";
 								newInfo+="<td><a href='#'>"+sh.category+"</td>";
 								newInfo+="<td>"+sh.category_id+"</td>";
 								newInfo+="<td>"+sh.member_id+"</td></tr>";
 								/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 							});
-						$("#CategoryView").html(newInfo);
+							$("#CategoryView").html(newInfo);
 						}
 				} //success
 			}); //ajax
@@ -82,11 +77,14 @@
 			} //confirm else
 		}); //#deleteCateroryBtn click
 		
-<<<<<<< HEAD
+// 		$("#deleteCateroryBtn").on("click", ":radio[name=category_id]:checked", function(){
+// 			alert("ll");
+// 		})
+		
 		//탭 형식의 카테고리 뷰 (작성중....) 라디오 형식의 카테고리 뷰와 동일 하지만 
 		//$.each(result, function(index,sh) {} 부분이 다르다.
 		$("#tap_addBtn").click(function() {
-			var category=$(":input[name=category]:checked").val();
+			var category=$(":radio[name=tap_category_add]:checked").val();
 			alert(category+"을 추가 하셨습니다.");
 			if(category==undefined) {
 				alert("카테고리를 추가 하세요~");
@@ -96,14 +94,13 @@
 				type : "POST",
 				url : "auth_addCategory.do",
 				//String categoty
-				data : $("#tap_addCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
+				data :  "category="+category+"&member_id=${sessionScope.mvo.member_id}",
 				dataType : "JSON",
 				success : function(result) {
 					if(result.exception!=null) {
 						alert("ok"+result.exception);
 					}else{
 						alert("aa");
-						
 						$("#tapCategoryView").html(newInfo);
 					} //else
 				} //success
@@ -111,37 +108,25 @@
 
 			}); //#addBtn
 			
-		
-		
 		//탭 형식의 카테고리 삭제
 		$("#tapDeleteCateroryBtn").click(function() {
-			//$("#deleteCateroryBtn").on("click", "#deleteCateroryBtn", function(){
+		//$("#deleteCateroryBtn").on("click", "#deleteCateroryBtn", function(){
 				//val() 값은 숫자이다. 112 143 등등
-				var category=$(":input[name=category]:checked").val();
+				var category=$(":radio[name=tap_category_delete]:checked").val();
 				alert("삭제클릭");
 				//카테고리 삭제시 confirm 확인창을 한번 띄워준다. 12월 11일 미완~~
 				if(confirm("선택한 카테고리에 포함된 상품까지 모두 삭제 됩니다. 삭제 하시겠습니까?")==true){
-					alert("진짜로 지운데이~");
+					alert(category);
 					$.ajax({
 						type : "POST",
 						url : "auth_deleteProductListAndCategory.do",
-						data : $("#deleteCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
+						data : "tap_category_delete="+category+"&member_id=${sessionScope.mvo.member_id}",
 						dataType : "JSON",
 						success : function(result) {
-							alert("통신실패" );	
 							if(result.exception!=null) {
-								alert("통신실패 퐁당~" +" "+ result.exception);
+								alert(result.exception);
 							}else{
-								var newInfo="";
-								/* var deleteComp="<a><input type='button' value='삭제' id='deleteCateroryBtn'></a>"; */
-								 var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
-								$.each(result, function(index,sh) {
-									newInfo+="<tr><td>"+deleteComp+"</td>"
-									newInfo+="<td><a href='#'>"+sh.category+"</td>"
-									newInfo+="<td>"+sh.category_id+"</td>"
-									newInfo+="<td>"+sh.member_id+"</td></tr>"
-									/* newInfo+="<td>"+deleteComp+"</td></tr>" */
-								});
+								alert("aa");
 							$("#CategoryView").html(newInfo);
 							}
 					} //success
@@ -151,42 +136,10 @@
 				} //confirm else
 			}); //#deleteCateroryBtn click
 	
-		//카테고리명 수정(작성중....)
-		$("#updateCateroryBtn").click(function() {
-				var category=$(":input[name=category]:checked").val();
-				if(confirm("선택한 카테고리명을 수정합니다!")==true){
-					$.ajax({
-						type : "POST",
-						url : ".do",
-						data : $("#updateCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
-						dataType : "JSON",
-						success : function(result) {
-							if(result.exception!=null) {
-								alert("통신실패 퐁당~" +" "+ result.exception);
-							//수정된 카테고리명을 ajax로 보여준다. 공통 코드.	
-							}else{
-								var newInfo="";
-							    var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
-								$.each(result, function(index,sh) {
-									newInfo+="<tr><td>"+deleteComp+"</td>"
-									newInfo+="<td><a href='#'>"+sh.category+"</td>"
-									newInfo+="<td>"+sh.category_id+"</td>"
-									newInfo+="<td>"+sh.member_id+"</td></tr>"
-								});
-							$("#CategoryView").html(newInfo);
-							}
-					} //success
-				}); //ajax
-				}else{
-					return false;
-				} //confirm else
-			}); //#deleteCateroryBtn click
-=======
 		$("#productCard").hover(function(){
 			
 		});
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-		
+
 	}); //ready
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
 	
@@ -223,11 +176,11 @@
 		</thead>
 		<tbody id="CategoryView">
 		<!--최초 페이지 시작시 DB카테고리를 불러와 표시한다. -->
-		<c:forEach items="${requestScope.memberCategoryList }" var="clist">
+		<c:forEach items="${requestScope.memberCategoryList }" var="memberCategoryList">
 		<tr>
-		<td><a><input type="radio" name="category_id" value="${clist.category_id}"></a></td>
-		<td><a href='#'>${clist.category}</a></td>
-		<td>${clist.category_id}</td>
+		<td><a><input type="radio" name="category_id" value="${memberCategoryList.category_id}"></a></td>
+		<td><a href='#'>${memberCategoryList.category}</a></td>
+		<td>${memberCategoryList.category_id}</td>
 		<td>${sessionScope.mvo.member_id}</td>
 		</tr>
 		<!--ajax방식이 아닌 페이지 진입 시 삭제버튼을 추가 한다. -->
@@ -240,17 +193,12 @@
 	<input type="button" value="삭제" id="deleteCateroryBtn">
 	</form>
 	<hr>
-	
-	<h4>선택한 카테고리 수정하기</h4>
-	<input type="button" value="수정" id="updateCateroryBtn">
-	<!-- update member set address='성남' where id='jdbc';
-	--패스워드가 1234이고 이름이 아이유인 회원의 주소를 강남으로 수정 -->
  
   <h4>탭형식의 카테고리 뷰</h4>
  
   <ul class="nav nav-tabs">
-  <c:forEach items="${requestScope.memberCategoryList }" var="clist">
-  <li role="presentation" class="active" value="${clist.category_id}"><a href="#">${clist.category}</a></li>
+  <c:forEach items="${requestScope.memberCategoryList }" var="memberCategoryList">
+  <li role="presentation" class="active" value="${memberCategoryList.category_id}"><a href="#">${memberCategoryList.category}</a></li>
   </c:forEach>
   
   <!--추가하기 드롭다운-->
@@ -261,14 +209,14 @@
     		<c:forEach items="${requestScope.mainCategoryList }" var="mainCategoryList">
    			<li role="presentation">
      		<!--라디오 버튼-->
-    		<a role="menuitem" tabindex="-1"><input type="radio" name="category" value="${mainCategoryList.category}">
+    		<a role="menuitem" tabindex="-1"><input type="radio" name="tap_category_add" value="${mainCategoryList.category}">
     		&nbsp;${mainCategoryList.category}</a>
     		</li>
     		</c:forEach>
     		
     		<!--구분선-->
     		<li role="presentation" class="divider"></li>
-    		<li role="presentation"><a role="menuitem" tabindex="-1" id="tap_addBtn">카테고리 추가하기</a></li>
+    		<li role="presentation"><a role="menuitem" tabindex="-1" id="tap_addBtn" href="#">카테고리 추가하기</a></li>
     	</ul>
 	</li>
  
@@ -277,22 +225,22 @@
 	<a class="dropdown-toggle" data-toggle="dropdown" role="button2" aria-expanded="false">삭제하기 <span class="caret"></span></a>
   		<ul class="dropdown-menu" role="menu">
   			<!--forEach 반복문-->
-    		<c:forEach items="${requestScope.memberCategoryList}" var="clist">
-    		<li role="presentation" value="${clist.category}">
+    		<c:forEach items="${requestScope.memberCategoryList}" var="memberCategoryList">
+    		<li role="presentation">
     		<!--배지 삽입!  product 갯수 조회 후 입력 -->
     		<span class="badge">"${requestScope.productCountNumber}"</span>
     		<!--라디오 버튼-->
-    		<a role="menuitem" tabindex="-1" href="#"><input type="radio" name="category3" value="${clist.category_id}">
-    		&nbsp;${clist.category}</a>
-   			 </li>
-   			 </c:forEach>
+    		<a role="menuitem" tabindex="-1"><input type="radio" name="tap_category_delete" value="${memberCategoryList.category_id}">
+    		&nbsp;${memberCategoryList.category}</a>
+   			</li>
+   			</c:forEach>
     		<!--구분선-->
    			<li role="presentation" class="divider"></li>
-    		<li role="presentation"><a role="menuitem" tabindex="-1" href="#">내 카테고리 삭제하기</a></li>
+    		<li role="presentation"><a role="menuitem" tabindex="-1" id="tapDeleteCateroryBtn" href="#">내 카테고리 삭제하기</a></li>
     	</ul>
 	</li>
  </ul>
- 
+
 <hr>
 
 	<div align="right">
@@ -300,21 +248,12 @@
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
 	<br><br>
-<<<<<<< HEAD
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
-		<div class="col-md-6">
-=======
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6" id="productCard">
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			<div class="thumbnail">
-<<<<<<< HEAD
-				<a href="auth_hit.do?product_id=${list.product_id}"> <img src="img/no_image.png" class="img-responsive"></a>
-=======
 				<a href="auth_hit.do?product_id=${list.product_id}">
 				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
 				</a>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				<div class="caption" align="center">
 					<h4>${list.product_name}</h4>
 				</div>
