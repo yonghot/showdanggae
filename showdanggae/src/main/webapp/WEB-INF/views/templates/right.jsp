@@ -256,30 +256,33 @@
 		<span id="searchIdView"></span>
 		<span id="searchIdView1"></span>
 	</c:if>
+
+<!--  data-offset-top="400" -->
+<c:if test="${!empty sessionScope.mvo && sessionScope.mvo.member_id!='admingalbage'}">
+<div class="quick" data-spy="scroll" style='position:absolute; top: 200px;' >
+
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a id="alarm" class="collapsed"  data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" >
+          
+        </a>
+      </h4>
+    		  <div id="alarmcount"></div>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body" id="realarm">
+      </div>
+      </div>
+    </div>
 </div>
- <!-- 	<div class="quick" data-spy="scroll"
-		style='position: absolute; top: 200px;'>
-		<div class="panel-group" id="accordion" role="tablist"
-			aria-multiselectable="true">
-			<div class="panel panel-default">
-				<div class="panel-heading" role="tab" id="headingThree">
-					<h4 class="panel-title">
-						<a id="alarm" class="collapsed" data-toggle="collapse"
-							data-parent="#accordion" href="#collapseThree"
-							aria-expanded="false" aria-controls="collapseThree"> </a>
-					</h4>
-					<div id="alarmcount"></div>
-				</div>
-				<div id="collapseThree" class="panel-collapse collapse"
-					role="tabpanel" aria-labelledby="headingThree">
-					<div class="panel-body" id="realarm"></div>
-				</div>
-			</div>
-		</div>
-	</div> --> 
-<!--  모달을 켜고 끄는 버튼
-<a href="#myModal" role="button" class="btn" data-toggle="modal">모달
-	시연 시작</a>
+  </div>
+   </c:if>
+ 
+</div>
+
 
 모달
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"

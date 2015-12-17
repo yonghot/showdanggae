@@ -212,16 +212,42 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public HashMap<String, String> proCount(String member_id) {
 		HashMap<String, String> proInfo =new  HashMap<String, String>();
-		//팔로잉 팔로워 명 수 구하기
-		int followerCount=memberDAO.followerCount(member_id);
-		System.out.println(followerCount);
-		int followingCount=memberDAO.followingCount(member_id);
-		
-		System.out.println(followingCount);
-		
-	/*	proInfo.put("followerCount", followerCount);
-		proInfo.put("followingCount", followingCount);*/
+		//팔로잉 팔로워 명 수 구하기 + 나의 관심사
+		int followerCount1=memberDAO.followerCount(member_id);
+		int followingCount1=memberDAO.followingCount(member_id);
+		String followerCount = String.valueOf(followerCount1);
+		String followingCount = String.valueOf(followingCount1);
+	
+		proInfo.put("followerCount", followerCount);
+		proInfo.put("followingCount", followingCount);
 		return proInfo;
+	}
+
+
+	@Override
+	public List<String> profileInterest(String member_id) {
+		
+		return memberDAO.profileInterest(member_id);
+	}
+
+
+	@Override
+	public List<String> profileInterestList() {
+		
+		return memberDAO.profileInterestList();
+	}
+
+
+	@Override
+	public List<String> myinterestList(String member_id) {
+		
+		return memberDAO.myinterestList(member_id);
+	}
+
+
+	@Override
+	public MemberVO infoUpdate(MemberVO vo) {
+		return memberDAO.infoUpdate(vo);
 	}
 	
 

@@ -99,7 +99,7 @@
 		  <li><a href="${initParam.root}notice.do?pageNo=${i }">${i} </a></li>
 	</c:otherwise>
 	</c:choose>	
-	</c:forEach>
+</c:forEach>
 	
 	
  	<c:if test="${requestScope.noticeList.pagingBean.isNextPageGroup()}">
