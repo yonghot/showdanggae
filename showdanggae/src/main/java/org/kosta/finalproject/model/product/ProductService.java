@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.product;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface ProductService {
 	public void deleteProduct(int product_id);
 	public int getCategoryIdByProductId(int product_id);
 	public List<ProductVO> getMyProductList(String member_id, String currentCategory);
+	public List<ProductVO> selectReport() throws SQLException;	//검색어 순위
 	
 }

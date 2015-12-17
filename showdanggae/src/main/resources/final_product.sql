@@ -261,4 +261,12 @@ where category_id=1
 
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
+-- 검색어 통계 테이블 
+create table report(
+	word varchar2(30) primary key,
+	cnt number(5) not null
+)
+select * from report;
+delete from report;
+select * from myproduct;
 
