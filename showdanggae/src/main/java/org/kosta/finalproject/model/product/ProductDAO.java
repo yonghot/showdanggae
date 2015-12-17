@@ -35,11 +35,7 @@ public interface ProductDAO {
 	public List<EvaluatingItemVO> findEvaluatingItemByProductId(int product_id);
 
 	public int getCategoryIdByProductId(int product_id);
-<<<<<<< HEAD
 
 	public int getLowestPriceByProductId(int product_id);
-=======
-	
-	
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
 }

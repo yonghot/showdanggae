@@ -35,13 +35,9 @@
 						newInfo+="<td>"+sh.member_id+"</td></tr>"
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 					});
-<<<<<<< HEAD
-					$("#CategoryView").html(newInfo);
-				} //else
-=======
+
 				$("#CategoryView").html(newInfo);
 				}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			} //success
 		}); //ajax
 
@@ -81,14 +77,9 @@
 				return false;
 			} //confirm else
 		}); //#deleteCateroryBtn click
+	
 		
-<<<<<<< HEAD
-		$(".productCard").hover(function(){
-			$(this).css("border","solid 2px #ff7777");
-		}, function(){
-			$(this).css("border","none");
-=======
-<<<<<<< HEAD
+
 		//탭 형식의 카테고리 뷰 (작성중....) 라디오 형식의 카테고리 뷰와 동일 하지만 
 		//$.each(result, function(index,sh) {} 부분이 다르다.
 		$("#tap_addBtn").click(function() {
@@ -187,15 +178,13 @@
 					return false;
 				} //confirm else
 			}); //#deleteCateroryBtn click
-=======
-		$("#productCard").hover(function(){
 			
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-		});
-<<<<<<< HEAD
-		
-		
-		
+		$(".productCard").hover(function(){
+			$(this).css("border","solid 2px #ff7777");
+		}, function(){
+			$(this).css("border","none");
+
+
 		function AddComma(data_value) {
 			
 		    var txtNumber = "" + data_value;    // 입력된 값을 문자열 변수에 저장합니다.
@@ -241,9 +230,7 @@
 		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
 		    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
 		}
-=======
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
 		
 	}); //ready
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
@@ -358,7 +345,6 @@
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
 	<br><br>
-<<<<<<< HEAD
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="7" varStatus="status">
 		<div class="col-md-6">
 			<div class="thumbnail productCard">
@@ -366,25 +352,6 @@
 					<a href="auth_hit.do?product_id=${list.product_id}">
 						<img src="${list.thumbnail_link}" class="img-responsive thumbnailImg" width='285' height='200'>
 					</a>
-=======
-<<<<<<< HEAD
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
-		<div class="col-md-6">
-=======
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
-		<div class="col-md-6" id="productCard">
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-			<div class="thumbnail">
-<<<<<<< HEAD
-				<a href="auth_hit.do?product_id=${list.product_id}"> <img src="img/no_image.png" class="img-responsive"></a>
-=======
-				<a href="auth_hit.do?product_id=${list.product_id}">
-				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
-				</a>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-				<div class="caption" align="center">
-					<h4>${list.product_name}</h4>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				</div>
 				<div>
 					<div class="caption" align="left">

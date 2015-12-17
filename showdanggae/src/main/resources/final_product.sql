@@ -229,17 +229,6 @@ alter table board drop constraint fk_id cascade;
 
 
 
-<<<<<<< HEAD
-select category_id, member_id, category 
-		from member_category
-		where member_id='java';
-		
-		insert into interest(category, member_id) 
-		values('카메라','java');
-		
-		
-=======
-
 insert into product(product_id, category_id, member_id, product_name, 
 likes, dislikes, review, review_score, detail, visiblity, regist_date) 
 values(product_id_seq.nextval, 1,'java', '서피스북', 
@@ -248,7 +237,7 @@ insert into product(product_id, category_id, member_id, product_name,
 likes, dislikes, review, review_score, detail, visiblity, regist_date) 
 values(product_id_seq.nextval, 1,'java', '맥북프로', 
 100, 1, '좋네요~', 70, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));		
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
 
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
