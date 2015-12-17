@@ -21,12 +21,12 @@
 		</td>
 	</tr>
 	<tr>
-		<td><font size="2">작성자: ${sessionScope.managerlogin.member_name} |
-				작성일시:${requestScope.NoticeVO.time_post} </font></td>
+		<td><font size="2">작성자: ${sessionScope.managerlogin.member_name}
+				 </font></td>
 	</tr>
 	<tr>
 		<td><textarea rows="15" cols="75" name="content">
-		${requestScope.NoticeVO.content}
+${requestScope.NoticeVO.content}
 		</textarea></td>
 	</tr>
 	

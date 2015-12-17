@@ -35,6 +35,7 @@ public interface ProductDAO {
 	public List<EvaluatingItemVO> findEvaluatingItemByProductId(int product_id);
 
 	public int getCategoryIdByProductId(int product_id);
-	
-	
+
+	public int getLowestPriceByProductId(int product_id);
+
 }

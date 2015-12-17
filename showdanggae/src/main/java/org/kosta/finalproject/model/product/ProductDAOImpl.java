@@ -100,4 +100,9 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSessionTemplate.selectOne("product.getCategoryIdByProductId", product_id);
 	}
 
+	@Override
+	public int getLowestPriceByProductId(int product_id) {
+		return sqlSessionTemplate.selectOne("product.getLowestPriceByProductId", product_id);
+	}
+
 }

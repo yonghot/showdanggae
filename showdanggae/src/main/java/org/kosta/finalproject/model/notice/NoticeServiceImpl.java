@@ -71,4 +71,11 @@ public class NoticeServiceImpl implements NoticeService{
 		noticeDAO.noticeDelete(string);
 	}
 
+
+	@Override
+	public void deleteContent(int no) {
+		// TODO Auto-generated method stub
+		 noticeDAO.deleteContent(no);
+	}
+
 }

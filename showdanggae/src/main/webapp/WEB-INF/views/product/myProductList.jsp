@@ -33,9 +33,18 @@
 						newInfo+="<td>"+sh.category_id+"</td>"
 						newInfo+="<td>"+sh.member_id+"</td></tr>"
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
+
 					});
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				$("#CategoryView").html(newInfo);
+<<<<<<< HEAD
 				}
+=======
+				}
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			} //success
 		}); //ajax
 		
@@ -76,11 +85,16 @@
 				return false;
 			} //confirm else
 		}); //#deleteCateroryBtn click
+	
 		
+<<<<<<< HEAD
 // 		$("#deleteCateroryBtn").on("click", ":radio[name=category_id]:checked", function(){
 // 			alert("ll");
 // 		})
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		//탭 형식의 카테고리 뷰 (작성중....) 라디오 형식의 카테고리 뷰와 동일 하지만 
 		//$.each(result, function(index,sh) {} 부분이 다르다.
 		$("#tap_addBtn").click(function() {
@@ -136,10 +150,99 @@
 				} //confirm else
 			}); //#deleteCateroryBtn click
 	
+<<<<<<< HEAD
 		$("#productCard").hover(function(){
+=======
+		//카테고리명 수정(작성중....)
+		$("#updateCateroryBtn").click(function() {
+				var category=$(":input[name=category]:checked").val();
+				if(confirm("선택한 카테고리명을 수정합니다!")==true){
+					$.ajax({
+						type : "POST",
+						url : ".do",
+						data : $("#updateCategoryForm").serialize()+"&member_id=${sessionScope.mvo.member_id}",
+						dataType : "JSON",
+						success : function(result) {
+							if(result.exception!=null) {
+								alert("통신실패 퐁당~" +" "+ result.exception);
+							//수정된 카테고리명을 ajax로 보여준다. 공통 코드.	
+							}else{
+								var newInfo="";
+							    var deleteComp="<a><input type='radio' name='category' value='${clist.category_id}'></a>";
+								$.each(result, function(index,sh) {
+									newInfo+="<tr><td>"+deleteComp+"</td>"
+									newInfo+="<td><a href='#'>"+sh.category+"</td>"
+									newInfo+="<td>"+sh.category_id+"</td>"
+									newInfo+="<td>"+sh.member_id+"</td></tr>"
+								});
+							$("#CategoryView").html(newInfo);
+							}
+					} //success
+				}); //ajax
+				}else{
+					return false;
+				} //confirm else
+			}); //#deleteCateroryBtn click
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			
+<<<<<<< HEAD
 		});
 
+=======
+		$(".productCard").hover(function(){
+			$(this).css("border","solid 2px #ff7777");
+		}, function(){
+			$(this).css("border","none");
+
+
+		function AddComma(data_value) {
+			
+		    var txtNumber = "" + data_value;    // 입력된 값을 문자열 변수에 저장합니다.
+		 
+		    if (isNaN(txtNumber) || txtNumber == "") {    // 숫자 형태의 값이 정상적으로 입력되었는지 확인합니다.
+		        return;
+		    }
+		    else {
+		        var rxSplit = new RegExp('([0-9])([0-9][0-9][0-9][,.])');    // 정규식 형태 생성
+		        var arrNumber = txtNumber.split('.');    // 입력받은 숫자를 . 기준으로 나눔. (정수부와 소수부분으로 분리)
+		        arrNumber[0] += '.'; // 정수부 끝에 소수점 추가
+		 
+		        do {
+		            arrNumber[0] = arrNumber[0].replace(rxSplit, '$1,$2'); // 정수부에서 rxSplit 패턴과 일치하는 부분을 찾아 replace 처리
+		        } while (rxSplit.test(arrNumber[0])); // 정규식 패턴 rxSplit 가 정수부 내에 있는지 확인하고 있다면 true 반환. 루프 반복.
+		 
+		        if (arrNumber.length > 1) { // txtNumber를 마침표(.)로 분리한 부분이 2개 이상이라면 (즉 소수점 부분도 있다면)
+		            return arrNumber.join(''); // 배열을 그대로 합칩. (join 함수에 인자가 있으면 인자를 구분값으로 두고 합침)
+		        }
+		        else { // txtNumber 길이가 1이라면 정수부만 있다는 의미.
+		            return arrNumber[0].split('.')[0]; // 위에서 정수부 끝에 붙여준 마침표(.)를 그대로 제거
+		        }
+		    }
+		}
+		
+		for(var i=0;i<8;i++) {
+			$(".lowestPrice").eq(i).text(AddComma($(".lowestPrice").eq(i).text()));
+		}
+		
+		var div = $(".thumbnailImgDiv"); // 이미지를 감싸는 div
+		var img = $(".thumbnailImg"); // 이미지
+		var divAspect = 200 / 285; // div의 가로세로비는 알고 있는 값이다
+		var imgAspect = img.height / img.width;
+		 
+		if (imgAspect <= divAspect) {
+		    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+		    var imgWidthActual = div.offsetHeight / imgAspect;
+		    var imgWidthToBe = div.offsetHeight / divAspect;
+		    var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
+		    img.style.cssText = 'width: auto; height: 100%; margin-left: '
+		                      + marginLeft + 'px;'
+		} else {
+		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+		    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+		}
+
+		
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}); //ready
 	/* <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> */
 	
@@ -247,6 +350,7 @@
 		<a href="auth_beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
+<<<<<<< HEAD
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
 		<div class="col-md-6" id="productCard">
@@ -256,10 +360,36 @@
 				</a>
 				<div class="caption" align="center">
 					<h4>${list.product_name}</h4>
+=======
+	<br><br>
+	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="7" varStatus="status">
+		<div class="col-md-6">
+			<div class="thumbnail productCard">
+				<div class="col-md-12 thumbnailImgDiv" style="border: solid 1px #e6e6e6; width: 100%; height: 200px; overflow: hidden;">
+					<a href="auth_hit.do?product_id=${list.product_id}">
+						<img src="${list.thumbnail_link}" class="img-responsive thumbnailImg" width='285' height='200'>
+					</a>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				</div>
-			</div>
-			<div>
-			
+				<div>
+					<div class="caption" align="left">
+						<h4>${list.product_name}</h4>
+					</div>
+					<div align="right">
+						최저가 : <font class="lowestPrice" size="4" face="윤고딕320">${list.lowestPrice}</font> 원
+					</div>
+				</div>
+				<div class="col-md-12" style="border: solid 1px #e6e6e6;">
+					<div class="col-md-4">
+						<img src="img/like_icon.jpg" width='50'>
+					</div>
+					<div class="col-md-4">
+						<img src="img/dislike_icon.jpg" width='50'>
+					</div>
+					<div class="col-md-4">
+					
+					</div>
+				</div>
 			</div>
 		</div>
 	</c:forEach>
