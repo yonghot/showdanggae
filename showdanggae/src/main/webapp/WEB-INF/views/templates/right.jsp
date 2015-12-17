@@ -246,6 +246,7 @@
 	</c:if>
 
 <!--  data-offset-top="400" -->
+<c:if test="${!empty sessionScope.mvo && sessionScope.mvo.member_id!='admingalbage'}">
 <div class="quick" data-spy="scroll" style='position:absolute; top: 200px;' >
 
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -266,7 +267,7 @@
     </div>
 </div>
   </div>
-   
+   </c:if>
  
 </div>
 

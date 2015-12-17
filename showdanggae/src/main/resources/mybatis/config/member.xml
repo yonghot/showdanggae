@@ -19,7 +19,7 @@ insert into member (member_id,password,member_name,email,birthday) values (#{mem
  </insert>
  
  <select id="login" resultType="mvo">
- 	select member_id,password,member_name,email,to_char(birthday,'RRMMDD')as birthday from member where member_id=#{member_id} and password=#{password}																
+ 	select member_id,password,member_name,member_info,email,to_char(birthday,'RRMMDD')as birthday from member where member_id=#{member_id} and password=#{password}																
  </select>
  
  <select id="findIdByBirth" parameterType="mvo" resultType="mvo">
@@ -110,6 +110,26 @@ where following=#{value}
  <select id="followingCount" resultType="int">
   select count(*) from follow where follower=#{value}
  </select>
+
+<select id="profileInterest" resultType="String">
+select * from interest where member_id=#{value}
+</select>
+
+<select id="profileInterestList" resultType="String">
+select  DISTINCT category from main_category
+</select>
+
+<select id="myinterestList" resultType="String">
+select DISTINCT category from interest where member_id=#{value}
+</select>
+
+<update id="infoUpdate" parameterType="mvo">
+update member set member_info=#{member_info} where member_id=#{member_id}
+</update>
+
+<select id="sessionConnect" resultType="mvo">
+select * from member where member_id=#{value}
+</select>
 
 
  </mapper>

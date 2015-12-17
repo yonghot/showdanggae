@@ -36,6 +36,10 @@ public interface MemberDAO {
 	List<FollowVO> fAlarm(String following);
 	int followerCount(String member_id);
 	int followingCount(String member_id);
+	List<String> profileInterest(String member_id);
+	List<String> profileInterestList();
+	List<String> myinterestList(String member_id);
+	MemberVO infoUpdate(MemberVO vo);
 
 
 }

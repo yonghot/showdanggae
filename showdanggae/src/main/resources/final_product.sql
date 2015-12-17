@@ -92,8 +92,11 @@ insert into interest(member_id, category) values('java', 'computer');
 insert into interest(member_id, category) values('java', 'book');
 insert into interest(member_id, category) values('java1', 'computer');
 insert into interest(member_id, category) values('java1', 'computer');
+insert into interest(member_id, category) values('lipchel', '화장품');
+insert into interest(member_id, category) values('lipchel', '노트북');
 테이블 조회
-select * from interest;
+select * from interest where member_id='lipchel';
+select  DISTINCT category from interest;
 멤버삭제(컬럼삭제)
 delete from interest where member_id='java';
 **************************************************
