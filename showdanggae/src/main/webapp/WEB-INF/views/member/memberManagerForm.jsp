@@ -21,9 +21,11 @@
  			  var button = $(event.relatedTarget)
  			  var recipient = button.data('whatever') 
  			
+ 			
  			  var modal = $(this)
  			  modal.find('.modal-title').text('New message to ' + recipient)
- 			  modal.find('.modal-body input#recipient-name').val(recipient)
+ 			  modal.find('.modal-body input').val(recipient)
+ 			 
  			})
 
   		$("#sendMessage").click(function(){
@@ -65,8 +67,10 @@
 				<td>${mvo.birthday }</td>
 				<td>${mvo.report }</td>
 				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>
-				<td><a href =""  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
-				data-whatever="${mvo.member_id}">메세지보내기</a></td>
+				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
+				data-whatever="${mvo.member_id}">메세지보내기</button></td>
+				
+				
 			</tr>	
 			</c:forEach>
 </table>
@@ -105,18 +109,18 @@
         <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
       <div class="modal-body">
-        <form action="" id="sendForm"><!-- sendMessage.do -->
+        <form action="sendMessage.do" id="sendForm">
           <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name" readonly="readonly" name="member_id">
+            <label for="recipient-name" class="control-label">받는이:</label>
+            <input type="text" class="form-control" id="recipient-name" name="member_id">
         
           </div>
          <div class="form-group">
-            <label for="message-title" class="control-label">title:</label> 
+            <label for="message-title" class="control-label">제목:</label> 
             <input type="text" class="form-control" id="message-text"  placeholder="제목" name="title" >
           </div>
           <div class="form-group">
-            <label for="message-text" class="control-label">Message:</label>
+            <label for="message-text" class="control-label">메세지:</label>
             <textarea class="form-control" id="message-text" placeholder="보낼내용" name="message"></textarea>
           </div>
 			<input type="hidden" value="${sessionScope.mvo.member_name}" name="sender">

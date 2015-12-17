@@ -177,6 +177,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</select><!-- 쿼리문 마지막에 ; 찍지 말자 -->
 	
+	
+	<!-- 검색어 순위 -->
+	<select id="selectReport" resultType="java.util.HashMap">
+	<![CDATA[
+		SELECT WORD,CNT,RANKING FROM(
+		SELECT WORD,CNT,RANK() OVER(ORDER BY cnt DESC) AS RANKING FROM report
+		) WHERE RANKING <= 5
+	]]>
+	</select>	
+	
 </mapper>
  
  

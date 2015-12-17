@@ -168,7 +168,7 @@ create sequence qnacomment_seq;
 insert into member(member_id, password, member_name, member_info,email, birthday) values('java','1234','김용호','ㅋㅋ','blue@blueprint.com', to_date('880307','rrmmdd'));
 insert into member(member_id, password, member_name, member_info,email, birthday) values('java1','1234','김용호','ㅋㅋ','blue@blueprint.com', to_date('880307','rrmmdd'));
 insert into member(member_id, password, member_name, member_info,email, birthday) values('java2','1234','김용호','','blue@blueprint.com', to_date('880307','rrmmdd'));
-insert into member(member_id, password, member_name, member_info,email, birthday) values('admingalbage','1234','쇼당개 3년이면 핑월을 읊는다','관리자','admin@showdanggae.com', to_date('120204','rrmmdd')); 
+insert into member(member_id, password, member_name, member_info,email, birthday) values('admingalbage','1234','관리자','관리자','admin@showdanggae.com', to_date('120204','rrmmdd')); 
 insert into member(member_id, password, member_name, member_info,email, birthday) values('dd','dd','dd','ㅋㅋ','asdsdsdin@showdanggae.com', to_date('120204','rrmmdd')); 
 insert into member(member_id, password, member_name, member_info,email, birthday) values('admin','1234','dd','ㅋㅇㄹ','asdsdsdin@showdanggae.com', to_date('120204','rrmmdd')); 
 insert into member(member_id, password, member_name, member_info,email, birthday) values('lipchel','1234','유서정','안녕안녕','lipchel@naver.com', to_date('880307','rrmmdd'));
@@ -187,7 +187,8 @@ insert into member_category(category_id, category, member_id) values('4', '노�
 insert into interest(category, member_id) values('노트북','java');
 insert into interest(category, member_id) values('화장품','java');
 insert into interest(category, member_id) values('노트북','dd');
-
+insert into interest(category, member_id) values('노트북','lipchel');
+insert into interest(category, member_id) values('화장품','lipchel');
 
 insert into item(item) values('가성비');
 insert into item(item) values('디자인');

@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.product;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -104,5 +105,10 @@ public class ProductDAOImpl implements ProductDAO {
 	public int getLowestPriceByProductId(int product_id) {
 		return sqlSessionTemplate.selectOne("product.getLowestPriceByProductId", product_id);
 	}
-
+	
+	// 검색어 순위
+	@Override
+	public List<ProductVO> selectReport() throws SQLException {
+		return sqlSessionTemplate.selectList("product.selectReport");
+	}
 }

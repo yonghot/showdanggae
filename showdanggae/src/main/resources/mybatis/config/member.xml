@@ -131,6 +131,10 @@ update member set member_info=#{member_info} where member_id=#{member_id}
 select * from member where member_id=#{value}
 </select>
 
+<update id="interestAdd">
+insert into interest(category, member_id) values(#{category},#{member_id})
+</update>
+
 
  </mapper>
  
