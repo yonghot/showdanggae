@@ -173,4 +173,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return  sqlSessionTemplate.selectOne("member.sessionConnect", vo.getMember_id());
 	}
 
+	@Override
+	public void interestAdd(HashMap<String, String> add) {
+		// 관심사 추가
+		sqlSessionTemplate.insert("member.interestAdd", add);
+	}
+
 }

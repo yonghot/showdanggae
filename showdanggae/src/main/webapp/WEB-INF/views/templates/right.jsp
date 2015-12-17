@@ -16,7 +16,7 @@
    // boxtop.animate({"top": $('#quick').scrollTop() + q + "px"}, 500); 
    //alert("asdf");
     boxtop.offset({"top": $('#quick').scrollTop() + q + "px"}, 100);
-    $('#myModal').modal('toggle');
+/*     $('#myModal').modal('toggle'); */
   });  			
 		//팔로잉 이름을 클릭시 발동 되는 이벤트
 		 $('#searchIdView1').on('click','.messagePopBtn1',function(){
@@ -283,7 +283,7 @@
  
 </div>
 
-
+<!-- 
 모달
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
@@ -301,5 +301,5 @@
 	</div>
 </div> -->
 
-
+ -->
 

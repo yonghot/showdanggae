@@ -26,7 +26,7 @@ $(document).ready(function(){
 		success:function(data){	
 			if(data!=""){
 				var index="";
-				//<span class="label label-default">#화장품</span> 
+				
 				for(var i=0; i<data.length; i++){
 					index += "<span class='label label-default'>#"+data[i]+ "</span> ";
 				}

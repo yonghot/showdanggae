@@ -249,6 +249,15 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO infoUpdate(MemberVO vo) {
 		return memberDAO.infoUpdate(vo);
 	}
+
+
+	@Override
+	public void interestAdd(String member_id, String category) {
+		HashMap<String, String> add= new HashMap<String, String>();
+		add.put("member_id", member_id);
+		add.put("category", category);
+		memberDAO.interestAdd(add);
+	}
 	
 
 }

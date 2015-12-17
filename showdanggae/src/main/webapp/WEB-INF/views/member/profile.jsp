@@ -4,33 +4,36 @@
     <script type="text/javascript">  
    	$(document).ready(function(){
    		
+   		$("#interestAddBtn").click(function(){
+			   			var checkval=$("#interestForm :input[name=interestCheck]:checked").val();
+			   			if(checkval==null){
+			   				alert("추가할 관심사를 선택하세요");
+			   				return false;
+			   			}
+			   			var myin=$("input:hidden[name='myinterestList']").val();
+			   				if(myin==null){
+			   					location.href="interestAdd.do?member_id=${sessionScope.mvo.member_id}&category=" + checkval;		
+			   				}
+			   			$("input:hidden[name='myinterestList']").each(function (index){		 
+			   				var myinterestList=$("input:hidden[name='myinterestList']").eq(index).val();	 	   		    	   
+			   			   if(myinterestList==checkval){
+			   		    	  	alert(myinterestList + "는 이미 관심사에 추가한 카테고리입니다");		    	
+			   		    	  	return false;
+			   		       }else	   			   		       
+			   		        	location.href="interestAdd.do?member_id=${sessionScope.mvo.member_id}&category=" + checkval;			   		     		   		      
+				   		});
+			   	
+   			});//interestAddBtn
+   	
    		$("#member_infoBtn").click(function(){
-   			alert("Asdf");
    			var infoComp = $(":input[name=member_info]").val();
    			location.href="infoUpdate.do?member_info=" + infoComp +"&member_id=${sessionScope.mvo.member_id}";
    		});
+   		});
    		
-   		//파일 업로드
-    		$("#profileupimgloadBtn").click(function(){
-			 var data = new FormData();
-            $.each($('#profileupimgloadForm')[0].files, function(i, file) {          
-                data.append('file-' + i, file);
-            });
-             
-            $.ajax({
-                url: 'profileupimgload.do',
-                type: "post",
-                dataType: "text",
-                data: data,
-                // cache: false,
-                processData: false,
-                contentType: false,
-                success: function(data, textStatus, jqXHR) {
-                   alert(data);
-                }, error: function(jqXHR, textStatus, errorThrown) {}
-            });
-		});
-   	});
+   		
+
+
 </script>
 <div class="col-md-8">
 <h3>프로필 수정</h3>
@@ -52,8 +55,10 @@
 	<td>
 	 파일 업로드
 	 	    <form id="profileupimgloadForm" action="${initParam.root}profileupimgload.do" enctype="multipart/form-data" method="post">
-			<input type="file" name="file[0]"><br>
-			<input type="button" value="파일 업로드" id="profileupimgloadBtn"><br>
+			<input type="text" name="userInfo"><br>
+			<input type="file" name="file"><br>
+			
+			<input type="submit" name="파일업로드"> <br>
 		</form>
 	</td>
 </tr>
@@ -81,35 +86,39 @@
 	<tr>
 	<td colspan="2">
 	관심사 목록
-
-        <button class="btn btn-default" type="button">등록하기</button>
+		<form id="interestForm">  
+        <button class="btn btn-default" type="button" id="interestAddBtn">추가</button>
+        <button class="btn btn-default" type="button" id="interestDelBtn">삭제</button>
 	<br>
 
 	<c:forEach items="${requestScope.interestList}" var="interestList" >
-		<c:forEach items="${requestScope.myinterestList}" var="myinterestList" >
- 	<c:choose>
-	<c:when test="${interestList==myinterestList&&myinterestList==interestList}">
-	<div class="checkbox disabled">
-	  <label>
-	    <input type="checkbox" value="" disabled>
-	   		${interestList }
-	  </label>
-	</div>
-		
-	</c:when>
-	<c:otherwise>
-	  <div class="checkbox">
-	  <label>
-	    <input type="checkbox" >
-	${interestList }
-	  </label>
-	</div>
-	</c:otherwise>
-	</c:choose>	 
-		</c:forEach>
-	</c:forEach>	
+				
+					    <input type="checkbox" name=interestCheck  value="${interestList}">${interestList}
+						 
+	</c:forEach>
+	
+	<c:forEach items="${requestScope.myinterestList}" var="myinterestList" >
+		    <input type="hidden" name=myinterestList  id=myinter value="${myinterestList}">					 
+	</c:forEach>
+	
+	</form>
+
 	</td>
 
+		 	
+<%-- 					<div class="checkbox disabled">
+					  <label>
+					    <input type="checkbox"  disabled>
+					   		${myinterestList }
+					  </label>
+					</div> --%>
+
+<%-- 				  <div class="checkbox">
+					  <label>
+					    <input type="checkbox" >
+							${interestList }
+					  </label>
+					</div> --%>
 	
 	</tr>
 

@@ -35,5 +35,6 @@ public interface MemberService {
 	List<String> profileInterestList();
 	List<String> myinterestList(String member_id);
 	MemberVO infoUpdate(MemberVO vo);
+	void interestAdd(String member_id, String category);
 
 }

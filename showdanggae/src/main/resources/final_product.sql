@@ -98,7 +98,7 @@ insert into interest(member_id, category) values('lipchel', '노트북');
 select * from interest where member_id='lipchel';
 select  DISTINCT category from interest;
 멤버삭제(컬럼삭제)
-delete from interest where member_id='java';
+delete from interest where member_id='lipchel';
 **************************************************
 
 멤버테이블
