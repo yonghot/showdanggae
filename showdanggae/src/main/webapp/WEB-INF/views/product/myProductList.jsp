@@ -34,12 +34,9 @@
 						newInfo+="<td>"+sh.category_id+"</td>"
 						newInfo+="<td>"+sh.member_id+"</td></tr>"
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
-<<<<<<< HEAD
-					});
-=======
+
 					});
 
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				$("#CategoryView").html(newInfo);
 				}
 			} //success
