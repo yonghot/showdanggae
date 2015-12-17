@@ -31,5 +31,9 @@ public interface MemberService {
 	public List<MemberVO> onkeyupId(String searchId);
 	List<FollowVO> fAlarm(String following);
 	HashMap<String, String> proCount(String member_id);
+	List<String> profileInterest(String member_id);
+	List<String> profileInterestList();
+	List<String> myinterestList(String member_id);
+	MemberVO infoUpdate(MemberVO vo);
 
 }
