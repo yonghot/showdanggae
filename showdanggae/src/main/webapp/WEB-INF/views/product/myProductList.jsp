@@ -296,17 +296,6 @@
 		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
 	</div>
 	<br><br>
-<<<<<<< HEAD
-	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="10">
-		<div class="col-md-6" id="productCard">
-			<div class="thumbnail">
-				<a href="auth_hit.do?product_id=${list.product_id}"> <img src="img/no_image.png" class="img-responsive"></a>
-				<a href="auth_hit.do?product_id=${list.product_id}">
-				<img src="${list.thumbnail_link}" class="img-responsive"  width='285' height='200'>
-				</a>
-				<div class="caption" align="center">
-					<h4>${list.product_name}</h4>
-=======
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="7" varStatus="status">
 		<div class="col-md-6">
 			<div class="thumbnail productCard">
@@ -314,7 +303,6 @@
 					<a href="auth_hit.do?product_id=${list.product_id}">
 						<img src="${list.thumbnail_link}" class="img-responsive thumbnailImg" width='285' height='200'>
 					</a>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				</div>
 				<div>
 					<div class="caption" align="left">
