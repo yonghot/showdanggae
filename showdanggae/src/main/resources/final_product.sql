@@ -237,8 +237,6 @@ select category_id, member_id, category
 		values('카메라','java');
 		
 		
-		
-
 
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
