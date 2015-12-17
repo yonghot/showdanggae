@@ -150,4 +150,27 @@ public class MemberDAOImpl implements MemberDAO {
 		return followingCount1;
 	}
 
+	@Override
+	public List<String> profileInterest(String member_id) {
+		return sqlSessionTemplate.selectList("member.profileInterest", member_id);
+	}
+
+	@Override
+	public List<String> profileInterestList() {
+		
+		return sqlSessionTemplate.selectList("member.profileInterestList");
+	}
+
+	@Override
+	public List<String> myinterestList(String member_id) {
+		return sqlSessionTemplate.selectList("member.myinterestList", member_id);
+	}
+
+	@Override
+	public MemberVO infoUpdate(MemberVO vo) {
+		 sqlSessionTemplate.update("member.infoUpdate", vo);
+		
+		return  sqlSessionTemplate.selectOne("member.sessionConnect", vo.getMember_id());
+	}
+
 }

@@ -5,6 +5,7 @@ create table member(
 	member_id varchar2(100) primary key,
 	password varchar2(100) not null,
 	member_name varchar2(100) not null,
+	member_info varchar2(50) default null,
 	email varchar2(100) not null,
 	birthday date not null,
 	report number default 0
@@ -164,13 +165,13 @@ create sequence qna_seq;
 create sequence qnacomment_seq;
 ------------------------------------------------------------------------------------------------------------
 
-insert into member(member_id, password, member_name, email, birthday) values('java','1234','김용호','blue@blueprint.com', to_date('880307','rrmmdd'));
-insert into member(member_id, password, member_name, email, birthday) values('java1','1234','김용호','blue@blueprint.com', to_date('880307','rrmmdd'));
-insert into member(member_id, password, member_name, email, birthday) values('java2','1234','김용호','blue@blueprint.com', to_date('880307','rrmmdd'));
-insert into member(member_id, password, member_name, email, birthday) values('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','rrmmdd')); 
-insert into member(member_id, password, member_name, email, birthday) values('dd','dd','dd','asdsdsdin@showdanggae.com', to_date('120204','rrmmdd')); 
-insert into member(member_id, password, member_name, email, birthday) values('admin','1234','dd','asdsdsdin@showdanggae.com', to_date('120204','rrmmdd')); 
-insert into member(member_id, password, member_name, email, birthday) values('lipchel','1234','유서정','lipchel@naver.com', to_date('880307','rrmmdd'));
+insert into member(member_id, password, member_name, member_info,email, birthday) values('java','1234','김용호','ㅋㅋ','blue@blueprint.com', to_date('880307','rrmmdd'));
+insert into member(member_id, password, member_name, member_info,email, birthday) values('java1','1234','김용호','ㅋㅋ','blue@blueprint.com', to_date('880307','rrmmdd'));
+insert into member(member_id, password, member_name, member_info,email, birthday) values('java2','1234','김용호','','blue@blueprint.com', to_date('880307','rrmmdd'));
+insert into member(member_id, password, member_name, member_info,email, birthday) values('admingalbage','1234','쇼당개 3년이면 핑월을 읊는다','관리자','admin@showdanggae.com', to_date('120204','rrmmdd')); 
+insert into member(member_id, password, member_name, member_info,email, birthday) values('dd','dd','dd','ㅋㅋ','asdsdsdin@showdanggae.com', to_date('120204','rrmmdd')); 
+insert into member(member_id, password, member_name, member_info,email, birthday) values('admin','1234','dd','ㅋㅇㄹ','asdsdsdin@showdanggae.com', to_date('120204','rrmmdd')); 
+insert into member(member_id, password, member_name, member_info,email, birthday) values('lipchel','1234','유서정','안녕안녕','lipchel@naver.com', to_date('880307','rrmmdd'));
 
 insert into main_category(category) values('노트북');
 insert into main_category(category) values('카메라');
@@ -243,5 +244,6 @@ values(sysdate,'lipchel','dd');
 insert into follow(following_date,following,follower)
 values(sysdate,'lipchel','java1');
 
-
+insert into follow(following_date,following,follower)
+values(sysdate,'lipchel','java');
 

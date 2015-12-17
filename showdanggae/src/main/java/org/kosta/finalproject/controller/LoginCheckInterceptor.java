@@ -34,13 +34,13 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		out.flush();*/
 		HttpSession session=request.getSession(false);
 		if(session==null||session.getAttribute("mvo")==null){
+			System.out.println("세션 끊김");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('세션이 끊겼습니다 다시 로그인 해주세요!');");
 			out.println("location.href='member_login.do';</script>");
 			out.close();
 			//printwriter.print("<script>alert('로그인 해주세요.');</script>");
-			System.out.println("세션 끊김");
 			return false;//컨트롤러 메서드 수행하지 않게 한다 
 		}
 		return true;

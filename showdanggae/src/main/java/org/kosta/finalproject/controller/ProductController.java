@@ -3,9 +3,11 @@ package org.kosta.finalproject.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.finalproject.model.category.CategoryService;
 import org.kosta.finalproject.model.category.CategoryVO;
+import org.kosta.finalproject.model.member.MemberVO;
 import org.kosta.finalproject.model.product.EvoListVO;
 import org.kosta.finalproject.model.product.ProductService;
 import org.kosta.finalproject.model.product.ProductVO;
@@ -31,8 +33,8 @@ public class ProductController {
 	public List<CategoryVO> addCategory(String category, String member_id) {
 		System.out.println("추가한다 : "+category+" "+member_id);
 		
-		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
 		categoryService.addMyCategory(category, member_id);
+		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
 		return lvo;
 	}
 	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다. 
@@ -41,7 +43,7 @@ public class ProductController {
 	@RequestMapping(value = "auth_deleteProductListAndCategory.do", method = RequestMethod.POST)
 	public List<CategoryVO> deleteProductListAndCategory(int category_id, String member_id) {
 		System.out.println("삭제한다 : "+member_id+" "+category_id);
-		
+
 		categoryService.deleteProductList(category_id);
 		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
 		return lvo;
@@ -56,9 +58,12 @@ public class ProductController {
 	// 해당 category아래의 product count를 세어온다.
 	@ResponseBody
 	@RequestMapping(value="auth_getProductCountNumber.do", method = RequestMethod.POST)
-	public ModelAndView getProdeuctCountNumber(int category_id) {
-		int productCountNumber = categoryService.getProductCountNumber(category_id);
-		return new ModelAndView("auth_getMyProductList.do", "productCountNumber", productCountNumber);
+	public ModelAndView getProdeuctCountNumber(int category_id, CategoryVO ccvo) {
+		System.out.println(category_id+"의 상품수를 세어온다");
+		ModelAndView cmv = new ModelAndView("product_myProductList");
+		cmv.addObject("productCountNumber", categoryService.getProductCountNumber(category_id));
+		System.out.println(cmv+"개");
+		return cmv;
 	}
 	
 	
@@ -161,5 +166,44 @@ public class ProductController {
 	public ModelAndView moveToDeleteOkWithProductId(int category_id) throws Exception {
 		return new ModelAndView("product_deleteOk","category_id", category_id);
 	}
-
+	
+	/**
+	 * 	검색어 순위 
+	 */
+	/*@RequestMapping("selectReport.do")
+	public ModelAndView selectReport() throws Exception {
+		//ModelAndView mv = new ModelAndView();
+		List<ProductVO> list = productService.selectReport();
+		//System.out.println(list);
+		//mv.addObject("reportList", list);
+		//return mv;
+		return new ModelAndView("product_report_result","reportList", list);
+	}*/
+	@RequestMapping("selectReport.do")
+	@ResponseBody
+	public List selectReport() throws Exception {
+		List<ProductVO> list = productService.selectReport();
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

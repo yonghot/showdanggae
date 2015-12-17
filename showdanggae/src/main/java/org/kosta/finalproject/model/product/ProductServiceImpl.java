@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.product;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,7 +20,13 @@ public class ProductServiceImpl implements ProductService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("member_id", member_id);
 		map.put("currentCategory", currentCategory);
-		return productDAO.getMyProductList(map);
+		
+		List<ProductVO> pvoList = productDAO.getMyProductList(map);
+		for(int i=0;i<pvoList.size();i++){
+			pvoList.get(i).setLowestPrice(productDAO.getLowestPriceByProductId(pvoList.get(i).getProduct_id()));
+		}
+		
+		return pvoList;
 	}
 	
 	@Override
@@ -120,4 +127,21 @@ public class ProductServiceImpl implements ProductService {
 	public int getCategoryIdByProductId(int product_id) {
 		return productDAO.getCategoryIdByProductId(product_id);
 	}
+
+	//검색어 순위
+	@Override
+	public List<ProductVO> selectReport() throws SQLException {
+		return productDAO.selectReport();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

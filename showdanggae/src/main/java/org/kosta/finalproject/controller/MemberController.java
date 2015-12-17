@@ -2,10 +2,12 @@ package org.kosta.finalproject.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -210,7 +212,7 @@ public class MemberController {
 	public ModelAndView update(HttpServletRequest request,
 			HttpServletResponse response, MemberVO vo) {
 		HttpSession session = request.getSession(false);
-		System.out.println("update : " + vo);
+		
 		if (session != null) {
 			// 세션이 있으면
 			MemberVO member = memberService.updateMember(vo);
@@ -373,10 +375,18 @@ public class MemberController {
 		return fvo;
 	}
 
+
 	// 프로필 수정하는 곳
 	@RequestMapping("Profile.do")
-	public String Profile() {
-		return "member_profile";
+	public ModelAndView Profile(String member_id){
+		//member_profile로 관심사 리스트 보내줌
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("member_profile");
+		List<String> interestList=memberService.profileInterestList();
+		List<String> myinterestList=memberService.myinterestList(member_id);
+		mv.addObject("interestList", interestList);
+		mv.addObject("myinterestList", myinterestList);
+		return mv;
 	}
 
 	// 사진올리기
@@ -390,13 +400,35 @@ public class MemberController {
 	@ResponseBody
 	public HashMap<String, String> profileInfo(String member_id) {
 		System.out.println(member_id);
-		HashMap<String, String> proInfo = new HashMap<String, String>();
-		// 내 게시물수
-
-		// 팔로워 팔로잉 수
-		proInfo = memberService.proCount(member_id);
-		System.out.println(proInfo);
+		HashMap<String, String> proInfo =new  HashMap<String, String>();
+		//내 게시물수
+		
+		//팔로워 팔로잉 수 + 나의관심사
+		proInfo=memberService.proCount(member_id);
 		return proInfo;
 	}
+	
+	@RequestMapping("profileInterest.do")
+	@ResponseBody
+	public List<String> profileInterest(String member_id){
+		List<String> interest=memberService.profileInterest(member_id);
+		System.out.println(interest);
+		return interest;
+	}
+	
+	@RequestMapping("infoUpdate.do")
+	public String infoUpdate(MemberVO vo,HttpServletRequest request){
+		HttpSession session = request.getSession(false);
+		MemberVO mvo=memberService.infoUpdate(vo);
+		//세션 끊었다가 다시 연결 시켜줘야함
+		if(session!=null){
+			session.invalidate();
+			HttpSession session1 = request.getSession(true);
+			session1.setAttribute("mvo", mvo);
+		}
+		return "redirect:Profile.do?member_id=" + vo.getMember_id();
+	}
+	
+	
 
 }

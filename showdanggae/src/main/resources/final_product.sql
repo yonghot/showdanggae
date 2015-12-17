@@ -92,8 +92,11 @@ insert into interest(member_id, category) values('java', 'computer');
 insert into interest(member_id, category) values('java', 'book');
 insert into interest(member_id, category) values('java1', 'computer');
 insert into interest(member_id, category) values('java1', 'computer');
+insert into interest(member_id, category) values('lipchel', '화장품');
+insert into interest(member_id, category) values('lipchel', '노트북');
 테이블 조회
-select * from interest;
+select * from interest where member_id='lipchel';
+select  DISTINCT category from interest;
 멤버삭제(컬럼삭제)
 delete from interest where member_id='java';
 **************************************************
@@ -229,10 +232,13 @@ alter table board drop constraint fk_id cascade;
 
 
 
-
 insert into product(product_id, category_id, member_id, product_name, 
 likes, dislikes, review, review_score, detail, visiblity, regist_date) 
-values(product_id_seq.nextval, 1,'java', '서피스북', 
+values(product_id_seq.nextval, 96,'java', '서피스북', 
+100, 1, '좋네요~', 96, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));		
+insert into product(product_id, category_id, member_id, product_name, 
+likes, dislikes, review, review_score, detail, visiblity, regist_date) 
+values(product_id_seq.nextval, 96,'java', '맥북프로', 
 100, 1, '좋네요~', 70, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));		
 insert into product(product_id, category_id, member_id, product_name, 
 likes, dislikes, review, review_score, detail, visiblity, regist_date) 
@@ -240,15 +246,27 @@ values(product_id_seq.nextval, 1,'java', '맥북프로',
 100, 1, '좋네요~', 70, '가격꽝', 90, to_date(sysdate,'yyyy,mm,dd hh24:mi:ss'));		
 
 
+
+insert into MAIN_CATEGORY ("CATEGORY") values('쇠못박힌 몽둥이')
+insert into MAIN_CATEGORY ("CATEGORY") values('쓸만하지만 찌그러진 투구')
+insert into MAIN_CATEGORY ("CATEGORY") values('라떼가 포함된 보온물병')
+insert into MAIN_CATEGORY ("CATEGORY") values('얼룩고양이')
+insert into MAIN_CATEGORY ("CATEGORY") values('고대협 화백 그림')
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
 delete 
-	 from product
-	 where category_id=1
+from product
+where category_id=1
 
-delete 
-	 		from member_category 
-	 		where category_id=1
+
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
+-- 검색어 통계 테이블 
+create table report(
+	word varchar2(30) primary key,
+	cnt number(5) not null
+)
+select * from report;
+delete from report;
+select * from myproduct;
 

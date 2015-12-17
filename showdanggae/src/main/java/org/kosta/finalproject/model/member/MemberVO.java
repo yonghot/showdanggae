@@ -4,6 +4,7 @@ public class MemberVO {
 	private String member_id;
 	private String password;
 	private String member_name;
+	private String member_info;
 	private String email;
 	private String email_id;
 	private String email_domain;
@@ -18,12 +19,13 @@ public class MemberVO {
 
 
 	public MemberVO(String member_id, String password, String member_name,
-			String email, String email_id, String email_domain,
-			String birthday, int report, Boolean isFollow) {
+			String member_info, String email, String email_id,
+			String email_domain, String birthday, int report, Boolean isFollow) {
 		super();
 		this.member_id = member_id;
 		this.password = password;
 		this.member_name = member_name;
+		this.member_info = member_info;
 		this.email = email;
 		this.email_id = email_id;
 		this.email_domain = email_domain;
@@ -60,6 +62,16 @@ public class MemberVO {
 
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
+	}
+
+
+	public String getMember_info() {
+		return member_info;
+	}
+
+
+	public void setMember_info(String member_info) {
+		this.member_info = member_info;
 	}
 
 
@@ -126,11 +138,13 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [member_id=" + member_id + ", password=" + password
-				+ ", member_name=" + member_name + ", email=" + email
-				+ ", email_id=" + email_id + ", email_domain=" + email_domain
-				+ ", birthday=" + birthday + ", report=" + report
-				+ ", isFollow=" + isFollow + "]";
+				+ ", member_name=" + member_name + ", member_info="
+				+ member_info + ", email=" + email + ", email_id=" + email_id
+				+ ", email_domain=" + email_domain + ", birthday=" + birthday
+				+ ", report=" + report + ", isFollow=" + isFollow + "]";
 	}
+
+	
 	
 	
 }
