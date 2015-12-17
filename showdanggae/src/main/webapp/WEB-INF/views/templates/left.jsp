@@ -8,13 +8,9 @@ $(document).ready(function(){
 		type:"get",
 		url:"profileInfo.do?member_id=${sessionScope.mvo.member_id}",
 		dataType:"json",
-<<<<<<< HEAD
 		success:function(data){		
 			//alert(data.followerCount); 나를 팔로잉하는 사람들
 			//alert(data.followingCount); 내가 팔로우한 사람들
-=======
-		success:function(data){
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 			if(data!=""){
 				$("#followingcount").html(data.followingCount);
 				$("#followcount").html(data.followerCount);

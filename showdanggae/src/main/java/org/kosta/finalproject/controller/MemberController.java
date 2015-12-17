@@ -376,15 +376,10 @@ public class MemberController {
 		// System.out.println(fvo);
 		return fvo;
 	}
-<<<<<<< HEAD
-	
-	//프로필 수정하는 곳으로 이동
-=======
+
 
 	// 프로필 수정하는 곳
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	@RequestMapping("Profile.do")
-<<<<<<< HEAD
 	public ModelAndView Profile(String member_id){
 		//member_profile로 관심사 리스트 보내줌
 		ModelAndView mv=new ModelAndView();
@@ -394,10 +389,6 @@ public class MemberController {
 		mv.addObject("interestList", interestList);
 		mv.addObject("myinterestList", myinterestList);
 		return mv;
-=======
-	public String Profile() {
-		return "member_profile";
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	}
 
 	// 사진올리기
@@ -411,21 +402,11 @@ public class MemberController {
 	@ResponseBody
 	public HashMap<String, String> profileInfo(String member_id) {
 		System.out.println(member_id);
-<<<<<<< HEAD
 		HashMap<String, String> proInfo =new  HashMap<String, String>();
 		//내 게시물수
 		
 		//팔로워 팔로잉 수 + 나의관심사
 		proInfo=memberService.proCount(member_id);
-		
-=======
-		HashMap<String, String> proInfo = new HashMap<String, String>();
-		// 내 게시물수
-
-		// 팔로워 팔로잉 수
-		proInfo = memberService.proCount(member_id);
-		System.out.println(proInfo);
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 		return proInfo;
 	}
 	
