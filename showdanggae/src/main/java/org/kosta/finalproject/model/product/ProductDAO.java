@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.product;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -38,4 +39,5 @@ public interface ProductDAO {
 
 	public int getLowestPriceByProductId(int product_id);
 
+	public List<ProductVO> selectReport() throws SQLException;	//검색어 순위
 }

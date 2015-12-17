@@ -35,6 +35,8 @@
 						/* newInfo+="<td>"+deleteComp+"</td></tr>" */
 
 					});
+
+
 				$("#CategoryView").html(newInfo);
 				}
 			} //success
