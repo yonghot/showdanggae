@@ -40,7 +40,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 </if>
 		</where> -->
 	</select>
-	
+	<select id="searchProductList" resultType="pvo">
+	 	<![CDATA[
+	 		select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link 
+	 		from (select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link
+	 		from (select product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link from product order by product_id asc))
+	 		where product_name like '%${value}%' 
+	 	]]>
+	</select>
 	
 	<select id="getMyProductList" resultType="pvo">
 	 	<![CDATA[
@@ -179,6 +186,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 검색어 순위 -->
+	<insert id="insertReport" >
+		insert into report values(#{value},1)
+	</insert>
+	<update id="updateReport" >
+		update report set cnt=cnt+1 where word=#{value}
+	</update>
+	
 	<select id="selectReport" resultType="java.util.HashMap">
 	<![CDATA[
 		SELECT WORD,CNT,RANKING FROM(

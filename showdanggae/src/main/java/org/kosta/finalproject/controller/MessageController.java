@@ -40,10 +40,15 @@ public class MessageController {
 
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
-		System.out.println(vo);
-
 		messageService.sendMessage(vo);
 		return new ModelAndView("popup/messageAdmin_ok");
+	}
+	@RequestMapping("sendMessage1.do")
+	@ResponseBody
+	public ModelAndView sendMessage1(HttpServletRequest request, MessageVO vo){	
+		System.out.println(vo);
+		messageService.sendMessage(vo);
+		return new ModelAndView("templates/main");
 	}
 	@RequestMapping("auth_messagebox.do")
 	public ModelAndView messagebox(String member_id,String pageNo){

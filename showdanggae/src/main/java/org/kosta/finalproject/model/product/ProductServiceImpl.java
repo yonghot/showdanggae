@@ -43,6 +43,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public List<ProductVO> searchProductList(String sortBy) {
+		List<ProductVO> spvoList = productDAO.searchProductList(sortBy);
+		for(int i=0;i<spvoList.size();i++){
+			spvoList.get(i).setLowestPrice(productDAO.getLowestPriceByProductId(spvoList.get(i).getProduct_id()));
+		}
+		System.out.println(spvoList);
+		return spvoList;
+	}
+	
+	@Override
 	public List<String> getItemList() {
 		return productDAO.getItemList();
 	}
@@ -144,6 +154,13 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> selectReport() throws SQLException {
 		return productDAO.selectReport();
 	}
+
+	@Override
+	public void saveReport(String word) throws SQLException {	
+		int result=productDAO.updateReport(word);
+		if(result==0)
+			productDAO.insertReport(word);			
+}	
 }
 
 

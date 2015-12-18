@@ -9,7 +9,8 @@ public interface ProductDAO {
 	List<ProductVO> getMyProductList(Map<String, String> map);
 
 	List<ProductVO> getAllProductList(String sortBy);
-
+	List<ProductVO> searchProductList(String sortBy);
+	
 	public List<String> getItemList();
 
 	public void addProduct(ProductVO pvo);
@@ -40,4 +41,7 @@ public interface ProductDAO {
 	public int getLowestPriceByProductId(int product_id);
 
 	public List<ProductVO> selectReport() throws SQLException;	//검색어 순위
+
+	public void insertReport(String word) throws SQLException;	
+	public int updateReport(String word) throws SQLException;
 }
