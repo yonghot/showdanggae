@@ -55,7 +55,18 @@ alter table board modify hit default 0;
 alter table board drop constraint fk_id cascade;
 
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+here member_id !='admingalbage'
 
+//삭제할때
+ delete from interest where member_id='lipchel' and category='화장품';
+//내 관심사 제외한 카테고리
+ select category from main_category where category not in (select  category from interest where member_id='lipchel')
 
+ //모든 등록할 수 있는 카테고리
+ select category from main_category
 
+select  category from interest where NOT 
+노트북 화장품
+DISTINCT
+select * from interest;
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC

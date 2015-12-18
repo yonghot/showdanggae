@@ -116,7 +116,7 @@ select * from interest where member_id=#{value}
 </select>
 
 <select id="profileInterestList" resultType="String">
-select  DISTINCT category from main_category
+ select category from main_category where category not in (select  category from interest where member_id=#{value})
 </select>
 
 <select id="myinterestList" resultType="String">
@@ -135,6 +135,9 @@ select * from member where member_id=#{value}
 insert into interest(category, member_id) values(#{category},#{member_id})
 </update>
 
+<delete id="interestDel">
+ delete from interest where member_id=#{member_id} and category=#{category}
+</delete>
 
  </mapper>
  
