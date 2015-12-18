@@ -29,8 +29,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductVO> getAllBoardList(String sortBy) {
-		return productDAO.getAllBoardList(sortBy);
+	public List<ProductVO> getAllProductList(String sortBy) {
+		
+		List<ProductVO> pvoList = productDAO.getAllProductList(sortBy);
+		for(int i=0;i<pvoList.size();i++){
+			pvoList.get(i).setLowestPrice(productDAO.getLowestPriceByProductId(pvoList.get(i).getProduct_id()));
+		}
+		
+		System.out.println(pvoList);
+		
+		return pvoList;
 	}
 	
 	@Override
@@ -40,6 +48,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SlvoListVO slvoList, EvoListVO evoList) {
+		if(pvo.getThumbnail_link()==null) {
+			pvo.setThumbnail_link("img/no_image.png");
+		}
 		productDAO.addProduct(pvo); //insert는 부모테이블 것을 먼저 해준다
 		
 		if(slvoList.getSlvoList()!=null) { //공란이 DB에 들어가면 null로 인식되서 not null인 변수에 넣을 수가 없다

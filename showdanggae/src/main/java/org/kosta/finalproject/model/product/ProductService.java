@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface ProductService {
-	public List<ProductVO> getAllBoardList(String sortBy);
+	public List<ProductVO> getAllProductList(String sortBy);
 	public List<String> getItemList();
 	public void addProductWithSellerLinkAndEvaluating(ProductVO pvo, SlvoListVO slvoList, EvoListVO evoList);
 	public void hit(String product_id);

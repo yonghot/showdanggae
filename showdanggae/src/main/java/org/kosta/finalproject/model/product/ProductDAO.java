@@ -7,7 +7,7 @@ public interface ProductDAO {
 	
 	List<ProductVO> getMyProductList(Map<String, String> map);
 
-	List<ProductVO> getAllBoardList(String sortBy);
+	List<ProductVO> getAllProductList(String sortBy);
 
 	public List<String> getItemList();
 

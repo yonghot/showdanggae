@@ -138,9 +138,10 @@
 	
 
 		$(".productCard").hover(function(){
-			$(this).css("border","solid 2px #ff7777");
+			$(this).css("border","solid 2px #ff1a1a");
 		}, function(){
-			$(this).css("border","none")});
+			$(this).css("border","solid 2px #e6e6e6");
+		});
 
 
 		function AddComma(data_value) {
@@ -298,8 +299,8 @@
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="7" varStatus="status">
 		<div class="col-md-6">
-			<div class="thumbnail productCard">
-				<div class="col-md-12 thumbnailImgDiv" style="border: solid 1px #e6e6e6; width: 100%; height: 200px; overflow: hidden;">
+			<div class="thumbnail productCard" style="border: solid 2px #e6e6e6; box-sizing : border-box;">
+				<div class="col-sm-12 thumbnailImgDiv" align="center" valign="middle" style="border: solid 1px #e6e6e6; width: 100%; height: 200px; overflow: hidden;">
 					<a href="auth_hit.do?product_id=${list.product_id}">
 						<img src="${list.thumbnail_link}" class="img-responsive thumbnailImg" width='285' height='200'>
 					</a>
@@ -310,17 +311,6 @@
 					</div>
 					<div align="right">
 						최저가 : <font class="lowestPrice" size="4" face="윤고딕320">${list.lowestPrice}</font> 원
-					</div>
-				</div>
-				<div class="col-md-12" style="border: solid 1px #e6e6e6;">
-					<div class="col-md-4">
-						<img src="img/like_icon.jpg" width='50'>
-					</div>
-					<div class="col-md-4">
-						<img src="img/dislike_icon.jpg" width='50'>
-					</div>
-					<div class="col-md-4">
-					
 					</div>
 				</div>
 			</div>
