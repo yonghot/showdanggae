@@ -88,7 +88,7 @@
  <constructor-arg>
   <value>C:\\Users\\kosta\\git\\showdanggae\\showdanggae\\src\\main\\webapp\\upload\\</value><!-- value가 여기 붙어있어야 한다 -->
  </constructor-arg>
-</bean>
+</bean>  
 
 <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
  <property name="order" value="1"></property>

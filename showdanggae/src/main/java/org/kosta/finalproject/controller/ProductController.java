@@ -37,6 +37,7 @@ public class ProductController {
 		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
 		return lvo;
 	}
+	
 	// 나의 카테고리를 지우기 위해서 하위 상품을 삭제하고 해당 카테고리를 지운다. 
 	//갱신된 카테고리 정보를 반환한다.
 	@ResponseBody
@@ -124,7 +125,6 @@ public class ProductController {
 	// showContent
 	@RequestMapping("showProductContent.do")
 	public ModelAndView showProductContent(int product_id) throws Exception {
-		System.out.println(product_id);
 		System.out.println("showProductContent: "+productService.showProductContent(product_id));
 		return new ModelAndView("product_contentView", "productInfo", productService.showProductContent(product_id));
 	}
