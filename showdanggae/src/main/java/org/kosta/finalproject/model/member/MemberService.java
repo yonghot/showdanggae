@@ -32,9 +32,10 @@ public interface MemberService {
 	List<FollowVO> fAlarm(String following);
 	HashMap<String, String> proCount(String member_id);
 	List<String> profileInterest(String member_id);
-	List<String> profileInterestList();
+	List<String> profileInterestList(String member_id);
 	List<String> myinterestList(String member_id);
 	MemberVO infoUpdate(MemberVO vo);
 	void interestAdd(String member_id, String category);
+	void interestDel(String member_id, String category);
 
 }

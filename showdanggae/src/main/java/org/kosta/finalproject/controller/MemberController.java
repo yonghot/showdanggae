@@ -381,26 +381,23 @@ public class MemberController {
 		//member_profile로 관심사 리스트 보내줌
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("member_profile");
-		List<String> interestList=memberService.profileInterestList();
+		//내가 선택한걸 제외한 관심사
+		List<String> interestList=memberService.profileInterestList(member_id);
+		//내가 이미 선택한 관심사
 		List<String> myinterestList=memberService.myinterestList(member_id);
-
 		
 		mv.addObject("interestList", interestList);
 		mv.addObject("myinterestList", myinterestList);
+		
 		return mv;
 	}
 
-	// 사진올리기
-	@RequestMapping("profileupimgload.do")
-	public ModelAndView profileupimgload() {
-		return null;
-	}
 
 	// left 정보
 	@RequestMapping("profileInfo.do")
 	@ResponseBody
 	public HashMap<String, String> profileInfo(String member_id) {
-		System.out.println(member_id);
+	
 		HashMap<String, String> proInfo =new  HashMap<String, String>();
 		//내 게시물수
 		
@@ -434,6 +431,13 @@ public class MemberController {
 	public String interestAdd(String member_id,String category){
 		memberService.interestAdd(member_id,category);
 		return "redirect:Profile.do?member_id=" + member_id;
+	}
+	
+	@RequestMapping("interestDel.do")
+	public String interestDel(String member_id,String category){
+		memberService.interestDel(member_id, category);
+		return "redirect:Profile.do?member_id=" + member_id;
+
 	}
 	
 	

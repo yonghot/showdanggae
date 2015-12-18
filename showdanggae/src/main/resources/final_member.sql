@@ -35,9 +35,9 @@ insert into member(member_id, password, member_name, email, birthday) values('ad
 insert into member(member_id, password, member_name, email, birthday) values('dewd','dd','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
 insert into member(member_id, password, member_name, email, birthday) values('addr23min','1234','dd','asdsdsdin@showdanggae.com', to_date('120204','RRMMDD')); 
 
-select * from member;
-
-
+select * from interest;
+delete from member where member_id='lipchel';
+delete from interest where member_id='java';
 -- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
 

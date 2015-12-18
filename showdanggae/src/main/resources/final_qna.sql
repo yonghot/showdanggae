@@ -59,7 +59,7 @@ create sequence qna_seq;
 				SELECT no,title,member_id,writer,content,writeDate,viewCount,ref, restep,relevel,total
 					    FROM(	 
 								SELECT no,title,member_id,writer,content,writeDate,viewCount,
-								CEIL(rownum/5) AS page,ref,restep,relevel,total  
+								CEIL(rownum/10) AS page,ref,restep,relevel,total  
 								FROM ( 
 									SELECT no,title,member_id,writer,content,viewCount,
 									to_char(writeDate,'YYYY.MM.DD') as writeDate,

@@ -3,26 +3,34 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <script type="text/javascript">  
    	$(document).ready(function(){
+   		$("#interestDelBtn").click(function(){
+   			var checkval=$("#delinterest :input[name=interestCheck]:checked").val();
+   			alert(checkval)
+   			if(checkval==null){
+			   	alert("삭제할 관심사를 선택하세요");
+			   	return false;
+			 }
+			var result = confirm('삭제하시겠습니까?');
+	        if(result) {
+	        	location.href="interestDel.do?member_id=${sessionScope.mvo.member_id}&category="+checkval;
+	        } else {
+	        	location.href="profile.do?member_id=${sessionScope.mvo.member_id}";
+	        }
+   		});
    		
    		$("#interestAddBtn").click(function(){
-			   			var checkval=$("#interestForm :input[name=interestCheck]:checked").val();
-			   			if(checkval==null){
-			   				alert("추가할 관심사를 선택하세요");
-			   				return false;
-			   			}
-			   			var myin=$("input:hidden[name='myinterestList']").val();
-			   				if(myin==null){
-			   					location.href="interestAdd.do?member_id=${sessionScope.mvo.member_id}&category=" + checkval;		
-			   				}
-			   			$("input:hidden[name='myinterestList']").each(function (index){		 
-			   				var myinterestList=$("input:hidden[name='myinterestList']").eq(index).val();	 	   		    	   
-			   			   if(myinterestList==checkval){
-			   		    	  	alert(myinterestList + "는 이미 관심사에 추가한 카테고리입니다");		    	
-			   		    	  	return false;
-			   		       }else	   			   		       
-			   		        	location.href="interestAdd.do?member_id=${sessionScope.mvo.member_id}&category=" + checkval;			   		     		   		      
-				   		});
-			   	
+			   			var checkval=$("#interestForm :input[name=interestCheck]:checked").val();		   			
+			   			//$("input[name=chk1]:checkbox:checked").length
+			   			var checklen=$("#interestForm :input[name=interestCheck]:checked").length;
+			if(checkval==null){
+			   	alert("추가할 관심사를 선택하세요");
+			   	return false;
+			 }
+			if(checklen>1){
+				alert("하나씩 선택 가능합니다");
+				return false;
+			}	
+		   		location.href="interestAdd.do?member_id=${sessionScope.mvo.member_id}&category=" + checkval;      		   	
    			});//interestAddBtn
    	
    		$("#member_infoBtn").click(function(){
@@ -48,16 +56,15 @@
 	</td>
 </tr>
 <tr>
-	<td>
-	파일 미리보기<br>
-	<img src="https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xtf1/t51.2885-19/10948561_1404359156532776_1425325698_a.jpg" alt="..." class="img-circle">
+	<td width="600"><!-- file:\\\C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\uploadl\\lipchel.jpg -->
+<!-- 	<img src="C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\uploadl\\${sessionScope.mvo.member_id}" alt="..." class="img-circle"> -->
+	<img src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle"  width=100px, height=100px>
 	</td>
+	
 	<td>
-	 파일 업로드
-	 	    <form id="profileupimgloadForm" action="${initParam.root}profileupimgload.do" enctype="multipart/form-data" method="post">
-			<input type="text" name="userInfo"><br>
-			<input type="file" name="file"><br>
-			
+	 	    <form id="profileupimgloadForm" action="${initParam.root}fileupload.do" enctype="multipart/form-data" method="post">
+			<input type="file" name="proImgFile"><br>
+			<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}">
 			<input type="submit" name="파일업로드"> <br>
 		</form>
 	</td>
@@ -84,42 +91,44 @@
 	<td colspan="2"><h5>관심사 편집</h5></td>
 	</tr>
 	<tr>
-	<td colspan="2">
-	관심사 목록
+	<td>
+	관심사 추가
 		<form id="interestForm">  
         <button class="btn btn-default" type="button" id="interestAddBtn">추가</button>
-        <button class="btn btn-default" type="button" id="interestDelBtn">삭제</button>
 	<br>
 
 	<c:forEach items="${requestScope.interestList}" var="interestList" >
-				
-					    <input type="checkbox" name=interestCheck  value="${interestList}">${interestList}
-						 
+			<input type="checkbox" name=interestCheck  value="${interestList}">${interestList} 	 
 	</c:forEach>
 	
 	<c:forEach items="${requestScope.myinterestList}" var="myinterestList" >
-		    <input type="hidden" name=myinterestList  id=myinter value="${myinterestList}">					 
-	</c:forEach>
-	
-	</form>
-
-	</td>
-
-		 	
-<%-- 					<div class="checkbox disabled">
+		    <div class="checkbox disabled">
 					  <label>
 					    <input type="checkbox"  disabled>
 					   		${myinterestList }
 					  </label>
-					</div> --%>
-
-<%-- 				  <div class="checkbox">
-					  <label>
-					    <input type="checkbox" >
-							${interestList }
-					  </label>
-					</div> --%>
+					</div>		
+	</c:forEach>	
+	</form>
+	</td>
+	<td width=400px, height=400px>
+		관심사 삭제
+		<form id="delinterest">
+        <button class="btn btn-default" type="button" id="interestDelBtn">삭제</button><br>
+	<c:forEach items="${requestScope.interestList}" var="interestList" >
+			<input type="checkbox"  disabled  value="${interestList}">${interestList} 	 
+	</c:forEach>
 	
+	<c:forEach items="${requestScope.myinterestList}" var="myinterestList" >
+		    <div class="checkbox disabled">
+					  <label>
+					    <input type="checkbox" name=interestCheck  value="${myinterestList}">
+					   		${myinterestList }
+					  </label>
+					</div>		
+	</c:forEach>	
+	</form>
+	</td>
 	</tr>
 
 
