@@ -89,7 +89,7 @@ public class ProductController {
 		return new ModelAndView("product_allProductList", "pvoList", productService.getAllProductList(sortBy));
 	}
 
-	@RequestMapping(value = {"searchProductList.do", "home.do"})
+	@RequestMapping(value = {"searchProductList.do"})
 	public ModelAndView searchProductList(String sortBy) throws Exception {
 		return new ModelAndView("product_searchProductList", "spvoList", productService.searchProductList(sortBy));
 	}
