@@ -135,9 +135,6 @@ public class MemberDAOImpl implements MemberDAO {
 		String following=member_id;
 		int followerCount1=sqlSessionTemplate.selectOne("member.followerCount", following);
 		//String followerCount = String.valueOf(followerCount1);
-		//System.out.println("asdfasfd" + followerCount1);
-		System.out.println("asdf");
-		System.out.println(followerCount1);
 		return followerCount1;
 	}
 
