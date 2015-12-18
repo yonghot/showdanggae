@@ -1,5 +1,6 @@
 package org.kosta.finalproject.model.product;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -137,4 +138,21 @@ public class ProductServiceImpl implements ProductService {
 	public int getCategoryIdByProductId(int product_id) {
 		return productDAO.getCategoryIdByProductId(product_id);
 	}
+
+	//검색어 순위
+	@Override
+	public List<ProductVO> selectReport() throws SQLException {
+		return productDAO.selectReport();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

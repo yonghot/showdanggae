@@ -5,7 +5,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tiles.jsp.taglib.definition.SetCurrentContainerTag;
 import org.kosta.finalproject.model.email.Email;
 import org.kosta.finalproject.model.email.EmailSender;
 import org.kosta.finalproject.model.member.FollowVO;
@@ -386,6 +384,8 @@ public class MemberController {
 		mv.setViewName("member_profile");
 		List<String> interestList=memberService.profileInterestList();
 		List<String> myinterestList=memberService.myinterestList(member_id);
+
+		
 		mv.addObject("interestList", interestList);
 		mv.addObject("myinterestList", myinterestList);
 		return mv;
@@ -414,7 +414,7 @@ public class MemberController {
 	@ResponseBody
 	public List<String> profileInterest(String member_id){
 		List<String> interest=memberService.profileInterest(member_id);
-		System.out.println(interest);
+	
 		return interest;
 	}
 	
@@ -429,6 +429,12 @@ public class MemberController {
 			session1.setAttribute("mvo", mvo);
 		}
 		return "redirect:Profile.do?member_id=" + vo.getMember_id();
+	}
+	
+	@RequestMapping("interestAdd.do")
+	public String interestAdd(String member_id,String category){
+		memberService.interestAdd(member_id,category);
+		return "redirect:Profile.do?member_id=" + member_id;
 	}
 	
 	

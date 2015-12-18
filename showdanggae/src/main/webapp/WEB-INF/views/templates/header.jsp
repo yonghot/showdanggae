@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<link rel="stylesheet" href="css/selectReport.css" type="text/css">
 <script type="text/javascript">
-
   $(document).ready(function() {
 	  
 		$("#logout").click(function(){
@@ -14,6 +13,23 @@
 				return false;
 			}
 		});
+		
+		$.ajax({
+			type:"POST",
+			url:"selectReport.do",
+			dataType:"json",
+			success:function(data){
+				var index="<div id='keyword_table' listnum='5' class='realtime_content'><table class='table'><thead>";
+				/* var index="<div id='keyword_table' listnum='5' class='realtime_content'><table id='keyword_table'><thead>"; */
+				index +="<tr class='success'><td><font color='red'>순위</td><td><font color='red'>검색어</td></tr></thead><tbody>";
+					for(var i=0; i<data.length;i++){	
+						index +="<tr><td>"+data[i].RANKING+"</td><td>"+data[i].WORD+"</td></tr></tbody>";
+					}
+					index+="</table>";
+					$("#selectReport").html(index);
+			}		
+		});//ajax  
+		
 	});
 
 </script>
@@ -80,6 +96,7 @@
                   </div>
               </div>
           </form>
+<<<<<<< HEAD
         <br>
         <br>
         <br>
@@ -95,5 +112,9 @@
         <br>
         <br>
         <br>
+=======
+          <span id=selectReport></span>
+<br>
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
       </div>
  </div>
