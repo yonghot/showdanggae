@@ -58,7 +58,7 @@
 				"<tr>"+
 				"<td width='10'><img src='img/link_icon.png' width='15' title='항목을 제거합니다.'></td>"+
 				"<td width='250'><a href="+$(":text[name=inputLink]").val()+">"+shortenLink+"</a></td>"+
-				"<td width='100'>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
+				"<td width='100' align='right'>"+AddComma($(":text[name=inputPrice]").val())+" 원"+"</td>"+
 				"<td width='10'><img src='img/minus_icon.png' width='25' id='deleteImg'></td></tr>"+
 				"<input type='hidden' class='link"+linkCount+"' name='slvoList["+linkCount+"].link' value='"+$(":text[name=inputLink]").val()+"'>"+
 				"<input type='hidden' class='link"+linkCount+"' name='slvoList["+linkCount+"].price' value='"+$(":text[name=inputPrice]").val()+"'>"+

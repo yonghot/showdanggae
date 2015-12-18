@@ -290,8 +290,8 @@
 		<span id="searchIdView1"></span>
 	</c:if>
 </div>
-<a href="" class="btn btn-primary" data-toggle="modal"
-	data-target="#exampleModal" data-whatever="${mvo.member_id}">메세지보내기</a>
+<%-- <a href="" class="btn btn-primary" data-toggle="modal"
+	data-target="#exampleModal" data-whatever="${mvo.member_id}">메세지보내기</a> --%>
 <%-- <!--  data-offset-top="400" -->
 <c:if test="${!empty sessionScope.mvo && sessionScope.mvo.member_id!='admingalbage'}">
 <div class="quick" data-spy="scroll" style='position:absolute; top: 200px;' >

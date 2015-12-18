@@ -24,8 +24,8 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSessionTemplate.selectList("product.getMyProductList", map);
 	}
 	@Override
-	public List<ProductVO> getAllBoardList(String sortBy) {
-		return sqlSessionTemplate.selectList("product.getAllBoardList", sortBy);
+	public List<ProductVO> getAllProductList(String sortBy) {
+		return sqlSessionTemplate.selectList("product.getAllProductList", sortBy);
 	}
 	@Override
 	public List<String> getItemList() {
@@ -103,7 +103,12 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public int getLowestPriceByProductId(int product_id) {
-		return sqlSessionTemplate.selectOne("product.getLowestPriceByProductId", product_id);
+		int lowestPrice = 0;
+		try {
+			lowestPrice = sqlSessionTemplate.selectOne("product.getLowestPriceByProductId", product_id);
+		} catch(NullPointerException ne) {
+		}
+		return lowestPrice;
 	}
 	
 	// 검색어 순위

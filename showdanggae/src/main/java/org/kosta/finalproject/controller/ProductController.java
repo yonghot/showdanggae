@@ -82,10 +82,10 @@ public class ProductController {
 		return mv;
 	}
 
-	// getAllBoardList
-	@RequestMapping(value = {"getAllBoardList.do", "home.do"})
+	// getAllProductList
+	@RequestMapping(value = {"getAllProductList.do", "home.do"})
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
-		return new ModelAndView("product_allProductList", "pvoList", productService.getAllBoardList(sortBy));
+		return new ModelAndView("product_allProductList", "pvoList", productService.getAllProductList(sortBy));
 	}
 
 	// beforeGoingRegistProduct
