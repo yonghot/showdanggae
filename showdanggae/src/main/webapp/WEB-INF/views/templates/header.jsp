@@ -19,16 +19,30 @@
 			url:"selectReport.do",
 			dataType:"json",
 			success:function(data){
-				var index="<div id='keyword_table' listnum='5' class='realtime_content'><table class='table'><thead>";
+				var index="<div id='keyword_table' listnum='5' class='col-md-offset-3 col-md-6'><table class='table table-hover'><thead>";
 				/* var index="<div id='keyword_table' listnum='5' class='realtime_content'><table id='keyword_table'><thead>"; */
-				index +="<tr class='success'><td><font color='red'>순위</td><td><font color='red'>검색어</td></tr></thead><tbody>";
+				index +="<tr class='success'><td style='color:white; background-color:#ff1533; opacity:0.5; font-weight:800;'>순위</td><td style='color:white; background-color:#ff1533; opacity:0.5; font-weight:800; font-size:20;'>검색어</td></tr></thead><tbody>";
 					for(var i=0; i<data.length;i++){	
-						index +="<tr><td>"+data[i].RANKING+"</td><td>"+data[i].WORD+"</td></tr></tbody>";
+						index +="<tr><td style='color:white; background-color:#030303; opacity:0.5;'>"+data[i].RANKING+"</td><td style='color:white; background-color:#030303; opacity:0.5;'>"+data[i].WORD+"</td></tr></tbody>";
 					}
 					index+="</table>";
 					$("#selectReport").html(index);
 			}		
 		});//ajax  
+		
+		$("#search").click(function(){
+			var product = $("#word").val();
+			//alert(product);
+			$.ajax({
+			type:"POST",
+			url:"saveReport.do",
+			data:"word="+product,
+			dataType:"json",
+			success:function(data){
+				
+			}		
+		});//ajax  
+		})
 		
 	});
 
@@ -89,9 +103,9 @@
           <form role="form">
               <div class="form-group">
                   <div class="input-group">
-                      <input type="text" class="form-control" placeholder="상품명 또는 카테고리를 입력하세요">
+                      <input id="word" type="text" class="form-control" placeholder="상품명 또는 카테고리를 입력하세요">
                       <span class="input-group-btn">
-                          <a class="btn btn-success" type="submit">검색</a>
+                          <a id="search" class="btn btn-success" type="submit">검색</a>
                       </span>
                   </div>
               </div>

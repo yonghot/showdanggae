@@ -88,6 +88,11 @@ public class ProductController {
 		return new ModelAndView("product_allProductList", "pvoList", productService.getAllProductList(sortBy));
 	}
 
+	@RequestMapping(value = {"searchProductList.do", "home.do"})
+	public ModelAndView searchProductList(String sortBy) throws Exception {
+		return new ModelAndView("product_searchProductList", "spvoList", productService.searchProductList(sortBy));
+	}
+	
 	// beforeGoingRegistProduct
 	@RequestMapping("auth_beforeGoingRegistProduct.do")
 	public ModelAndView beforeGoingRegistProduct(String category_id)
@@ -170,20 +175,16 @@ public class ProductController {
 	/**
 	 * 	검색어 순위 
 	 */
-	/*@RequestMapping("selectReport.do")
-	public ModelAndView selectReport() throws Exception {
-		//ModelAndView mv = new ModelAndView();
-		List<ProductVO> list = productService.selectReport();
-		//System.out.println(list);
-		//mv.addObject("reportList", list);
-		//return mv;
-		return new ModelAndView("product_report_result","reportList", list);
-	}*/
 	@RequestMapping("selectReport.do")
 	@ResponseBody
-	public List selectReport() throws Exception {
+	public List selectReport(String word) throws Exception {
 		List<ProductVO> list = productService.selectReport();
 		return list;
+	}
+	@RequestMapping("saveReport.do")
+	@ResponseBody
+	public void saveReport(String word) throws Exception {
+		productService.saveReport(word);
 	}
 }
 

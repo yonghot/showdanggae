@@ -28,6 +28,11 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSessionTemplate.selectList("product.getAllProductList", sortBy);
 	}
 	@Override
+	public List<ProductVO> searchProductList(String sortBy) {
+		return sqlSessionTemplate.selectList("product.searchProductList", sortBy);
+	}
+	
+	@Override
 	public List<String> getItemList() {
 		return sqlSessionTemplate.selectList("product.getItemList");
 	}
@@ -115,5 +120,13 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ProductVO> selectReport() throws SQLException {
 		return sqlSessionTemplate.selectList("product.selectReport");
+	}
+	
+	public void insertReport(String word) throws SQLException {
+		sqlSessionTemplate.insert("product.insertReport", word);
+	}
+
+	public int updateReport(String word) throws SQLException {
+		return sqlSessionTemplate.update("product.updateReport",word);
 	}
 }
