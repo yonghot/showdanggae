@@ -62,10 +62,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getMemberCategoryList" resultType="cvo">
 		<![CDATA[
-		select 
-		category_id, category, member_id
-		from member_category
-		where member_id=#{value}
+			select 
+			category_id, category, member_id
+			from member_category
+			where member_id=#{value}
+			order by category_id asc
 		]]>
 	</select>
 
@@ -84,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getProductCountNumber" resultType="int">
 		<![CDATA[
 			select count(*) 
-			from member_category
+			from product
 			where category_id=#{value}
 		]]>
 	</select> 

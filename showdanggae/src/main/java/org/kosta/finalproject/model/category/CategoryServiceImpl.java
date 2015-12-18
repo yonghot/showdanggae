@@ -38,16 +38,20 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Override
 	public List<CategoryVO> getMemberCategoryList(String member_id) {
-		return categoryDAO.getMemberCategoryList(member_id);
+		
+		List<CategoryVO> memberCategoryList = categoryDAO.getMemberCategoryList(member_id);
+		
+		for(int i=0;i<memberCategoryList.size();i++) {
+			int productCountNumber = categoryDAO.getProductCountNumber(memberCategoryList.get(i).getCategory_id());
+			memberCategoryList.get(i).setProductCountNumber(productCountNumber);
+		}
+		
+		return memberCategoryList;
 	}
 	
 	@Override
 	public void addInterest(String interest) {
 		categoryDAO.addInterest(interest);
-	}
-	@Override
-	public CategoryVO getProductCountNumber(int category_id) {
-		return categoryDAO.getProductCountNumber(category_id);
 	}
 	
 }

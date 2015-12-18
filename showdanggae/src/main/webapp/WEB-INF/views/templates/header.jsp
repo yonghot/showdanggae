@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="css/selectReport.css" type="text/css">
 <script type="text/javascript">
   $(document).ready(function() {
 	  
@@ -22,7 +21,7 @@
 				var index="<div id='keyword_table' listnum='5' class='col-md-offset-3 col-md-6'><table class='table table-hover'><thead>";
 				/* var index="<div id='keyword_table' listnum='5' class='realtime_content'><table id='keyword_table'><thead>"; */
 				index +="<tr class='success'><td style='color:white; background-color:#ff1533; opacity:0.5; font-weight:800;'>순위</td><td style='color:white; background-color:#ff1533; opacity:0.5; font-weight:800; font-size:20;'>검색어</td></tr></thead><tbody>";
-					for(var i=0; i<data.length;i++){	
+					for(var i=0; i<5;i++){
 						index +="<tr><td style='color:white; background-color:#030303; opacity:0.5;'>"+data[i].RANKING+"</td><td style='color:white; background-color:#030303; opacity:0.5;'>"+data[i].WORD+"</td></tr></tbody>";
 					}
 					index+="</table>";

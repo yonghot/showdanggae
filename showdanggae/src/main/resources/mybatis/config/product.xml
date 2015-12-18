@@ -6,18 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="product">
 
-	<!-- <insert id="write"> <![CDATA[ insert into board(no, title, author, 
-		write_date, content, id) values(board_seq.nextval, #{title}, #{author}, sysdate, 
-		#{content} ,#{id}) ]]> </insert> <update id="hit"> <![CDATA[ update board 
-		set hit=hit+1 where no=#{value} ]]> </update> <select id="showContent" resultType="bvo"> 
-		<![CDATA[ select no, title, author, to_char(write_date, 'yyyy.mm.dd HH24:MI:SS') 
-		as write_date, hit, content, id from board where no=#{no} ]]> </select> <update 
-		id="update"> <![CDATA[ update board set title=#{title}, content=#{content}, 
-		write_date=sysdate where no=#{no} ]]> </update> <delete id="delete"> <![CDATA[ 
-		delete from board where no=#{value} ]]> </delete> <select id="getTotalPostNum" 
-		resultType="int"> <![CDATA[ select count(*) from board ]]> </select> -->
-		
-		
 	<!-- 김용호 영역 -->
 		
 	<select id="getAllProductList" resultType="pvo">

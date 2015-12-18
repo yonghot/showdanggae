@@ -95,11 +95,20 @@
     
 
 <div class="col-md-8">
-    <div class="btn-group">
-    	<a href="getAllBoardList.do?sortBy=likes" class="btn btn-default">좋아요</a>
-    	<a href="getAllBoardList.do?sortBy=interest..." class="btn btn-default">관심사</a>
-    	<br>
-    </div>
+	<div align="right">
+		<ul class="dropdown-menu" role="menu">
+	   		<!--forEach 반복문-->
+	   		<c:forEach items="${requestScope.mainCategoryList}" var="mainCategoryList">
+	   			<li role="presentation">
+	     		<!--라디오 버튼-->
+	    			<a role="menuitem" tabindex="-1">
+	    				<input type="radio" name="tap_category_add" value="${mainCategoryList.category}">
+	    				${mainCategoryList.category}
+	    			</a>
+	    		</li>
+	   		</c:forEach>
+	   	</ul>
+	</div>
     <hr>
     <div class="row" id="main_row">
     	<c:forEach items="${requestScope.pvoList}" var="list">

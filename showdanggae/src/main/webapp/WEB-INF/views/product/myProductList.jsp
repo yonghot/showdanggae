@@ -80,7 +80,7 @@
 		
 		//탭 형식의 카테고리 뷰 (작성중....) 라디오 형식의 카테고리 뷰와 동일 하지만 
 		//$.each(result, function(index,sh) {} 부분이 다르다.
-		$("#tap_addBtn").click(function() {
+		$("#addBtn").click(function() {
 			var category=$(":radio[name=tap_category_add]:checked").val();
 			alert(category+"을 추가 하셨습니다.");
 			if(category==undefined) {
@@ -132,7 +132,169 @@
 					return false;
 				} //confirm else
 			}); //#deleteCateroryBtn click
+			
+			
+			
+			
+		//용호 수정 부분
 	
+		
+		
+		
+		$.ajax({
+			type : "POST",
+			url : "getMemberCategoryList.do",
+			data : "member_id=${sessionScope.mvo.member_id}",
+			dataType : "JSON",
+			success : function(result) {
+				
+				var newInfo="";
+				
+				$.each(result, function(i, data) {
+					newInfo += "<li role='presentation' class='active' value=''>"+
+					"<a href='auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory="+data.category_id+"'>"+(i+1)+". "+data.category+"</a></li>";
+				});
+				
+				$("#tab_categoryView").html(newInfo);
+				
+				var newInfoForDeleteDropdown="";
+				
+				$.each(result, function(i, data) {
+					newInfoForDeleteDropdown += "<li role='presentation'>"+
+					    		// 라디오 버튼
+					    		"<a href='' role='menuitem' tabindex='-1'><input type='radio' name='tap_category_delete' value='"+data.category_id+"'>"+
+					    		" "+(i+1)+". "+data.category+" "+
+					    		// 배지 삽입!  product 갯수 조회 후 입력
+					    		"<span class='badge'>"+data.productCountNumber+"</span></a>"+
+				   				"</li>"
+				});
+				
+				newInfoForDeleteDropdown += "<li role='presentation' class='divider'></li>"+
+	    					"<li role='presentation'><a role='menuitem' tabindex='-1' id='tap_deleteCategoryBtn' href='#'>내 카테고리 삭제하기</a></li>"
+				
+				$("#deleteDropDown").html(newInfoForDeleteDropdown);
+				
+			} //success
+		}); //ajax
+		
+		$("#tap_addCategoryBtn").click(function() {
+
+			if($("#tab_categoryView li").length>=5) {
+				alert("카테고리는 5개까지 추가 가능합니다.");
+				return;
+			}
+			
+			var category=$(":radio[name=tap_category_add]:checked").val();
+			
+			if(category==undefined) {
+				alert("추가할 카테고리를 선택해주세요");
+				return;
+			}
+			
+			$.ajax({
+				type : "POST",
+				url : "auth_addCategory.do",
+				data : "category="+category+"&member_id=${sessionScope.mvo.member_id}",
+				dataType : "JSON",
+				success : function(result) {
+					
+					var newInfo="";
+					
+					$.each(result, function(i, data) {
+						newInfo += "<li role='presentation' class='active' value=''>"+
+						"<a href='auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory="+data.category_id+"'>"+(i+1)+". "+data.category+"</a></li>";
+					});
+					
+					$("#tab_categoryView").html(newInfo);
+					
+					var newInfoForDeleteDropdown="";
+					
+					$.each(result, function(i, data) {
+						newInfoForDeleteDropdown += "<li role='presentation'>"+
+						    		// 라디오 버튼
+						    		"<a role='menuitem' tabindex='-1'><input type='radio' name='tap_category_delete' value='"+data.category_id+"'>"+
+						    		" "+(i+1)+". "+data.category+" "+
+						    		// 배지 삽입!  product 갯수 조회 후 입력
+						    		"<span class='badge'>"+data.productCountNumber+"</span></a>"+
+					   				"</li>"
+					});
+					
+					newInfoForDeleteDropdown += "<li role='presentation' class='divider'></li>"+
+		    					"<li role='presentation'><a role='menuitem' tabindex='-1' id='tap_deleteCategoryBtn' href='#'>내 카테고리 삭제하기</a></li>"
+					
+					$("#deleteDropDown").html(newInfoForDeleteDropdown);
+					
+					alert("카테고리가 추가되었습니다");
+				} //success
+			}); //ajax
+			
+		}); //click
+
+		
+		
+		$("#deleteDropDown").on("click", "#tap_deleteCategoryBtn", function() {
+			
+			var category_id=$(":radio[name=tap_category_delete]:checked").val();
+			
+			if(category_id==undefined) {
+				alert("삭제할 카테고리를 선택해주세요");
+				return;
+			}
+			
+			if(!confirm("카테고리에 포함된 모든 하위 내용까지 삭제하시겠습니까?")) {
+				return;
+			}
+			
+			$.ajax({
+				type : "POST",
+				url : "auth_deleteProductListAndCategory.do",
+				data : "category_id="+category_id+"&member_id=${sessionScope.mvo.member_id}",
+				dataType : "JSON",
+				success : function(result) {
+					
+					var newInfo="";
+					
+					$.each(result, function(i, data) {
+						newInfo += "<li role='presentation' class='active' value=''>"+
+						"<a href='auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory="+data.category_id+"'>"+(i+1)+". "+data.category+"</a></li>";
+					});
+					
+					$("#tab_categoryView").html(newInfo);
+					
+					
+					var newInfoForDeleteDropdown="";
+					
+					$.each(result, function(i, data) {
+						newInfoForDeleteDropdown += "<li role='presentation'>"+
+						    		// 라디오 버튼
+						    		"<a href='' role='menuitem' tabindex='-1'><input type='radio' name='tap_category_delete' value='"+data.category_id+"'>"+
+						    		" "+(i+1)+". "+data.category+" "+
+						    		// 배지 삽입!  product 갯수 조회 후 입력
+						    		"<span class='badge'>"+data.productCountNumber+"</span></a>"+
+					   				"</li>"
+					});
+					
+					newInfoForDeleteDropdown += "<li role='presentation' class='divider'></li>"+
+		    					"<li role='presentation'><a role='menuitem' tabindex='-1' id='tap_deleteCategoryBtn' href='#'>내 카테고리 삭제하기</a></li>"
+					
+					$("#deleteDropDown").html(newInfoForDeleteDropdown);
+					
+					alert("카테고리와 하위 내용이 모두 삭제되었습니다");
+					
+				} //success
+			}); //ajax
+				
+		}); //click
+		
+		
+		$("#tab_categoryView").on("mouseover","a", function(){
+    	 	$(this).css("background-color","#e6e6e6");
+		}).on("mouseout","a", function(){
+			$(this).css("background-color","white");
+		});//on
+		
+		
+			
 
 		$(".productCard").hover(function(){
 			$(this).css("border","solid 2px #ff1a1a");
@@ -170,7 +332,6 @@
 			$(".lowestPrice").eq(i).text(AddComma($(".lowestPrice").eq(i).text()));
 		}
 		
-		
 		var div = $(".thumbnailImgDiv"); // 이미지를 감싸는 div
 		var img = $(".thumbnailImg"); // 이미지
 		var divAspect = 200 / 285; // div의 가로세로비는 알고 있는 값이다
@@ -181,8 +342,7 @@
 		    var imgWidthActual = div.offsetHeight / imgAspect;
 		    var imgWidthToBe = div.offsetHeight / divAspect;
 		    var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
-		    img.style.cssText = 'width: auto; height: 100%; margin-left: '
-		                      + marginLeft + 'px;'
+		    img.style.cssText = 'width: auto; height: 100%; margin-left: 0;'+ marginLeft + 'px;';
 		} else {
 		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
 		    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
@@ -192,9 +352,7 @@
 	
 </script>
 
-<div class="col-md-8">
-
-<h4>카테고리 만들기</h4>
+<%-- <h4>카테고리 만들기</h4>
 	<form id="addCategoryForm">
 	<c:forEach items="${requestScope.mainCategoryList }" var="mainCategoryList">
 	<tr>
@@ -202,11 +360,11 @@
 	</tr>
 	</c:forEach>
 	<input type="button" value="추가하기" id="addBtn">
-	<%-- <c:choose> --%>
-	<%-- <c:when test="${sessionScope.mvo==null }"> --%>
+	<c:choose>
+	<c:when test="${sessionScope.mvo==null }">
 	</form>
-	<%-- </c:when> --%>
-	<%-- <c:otherwise> --%>
+	</c:when>
+	<c:otherwise>
 	
 	<form id="deleteCategoryForm">
 	<table class="table">
@@ -241,59 +399,55 @@
 	</form>
 	<hr>
  
-  <h4>탭형식의 카테고리 뷰</h4>
- 
-  <ul class="nav nav-tabs">
-  <c:forEach items="${requestScope.memberCategoryList }" var="memberCategoryList">
-  <li role="presentation" class="active" value="${memberCategoryList.category_id}"><a href="#">${memberCategoryList.category}</a></li>
-  </c:forEach>
+  <h4>탭형식의 카테고리 뷰</h4> --%>
   
-  <!--추가하기 드롭다운-->
-	<li role="presentation" class="dropup" id="tap_addCategoryForm">
-	<a class="dropdown-toggle" data-toggle="dropdown" role="button1" aria-expanded="false">추가하기<span class="caret"></span></a> 
-		<ul class="dropdown-menu" role="menu">
-    		<!--forEach 반복문-->
-    		<c:forEach items="${requestScope.mainCategoryList }" var="mainCategoryList">
-   			<li role="presentation">
-     		<!--라디오 버튼-->
-    		<a role="menuitem" tabindex="-1"><input type="radio" name="tap_category_add" value="${mainCategoryList.category}">
-    		&nbsp;${mainCategoryList.category}</a>
-    		</li>
-    		</c:forEach>
-    		
-    		<!--구분선-->
-    		<li role="presentation" class="divider"></li>
-    		<li role="presentation"><a role="menuitem" tabindex="-1" id="tap_addBtn" href="#">카테고리 추가하기</a></li>
-    	</ul>
-	</li>
+<div class="col-md-8">
  
-  <!--삭제하기 드롭다운-->
-	<li role="presentation" class="dropup" id="tap_deleteCategoryForm">
-	<a class="dropdown-toggle" data-toggle="dropdown" role="button2" aria-expanded="false">삭제하기 <span class="caret"></span></a>
-  		<ul class="dropdown-menu" role="menu">
-  			<!--forEach 반복문-->
-    		<c:forEach items="${requestScope.memberCategoryList}" var="memberCategoryList">
-    		<li role="presentation">
-    		<!--배지 삽입!  product 갯수 조회 후 입력 -->
-    		<span class="badge">"${requestScope.productCountNumber}"</span>
-    		<!--라디오 버튼-->
-    		<a role="menuitem" tabindex="-1"><input type="radio" name="tap_category_delete" value="${memberCategoryList.category_id}">
-    		&nbsp;${memberCategoryList.category}</a>
-   			</li>
-   			</c:forEach>
-    		<!--구분선-->
-   			<li role="presentation" class="divider"></li>
-    		<li role="presentation"><a role="menuitem" tabindex="-1" id="tapDeleteCateroryBtn" href="#">내 카테고리 삭제하기</a></li>
-    	</ul>
-	</li>
- </ul>
-
-<hr>
-
-	<div align="right">
-		<a href="auth_beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
-		<img src="${initParam.root}img/write_btn.jpg" border="0" width="100"></a>
+	<%--  <li role="presentation" class="active" value="${memberCategoryList.category_id}"><a href="#">${memberCategoryList.category}</a></li> --%>
+	<div class="col-sm-9">
+		<ol class="nav nav-tabs" id="tab_categoryView">
+		</ol>
 	</div>
+ 
+	<div class="col-sm-3" align="right">
+		<ol class="nav nav-tabs">
+		  <!--추가하기 드롭다운-->
+			<li role="presentation" class="dropup" id="tap_addCategoryForm">
+				<a class="dropdown-toggle" data-toggle="dropdown" role="button1" aria-expanded="false">추가<span class="caret"></span></a> 
+					<ul class="dropdown-menu" role="menu">
+		    		<!--forEach 반복문-->
+		    		<c:forEach items="${requestScope.mainCategoryList}" var="mainCategoryList">
+			   			<li role="presentation">
+			     		<!--라디오 버튼-->
+			    			<a role="menuitem" tabindex="-1">
+			    				<input type="radio" name="tap_category_add" value="${mainCategoryList.category}">
+			    				${mainCategoryList.category}
+			    			</a>
+			    		</li>
+		    		</c:forEach>
+		    		
+		    		<!--구분선-->
+		    		<li role="presentation" class="divider"></li>
+		    		<li role="presentation"><a role="menuitem" tabindex="-1" id="tap_addCategoryBtn" href="#">카테고리 추가하기</a></li>
+		    	</ul>
+			</li>
+		 
+		  <!--삭제하기 드롭다운-->
+			<li role="presentation" class="dropup" id="tap_deleteCategoryForm">
+			<a class="dropdown-toggle" data-toggle="dropdown" role="button2" aria-expanded="false">삭제<span class="caret"></span></a>
+		  		<ul class="dropdown-menu" role="menu" id="deleteDropDown">
+		    	</ul>
+			</li>
+		 </ol>
+		<br>
+	</div>
+	
+	<div class="col-md-12" align="center" style="border: solid 2px #e6e6e6; ">
+		<h4><a href="auth_beforeGoingRegistProduct.do?category_id=${requestScope.category_id}">
+			쇼핑 노트 쓰기
+		</a></h4>
+	</div>
+	
 	<br><br>
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="7" varStatus="status">
 		<div class="col-md-6">
@@ -315,23 +469,3 @@
 		</div>
 	</c:forEach>
 </div>
-
-<!-- 리스트에 순차적으로 접근하는 forEace문 -->
-<%-- <tr>
-	<td>${list.product_id}</td>
-	<c:choose>
-		<c:when test="${sessionScope.mvo!=null}">
-			<td><a href="hit.do?no=${list.product_id}">${list.product_name}</a></td>
-			<!-- 클릭시 조회수를 올리면서 글 내용을 봐야 하는데 이게 동시에 이루어 지면 글보기에서 새로고침시 조회수가 오른다 -->
-			<!-- 그래서 HitController를 먼저 들러서 조회수만 올린 뒤 showContent로 redirect하여 우회한다. -->
-		</c:when>
-		<c:otherwise>
-			<td>${list.product_name}</td>
-		</c:otherwise>
-	</c:choose>
-	<td>${list.review_score}</td>
-	<td>${list.regist_date}</td>
-	<td>${list.hits}</td>
-	<td>${list.likes}</td>
-	<td>${list.dislikes}</td>
-</tr> --%>
