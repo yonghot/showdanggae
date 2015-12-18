@@ -39,7 +39,7 @@ create table product (
 	review_score number default 0,
 	visiblity number default 0,
 	regist_date date not null,
-	thumbnail_link varchar2(100),
+	thumbnail_link varchar2(150) not null,
 	constraint fk_product_category_id foreign key(category_id) references member_category(category_id),
 	constraint fk_product_member_id foreign key(member_id) references member(member_id)
 );

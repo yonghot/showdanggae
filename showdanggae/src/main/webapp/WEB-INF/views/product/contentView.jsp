@@ -68,14 +68,7 @@
 	</div>
 	<div class="col-md-5">
 		<div class="thumbnail">
-			<c:choose>
-				<c:when test="${requestScope.productInfo.pvo.thumbnail_link==null}">
-					<img src="img/no_image.png" width="285">
-				</c:when>
-				<c:otherwise>
-					<img src="${requestScope.productInfo.pvo.thumbnail_link}" width="285">
-				</c:otherwise>
-			</c:choose>
+			<img src="${requestScope.productInfo.pvo.thumbnail_link}" width="285">
 		</div>
 	</div>
 	<form class="form-horizontal" role="form" action="beforeGoingUpdateProduct.do" id="registForm">

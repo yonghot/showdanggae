@@ -17,6 +17,7 @@ public class ProductVO {
 	private int currentCategory; //default 0
 	private String thumbnail_link;
 	private int lowestPrice;
+	private int rownum;
 	
 	public ProductVO() {
 		super();
@@ -26,7 +27,7 @@ public class ProductVO {
 			String product_name, int likes, int dislikes, int hits,
 			String review, int review_score, String detail, int visiblity,
 			String regist_date, int currentCategory, String thumbnail_link,
-			int lowestPrice) {
+			int lowestPrice, int rownum) {
 		super();
 		this.product_id = product_id;
 		this.category_id = category_id;
@@ -43,6 +44,7 @@ public class ProductVO {
 		this.currentCategory = currentCategory;
 		this.thumbnail_link = thumbnail_link;
 		this.lowestPrice = lowestPrice;
+		this.rownum = rownum;
 	}
 
 	public int getProduct_id() {
@@ -165,6 +167,14 @@ public class ProductVO {
 		this.lowestPrice = lowestPrice;
 	}
 
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductVO [product_id=" + product_id + ", category_id="
@@ -174,8 +184,10 @@ public class ProductVO {
 				+ review_score + ", detail=" + detail + ", visiblity="
 				+ visiblity + ", regist_date=" + regist_date
 				+ ", currentCategory=" + currentCategory + ", thumbnail_link="
-				+ thumbnail_link + ", lowestPrice=" + lowestPrice + "]";
+				+ thumbnail_link + ", lowestPrice=" + lowestPrice + ", rownum="
+				+ rownum + "]";
 	}
+
 	
 }
 

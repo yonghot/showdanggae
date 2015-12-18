@@ -20,11 +20,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<!-- 김용호 영역 -->
 		
-	<select id="getAllBoardList" resultType="pvo">
+	<select id="getAllProductList" resultType="pvo">
 	 	<![CDATA[
-	 		select product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link 
-	 		from (select rownum as product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link
-	 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link from product order by likes desc))
+	 		select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link 
+	 		from (select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link
+	 		from (select product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link from product order by product_id asc))
 	 	]]>
 		<!-- <where>
 			 <if test="value=='likes'">
