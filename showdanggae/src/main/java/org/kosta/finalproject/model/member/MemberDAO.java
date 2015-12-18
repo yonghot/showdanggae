@@ -40,6 +40,7 @@ public interface MemberDAO {
 	List<String> profileInterestList();
 	List<String> myinterestList(String member_id);
 	MemberVO infoUpdate(MemberVO vo);
+	void interestAdd(HashMap<String, String> add);
 
 
 }

@@ -85,7 +85,7 @@
 	          <img src="${initParam.root}img/showdanggae_explanation.png" width="150">
           </a></h2>
       </div>
-      <div class="col-md-offset-3 col-md-6">
+      <div class="col-md-offset-4 col-md-4">
           <form role="form">
               <div class="form-group">
                   <div class="input-group">
@@ -98,5 +98,6 @@
           </form>
           <span id=selectReport></span>
 <br>
+
       </div>
  </div>

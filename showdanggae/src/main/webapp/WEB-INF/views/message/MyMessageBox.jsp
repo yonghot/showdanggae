@@ -6,22 +6,29 @@
      $(document).ready(function(){
      	$("tr").click(function(){
  		
+     
  			$.ajax({
 				type:"get",
 				url:"auth_messageBoxContent.do?mno=" +$(this).children().eq(2).children().eq(1).val() + "&member_id=" +$(":input[name=member_id]").val(),
 				dataType:"json",
-				success:function(data){					
+				success:function(data){
+					
 					  if(data!=""){	
+					  
+						  
 						  $('.modal').modal({
 		                       remote :   $("#massage_title").html(data.title),
 		                       remote :   $("#massage_sender").html(data.sender),
 		                       remote :   $("#message-text").html(data.message)
-		                });				  
+		                });
+						 
+						  
 			            }
 				}
 			});
+
+ 
      	});
-     	
      	 
     });
          
@@ -37,38 +44,42 @@ th,td { font-size: 10pt; line-height: 160%; }
    
     <hr>
     <form id="messageForm">
-    <table class="table table-hover">
-    	<thead>
-	    	<tr>
-	    		<th>보낸이</th>
-	    		<th>제목</th>
-	    		<th>내용</th>
-	    		<th>날짜</th>
-	    		<th>읽음여부</th>
-	    	</tr>
-    	</thead>
-    	<tbody>
-	    	<c:forEach var="msvo" items="${requestScope.mlist.list}">	
-		    	<tr>
-		    		<td> ${msvo.sender }</td>
-		    		<td>${msvo.title }</td>
-		    		<td> 
-						<span class=shorttitle>${msvo.message}</span><input type="hidden"  name="mno" value="${msvo.mno}">
-		    		</td>     	
-		    		<td> ${msvo.send_date }</td>
-		    		<td>
-		  				<c:choose>
-							<c:when test="${msvo.read>0}">
-								O
-							</c:when>
-							<c:otherwise>
-								X
-							</c:otherwise>
-						</c:choose>
-					</td>
-		    	<tr>
-	    	</c:forEach>		
-    	</tbody>
+    <table class="table">
+    	<tr>
+    		<td>보낸이</td>
+    		<td>제목</td>
+    		<td>내용</td>
+    		<td>날짜</td>
+    		<td>읽음여부</td>
+    		<td>메세지 읽기</td>
+    	</tr>
+    	<c:forEach var="msvo" items="${requestScope.mlist.list}">	
+    	<tr>
+    		<td> ${msvo.sender }</td>
+    		<td>${msvo.title }</td>
+    		<td> 
+			<span class=shorttitle>${msvo.message}</span><input type="hidden"  name="mno" value="${msvo.mno}">
+    		</td>     	
+
+    	
+    		
+    		<td> ${msvo.send_date }</td>
+    		<td>
+  				<c:choose>
+					<c:when test="${msvo.read>0}">
+						O
+					</c:when>
+					<c:otherwise>
+						X
+					</c:otherwise>
+				</c:choose>
+			</td>
+   			<td>
+   			<a href="" class="btn btn-primary" data-toggle="modal"
+	data-target="#exampleModal" data-whatever="${mvo.member_id}">메세지읽기</a>
+   			</td>
+   			</tr>
+    	</c:forEach>		
     </table>
     
 <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}"> 
@@ -101,7 +112,7 @@ th,td { font-size: 10pt; line-height: 160%; }
 </div>
 
 																								
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
 aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
