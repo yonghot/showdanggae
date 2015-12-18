@@ -6,10 +6,7 @@
      $(document).ready(function(){
      	$("tr").click(function(){
  		
-     		$('.modal').on('show.bs.modal', function (e) {
-     			  // do something...
-     			})
-     		
+     
  			$.ajax({
 				type:"get",
 				url:"auth_messageBoxContent.do?mno=" +$(this).children().eq(2).children().eq(1).val() + "&member_id=" +$(":input[name=member_id]").val(),
@@ -19,7 +16,7 @@
 					  if(data!=""){	
 					  
 						  
-						  $('#exampleModal').modal({
+						  $('.modal').modal({
 		                       remote :   $("#massage_title").html(data.title),
 		                       remote :   $("#massage_sender").html(data.sender),
 		                       remote :   $("#message-text").html(data.message)
@@ -54,6 +51,7 @@ th,td { font-size: 10pt; line-height: 160%; }
     		<td>내용</td>
     		<td>날짜</td>
     		<td>읽음여부</td>
+    		<td>메세지 읽기</td>
     	</tr>
     	<c:forEach var="msvo" items="${requestScope.mlist.list}">	
     	<tr>
@@ -76,7 +74,11 @@ th,td { font-size: 10pt; line-height: 160%; }
 					</c:otherwise>
 				</c:choose>
 			</td>
-    	<tr>
+   			<td>
+   			<a href="" class="btn btn-primary" data-toggle="modal"
+	data-target="#exampleModal" data-whatever="${mvo.member_id}">메세지읽기</a>
+   			</td>
+   			</tr>
     	</c:forEach>		
     </table>
     

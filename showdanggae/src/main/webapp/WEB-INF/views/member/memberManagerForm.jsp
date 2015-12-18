@@ -16,16 +16,13 @@
  		
  	 	});
  		
- 		$('#exampleModal').on('show.bs.modal', function (event) {
- 			
- 			  var button = $(event.relatedTarget)
- 			  var recipient = button.data('whatever') 
- 			
- 			
+ 		$('#exampleModal').on('shown.bs.modal', function (event) {
+ 			  var button = $(event.relatedTarget) 
+ 			  var recipient = button.data('whatever')
+
  			  var modal = $(this)
  			  modal.find('.modal-title').text('New message to ' + recipient)
  			  modal.find('.modal-body input').val(recipient)
- 			 
  			})
 
   		$("#sendMessage").click(function(){
@@ -69,7 +66,7 @@
 				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>
 				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
 				data-whatever="${mvo.member_id}">메세지보내기</button></td>
-				
+
 				
 			</tr>	
 			</c:forEach>
