@@ -21,8 +21,8 @@ create table member_category (
 	category_id number primary key,
 	category varchar2(100) not null,
 	member_id varchar2(100) not null,
-	constraint fk_category_main foreign key(category) references main_category(category),
-	constraint fk_category_member_id foreign key(member_id) references member(member_id)
+	constraint fk_category_main foreign key(category) references main_category(category) ON DELETE CASCADE,
+	constraint fk_category_member_id foreign key(member_id) references member(member_id) ON DELETE CASCADE
 );
 
 drop table product cascade constraint;
@@ -39,7 +39,7 @@ create table product (
 	review_score number default 0,
 	visiblity number default 0,
 	regist_date date not null,
-	thumbnail_link varchar2(150) not null,
+	thumbnail_link clob not null,
 	constraint fk_product_category_id foreign key(category_id) references member_category(category_id),
 	constraint fk_product_member_id foreign key(member_id) references member(member_id)
 );
@@ -56,8 +56,8 @@ create table seller_link (
 	product_id number not null,
 	category_id number not null,
 	price number not null,
-	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id),
-	constraint fk_seller_link_category_id foreign key(category_id) references member_category(category_id),
+	constraint fk_seller_link_product_id foreign key(product_id) references product(product_id) ON DELETE CASCADE,
+	constraint fk_seller_link_category_id foreign key(category_id) references member_category(category_id) ON DELETE CASCADE,
 	constraint pk_seller_link primary key (link, product_id)
 );
 
@@ -67,10 +67,10 @@ create table eval_item (
 	product_id number not null,
 	category_id number not null,
 	item_point number default 0,
-	constraint fk_eval_item_item foreign key(item) references item(item),
-	constraint fk_eval_item_product_id foreign key(product_id) references product(product_id),
-	constraint fk_eval_item_category_id foreign key(category_id) references member_category(category_id),
-	constraint pk_eval_item primary key (item, product_id)
+	constraint fk_eval_item_item foreign key(item) references item(item) ON DELETE CASCADE,
+	constraint fk_eval_item_product_id foreign key(product_id) references product(product_id) ON DELETE CASCADE,
+	constraint fk_eval_item_category_id foreign key(category_id) references member_category(category_id) ON DELETE CASCADE,
+	constraint pk_eval_item primary key (item,product_id)
 );
 
 
@@ -98,7 +98,7 @@ create table qnaboard(
 	restep number default 0, 
 	relevel number default 0,
 	total number default 0,
-	constraint member_id foreign key(member_id) references member(member_id)
+	constraint member_id foreign key(member_id) references member(member_id) ON DELETE CASCADE
 );
 
 drop table qnacomment cascade constraint;
@@ -109,8 +109,8 @@ create table qnacomment(
 	member_id varchar2(100) not null,
 	replycomment clob not null,
 	commentdate date not null,
-	constraint no foreign key(no) references qnaboard(no),
-	constraint fk_qnacomment foreign key(member_id) references member(member_id)
+	constraint no foreign key(no) references qnaboard(no) ON DELETE CASCADE,
+	constraint fk_qnacomment foreign key(member_id) references member(member_id) ON DELETE CASCADE
 );
 
 drop table message cascade constraint;
@@ -122,7 +122,7 @@ create table message (
 	title varchar2(100) not null,
 	send_date date not null,
 	read number default 0,
-	constraint fk_message_member_id foreign key(member_id) references member(member_id)
+	constraint fk_message_member_id foreign key(member_id) references member(member_id) ON DELETE CASCADE
 );
 
 
@@ -131,8 +131,8 @@ create table follow(
 	following_date date not null,
 	following varchar2(100) not null,
 	follower varchar2(100) not null,
-	constraint fk_following_member_id foreign key(following) references member(member_id),
-	constraint fk_follower_member_id foreign key(follower) references member(member_id),
+	constraint fk_following_member_id foreign key(following) references member(member_id) ON DELETE CASCADE,
+	constraint fk_follower_member_id foreign key(follower) references member(member_id) ON DELETE CASCADE,
 	constraint pk_follow primary key(following, follower)
 );
 
@@ -141,9 +141,9 @@ drop table interest cascade constraint;
 create table interest (
 	category varchar2(100) not null,
 	member_id varchar2(100) not null,
-	constraint fk_interest_main foreign key(category) references main_category(category),
-	constraint fk_interest_member_id foreign key(member_id) references member(member_id),
-	constraint pk_interest primary key (category, member_id)
+	constraint fk_interest_main foreign key(category) references main_category(category)ON DELETE CASCADE ,
+	constraint fk_interest_member_id foreign key(member_id) references member(member_id) ON DELETE CASCADE ,
+	constraint pk_interest primary key (category, member_id) 
 );
 
 

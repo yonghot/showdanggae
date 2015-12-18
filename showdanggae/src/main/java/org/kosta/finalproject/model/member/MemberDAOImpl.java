@@ -156,9 +156,9 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public List<String> profileInterestList() {
+	public List<String> profileInterestList(String member_id) {
 		
-		return sqlSessionTemplate.selectList("member.profileInterestList");
+		return sqlSessionTemplate.selectList("member.profileInterestList",member_id);
 	}
 
 	@Override
@@ -177,6 +177,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public void interestAdd(HashMap<String, String> add) {
 		// 관심사 추가
 		sqlSessionTemplate.insert("member.interestAdd", add);
+	}
+
+	@Override
+	public void interestDel(HashMap<String, String> del) {
+		sqlSessionTemplate.delete("member.interestDel", del);
 	}
 
 }

@@ -37,10 +37,11 @@ public interface MemberDAO {
 	int followerCount(String member_id);
 	int followingCount(String member_id);
 	List<String> profileInterest(String member_id);
-	List<String> profileInterestList();
+	List<String> profileInterestList(String member_id);
 	List<String> myinterestList(String member_id);
 	MemberVO infoUpdate(MemberVO vo);
 	void interestAdd(HashMap<String, String> add);
+	void interestDel(HashMap<String, String> del);
 
 
 }

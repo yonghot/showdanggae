@@ -60,7 +60,7 @@ $(document).ready(function(){
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
 					    <div class="thumbnail">
 				${sessionScope.mvo.member_name} 님 로그인중
-					    <img src="https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xtf1/t51.2885-19/10948561_1404359156532776_1425325698_a.jpg" alt="..." class="img-circle">
+					  	<img src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>
 				 <br>
 				 
  					      <div class="caption">		

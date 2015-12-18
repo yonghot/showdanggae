@@ -232,9 +232,9 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public List<String> profileInterestList() {
+	public List<String> profileInterestList(String member_id) {
 		
-		return memberDAO.profileInterestList();
+		return memberDAO.profileInterestList(member_id);
 	}
 
 
@@ -257,6 +257,16 @@ public class MemberServiceImpl implements MemberService {
 		add.put("member_id", member_id);
 		add.put("category", category);
 		memberDAO.interestAdd(add);
+	}
+
+
+	@Override
+	public void interestDel(String member_id, String category) {
+		HashMap<String, String> del= new HashMap<String, String>();
+		del.put("member_id", member_id);
+		del.put("category", category);
+		memberDAO.interestDel(del);
+		
 	}
 	
 

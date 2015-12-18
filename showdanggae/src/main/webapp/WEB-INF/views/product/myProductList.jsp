@@ -170,6 +170,7 @@
 			$(".lowestPrice").eq(i).text(AddComma($(".lowestPrice").eq(i).text()));
 		}
 		
+		
 		var div = $(".thumbnailImgDiv"); // 이미지를 감싸는 div
 		var img = $(".thumbnailImg"); // 이미지
 		var divAspect = 200 / 285; // div의 가로세로비는 알고 있는 값이다
