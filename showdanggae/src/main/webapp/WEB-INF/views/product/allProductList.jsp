@@ -4,22 +4,42 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-	  
-	  if($(":input[name=rownum]").val()>2) {
-		  $(this).parent().hide();
-	  }
-	  
+	 
+	 var totalProductNum = "${requestScope.pvoList.size()}";
+	 var showedProductAtOnce = 2;
+	 var index;
+	 var noMoreProduct = false;
+	 
+	 for(var i=showedProductAtOnce;i<totalProductNum;i++) {
+		 $(".col-md-6").siblings().eq(i).hide();
+		 index = showedProductAtOnce;
+	 }
 	  
      //스크롤 이벤트 발생 시
      $(window).scroll(function() {
-        var documentHeight = $(document).height();
-        var scrollHeight = $(window).height()+$(window).scrollTop();
-
-        if (documentHeight <= scrollHeight) { //그냥 = 으로 해서 계속 안됐었음.. 주의합시다
-        	
-        	if($(":input[name=rownum]").val()>2){
-        		$(this).show();
-        	}
+    	 
+    	if(!noMoreProduct) {
+	        var documentHeight = $(document).height();
+	        var scrollHeight = $(window).height()+$(window).scrollTop();
+	
+	        if (documentHeight <= scrollHeight) { //그냥 = 으로 해서 계속 안됐었음.. 주의합시다
+	        	
+	        	for(var i=index;i<index+showedProductAtOnce;i++) {
+	       			$(".col-md-6").siblings().eq(i).show();
+	       	 	}
+	       		index += showedProductAtOnce;
+	       		
+	       		if(index>=totalProductNum) {
+			       	$("#main_row").append(
+			       		"<div class='col-md-12'>"+
+			       			"<div class='thumbnail productCard' align='center' style='border: solid 2px #e6e6e6; box-sizing : border-box;'>"+
+			       				"<font size='3'>더이상 출력할 상품 목록이 없습니다.</font>"+
+			       			"</div>"+
+			       		"</div>"
+			       	);
+			       	noMoreProduct = true;
+	       		}
+	       	}
         	
            /* for(var i=0;i<8;i++) {
               $("#main_row").append(

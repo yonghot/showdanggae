@@ -210,20 +210,6 @@ values(notice_seq.nextval,'공지사항입니다','관리자','방가방가',sys
 
 
 
-insert into qnaboard(no, member_id, title, writer, content, writedate) 
-values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', sysdate);
-insert into qnaboard(no, member_id, title, writer, content, writedate) 
-values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', sysdate);
-insert into qnaboard(no, member_id, title, writer, content, writedate) 
-values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', sysdate);
-insert into qnaboard(no, member_id, title, writer, content, writedate) 
-values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', sysdate);
-insert into qnaboard(no, member_id, title, writer, content, writedate) 
-values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', sysdate);
-insert into qnaboard(no, member_id, title, writer, content, writedate) 
-values(qna_seq.nextval, 'java','이 서비스는 도대체','김용호', '언제 개발 완료 되는거죠?', sysdate);
-
-
 insert into message(member_id,message,sender,title,send_date,mno)
 values ('java', '두번째메세지test', '관리자', 'test1', sysdate, message_seq.nextval);
 insert into message(member_id,message,sender,title,send_date,mno)
