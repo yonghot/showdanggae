@@ -96,25 +96,8 @@
                   </div>
               </div>
           </form>
-<<<<<<< HEAD
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-=======
           <span id=selectReport></span>
 <br>
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
+
       </div>
  </div>
