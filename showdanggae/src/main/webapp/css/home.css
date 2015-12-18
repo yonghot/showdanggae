@@ -276,7 +276,7 @@ th {
   }
   .table td,
   .table th {
-    background-color: #fff !important;
+    background-color: white !important;
   }
   .table-bordered th,
   .table-bordered td {

@@ -6,8 +6,8 @@
 
 	$(document).ready(function(){
 		
-		$("#moveToHomeBtn").click(function(){
-			location.href="home.do";
+		$("#moveToMyProductListBtn").click(function(){
+			location.href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=${requestScope.productInfo.pvo.category_id}";
 		});
 		
 		function AddComma(data_value) {
@@ -117,7 +117,7 @@
 				</tr>
 				<tr>
 					<td colspan="5" align="center">
-						<button type="button" id="moveToHomeBtn" class="btn btn-info btn-md">목록</button>
+						<button type="button" id="moveToMyProductListBtn" class="btn btn-info btn-md">목록</button>
 					</td>
 				</tr>
 			</tbody>
