@@ -86,7 +86,7 @@
  -->
 <bean id="uploadPath" class="java.lang.String" >
  <constructor-arg>
-  <value>C:\\java-kosta\\finalproject\\upload\\</value><!-- value가 여기 붙어있어야 한다 -->
+  <value>C:\\Users\\kosta\\git\\showdanggae\\showdanggae\\src\\main\\webapp\\upload\\</value><!-- value가 여기 붙어있어야 한다 -->
  </constructor-arg>
 </bean>
 
