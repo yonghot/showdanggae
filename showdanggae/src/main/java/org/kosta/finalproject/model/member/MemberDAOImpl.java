@@ -181,4 +181,10 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSessionTemplate.delete("member.interestDel", del);
 	}
 
+	@Override
+	public int productCount(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("member.productCount", member_id);
+	}
+
 }
