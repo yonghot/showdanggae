@@ -395,9 +395,7 @@ public class MemberController {
 	public HashMap<String, String> profileInfo(String member_id) {
 	
 		HashMap<String, String> proInfo =new  HashMap<String, String>();
-		//내 게시물수
-		
-		//팔로워 팔로잉 수 + 나의관심사
+		//내 게시물수 팔로워 팔로잉 수 + 나의관심사
 		proInfo=memberService.proCount(member_id);
 		return proInfo;
 	}
