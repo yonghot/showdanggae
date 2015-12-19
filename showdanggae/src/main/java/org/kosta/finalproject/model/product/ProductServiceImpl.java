@@ -1,6 +1,7 @@
 package org.kosta.finalproject.model.product;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,8 +37,6 @@ public class ProductServiceImpl implements ProductService {
 		for(int i=0;i<pvoList.size();i++){
 			pvoList.get(i).setLowestPrice(productDAO.getLowestPriceByProductId(pvoList.get(i).getProduct_id()));
 		}
-		
-		System.out.println(pvoList);
 		
 		return pvoList;
 	}
@@ -160,7 +159,34 @@ public class ProductServiceImpl implements ProductService {
 		int result=productDAO.updateReport(word);
 		if(result==0)
 			productDAO.insertReport(word);			
-}	
+}
+
+	@Override
+	public List<ProductVO> getAllProductListByCategory(String sortBy) {
+		
+		List<String> categoryIdList = productDAO.getCategoryIdByCategory(sortBy);
+		
+		System.out.println("categoryIdList: "+categoryIdList);
+		System.out.println(categoryIdList.get(0));
+
+		List<ProductVO> productListOfListByCategoryId = new ArrayList<ProductVO>();
+		List<ProductVO> productListByCategoryId = new ArrayList<ProductVO>();
+		for(int i=0;i<categoryIdList.size();i++) {
+			try {
+				productListOfListByCategoryId = (List<ProductVO>) productDAO.getAllProductListByCategoryId(categoryIdList.get(i)).get(i);
+				System.out.println("productListOfListByCategoryId: "+productListOfListByCategoryId);
+			} catch(IndexOutOfBoundsException ie) {
+				productListByCategoryId = null;
+				break;
+			}
+			
+			for(int j=0;j<productListOfListByCategoryId.size();j++){
+				productListByCategoryId.add((ProductVO) productListOfListByCategoryId.get(j));
+			}
+		}
+		
+		return productListByCategoryId;
+	}	
 }
 
 

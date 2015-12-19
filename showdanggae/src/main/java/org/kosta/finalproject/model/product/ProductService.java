@@ -17,5 +17,6 @@ public interface ProductService {
 	public List<ProductVO> selectReport() throws SQLException;	//검색어 순위
 	public void saveReport(String word) throws SQLException;
 	public List<ProductVO> searchProductList(String sortBy);
+	public List<ProductVO> getAllProductListByCategory(String sortBy);
 	
 }
