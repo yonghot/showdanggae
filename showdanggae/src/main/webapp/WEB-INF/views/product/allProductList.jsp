@@ -77,6 +77,12 @@
 		}).on("mouseout",".productCard", function(){
 			$(this).css("border","solid 2px #e6e6e6");
 		});//on
+		
+		
+		$(".categorySelectLink").click(function(){
+			alert($(this).children().val()+" 카테고리에 속하는 제품만 출력됩니다.");
+			//location.href="getAllProductListByCategory.do?sortBy="+$(this).children().val();
+		});
      
   });
   
@@ -95,19 +101,22 @@
     
 
 <div class="col-md-8">
-	<div align="right">
-		<ul class="dropdown-menu" role="menu">
-	   		<!--forEach 반복문-->
-	   		<c:forEach items="${requestScope.mainCategoryList}" var="mainCategoryList">
-	   			<li role="presentation">
-	     		<!--라디오 버튼-->
-	    			<a role="menuitem" tabindex="-1">
-	    				<input type="radio" name="tap_category_add" value="${mainCategoryList.category}">
-	    				${mainCategoryList.category}
-	    			</a>
-	    		</li>
-	   		</c:forEach>
-	   	</ul>
+	<div align="left">
+		<button role="presentation" class="dropup" id="tap_addCategoryForm">
+			<a class="dropdown-toggle" data-toggle="dropdown" role="button1" aria-expanded="false">카테고리별 보기 <span class="caret"></span></a> 
+				<ul class="dropdown-menu" role="menu">
+	    		<!--forEach 반복문-->
+	    		<c:forEach items="${requestScope.mainCategoryList}" var="mainCategoryList">
+		   			<li role="presentation">
+		     		<!--라디오 버튼-->
+		    			<a class="categorySelectLink" role="menuitem" tabindex="-1">
+		    				<input type="radio" name="tap_category_add" value="${mainCategoryList.category}">
+		    				${mainCategoryList.category}
+		    			</a>
+		    		</li>
+	    		</c:forEach>
+	    	</ul>
+		</button>
 	</div>
     <hr>
     <div class="row" id="main_row">

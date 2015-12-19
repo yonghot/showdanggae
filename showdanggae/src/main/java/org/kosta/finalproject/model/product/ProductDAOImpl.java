@@ -129,4 +129,12 @@ public class ProductDAOImpl implements ProductDAO {
 	public int updateReport(String word) throws SQLException {
 		return sqlSessionTemplate.update("product.updateReport",word);
 	}
+	@Override
+	public List<ProductVO> getAllProductListByCategoryId(String category_id) {
+		return sqlSessionTemplate.selectList("product.getAllProductListByCategoryId",category_id);
+	}
+	@Override
+	public List<String> getCategoryIdByCategory(String sortBy) {
+		return sqlSessionTemplate.selectList("product.getCategoryIdByCategory",sortBy);
+	}
 }

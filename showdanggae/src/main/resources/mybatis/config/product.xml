@@ -14,20 +14,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 		from (select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link
 	 		from (select product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link from product order by product_id asc))
 	 	]]>
-		<!-- <where>
-			 <if test="value=='likes'">
-				<![CDATA[
-					from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by likes desc))
-				]]>
-			 </if> 
-			 <if test="value=='maker'">
-			 	<![CDATA[
-			 		from (select category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits from product order by product_id asc))
-	 				where member_id=#{member_id} and category_id=#{currentCategory}
-				]]> 
-			 </if>
-		</where> -->
 	</select>
+	
+	<select id="getAllProductListByCategoryId" resultType="pvo">
+	 	<![CDATA[
+	 		select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link 
+	 		from (select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link
+	 		from (select product_id, category_id, member_id, likes, dislikes, review_score, product_name, regist_date, hits, thumbnail_link from product 
+	 		where category_id=#{value}
+	 		order by product_id asc))
+	 	]]>
+	</select>
+	
 	<select id="searchProductList" resultType="pvo">
 	 	<![CDATA[
 	 		select rownum, product_id, category_id, member_id, likes, dislikes, review_score, product_name, to_char(regist_date, 'yyyy.mm.dd') as regist_date, hits, thumbnail_link 
@@ -158,9 +156,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</delete>
 	
-	<select id="getCategoryIdByProductId" resultType="int">
+	<select id="getCategoryIdByCategory" resultType="java.lang.String">
 		<![CDATA[
-			select category_id from product where product_id=#{value}
+			select category_id from member_category where category=#{value}
 	 	]]>
 	</select>
 	
