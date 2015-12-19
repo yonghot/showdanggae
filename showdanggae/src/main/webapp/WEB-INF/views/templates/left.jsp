@@ -4,6 +4,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$.ajax({
 		type:"get",
 		url:"profileInfo.do?member_id=${sessionScope.mvo.member_id}",
@@ -60,7 +61,18 @@ $(document).ready(function(){
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
 					    <div class="thumbnail">
 				${sessionScope.mvo.member_name} 님 로그인중
-					  	<img src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>
+				
+  							<c:import url="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" var="imgSrc" />
+												
+						<c:choose>
+						  <c:when test="${empty imgSrc}">
+						  <img  src="${initParam.root }upload/profile.jpg" class="img-circle" width=400px, height=400px>
+						  </c:when>
+						  <c:otherwise>
+					  	<img  src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>	
+					
+						  </c:otherwise>
+						</c:choose>
 				 <br>
 				 
  					      <div class="caption">		
@@ -68,7 +80,7 @@ $(document).ready(function(){
 					<ol class="breadcrumb">
   					<li class="active">게시글</li>
  					 <li class="active">팔로잉</li>
-  					<li class="active">팔로우</li>
+  					<li class="active">팔로워</li>
   					&nbsp;&nbsp;<li><span id="boardcount"></span></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  					 <li><span id="followingcount"></span></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   					<li><span id="followcount"></span></li>

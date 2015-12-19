@@ -6,7 +6,8 @@
 	$(document).ready(function(){	
 		//모달창 뜨기 전 발생하는 이벤트
 		$('#searchIdView1').on('click','.followingIdBtn',function(){
-			$('#recipient-name').val($(this).text());
+			$('.클래스명').html("");
+			//$('#recipient-name').val($(this).text());
 		});
 		$('#searchIdView1').on('click','.followerIdBtn',function(){
 			$('#recipient-name').val($(this).text());
@@ -68,10 +69,21 @@
 							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
 							/* index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 							"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
-							index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
+
+							index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].following+
 							"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
+
 						}
-						
+					/*     <div class="btn-group">
+						   <button class="btn">행동</button>
+						   <button class='btn dropdown-toggle' data-toggle='dropdown'>
+						     <span class='caret'></span>
+						   </button>
+						   <ul class='dropdown-menu'>
+						   <a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>메세지 보내기</a>
+						 
+						   </ul>
+						 </div>  */
 						index+="<tbody></table>"
 							$("#searchIdView").html("");	
 						$("#searchIdView1").html(index);
@@ -169,9 +181,9 @@
 							 }else if(data[i].member_id=="admingalbage"){
 									index +="";
 							 }else if(data[i].isFollow==true){
-								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
 							}else{
-								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";						
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";						
 							}
 						}
 						index+="</table>";
@@ -202,8 +214,10 @@
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
 							/* 	index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
-								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
+
+								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
+
 							}
 							index+="<tbody></table>"
 								$("#searchIdView").html("");	
@@ -231,7 +245,7 @@
 							for(var i=0; i<data.length;i++){
 								
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].follower+"</a></td></tr>";
-								index += "<tr><td><a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].follower+
+								index += "<tr><td><a href='#'class='followerIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].follower+
 								"<form><input type='hidden' value="+data[i].follower+"></form></a></td></tr>";
 							}
 							index+="</tbody></table>"
@@ -244,6 +258,7 @@
 						}		
 				});//ajax
 		   });  	  
+	
 	/* function onKeyup(){
 		var min = $("#inputId3").val();
 		 $.ajax({
@@ -305,8 +320,8 @@
 		<span id="searchIdView1"></span>
 	</c:if>
 </div>
- <div class="modal fade"  aria-hidden="true" id="exampleModal" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade"  aria-hidden="true" id="example2Modal" tabindex="-1" role="dialog"
+	aria-labelledby="example2ModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -314,7 +329,7 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="exampleModalLabel">메세지</h4>
+				<h4 class="modal-title" id="example2ModalLabel">메세지</h4>
 			</div>
 			<div class="modal-body">
 				<form action="sendMessage1.do" id="sendForm">
@@ -345,7 +360,6 @@
 		</div>
 	</div>
 </div>
-
  
 
 
