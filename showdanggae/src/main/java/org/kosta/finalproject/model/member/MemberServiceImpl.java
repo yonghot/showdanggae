@@ -177,7 +177,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void addFollow(FollowVO fvo) {
-		//System.out.println(fvo);
 		memberDAO.addFollow(fvo);
 	}
 	

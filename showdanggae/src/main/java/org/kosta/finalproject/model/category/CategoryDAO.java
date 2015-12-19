@@ -21,7 +21,6 @@ public interface CategoryDAO {
 	public List<CategoryVO> getMainCategoryList();
 	public List<CategoryVO> getMemberCategoryList(String member_id);
 	public void addInterest(String interest);
-	public CategoryVO getProductCountNumber(int category_id);
-	
+	public int getProductCountNumber(int category_id);
 
 }

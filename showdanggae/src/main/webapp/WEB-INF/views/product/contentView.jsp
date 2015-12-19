@@ -117,7 +117,7 @@
 				</tr>
 				<tr>
 					<td colspan="5" align="center">
-						<button type="button" id="moveToHomeBtn" class="btn btn-info btn-md">목록</button>
+						<button type="button" id="moveToHomeBtn" class="btn btn-info btn-md">홈으로</button>
 					</td>
 				</tr>
 			</tbody>

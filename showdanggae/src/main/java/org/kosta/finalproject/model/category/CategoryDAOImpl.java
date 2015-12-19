@@ -58,7 +58,8 @@ public class CategoryDAOImpl implements CategoryDAO{
 		sqlSessionTemplate.insert("category.addInterest", interest);
 	}
 	@Override
-	public CategoryVO getProductCountNumber(int category_id) {
+	public int getProductCountNumber(int category_id) {
+		System.out.println(sqlSessionTemplate.selectOne("category.getProductCountNumber", category_id));
 		return sqlSessionTemplate.selectOne("category.getProductCountNumber", category_id);
 	}
 	

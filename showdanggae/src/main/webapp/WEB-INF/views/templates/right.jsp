@@ -1,13 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 <!-- 자동완성 sheet -->
 <script type="text/javascript">
 	$(document).ready(function(){	
+		//모달창 뜨기 전 발생하는 이벤트
+		$('#searchIdView1').on('click','.followingIdBtn',function(){
+			$('#recipient-name').val($(this).text());
+		});
+		$('#searchIdView1').on('click','.followerIdBtn',function(){
+			$('#recipient-name').val($(this).text());
+		});
+		$('#searchIdView').on('click','.findMemberByIdBtn',function(){
+			$('#recipient-name').val($(this).text());
+		});
+	$("#sendMessage").click(function(){		
+ 			if(confirm('메세지를 보내시겠습니까?')==true){			
+ 				$("#sendForm").submit();
+ 			}else{
+ 				return false;
+ 			}
+ 			
+ 		}); 
 	//var quick_menu = $('#quick').offset().top;
 	
 	var boxtop = $('#quick');
@@ -23,13 +37,14 @@
 		 $('#searchIdView1').on('click','.messagePopBtn1',function(){
 			 var id=$(this).children().children().val();
 				if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
-					 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
-				"resizable=true,toolbar=no,width=300,height=300,left=200,top=200"); 
-					}else{
+				 	 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
+				"resizable=true,toolbar=no,width=300,height=300,left=200,top=200");  
+					
+				}else{
 						return false;
 					}
-		   });	 */
-		//팔로우 이름 클릭시 발동 되는 이벤트
+		   }); */	 
+	/* 	//팔로우 이름 클릭시 발동 되는 이벤트
 		 $('#searchIdView1').on('click','.messagePopBtn2',function(){
 			 var id=$(this).children().children().val();
 				if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
@@ -38,7 +53,35 @@
 					}else{
 						return false;
 					}
-		   });	
+		   });	 */
+		   $.ajax({
+				type:"POST",
+				url:"auth_findFollowingId.do",
+				data:"member_id=${mvo.member_id}",
+				dataType:"json",
+				success:function(data){
+					var followingId="";
+					var index="<table class='table'><thead>";
+					if(data!=""){
+						index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
+						for(var i=0; i<data.length;i++){		
+							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
+							/* index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
+							"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
+							index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
+							"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
+						}
+						
+						index+="<tbody></table>"
+							$("#searchIdView").html("");	
+						$("#searchIdView1").html(index);
+			  	   }else{
+			  		 $("#searchIdView").html("");
+			  		 $("#searchIdView1").html("");
+			  	   }
+					
+					}	
+			});//ajax
 		$("#searchIdView").on('click','.messagePopBtn3',function(){ 
 			var follow = $(this).val();
 			/* var id = $("#followForm").parent().siblings().text(); */
@@ -121,16 +164,14 @@
 					 if(data!=""){		
 						 index +="<tr class='success'><td>ID</td><td></td></tr></thead><tbody>";
 						for(var i=0; i<data.length;i++){	
-							alert(data[i].member_id);
-							alert(data[i].isFollow);
-							if(data[i].member_id=='${sessionScope.mvo.member_id}'){
+							if(data[i].member_id=='${sessionScope.mvo.member_id}'&&data[i].member_id!="admingalbage"){
 								index +="<tr><td>"+data[i].member_id+"</td><td></td></tr>";
 							 }else if(data[i].member_id=="admingalbage"){
-									
+									index +="";
 							 }else if(data[i].isFollow==true){
-								index +="<tr><td>"+data[i].member_id+"</td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
 							}else{
-								index +="<tr><td>"+data[i].member_id+"</td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";						
 							}
 						}
 						index+="</table>";
@@ -161,7 +202,7 @@
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
 							/* 	index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
-								index += "<tr><td><a href='#exampleModal' data-toggle='modal'>"+data[i].following+
+								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
 							}
 							index+="<tbody></table>"
@@ -175,32 +216,6 @@
 						}		
 				});//ajax
 		   }); 
-		 
-		   $.ajax({
-				type:"POST",
-				url:"auth_findFollowingId.do",
-				data:"member_id=${mvo.member_id}",
-				dataType:"json",
-				success:function(data){
-					var index="<table class='table'><thead>";
-					if(data!=""){
-						index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
-						for(var i=0; i<data.length;i++){		
-							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
-							index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
-							"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>";
-						}
-						
-						index+="<tbody></table>"
-							$("#searchIdView").html("");	
-						$("#searchIdView1").html(index);
-			  	   }else{
-			  		 $("#searchIdView").html("");
-			  		 $("#searchIdView1").html("");
-			  	   }
-					
-					}		
-			});//ajax
 		   //팔로워 버튼 클릭시 팔로우 아이디
 		   $("#followerBtn").click(function(event){
 			   event.preventDefault();
@@ -216,8 +231,8 @@
 							for(var i=0; i<data.length;i++){
 								
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].follower+"</a></td></tr>";
-								index += "<tr><td><a href='#'><span class='messagePopBtn2'>"+data[i].follower+
-								"<form><input type='hidden' value="+data[i].follower+"></form></span></a></td></tr>";
+								index += "<tr><td><a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].follower+
+								"<form><input type='hidden' value="+data[i].follower+"></form></a></td></tr>";
 							}
 							index+="</tbody></table>"
 								$("#searchIdView").html("");
@@ -290,32 +305,7 @@
 		<span id="searchIdView1"></span>
 	</c:if>
 </div>
-<%-- <a href="" class="btn btn-primary" data-toggle="modal"
-	data-target="#exampleModal" data-whatever="${mvo.member_id}">메세지보내기</a> --%>
-<%-- <!--  data-offset-top="400" -->
-<c:if test="${!empty sessionScope.mvo && sessionScope.mvo.member_id!='admingalbage'}">
-<div class="quick" data-spy="scroll" style='position:absolute; top: 200px;' >
-
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a id="alarm" class="collapsed"  data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" >
-          
-        </a>
-      </h4>
-    		  <div id="alarmcount"></div>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body" id="realarm">
-      </div>
-      </div>
-    </div>
-</div>
-  </div>
-   </c:if> --%>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+ <div class="modal fade"  aria-hidden="true" id="exampleModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -324,39 +314,39 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="exampleModalLabel">New message</h4>
+				<h4 class="modal-title" id="exampleModalLabel">메세지</h4>
 			</div>
 			<div class="modal-body">
-				<form action="sendMessage.do" id="sendForm">
+				<form action="sendMessage1.do" id="sendForm">
 					<!-- sendMessage.do -->
 					<div class="form-group">
-						<label for="recipient-name" class="control-label">Recipient:</label>
-						<input type="text" class="form-control" id="recipient-name" value="${requestScope.recipient}"
-							name="member_id">
-
+						<label for="recipient-name" class="control-label">받는사람</label>
+						<input type="text" class="form-control" id="recipient-name" 
+							name="member_id" readonly="readonly">
 					</div>
 					<div class="form-group">
-						<label for="message-title" class="control-label">title:</label> <input
+						<label for="message-title" class="control-label">제목</label> <input
 							type="text" class="form-control" id="message-text"
 							placeholder="제목" name="title">
 					</div>
 					<div class="form-group">
-						<label for="message-text" class="control-label">Message:</label>
+						<label for="message-text" class="control-label">메세지</label>
 						<textarea class="form-control" id="message-text"
 							placeholder="보낼내용" name="message"></textarea>
 					</div>
-					<input type="hidden" value="${sessionScope.mvo.member_name}"
+					<input type="hidden" value="${sessionScope.mvo.member_id}"
 						name="sender">
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary" id="sendMessage">보내기</button>
+				<button type="submit" class="btn btn-primary" id="sendMessage">보내기</button>
 			</div>
 		</div>
 	</div>
 </div>
 
+ 
 
 
 

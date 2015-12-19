@@ -71,7 +71,6 @@ public class MemberController {
 
 	@RequestMapping("registerF5.do")
 	public ModelAndView registerF5(String member_name) {
-		System.out.println(member_name);
 		return new ModelAndView("member_registerokview", "member_name",
 				member_name);
 	}
@@ -296,7 +295,6 @@ public class MemberController {
 	@ResponseBody
 	public void addFollow(FollowVO fvo, HttpServletRequest request)
 			throws Exception {
-
 		memberService.addFollow(fvo);
 	}
 
@@ -324,9 +322,7 @@ public class MemberController {
 	@RequestMapping("auth_findFollowingId.do")
 	@ResponseBody
 	public List<FollowVO> findFollowingId(String member_id) throws Exception {
-		// System.out.println(member_id);
 		List<FollowVO> list = memberService.findFollowingId(member_id);
-		// System.out.println(list);
 		// return new ModelAndView("follow_followingid", "followingList", list);
 		return list;
 	}
@@ -371,7 +367,6 @@ public class MemberController {
 	public List<FollowVO> fAlarm(String following) {
 		// 현재시간부터 - 어제 까지 나를 팔로잉한 사람 목록을 알림으로 가져다 줌
 		List<FollowVO> fvo = memberService.fAlarm(following);
-		// System.out.println(fvo);
 		return fvo;
 	}
 

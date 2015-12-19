@@ -15,5 +15,7 @@ public interface ProductService {
 	public int getCategoryIdByProductId(int product_id);
 	public List<ProductVO> getMyProductList(String member_id, String currentCategory);
 	public List<ProductVO> selectReport() throws SQLException;	//검색어 순위
+	public void saveReport(String word) throws SQLException;
+	public List<ProductVO> searchProductList(String sortBy);
 	
 }

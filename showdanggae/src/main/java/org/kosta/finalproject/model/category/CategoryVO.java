@@ -1,7 +1,7 @@
 package org.kosta.finalproject.model.category;
 
 public class CategoryVO {
-	private String category_id;
+	private int category_id;
 	private String member_id;
 	private String category;
 	private String interest;
@@ -9,7 +9,7 @@ public class CategoryVO {
 	public CategoryVO() {
 		super();
 	}
-	public CategoryVO(String category_id, String member_id, String category,
+	public CategoryVO(int category_id, String member_id, String category,
 			String interest, int productCountNumber) {
 		super();
 		this.category_id = category_id;
@@ -18,10 +18,10 @@ public class CategoryVO {
 		this.interest = interest;
 		this.productCountNumber = productCountNumber;
 	}
-	public String getCategory_id() {
+	public int getCategory_id() {
 		return category_id;
 	}
-	public void setCategory_id(String category_id) {
+	public void setCategory_id(int category_id) {
 		this.category_id = category_id;
 	}
 	public String getMember_id() {

@@ -32,7 +32,6 @@ public class ProductController {
 	@RequestMapping(value = "auth_addCategory.do", method = RequestMethod.POST)
 	public List<CategoryVO> addCategory(String category, String member_id) {
 		System.out.println("추가한다 : "+category+" "+member_id);
-		
 		categoryService.addMyCategory(category, member_id);
 		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
 		return lvo;
@@ -44,9 +43,9 @@ public class ProductController {
 	@RequestMapping(value = "auth_deleteProductListAndCategory.do", method = RequestMethod.POST)
 	public List<CategoryVO> deleteProductListAndCategory(int category_id, String member_id) {
 		System.out.println("삭제한다 : "+member_id+" "+category_id);
-
 		categoryService.deleteProductList(category_id);
 		List<CategoryVO> lvo = categoryService.getMemberCategoryList(member_id);
+		System.out.println(lvo);
 		return lvo;
 	}
 
@@ -56,20 +55,27 @@ public class ProductController {
 			categoryService.addInterest(interest);
 	}
 	
-	// 해당 category아래의 product count를 세어온다.
-	@ResponseBody
-	@RequestMapping(value="auth_getProductCountNumber.do", method = RequestMethod.POST)
-	public ModelAndView getProdeuctCountNumber(int category_id, CategoryVO ccvo) {
-		System.out.println(category_id+"의 상품수를 세어온다");
-		ModelAndView cmv = new ModelAndView("product_myProductList");
-		cmv.addObject("productCountNumber", categoryService.getProductCountNumber(category_id));
-		System.out.println(cmv+"개");
-		return cmv;
-	}
-	
 	
 	// 김용호 영역
-	// 로그인 상태일때, 내가 추가해 놓은 상품 리스트가 표시된다.
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "getMemberCategoryList.do", method = RequestMethod.POST)
+	public List<CategoryVO> getMemberCategoryList(String member_id) {
+		return categoryService.getMemberCategoryList(member_id);
+	}
+	
+	// getAllProductList
+	@RequestMapping(value = {"getAllProductList.do", "home.do"})
+	public ModelAndView getAllBoardList(String sortBy) throws Exception {
+		ModelAndView mv = new ModelAndView("product_allProductList");
+
+		mv.addObject("pvoList", productService.getAllProductList(sortBy));
+		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
+		
+		return mv;
+	}
+	
 	@RequestMapping("auth_getMyProductList.do")
 	public ModelAndView getMyProductList(String member_id, String currentCategory) throws Exception {
 
@@ -83,12 +89,11 @@ public class ProductController {
 		return mv;
 	}
 
-	// getAllProductList
-	@RequestMapping(value = {"getAllProductList.do", "home.do"})
-	public ModelAndView getAllBoardList(String sortBy) throws Exception {
-		return new ModelAndView("product_allProductList", "pvoList", productService.getAllProductList(sortBy));
+	@RequestMapping(value = {"searchProductList.do"})
+	public ModelAndView searchProductList(String sortBy) throws Exception {
+		return new ModelAndView("product_searchProductList", "spvoList", productService.searchProductList(sortBy));
 	}
-
+	
 	// beforeGoingRegistProduct
 	@RequestMapping("auth_beforeGoingRegistProduct.do")
 	public ModelAndView beforeGoingRegistProduct(String category_id)
@@ -170,20 +175,17 @@ public class ProductController {
 	/**
 	 * 	검색어 순위 
 	 */
-	/*@RequestMapping("selectReport.do")
-	public ModelAndView selectReport() throws Exception {
-		//ModelAndView mv = new ModelAndView();
-		List<ProductVO> list = productService.selectReport();
-		//System.out.println(list);
-		//mv.addObject("reportList", list);
-		//return mv;
-		return new ModelAndView("product_report_result","reportList", list);
-	}*/
 	@RequestMapping("selectReport.do")
 	@ResponseBody
-	public List selectReport() throws Exception {
+	public List selectReport(String word) throws Exception {
 		List<ProductVO> list = productService.selectReport();
 		return list;
+	}
+	
+	@RequestMapping("saveReport.do")
+	@ResponseBody
+	public void saveReport(String word) throws Exception {
+		productService.saveReport(word);
 	}
 }
 
