@@ -44,4 +44,8 @@ public interface ProductDAO {
 
 	public void insertReport(String word) throws SQLException;	
 	public int updateReport(String word) throws SQLException;
+
+	List<ProductVO> getAllProductListByCategoryId(String category_id);
+
+	List<String> getCategoryIdByCategory(String sortBy);
 }
