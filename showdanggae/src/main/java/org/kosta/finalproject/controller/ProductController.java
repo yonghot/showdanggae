@@ -69,10 +69,28 @@ public class ProductController {
 	@RequestMapping(value = {"getAllProductList.do", "home.do"})
 	public ModelAndView getAllBoardList(String sortBy) throws Exception {
 		ModelAndView mv = new ModelAndView("product_allProductList");
-
+		
 		mv.addObject("pvoList", productService.getAllProductList(sortBy));
 		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
 		
+		return mv;
+	}
+	
+	// getAllProductList
+	@RequestMapping("getAllProductListByCategory.do")
+	public ModelAndView getAllProductListByCategoryId(String sortBy) throws Exception {
+		ModelAndView mv = new ModelAndView("product_allProductList");
+		
+		List<ProductVO> pvoList = productService.getAllProductListByCategory(sortBy);
+		
+		if(pvoList==null) {
+			System.out.println("pvoList가 null이넹");
+		}
+		
+		mv.addObject("pvoList", pvoList);
+		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
+		
+		System.out.println(pvoList);
 		return mv;
 	}
 	
@@ -177,7 +195,7 @@ public class ProductController {
 	 */
 	@RequestMapping("selectReport.do")
 	@ResponseBody
-	public List selectReport(String word) throws Exception {
+	public List<ProductVO> selectReport(String word) throws Exception {
 		List<ProductVO> list = productService.selectReport();
 		return list;
 	}
