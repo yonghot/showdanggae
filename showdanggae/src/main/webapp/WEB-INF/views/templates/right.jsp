@@ -6,7 +6,8 @@
 	$(document).ready(function(){	
 		//모달창 뜨기 전 발생하는 이벤트
 		$('#searchIdView1').on('click','.followingIdBtn',function(){
-			$('#recipient-name').val($(this).text());
+			$('.클래스명').html("");
+			//$('#recipient-name').val($(this).text());
 		});
 		$('#searchIdView1').on('click','.followerIdBtn',function(){
 			$('#recipient-name').val($(this).text());
@@ -68,10 +69,20 @@
 							//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
 							/* index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 							"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
-							index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
-							"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
+							 index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
+							"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>"; 
+							
 						}
-						
+					/*     <div class="btn-group">
+						   <button class="btn">행동</button>
+						   <button class='btn dropdown-toggle' data-toggle='dropdown'>
+						     <span class='caret'></span>
+						   </button>
+						   <ul class='dropdown-menu'>
+						   <a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>메세지 보내기</a>
+						 
+						   </ul>
+						 </div>  */
 						index+="<tbody></table>"
 							$("#searchIdView").html("");	
 						$("#searchIdView1").html(index);
@@ -202,8 +213,8 @@
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
 							/* 	index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
-								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
-								"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
+								index += "<tr><td><a href='#'class='followingIdBtn'>"+data[i].following+
+								"<span class=''></span><form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
 							}
 							index+="<tbody></table>"
 								$("#searchIdView").html("");	
@@ -244,6 +255,7 @@
 						}		
 				});//ajax
 		   });  	  
+	
 	/* function onKeyup(){
 		var min = $("#inputId3").val();
 		 $.ajax({
@@ -345,7 +357,6 @@
 		</div>
 	</div>
 </div>
-
  
 
 
