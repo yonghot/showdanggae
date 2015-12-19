@@ -178,10 +178,6 @@ insert into main_category(category) values('카메라');
 insert into main_category(category) values('화장품');
 
 
-insert into member_category(category_id, category, member_id) values('1', '노트북','java');
-insert into member_category(category_id, category, member_id) values('2', '화장품','java');
-insert into member_category(category_id, category, member_id) values('3', '노트북','dd');
-insert into member_category(category_id, category, member_id) values('4', '노트북','dd');
 
 
 insert into interest(category, member_id) values('노트북','java');
