@@ -13,6 +13,7 @@ $(document).ready(function(){
 			//alert(data.followerCount); 나를 팔로잉하는 사람들
 			//alert(data.followingCount); 내가 팔로우한 사람들
 			if(data!=""){
+				$("#boardcount").html(data.productCount);
 				$("#followingcount").html(data.followingCount);
 				$("#followcount").html(data.followerCount);
 				 }			
@@ -60,6 +61,7 @@ $(document).ready(function(){
 				<div class="row">
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
 					    <div class="thumbnail">
+<<<<<<< HEAD
 				${sessionScope.mvo.member_name} 님 로그인중
 				
   							<%-- <c:import url="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" var="imgSrc" /> --%>
@@ -74,6 +76,11 @@ $(document).ready(function(){
 					
 						  <%-- </c:otherwise>
 						</c:choose> --%>
+=======
+				${sessionScope.mvo.member_name} 님 로그인중	
+					  	<img  src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>	
+		
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 				 <br>
 				 
  					      <div class="caption">		

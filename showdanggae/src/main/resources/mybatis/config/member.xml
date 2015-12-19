@@ -139,6 +139,11 @@ insert into interest(category, member_id) values(#{category},#{member_id})
  delete from interest where member_id=#{member_id} and category=#{category}
 </delete>
 
+
+<select id="productCount" resultType="int">
+ select count(*) from product where member_id=#{value}
+</select>
+
  </mapper>
  
  

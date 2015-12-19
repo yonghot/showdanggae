@@ -83,7 +83,7 @@ select member_id,password,member_name,report,email,to_char(birthday,'RRMMDD')as 
 select member_id,password,member_name,report,email,birthday,ceil(rownum/3) as page from(
 select member_id,password,member_name,report,email,birthday from member where member_id !='admingalbage' order by member_id desc)) where page=9
 	
-
+select * from interest where member_id='lipchel'
 
 
 
