@@ -60,11 +60,23 @@ $(document).ready(function(){
 
 				<div class="row">
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
+
 					    <div class="thumbnail">
-				${sessionScope.mvo.member_name} 님 로그인중	
-					  	<img  src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>	
-		
-				 <br>
+				${sessionScope.mvo.member_name} 님 로그인중
+				
+  							<%-- <c:import url="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" var="imgSrc" /> --%>
+												
+						<%-- <c:choose>
+						  <c:when test="${empty imgSrc}">
+						  <img  src="${initParam.root }upload/profile.jpg" class="img-circle" width=400px, height=400px>
+						  </c:when>
+						  <c:otherwise> --%>
+						  
+					  		<img src="${initParam.root}upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>	
+					
+						  <%-- </c:otherwise>
+						</c:choose> --%>
+	 <br>
 				 
  					      <div class="caption">		
  					  ${sessionScope.mvo.member_id}     					    
