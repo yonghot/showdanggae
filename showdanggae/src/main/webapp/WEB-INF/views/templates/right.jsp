@@ -6,7 +6,7 @@
 	$(document).ready(function(){	
 		//모달창 뜨기 전 발생하는 이벤트
 		$('#searchIdView1').on('click','.followingIdBtn',function(){
-			$('.클래스명').html("");
+			//$('.클래스명').html("");
 			//$('#recipient-name').val($(this).text());
 		});
 		$('#searchIdView1').on('click','.followerIdBtn',function(){
@@ -120,44 +120,6 @@
 		            });//ajax
 			}  			
 		});
-/* 		$.ajax({
-			type:"get",
-			url:"falarm.do?following=${sessionScope.mvo.member_id}",
-			dataType:"json",
-			success:function(data){	
-				if(data!=""){
-					var index="";
-					for(var i=0; i<data.length;i++){						
-						index += "<hr>"+data[i].following_date+ "<hr>" + data[i].follower + "님이 팔로우 하셨습니다<br>";
-					 }
-					$("#realarm").html(index).css('fontSize', 5);
-					$("#alarm").html("알람" + " <span class='badge'>" +data.length + "</span></a>");
-					//<a href="#">Inbox <span class="badge">42</span></a>
-				}else{
-					$("#alarm").html("알람" + " <span class='badge'>"  + "</span></a>");
-				}
-			}
-		}); 	 */
-		//클릭했을때 팔로우 알림 
-/* 		$("#alarm").click(function(){
-			$.ajax({
-				type:"get",
-				url:"falarm.do?following=${sessionScope.mvo.member_id}",
-				dataType:"json",
-				success:function(data){	
-					if(data!=""){
-						var index="";
-						for(var i=0; i<data.length;i++){						
-							index += data[i].following_date + data[i].follower + "님이 팔로우 하셨습니다<br>";
-						 }
-						$("#realarm").html(index).css('fontSize', 5);
-						$("#alarm").html("알람" + " <span class='badge'>" + +data.length + "</span></a>");
-					}else{
-						$("#alarm").html("알람" + " <span class='badge'>"  + "</span></a>");
-					}
-				}
-			});
-		})  */
 		//아이디로 회원검색
 	   $("#findBtn").click(function(){
 		   var min = $("#inputId3").val();
@@ -254,37 +216,12 @@
 						  	   }
 						}		
 				});//ajax
-		   });  	  
-	
-	/* function onKeyup(){
-		var min = $("#inputId3").val();
-		 $.ajax({
-	         type:"POST",
-	         url:"auth_onkeyupId.do",
-	         data:"searchId="+min,
-	         dataType:"json",
-	         success:function(data){
-	        	var index = "";
-	        	if(data!=""){
-		  	       	var autocomplete_text=[];
-	        		for(var i=0;i<data.length;i++){
-		  	        	 // index += "<tr><td>"+data[i].member_id+"</td></tr>";	  	        	 
-							autocomplete_text.push(data[i].member_id);
-		  	        }
-	        			$("#inputId3").autocomplete({
-	       	             source:autocomplete_text
-	       	          });
-	  	        	//$("#searchIdView").html(index);
-	        	}else{
-	        	//	$("#searchIdView").html(index);
-	        	}
-	  	           
-	         }//callback         
-	      });//ajax
-	} */
+		   });
 	});	
 </script>
 
+<!-- 아이디 검색하는 창과 팔로잉 팔로우 탭 
+session이 있을경우만 보여주고 세션이 끊겼을 경우에는 보여주지 않는다 -->
 <div class="col-md-2" align="center">
 	<c:if test="${sessionScope.mvo!=null}">
 		<form class="form-horizontal" role="form">
@@ -317,6 +254,8 @@
 		<span id="searchIdView1"></span>
 	</c:if>
 </div>
+
+<!-- 팔로워 팔로우 또는 사람 검색에서 아이디를 눌렀을때 발생하는 모달창 -->
  <div class="modal fade"  aria-hidden="true" id="exampleModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -357,7 +296,7 @@
 		</div>
 	</div>
 </div>
- 
+ <!-- 사용기술 ajax 부추스트랩 자바스크립트 -->
 
 
 

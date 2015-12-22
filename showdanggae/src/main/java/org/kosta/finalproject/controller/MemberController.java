@@ -1,5 +1,4 @@
 package org.kosta.finalproject.controller;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -263,8 +262,6 @@ public class MemberController {
 
 		return new ModelAndView("member_memberManagerDeleteOk");
 	}
-
-	// CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
 	/**
 	 * (right 부분) 검색하고자 하는 친구의 ID를 검색하는 메서드 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.

@@ -47,11 +47,6 @@ function commentForm(){
 	
 }
 
-
-    
-	
-
-
 </script>
 
 <div class="col-md-8">
