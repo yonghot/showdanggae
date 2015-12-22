@@ -42,6 +42,7 @@ public interface MemberDAO {
 	MemberVO infoUpdate(MemberVO vo);
 	void interestAdd(HashMap<String, String> add);
 	void interestDel(HashMap<String, String> del);
+	int productCount(String member_id);
 
 
 }

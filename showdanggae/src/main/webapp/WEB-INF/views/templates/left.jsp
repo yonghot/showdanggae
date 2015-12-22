@@ -4,6 +4,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$.ajax({
 		type:"get",
 		url:"profileInfo.do?member_id=${sessionScope.mvo.member_id}",
@@ -12,6 +13,7 @@ $(document).ready(function(){
 			//alert(data.followerCount); 나를 팔로잉하는 사람들
 			//alert(data.followingCount); 내가 팔로우한 사람들
 			if(data!=""){
+				$("#boardcount").html(data.productCount);
 				$("#followingcount").html(data.followingCount);
 				$("#followcount").html(data.followerCount);
 				 }			
@@ -58,17 +60,30 @@ $(document).ready(function(){
 
 				<div class="row">
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
+
 					    <div class="thumbnail">
 				${sessionScope.mvo.member_name} 님 로그인중
-					  	<img src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>
-				 <br>
+				
+  							<%-- <c:import url="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" var="imgSrc" /> --%>
+												
+						<%-- <c:choose>
+						  <c:when test="${empty imgSrc}">
+						  <img  src="${initParam.root }upload/profile.jpg" class="img-circle" width=400px, height=400px>
+						  </c:when>
+						  <c:otherwise> --%>
+						  
+					  		<img src="${initParam.root}upload/${sessionScope.mvo.member_id}.jpg" class="img-circle" width=400px, height=400px>	
+					
+						  <%-- </c:otherwise>
+						</c:choose> --%>
+	 <br>
 				 
  					      <div class="caption">		
  					  ${sessionScope.mvo.member_id}     					    
 					<ol class="breadcrumb">
   					<li class="active">게시글</li>
  					 <li class="active">팔로잉</li>
-  					<li class="active">팔로우</li>
+  					<li class="active">팔로워</li>
   					&nbsp;&nbsp;<li><span id="boardcount"></span></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  					 <li><span id="followingcount"></span></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   					<li><span id="followcount"></span></li>

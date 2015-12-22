@@ -6,7 +6,7 @@
   $(document).ready(function() {
 	 
 	 var totalProductNum = "${requestScope.pvoList.size()}";
-	 var showedProductAtOnce = 2;
+	 var showedProductAtOnce = 4;
 	 var index;
 	 var noMoreProduct = false;
 	 
