@@ -44,8 +44,14 @@ public class MemberController {
 		return viewId;
 	}
 
-	// BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-
+	/**
+	 * 회원가입시 중복 아이디 가입을 막기위해 ajax로 변수 member_id 와 일치하는 아이디를 vo에 담는다
+	 * jsp에서ajax통신으로 vo를 받으면  vo가 null이 담기면 중복아이디가 없음을 알리고, 
+	 * vo가 null아 아니면 중복아이디임을 알린다.
+	 * @param member_id
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("idCheck.do")
 	@ResponseBody
 	public Object idCheck(String member_id) throws Exception {
@@ -53,6 +59,15 @@ public class MemberController {
 		return vo;
 	}
 
+	/**
+	 * registerView.jsp에서 입력받은 정보를 MemberVO의 변수명으로로 가져온 후
+	 * 데이터 베이스에 MemberVO의 변수명과 MemberTable 컬럼명에 대칭시켜 저장한다.
+	 * 
+	 * 실패시
+	 * 
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo) {
 
@@ -65,7 +80,7 @@ public class MemberController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		// 실패했을때
+		
 		return new ModelAndView("redirect:registerF5.do?member_name=" + "fail");
 	}
 
