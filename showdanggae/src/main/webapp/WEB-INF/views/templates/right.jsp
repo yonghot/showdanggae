@@ -257,15 +257,10 @@ session이 있을경우만 보여주고 세션이 끊겼을 경우에는 보여�
 		<span id="searchIdView1"></span>
 	</c:if>
 </div>
-<<<<<<< HEAD
 
 <!-- 팔로워 팔로우 또는 사람 검색에서 아이디를 눌렀을때 발생하는 모달창 -->
  <div class="modal fade"  aria-hidden="true" id="exampleModal" tabindex="-1" role="dialog"
 	aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
- <div class="modal fade"  aria-hidden="true" id="example2Modal" tabindex="-1" role="dialog"
-	aria-labelledby="example2ModalLabel" aria-hidden="true">
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
