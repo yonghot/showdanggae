@@ -60,6 +60,7 @@ $(document).ready(function(){
 
 				<div class="row">
 				<!-- 	 <div class="col-sm-6 col-md-4" > -->
+
 					    <div class="thumbnail">
 				${sessionScope.mvo.member_name} 님 로그인중
 				
@@ -75,8 +76,7 @@ $(document).ready(function(){
 					
 						  <%-- </c:otherwise>
 						</c:choose> --%>
-
-				 <br>
+	 <br>
 				 
  					      <div class="caption">		
  					  ${sessionScope.mvo.member_id}     					    
