@@ -18,6 +18,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author 용호
+ *
+ */
+/**
+ * @author 용호
+ *
+ */
+/**
+ * @author 용호
+ *
+ */
+/**
+ * @author 용호
+ *
+ */
 @Controller
 public class ProductController {
 
@@ -59,11 +75,21 @@ public class ProductController {
 	// 김용호 영역
 	
 	
+	
+	/**
+	 * @Method Name : getMemberCategoryList
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 용호
+	 * @Method 설명 : 회원이 
+	 * @param member_id
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "getMemberCategoryList.do", method = RequestMethod.POST)
 	public List<CategoryVO> getMemberCategoryList(String member_id) {
 		return categoryService.getMemberCategoryList(member_id);
 	}
+	
 	
 	// getAllProductList
 	@RequestMapping(value = {"getAllProductList.do", "home.do"})
@@ -106,7 +132,8 @@ public class ProductController {
 		
 		return mv;
 	}
-
+	
+	
 	@RequestMapping(value = {"searchProductList.do"})
 	public ModelAndView searchProductList(String sortBy) throws Exception {
 		return new ModelAndView("product_searchProductList", "spvoList", productService.searchProductList(sortBy));
