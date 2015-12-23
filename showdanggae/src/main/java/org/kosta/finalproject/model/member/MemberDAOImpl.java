@@ -85,40 +85,102 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-	
+	/**
+	 * 
+	 * @Method 이름 : findMemberById
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드. 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
+	 * @param member_id
+	 * @param sessionId
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
+	 */
 	@Override
 	public List<MemberVO> findMemberById(String id) {
-		System.out.println("dao 영역"+id);
 		return sqlSessionTemplate.selectList("member.findMemberById",id);
 	}
-	
+	/**
+	 * 
+	 * @Method 이름 : addFollow
+	 * @Method 설명 : right.jsp에서 친구 ID 검색 후, 팔로잉을 하는 메서드 '+팔로우' 버튼 클릭과 동시에 친구추가가 되고
+	 * 					 'v팔로잉' 버튼으로 변경된다.
+	 * 		
+	 * @param fvo
+	 * @param request
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
+	 */
 	@Override
 	public void addFollow(FollowVO fvo) {
 		System.out.println(fvo);
 		sqlSessionTemplate.insert("member.addFollow", fvo);
 	}
-
+	/**
+	 * 
+	 * @Method 이름 : deleteFollow
+	 * @Method 설명 : right.jsp에서  팔로잉한 친구를 팔로잉 취소하는 메서드 'v팔로잉' 버튼 클릭과 동시에 친구삭제가 되고
+	 * 					 '+팔로우' 버튼으로 변경된다.
+	 * @param vo
+	 * @param request
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
+	 */
 	@Override
 	public void deleteFollow(FollowVO vo) {
 		System.out.println(vo);
 		sqlSessionTemplate.delete("member.deleteFollow", vo);
 	}
-	
+	/**
+	 * 
+	 * @Method 이름 : findFollowingId
+	 * @Method 설명 : right.jsp에서 팔로잉 탭을 클릭했을시 내가 팔로잉한 친구 리스트를 보여준다.
+	 * @param member_id
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
+	 */
 	@Override
 	public List<FollowVO> findFollowingId(String member_id) {
 		return sqlSessionTemplate.selectList("follow.findFollowingId", member_id);
 	}
-
+	/**
+	 * 
+	 * @Method 이름 : findFollowerId
+	 * @Method 설명 : right.jsp에서 팔로워 탭을 클릭했을 시 나를 팔로우한 친구 리스트를 보여준다.
+	 * @param member_id
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
+	 */
 	@Override
 	public List<FollowVO> findFollowerId(String member_id) {
 		return sqlSessionTemplate.selectList("follow.findFollowerId", member_id);
 	}
-
+	/**
+	 * 
+	 * @Method 이름 : findIsFollowBySessionId
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색할 때 map에 로그인 한 아이디와
+	 * 검색한 아이디를 넣어주어 서로의 관계를 확인한 후 로그인한 아이디와 검색한 아이디가 팔로우 관계이면 true를
+	 * 아니면 false를 지정해준다.
+	 * @param member_id
+	 * @param sessionId
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
+	 */
 	@Override
 	public String findIsFollowBySessionId(HashMap<String, String> map) {
 		return sqlSessionTemplate.selectOne("member.findIsFollowBySessionId",map);
 	}
-
+	/**
+	 * 필요없음
+	 */
 	@Override
 	public List<MemberVO> onkeyupId(String searchId) {
 		return sqlSessionTemplate.selectList("member.onkeyupId", searchId);
