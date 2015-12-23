@@ -12,6 +12,9 @@
 		$("#moveToMyProductListBtn").click(function(){
 			location.href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=${requestScope.productInfo.pvo.category_id}";
 		});
+		$("#deleteProductBtn").click(function(){
+			location.href="deleteProduct.do?product_id=${requestScope.productInfo.pvo.product_id}";
+		});
 		
 		function AddComma(data_value) {
 			
@@ -123,8 +126,8 @@
 						<c:choose>
 							<c:when test="${sessionScope.mvo.member_id==requestScope.productInfo.pvo.member_id}">
 								<button type="button" id="moveToMyProductListBtn" class="btn btn-info btn-md">목록</button>
-								<button type="button" id="moveToMyProductListBtn" class="btn btn-info btn-md">수정</button>
-								<button type="button" id="moveToMyProductListBtn" class="btn btn-info btn-md">삭제</button>
+								<button type="button" id="" class="btn btn-info btn-md">수정</button>
+								<button type="button" id="deleteProductBtn" class="btn btn-info btn-md">삭제</button>
 							</c:when>
 							<c:otherwise>
 								<button type="button" id="moveToHomeBtn" class="btn btn-info btn-md">홈으로</button>

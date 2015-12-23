@@ -30,22 +30,32 @@ public class MessageController {
 		System.out.println(member_id);
 		return new ModelAndView("popup/message_popup","member_id",member_id);		
 	}
-	@RequestMapping("messagePopForm1.do")
+/*	@RequestMapping("messagePopForm1.do")
 	public ModelAndView messagePopForm1(HttpServletRequest request, MemberVO vo){		
 	
 		String member_id=request.getParameter("member_id");
 		System.out.println(member_id);
 		return new ModelAndView("/popup/message_popup1","member_id",member_id);		
-	}
-
+	}*/
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
 		messageService.sendMessage(vo);
 		return new ModelAndView("popup/messageAdmin_ok");
 	}
-	@RequestMapping("sendMessage1.do")
+/**
+ * 
+ * @Method 이름 : sendToMemberMessage
+ * @Method 설명 : 아이디 검색, 팔로잉, 팔로워 탭 클릭시 나온 아이디가 있을 경우 아이디를 클릭하면 
+ * 					 modal 메세지 창이 나오고 보내기 버튼을 눌렀을 경우 메세지가 보내진다.
+ * @param request
+ * @param vo
+ * @return
+ * @작성일 : 2015. 12. 22.
+ * @작성자 : 송슬하,박준서
+ */
+	@RequestMapping("sendToMemberMessage.do")
 	@ResponseBody
-	public ModelAndView sendMessage1(HttpServletRequest request, MessageVO vo){	
+	public ModelAndView sendToMemberMessage(HttpServletRequest request, MessageVO vo){	
 		System.out.println(vo);
 		messageService.sendMessage(vo);
 		return new ModelAndView("templates/main");

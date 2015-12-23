@@ -151,10 +151,36 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+	/**
+	 * 
+	 */
+	/**
+	 * 
+	 * @Method 이름 : findMemberById
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드. 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
+	 * @param member_id
+	 * @param sessionId
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
+	 */
+	/**
+	 * 
+	 * @Method 이름 : findIsFollowBySessionId
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색할 때 map에 로그인 한 아이디와
+	 * 검색한 아이디를 넣어주어 서로의 관계를 확인한 후 로그인한 아이디와 검색한 아이디가 팔로우 관계이면 true를
+	 * 아니면 false를 지정해준다.
+	 * @param member_id
+	 * @param sessionId
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
+	 */
 	
 	@Override
 	public List<MemberVO> findMemberById(String member_id, String sessionId) {
-		System.out.println("서비스영역"+member_id+" "+sessionId);
 		ArrayList<MemberVO> list = (ArrayList<MemberVO>) memberDAO.findMemberById(member_id);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("sessionId", sessionId);
@@ -174,22 +200,61 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return list;
 	}
-
+	/**
+	 * 
+	 * @Method 이름 : addFollow
+	 * @Method 설명 : right.jsp에서 친구 ID 검색 후, 팔로잉을 하는 메서드 '+팔로우' 버튼 클릭과 동시에 친구추가가 되고
+	 * 					 'v팔로잉' 버튼으로 변경된다.
+	 * 		
+	 * @param fvo
+	 * @param request
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
+	 */
 	@Override
 	public void addFollow(FollowVO fvo) {
 		memberDAO.addFollow(fvo);
 	}
-	
+	/**
+	 * 
+	 * @Method 이름 : deleteFollow
+	 * @Method 설명 : right.jsp에서  팔로잉한 친구를 팔로잉 취소하는 메서드 'v팔로잉' 버튼 클릭과 동시에 친구삭제가 되고
+	 * 					 '+팔로우' 버튼으로 변경된다.
+	 * @param vo
+	 * @param request
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
+	 */
 	@Override
 	public void deleteFollow(FollowVO vo) {
 		memberDAO.deleteFollow(vo);
 	}
-	
+	/**
+	 * 
+	 * @Method 이름 : findFollowingId
+	 * @Method 설명 : right.jsp에서 팔로잉 탭을 클릭했을시 내가 팔로잉한 친구 리스트를 보여준다.
+	 * @param member_id
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
+	 */
 	@Override
 	public List<FollowVO> findFollowingId(String member_id) {
 		return memberDAO.findFollowingId(member_id);
 	}
-
+	/**
+	 * 
+	 * @Method 이름 : findFollowerId
+	 * @Method 설명 : right.jsp에서 팔로워 탭을 클릭했을 시 나를 팔로우한 친구 리스트를 보여준다.
+	 * @param member_id
+	 * @return
+	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
+	 */
 	@Override
 	public List<FollowVO> findFollowerId(String member_id) {
 		return memberDAO.findFollowerId(member_id);
@@ -211,14 +276,17 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public HashMap<String, String> proCount(String member_id) {
 		HashMap<String, String> proInfo =new  HashMap<String, String>();
-		//팔로잉 팔로워 명 수 구하기 + 나의 관심사
+		//게시물 수 팔로잉 팔로워 명 수 구하기 + 나의 관심사
 		int followerCount1=memberDAO.followerCount(member_id);
 		int followingCount1=memberDAO.followingCount(member_id);
+		int productCount1=memberDAO.productCount(member_id);
 		String followerCount = String.valueOf(followerCount1);
 		String followingCount = String.valueOf(followingCount1);
+		String productCount = String.valueOf(productCount1);
 	
 		proInfo.put("followerCount", followerCount);
 		proInfo.put("followingCount", followingCount);
+		proInfo.put("productCount", productCount);
 		return proInfo;
 	}
 
