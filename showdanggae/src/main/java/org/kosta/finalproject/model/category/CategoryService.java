@@ -9,6 +9,6 @@ public interface CategoryService {
 	
 	public List<CategoryVO> getMainCategoryList();
 	public List<CategoryVO> getMemberCategoryList(String member_id);
-	public void addInterest(String interest);
-	
+
+	String getFirstMemberCategoryId(String member_id);
 }
