@@ -1,5 +1,15 @@
 package org.kosta.finalproject.model.notice;
-
+/**
+ * no:  공지사항 게시글의 번호
+ * title: 공지사항 게시글의 제목
+ * content:공지사항 게시글의 내용
+ * hit:공지사항 게시글의 조회수
+ * writer:공지사항 게시글의 글쓴이
+ * writeDate:공지사항 게시글이 쓰여진 날짜
+ * 
+ * @author 유서정
+ *
+ */
 public class NoticeVO {
 	private int no;
 	private String title; 

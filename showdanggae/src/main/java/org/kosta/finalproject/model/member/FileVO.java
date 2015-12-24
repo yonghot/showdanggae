@@ -1,9 +1,9 @@
+
 package org.kosta.finalproject.model.member;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileVO {
-	
 	private String member_id;
 	private MultipartFile proImgFile;
 	

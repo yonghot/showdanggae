@@ -1,5 +1,19 @@
 package org.kosta.finalproject.model.member;
 
+/**
+ * member_id : 회원 id
+ * password : 회원 비밀번호
+ * member_name: 회원 이름
+ * member_info: 회원 소개글
+ * email: 회원의 email id와 domain 통합한 주소
+ * email_id: 회원의 email id
+ * email_domain:회원의 email domain
+ * birthday:회원의 생년월일 여섯자리
+ * report: 회원이 신고받은 횟수
+ * isFollow: 다른 회원이 나를 팔로우한 
+ * @author 유서정
+ *
+ */
 public class MemberVO {
 	private String member_id;
 	private String password;
