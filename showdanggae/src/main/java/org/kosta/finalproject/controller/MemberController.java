@@ -313,7 +313,7 @@ public class MemberController {
 	 * @param request
 	 * @throws Exception
 	 * @작성일 : 2015. 12. 22.
-	 * @작성자 : KOSTA
+	 * @작성자 : 송슬하,박준서
 	 */
 	
 	@RequestMapping("auth_delete.do")
@@ -332,7 +332,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 * @작성일 : 2015. 12. 22.
-	 * @작성자 : KOSTA
+	 * @작성자 : 송슬하,박준서
 	 */
 	
 	@RequestMapping("auth_findFollowingId.do")
@@ -351,7 +351,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 * @작성일 : 2015. 12. 22.
-	 * @작성자 : KOSTA
+	 * @작성자 : 송슬하,박준서
 	 */
 	
 	@RequestMapping("auth_findFollowerId.do")
