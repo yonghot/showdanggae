@@ -132,7 +132,9 @@ public class ProductController {
 			category_id = currentCategory;
 		}
 		
-		mv.addObject("pvoList", productService.getMyProductList(member_id, category_id));
+		if(firstCategoryId!=null) {
+			mv.addObject("pvoList", productService.getMyProductList(member_id, category_id));
+		}
 		mv.addObject("mainCategoryList", categoryService.getMainCategoryList());
 		mv.addObject("memberCategoryList", categoryService.getMemberCategoryList(member_id));
 		mv.addObject("category_id", category_id);

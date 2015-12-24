@@ -13,6 +13,11 @@
 				
 				var newInfo="";
 				
+				if(result.length==0) {
+					$("#tab_categoryView").html("<h4>카테고리를 추가해주세요</h4>");
+					return;
+				}
+				
 				$.each(result, function(i, data) {
 					newInfo += "<li role='presentation' class='active' value=''>"+
 					"<a href='auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory="+data.category_id+"'>"+(i+1)+". "+data.category+"</a></li>";
@@ -114,6 +119,11 @@
 				data : "category_id="+category_id+"&member_id=${sessionScope.mvo.member_id}",
 				dataType : "JSON",
 				success : function(result) {
+					
+					if(result.length==0) {
+						$("#tab_categoryView").html("<h4>카테고리를 추가해주세요</h4>");
+						return;
+					}
 					
 					var newInfo="";
 					
