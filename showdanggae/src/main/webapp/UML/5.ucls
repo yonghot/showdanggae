@@ -1,70 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="org.kosta.finalproject.controller.MemberController" project="showdanggae" 
-    file="/showdanggae/src/main/java/org/kosta/finalproject/controller/MemberController.java" binary="false" 
+  <class id="1" language="java" name="org.kosta.finalproject.model.member.FollowVO" project="showdanggae" 
+    file="/showdanggae/src/main/java/org/kosta/finalproject/model/member/FollowVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="718" width="469" x="52" y="-136"/>    
+    <position height="-1" width="-1" x="1333" y="277"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="org.kosta.finalproject.controller.ProductController" project="showdanggae" 
-    file="/showdanggae/src/main/java/org/kosta/finalproject/controller/ProductController.java" binary="false" 
+  <class id="2" language="java" name="org.kosta.finalproject.model.qnaBoard.ReplyVO" project="showdanggae" 
+    file="/showdanggae/src/main/java/org/kosta/finalproject/model/qnaBoard/ReplyVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="448" width="423" x="561" y="-136"/>    
+    <position height="-1" width="-1" x="756" y="363"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="org.kosta.finalproject.controller.MessageController" project="showdanggae" 
-    file="/showdanggae/src/main/java/org/kosta/finalproject/controller/MessageController.java" binary="false" 
+  <class id="3" language="java" name="org.kosta.finalproject.model.product.ProductVO" project="showdanggae" 
+    file="/showdanggae/src/main/java/org/kosta/finalproject/model/product/ProductVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="214" width="418" x="1024" y="-136"/>    
+    <position height="-1" width="-1" x="325" y="631"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="org.kosta.finalproject.controller.FileUploadController" project="showdanggae" 
-    file="/showdanggae/src/main/java/org/kosta/finalproject/controller/FileUploadController.java" binary="false" 
+  <class id="4" language="java" name="org.kosta.finalproject.model.member.FileVO" project="showdanggae" 
+    file="/showdanggae/src/main/java/org/kosta/finalproject/model/member/FileVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="124" width="220" x="1482" y="-136"/>    
+    <position height="-1" width="-1" x="1586" y="249"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="org.kosta.finalproject.controller.QnABoardController" project="showdanggae" 
-    file="/showdanggae/src/main/java/org/kosta/finalproject/controller/QnABoardController.java" binary="false" 
+  <class id="5" language="java" name="org.kosta.finalproject.model.category.CategoryVO" project="showdanggae" 
+    file="/showdanggae/src/main/java/org/kosta/finalproject/model/category/CategoryVO.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="358" width="345" x="1742" y="-136"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="org.kosta.finalproject.controller.NoticeController" project="showdanggae" 
-    file="/showdanggae/src/main/java/org/kosta/finalproject/controller/NoticeController.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="286" width="388" x="2127" y="-136"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="org.kosta.finalproject.controller.LoginCheckInterceptor" project="showdanggae" 
-    file="/showdanggae/src/main/java/org/kosta/finalproject/controller/LoginCheckInterceptor.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="106" width="419" x="2555" y="-136"/>    
+    <position height="-1" width="-1" x="1060" y="331"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
