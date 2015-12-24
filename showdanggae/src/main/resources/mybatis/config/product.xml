@@ -107,6 +107,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</select>
 	
+	<select id="getCategoryIdByProductId" resultType="int">
+		<![CDATA[
+			select category_id
+	 		from product
+			where product_id=#{value}
+	 	]]>
+	</select>
+	
 	<update id="updateProduct">
 		<![CDATA[
 	 		update product set product_name=#{product_name}, detail=#{detail}, visiblity=#{visiblity}

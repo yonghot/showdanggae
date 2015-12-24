@@ -7,7 +7,7 @@
  			
  		$("#memberManagingTable :input[name=deleteBtn]").click(function(){	
  		
-			var id=$(this).parent().parent().children().eq(1).text();
+			var id=$(this).parent().parent().children().eq(0).text();
  			if(confirm(id + '회원을 삭제하시겠습니까?')==true){			
  				location.href="memberDelete.do?member_id=" + id;
  			}else{

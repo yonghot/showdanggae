@@ -76,7 +76,7 @@
             </li> 
             <li>
             	<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
-            		<a href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=1"><font face="윤고딕310"> 내쇼핑노트</font></a>
+            		<a href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=0"><font face="윤고딕310"> 내쇼핑노트</font></a>
             	</span>
             </li>
             <li>

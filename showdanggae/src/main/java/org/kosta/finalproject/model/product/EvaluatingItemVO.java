@@ -1,5 +1,9 @@
 package org.kosta.finalproject.model.product;
 
+/**
+ * 항목명, product_id등 다수의 정보를 포함하고 있는 평가 항목을 전달하기 위한 VO 클래스
+ * @author 용호
+ */
 public class EvaluatingItemVO {
 	private String item;
 	private int product_id, item_point, category_id;

@@ -16,7 +16,18 @@ public class FileUploadController {
 	@Resource(name="uploadPath")
 	private String path;
 
-	@RequestMapping("fileupload.do") //이게 중복되면 Controller 이름 앞에 소문자로 된 걸 못찾는다고 나옴
+	
+	/**
+	 * 
+	 * @Method Name  : fileUpload
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 :회원이 선택한 프로필 사진을 업로드 해준다
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping("fileupload.do") 
 	@ResponseBody
 	public ModelAndView fileUpload(FileVO vo) {
 		
@@ -29,8 +40,7 @@ public class FileUploadController {
 			try {
 				fileName=vo.getMember_id()+".jpg";
 				imgFile.transferTo(new File(path+fileName));
-				System.out.println(fileName + "업로드완료!");
-				System.out.println(fileName);				
+			
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
