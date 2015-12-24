@@ -5,11 +5,11 @@
 <script type="text/javascript">
 	$(document).ready(function(){	
 		//모달창 뜨기 전 발생하는 이벤트
-		$('#searchIdView1').on('click','.followingIdBtn',function(){
+		$('#searchFollowIdView').on('click','.followingIdBtn',function(){
 			//$('.클래스명').html("");
-			//$('#recipient-name').val($(this).text());
+			$('#recipient-name').val($(this).text());
 		});
-		$('#searchIdView1').on('click','.followerIdBtn',function(){
+		$('#searchFollowIdView').on('click','.followerIdBtn',function(){
 			$('#recipient-name').val($(this).text());
 		});
 		$('#searchIdView').on('click','.findMemberByIdBtn',function(){
@@ -35,7 +35,7 @@
 
   });  			
 	/* 	//팔로잉 이름을 클릭시 발동 되는 이벤트
-		 $('#searchIdView1').on('click','.messagePopBtn1',function(){
+		 $('#searchFollowIdView').on('click','.messagePopBtn1',function(){
 			 var id=$(this).children().children().val();
 				if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
 				 	 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
@@ -46,7 +46,7 @@
 					}
 		   }); */	 
 	/* 	//팔로우 이름 클릭시 발동 되는 이벤트
-		 $('#searchIdView1').on('click','.messagePopBtn2',function(){
+		 $('#searchFollowIdView').on('click','.messagePopBtn2',function(){
 			 var id=$(this).children().children().val();
 				if(confirm(id + '님에게 메세지를 보내시겠습니까?')==true){			
 					 window.open("${initParam.root}messagePopForm1.do?member_id="+id,"popup",
@@ -70,7 +70,7 @@
 							/* index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 							"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
 
-							index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].following+
+							index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
 							"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
 
 						}
@@ -86,10 +86,10 @@
 						 </div>  */
 						index+="<tbody></table>"
 							$("#searchIdView").html("");	
-						$("#searchIdView1").html(index);
+						$("#searchFollowIdView").html(index);
 			  	   }else{
 			  		 $("#searchIdView").html("");
-			  		 $("#searchIdView1").html("");
+			  		 $("#searchFollowIdView").html("");
 			  	   }
 					
 					}	
@@ -143,17 +143,17 @@
 							 }else if(data[i].member_id=="admingalbage"){
 									index +="";
 							 }else if(data[i].isFollow==true){
-								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
 							}else{
-								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";						
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";						
 							}
 						}
 						index+="</table>";
 						$("#searchIdView").html(index);
-						$("#searchIdView1").html("");
+						$("#searchFollowIdView").html("");
 					}else{
 						$("#searchIdView").html(index);
-						$("#searchIdView1").html("");
+						$("#searchFollowIdView").html("");
 					}
 				}		
 			});//ajax  
@@ -177,16 +177,16 @@
 							/* 	index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
 
-								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].following+
+								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
 
 							}
 							index+="<tbody></table>"
 								$("#searchIdView").html("");	
-							$("#searchIdView1").html(index);
+							$("#searchFollowIdView").html(index);
 				  	   }else{
 				  		 $("#searchIdView").html("");
-				  		 $("#searchIdView1").html("");
+				  		 $("#searchFollowIdView").html("");
 				  	   }
 						
 						}		
@@ -207,15 +207,15 @@
 							for(var i=0; i<data.length;i++){
 								
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].follower+"</a></td></tr>";
-								index += "<tr><td><a href='#'class='followerIdBtn' data-toggle='modal' data-target='#example2Modal'>"+data[i].follower+
+								index += "<tr><td><a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].follower+
 								"<form><input type='hidden' value="+data[i].follower+"></form></a></td></tr>";
 							}
 							index+="</tbody></table>"
 								$("#searchIdView").html("");
-							$("#searchIdView1").html(index);
+							$("#searchFollowIdView").html(index);
 				  	        }else{
 				  	        	$("#searchIdView").html("");
-						  		 $("#searchIdView1").html("");
+						  		 $("#searchFollowIdView").html("");
 						  	   }
 						}		
 				});//ajax
@@ -248,13 +248,9 @@ session이 있을경우만 보여주고 세션이 끊겼을 경우에는 보여�
 			<li><a href="#" id="followingBtn">팔로잉</a></li>
 			<li><a href="#" id="followerBtn">팔로워</a></li>
 		</ul>
-		<!-- <input class="btn btn-default" type="button" value="팔로잉"
-			id="followingBtn">
-		<input class="btn btn-default" type="button" value="팔로워"
-			id="followerBtn"> -->
 		<br>
 		<span id="searchIdView"></span>
-		<span id="searchIdView1"></span>
+		<span id="searchFollowIdView"></span>
 	</c:if>
 </div>
 
@@ -271,7 +267,7 @@ session이 있을경우만 보여주고 세션이 끊겼을 경우에는 보여�
 				<h4 class="modal-title" id="example2ModalLabel">메세지</h4>
 			</div>
 			<div class="modal-body">
-				<form action="sendMessage1.do" id="sendForm">
+				<form action="sendToMemberMessage.do" id="sendForm">
 					<!-- sendMessage.do -->
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">받는사람</label>

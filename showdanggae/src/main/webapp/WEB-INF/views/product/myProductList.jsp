@@ -260,6 +260,7 @@
 		</a></h4>
 	</div>
 	<hr>
+
 	<c:forEach items="${requestScope.pvoList}" var="list" begin="0" end="7" varStatus="status">
 		<div class="col-md-6">
 			<div class="thumbnail productCard" style="border: solid 2px #e6e6e6; box-sizing : border-box;">

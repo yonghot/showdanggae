@@ -23,4 +23,6 @@ public interface CategoryDAO {
 	public void addInterest(String interest);
 	public int getProductCountNumber(int category_id);
 
+	String getFirstMemberCategoryId(String member_id);
+
 }

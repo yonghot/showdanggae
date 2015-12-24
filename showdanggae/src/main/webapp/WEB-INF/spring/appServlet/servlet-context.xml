@@ -84,12 +84,14 @@
    개발시에는 workspace 경로를 주입시키고, 운영시에는 실제 서버 경로를 주입시킨다. 
    서버 운영시 업로드 경로 - C:\java-kosta\WAS\spring2-tomcat\webapps\springmvc26-fileupload\upload
    C:\\java-kosta\\WAS\\finalproject-tomcat\\webapps\\showdanggae\\upload\\
+   C:\java-kosta\WAS\project-tomcat\webapps\showdanggae\withdraw
  -->
 <bean id="uploadPath" class="java.lang.String" >
  <constructor-arg>
-  <value>C:\\java-kosta\\WAS\\finalproject-tomcat\\webapps\\showdanggae\\upload\\</value><!-- value가 여기 붙어있어야 한다 -->
+  <value>C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\upload\\</value><!-- value가 여기 붙어있어야 한다 -->
  </constructor-arg>
-</bean>  
+</bean> 
+
 
 <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
  <property name="order" value="1"></property>

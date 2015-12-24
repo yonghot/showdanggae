@@ -23,6 +23,8 @@ create table product (
 
 select * from product;
 
+delete from product where product_id='3' or product_id='8';
+
 select category_id from product;
 
 create sequence product_seq; 

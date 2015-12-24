@@ -1,5 +1,15 @@
 package org.kosta.finalproject.model.qnaBoard;
 
+/**
+ * cno: 코멘트 각각이 가지는 코멘트 번호
+ * no: 코멘트가 달린 QnA의 게시글 번호
+ * member_name:  코멘트를 단 회원의 이름
+ * member_id:코멘트를 단 회원의 아디
+ * replyComment:
+ * commentDate:
+ * @author 유서정
+ *
+ */
 public class ReplyVO {
 	private int cno;
 	private int no;

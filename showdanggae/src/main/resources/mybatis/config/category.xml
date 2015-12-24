@@ -60,6 +60,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</delete>
 	
+	<select id="getFirstMemberCategoryId" resultType="java.lang.String">
+		<![CDATA[
+			select min(category_id)
+			from member_category
+			where member_id=#{value}
+		]]>
+	</select>
+	
 	<select id="getMemberCategoryList" resultType="cvo">
 		<![CDATA[
 			select 

@@ -1,5 +1,19 @@
 package org.kosta.finalproject.model.qnaBoard;
-
+/**
+ * no : QnA 게시글 번호
+ * title: QnA 게시글 제목
+ * member_id:QnA 게시글 글쓴이의 아이디
+ * writer:QnA 게시글 글쓴이의 이름
+ * content:QnA 게시글의 내용
+ * writeDate:QnA 게시글이 쓰여진 날짜
+ * viewCount:QnA 게시글 의 조회수
+ * ref:QnA 게시글 원 게시물 번호 , 글묶음 
+ * restep: QnA 게시글ref 글묶음내의 글순서 
+ * relevel:QnA 게시글 답변의 단계 
+ * total: QnA 게시글의 총 게시물 수
+ * @author 유서정
+ *
+ */
 public class QnaVO {
 	private int no;
 	private String title;
@@ -8,15 +22,15 @@ public class QnaVO {
 	private String content;
 	private String writeDate;
 	private int viewCount;
-	private int ref;// 원 게시물 번호 , 글묶음 
-	private int restep;// ref 글묶음내의 글순서 
-	private int relevel;// 답변의 단계 
+	private int ref;
+	private int restep;
+	private int relevel;
 	private int total;
-	//no, title, member_id, writer, content, writeDate,viewCount,ref,restep,relevel
+
 	public QnaVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
 	public QnaVO(int no, String title, String member_id, String writer,
 			String content, String writeDate, int viewCount, int ref,
 			int restep, int relevel, int total) {

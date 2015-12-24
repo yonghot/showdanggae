@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
 @Controller
 public class MemberController {
 
@@ -43,8 +45,17 @@ public class MemberController {
 		return viewId;
 	}
 
-	// BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-
+/**
+ * 
+ * @Method Name  : idCheck
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 : 회원가입창에서 입력받은 member_id 에 대한 중복 여부를 알려준다
+ * @param member_id
+ * @return
+ * @throws Exception
+ */
 	@RequestMapping("idCheck.do")
 	@ResponseBody
 	public Object idCheck(String member_id) throws Exception {
@@ -52,6 +63,17 @@ public class MemberController {
 		return vo;
 	}
 
+
+/**
+ * 
+ * @Method Name  : register
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 : 회원가입창에서 입력받은 회원정보를 저장
+ * @param vo
+ * @return
+ */
 	@RequestMapping("register.do")
 	public ModelAndView register(MemberVO vo) {
 
@@ -63,26 +85,51 @@ public class MemberController {
 					+ member_name);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			return new ModelAndView("redirect:registerF5.do?member_name=" + "fail");
 		}
-		// 실패했을때
-		return new ModelAndView("redirect:registerF5.do?member_name=" + "fail");
 	}
 
+/**
+ * 
+ * @Method Name  : registerF5
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 : 회원가입 후 F5 입력시 회원정보 재등록 방지
+ * @param member_name
+ * @return
+ */
 	@RequestMapping("registerF5.do")
 	public ModelAndView registerF5(String member_name) {
 		return new ModelAndView("member_registerokview", "member_name",
 				member_name);
 	}
 
+/**
+ * 
+ * @Method Name  : registerview
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 :회원가입 view로 이동시켜준다
+ * @return
+ */
 	@RequestMapping("registerview.do")
 	public String registerview() {
 		return "member_registerview";
 	}
 
-	// 로그인
+	/**
+	 * 이건 성엽오빠가~~~~~~~~~~~~~~
+	 * @param request
+	 * @param response
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping("login.do")
 	public ModelAndView login(HttpServletRequest request,
 			HttpServletResponse response, MemberVO vo) {
+		
 		if (vo.getMember_id().equals("admingalbage")) {
 			MemberVO admin = memberService.adminlogin(vo);
 			if (admin != null) {
@@ -116,6 +163,17 @@ public class MemberController {
 		}
 	}
 
+	/**
+	 * 
+	 * @Method Name  : logout
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : 로그아웃 요청 시 세션유무를 판단해 세션을 끊어준다.
+	 * @param request
+	 * @param repuest
+	 * @return
+	 */
 	@RequestMapping("logout.do")
 	public ModelAndView logout(HttpServletRequest request,
 			HttpServletResponse repuest) {
@@ -126,6 +184,7 @@ public class MemberController {
 		return new ModelAndView("redirect:home.do");
 	}
 
+	
 	@RequestMapping("findidview.do")
 	public String findview() {
 		return "member_findidview";
@@ -196,16 +255,46 @@ public class MemberController {
 		}
 	}
 
+/**
+ * 
+ * @Method Name  : registercancel
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 :register view에서 회원가입 취소버튼을 누르면 홈으로 이동시킨다
+ * @return
+ */
 	@RequestMapping("registercancel.do")
 	public String registercancel() {
 		return "home";
 	}
 
+/**
+ * 
+ * @Method Name  : updatecancel
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 :회원정보 수정 시 취소버튼을 누르면 홈으로 이동시킨다
+ * @return
+ */
 	@RequestMapping("auth_updatecancel.do")
 	public String updatecancel() {
 		return "home";
 	}
 
+/**
+ * 
+ * @Method Name  : update
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 :회원이 정보수정을 요청하면 수정된 정보를 다시 DB에 저장한다
+ * @param request
+ * @param response
+ * @param vo
+ * @return
+ */
 	@RequestMapping("auth_updateMember.do")
 	public ModelAndView update(HttpServletRequest request,
 			HttpServletResponse response, MemberVO vo) {
@@ -223,11 +312,32 @@ public class MemberController {
 
 	}
 
+	/**
+	 * 
+	 * @Method Name  : withdrawForm
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 :회원탈퇴 form을 제공해주는 view로 이동시킨다
+	 * @return
+	 */
 	@RequestMapping("auth_withdrawForm.do")
 	public String withdrawForm() {
 		return "member_withdraw";
 	}
 
+	/**
+	 * 
+	 * @Method Name  : withdraw
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : 회원탈퇴 사유와 아이디를 입력받아 db에 저장된 회원정보를 삭제한 후
+	 * 							탈퇴사유는 txt 파일에 저장시킨다
+	 * @param request
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping("auth_withdraw.do")
 	public String withdraw(HttpServletRequest request, MemberVO vo) {
 		String reason = request.getParameter("reason");
@@ -241,6 +351,17 @@ public class MemberController {
 		return "member_withdrawOk";
 	}
 
+	/**
+	 * 
+	 * @Method Name  : memberManagerForm
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : 관리자만 접근할 수 있는 페이지로 가입완료된 회원들의 정보를 list에 담아 보여준다
+	 * 							선택한 page number에 해당한 회원정보 20명을 보여준다
+	 * @param pageNo
+	 * @return
+	 */
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(String pageNo) {
 
@@ -251,57 +372,77 @@ public class MemberController {
 				mvolist);
 	}
 
+	/**
+	 * @Method Name  : memberDelete
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 :관리자가 요청한 회원을 삭제해준다
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("memberDelete.do")
 	public ModelAndView memberDelete(HttpServletRequest request,
 			HttpServletResponse response) {
 		String member_id = request.getParameter("member_id");
 		memberService.memberDelete(member_id);
-		String pageNo = request.getParameter("pageNo");
-		MemberListVO mvolist = memberService.memberManagerList(pageNo);
-		System.out.println(mvolist);
-
 		return new ModelAndView("member_memberManagerDeleteOk");
 	}
 
+
 	/**
-	 * (right 부분) 검색하고자 하는 친구의 ID를 검색하는 메서드 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
 	 * 
+	 * @Method 이름 : findMemberById
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드. 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
 	 * @param member_id
 	 * @param sessionId
 	 * @return
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
 	 */
 	@RequestMapping("auth_findMemberById.do")
 	@ResponseBody
 	public List<MemberVO> findMemberById(String member_id, String sessionId)
 			throws Exception {
-		System.out.println("controller 영역 " + member_id + " " + sessionId);
 		List<MemberVO> list = memberService
 				.findMemberById(member_id, sessionId);
 		return list;
 	}
 
 	/**
-	 * (right 부분) 친구 ID 검색 후, 팔로잉을 하는 메서드 '+팔로우' 버튼 클릭과 동시에 친구추가가 되고 'v팔로잉' 버튼으로
-	 * 변경된다.
 	 * 
+	 * @Method 이름 : addFollow
+	 * @Method 설명 : right.jsp에서 친구 ID 검색 후, 팔로잉을 하는 메서드 '+팔로우' 버튼 클릭과 동시에 친구추가가 되고
+	 * 					 'v팔로잉' 버튼으로 변경된다.
+	 * 		
 	 * @param fvo
+	 * @param request
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
 	 */
+	
 	@RequestMapping("auth_add.do")
 	@ResponseBody
 	public void addFollow(FollowVO fvo, HttpServletRequest request)
 			throws Exception {
 		memberService.addFollow(fvo);
 	}
-
+	
 	/**
-	 * (right 부분) 팔로잉한 친구를 팔로잉 취소하는 메서드 'v팔로잉' 버튼 클릭과 동시에 친구삭제가 되고 '+팔로우' 버튼으로
-	 * 변경된다.
 	 * 
+	 * @Method 이름 : deleteFollow
+	 * @Method 설명 : right.jsp에서  팔로잉한 친구를 팔로잉 취소하는 메서드 'v팔로잉' 버튼 클릭과 동시에 친구삭제가 되고
+	 * 					 '+팔로우' 버튼으로 변경된다.
 	 * @param vo
+	 * @param request
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
 	 */
+	
 	@RequestMapping("auth_delete.do")
 	@ResponseBody
 	public void deleteFollow(FollowVO vo, HttpServletRequest request)
@@ -309,13 +450,18 @@ public class MemberController {
 		memberService.deleteFollow(vo);
 	}
 
+	
 	/**
-	 * (right 부분) 팔로잉 버튼 클릭시 내가 following 한 친구 리스트를 보여준다.
 	 * 
+	 * @Method 이름 : findFollowingId
+	 * @Method 설명 : right.jsp에서 팔로잉 탭을 클릭했을시 내가 팔로잉한 친구 리스트를 보여준다.
 	 * @param member_id
 	 * @return
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
 	 */
+	
 	@RequestMapping("auth_findFollowingId.do")
 	@ResponseBody
 	public List<FollowVO> findFollowingId(String member_id) throws Exception {
@@ -325,12 +471,16 @@ public class MemberController {
 	}
 
 	/**
-	 * (right 부분) 팔로워 버튼 클릭시 나를 following 한 친구 리스트를 보여준다.
 	 * 
+	 * @Method 이름 : findFollowerId
+	 * @Method 설명 : right.jsp에서 팔로워 탭을 클릭했을 시 나를 팔로우한 친구 리스트를 보여준다.
 	 * @param member_id
 	 * @return
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
 	 */
+	
 	@RequestMapping("auth_findFollowerId.do")
 	@ResponseBody
 	public List<FollowVO> findFollowerId(String member_id) throws Exception {
@@ -344,7 +494,7 @@ public class MemberController {
 	 * 
 	 * @param searchId
 	 * @return
-	 * @throws Exception
+	 * @throws Exception 이건 없앴는데 어떻게 해야하나...
 	 */
 	@RequestMapping("auth_onkeyupId.do")
 	@ResponseBody
@@ -358,23 +508,40 @@ public class MemberController {
 		return mid;
 	}
 
-	// 12-13추가부분
+/**
+ * 
+ * @Method Name  : fAlarm
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 : 현재시간부터 24시간 전까지 나를 팔로잉한 사람 목록을 알려준다
+ * @param following
+ * @return
+ */
 	@RequestMapping("falarm.do")
 	@ResponseBody
 	public List<FollowVO> fAlarm(String following) {
-		// 현재시간부터 - 어제 까지 나를 팔로잉한 사람 목록을 알림으로 가져다 줌
 		List<FollowVO> fvo = memberService.fAlarm(following);
 		return fvo;
 	}
 
 
-	// 프로필 수정하는 곳
+/**
+ * 
+ * @Method Name  : Profile
+ * @작성일   : 2015. 12. 22. 
+ * @작성자   : 유서정
+ * @변경이력  :
+ * @Method 설명 : 회원의 프로필정보(회원의 관심사리스트)를 제공해주고 선택한 관심사를 저장시켜준다			 
+ * @param member_id
+ * @return
+ */
 	@RequestMapping("Profile.do")
 	public ModelAndView Profile(String member_id){
 		//member_profile로 관심사 리스트 보내줌
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("member_profile");
-		//내가 선택한걸 제외한 관심사
+		//내가 선택한 관심사를 제외한 관심사
 		List<String> interestList=memberService.profileInterestList(member_id);
 		//내가 이미 선택한 관심사
 		List<String> myinterestList=memberService.myinterestList(member_id);
@@ -386,17 +553,35 @@ public class MemberController {
 	}
 
 
-	// left 정보
+	/**
+	 * 
+	 * @Method Name  : profileInfo
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보(게시물,팔로우,팔로잉)를 ajax로 가져다준다 
+	 * 							(회원이 게시한 게시물수, 회원을 받아보는 팔로우 수,회원이 다른회원을 받아보는 팔로잉 수)
+	 * @param member_id
+	 * @return
+	 */
 	@RequestMapping("profileInfo.do")
 	@ResponseBody
-	public HashMap<String, String> profileInfo(String member_id) {
-	
+	public HashMap<String, String> profileInfo(String member_id) {	
 		HashMap<String, String> proInfo =new  HashMap<String, String>();
-		//내 게시물수 팔로워 팔로잉 수 + 나의관심사
 		proInfo=memberService.proCount(member_id);
 		return proInfo;
 	}
 	
+	/**
+	 * 
+	 * @Method Name  : profileInterest
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 :template의 왼쪽에 나타나는 나의 프로필 정보(나의 관심사들)를 ajax로 가져다준다
+	 * @param member_id
+	 * @return
+	 */
 	@RequestMapping("profileInterest.do")
 	@ResponseBody
 	public List<String> profileInterest(String member_id){
@@ -405,11 +590,22 @@ public class MemberController {
 		return interest;
 	}
 	
+	/**
+	 * 
+	 * @Method Name  : infoUpdate
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보(관심사 , 내 소개)를 수정한다					
+	 * @param vo
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("infoUpdate.do")
 	public String infoUpdate(MemberVO vo,HttpServletRequest request){
 		HttpSession session = request.getSession(false);
 		MemberVO mvo=memberService.infoUpdate(vo);
-		//세션 끊었다가 다시 연결 시켜줘야함
+	
 		if(session!=null){
 			session.invalidate();
 			HttpSession session1 = request.getSession(true);
@@ -418,12 +614,34 @@ public class MemberController {
 		return "redirect:Profile.do?member_id=" + vo.getMember_id();
 	}
 	
+	/**
+	 * 
+	 * @Method Name  : interestAdd
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : profile 수정시 관심사를 추가 할 수 있다
+	 * @param member_id
+	 * @param category
+	 * @return
+	 */
 	@RequestMapping("interestAdd.do")
 	public String interestAdd(String member_id,String category){
 		memberService.interestAdd(member_id,category);
 		return "redirect:Profile.do?member_id=" + member_id;
 	}
 	
+	/**
+	 * 
+	 * @Method Name  : interestDel
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 :profile 수정시 관심사를 삭제 할 수 있다
+	 * @param member_id
+	 * @param category
+	 * @return
+	 */
 	@RequestMapping("interestDel.do")
 	public String interestDel(String member_id,String category){
 		memberService.interestDel(member_id, category);

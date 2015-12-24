@@ -1,5 +1,11 @@
 package org.kosta.finalproject.model.member;
-
+/**
+ * 
+ * @Method 설명 : FollowVO
+ * following 날짜, following , follower
+ * @작성일 : 2015. 12. 22.
+ * @작성자 : KOSTA
+ */
 public class FollowVO {
 	private String following_date;
 	private String following;

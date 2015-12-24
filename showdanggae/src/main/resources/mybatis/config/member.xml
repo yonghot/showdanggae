@@ -2,13 +2,10 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- MyBatis에서 namespace는 필수적으로 명시해야 함 -->
-<!-- select member_id,to_char(birthday,'yyMMDD') from member where member_id='sdvaeawee'; --> 
  <mapper namespace="member">
  
  
  <!-- BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB -->
- 
  <select id="idCheck" resultType="mvo">
  select member_id,password,member_name,email,to_char(birthday)as birthday from member where member_id=#{value}
  </select>
@@ -55,7 +52,7 @@ select member_id,password,member_name,report,email,birthday from member where me
 											
  </select>
  
- <delete id="memberDelete">
+ <delete id="memberDelete" parameterType="java.lang.String">
   delete from member where member_id=#{value}
  </delete>
  

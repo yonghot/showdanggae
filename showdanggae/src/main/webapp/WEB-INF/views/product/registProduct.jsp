@@ -125,31 +125,6 @@
 		}); //on
 		
 		
-		/* $("#uploadBtn").click(function(event){
-
-			var uploadFormData = $("#uploadForm");
-			uploadFormData.method="post";
-			uploadFormData.enctype="multipart/form-data";
-			
-			var uploadFormDataForAjax = new FormData(uploadFormData);
-			
-			alert(uploadFormDataForAjax);
-			
-            $.ajax({
-                url: "fileupload.do",
-                type: "post",
-                data: uploadFormDataForAjax,
-                //dataType: "text",
-                //cache: false,
-                processData: false,
-                contentType: false,
-                success: function(data, textStatus, jqXHR) {
-                   alert(data);
-                }, error: function(jqXHR, textStatus, errorThrown) {}
-            });
-            
-		}); */
-		
 		$("#thumbnailImg").click(function(){
 			$("#thumbnailImgView").toggle();
 		});
