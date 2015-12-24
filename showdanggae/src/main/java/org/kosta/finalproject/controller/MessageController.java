@@ -23,9 +23,10 @@ public class MessageController {
 	@Resource
 	private MessageService messageService;
 
-	@RequestMapping("messagePopForm.do")
+
+/*	@RequestMapping("messagePopForm.do")
 	public ModelAndView messagePopForm(HttpServletRequest request){		
-		//관리자가 회원에게 보낼때
+		
 		String member_id=request.getParameter("member_id");
 		System.out.println(member_id);
 		return new ModelAndView("popup/message_popup","member_id",member_id);		
@@ -37,7 +38,20 @@ public class MessageController {
 		System.out.println(member_id);
 		return new ModelAndView("/popup/message_popup1","member_id",member_id);		
 	}
+	
+	*/
 
+	/**
+	 * 
+	 * @Method Name  : sendMessage
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 :관리자가 특정회원에게 메세지를 보내줌
+	 * @param request
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping("sendMessage.do")
 	public ModelAndView sendMessage(HttpServletRequest request, MessageVO vo){	
 		messageService.sendMessage(vo);
@@ -50,6 +64,19 @@ public class MessageController {
 		messageService.sendMessage(vo);
 		return new ModelAndView("templates/main");
 	}
+	
+	/**
+	 * @Method Name  : messagebox
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : 회원이 받은 메세지들을 리스트로 뽑아 보여준다
+	 * 							메세지리스트 양이 한 페이지에 보여줄 수 있는 양보다 많을 수 있으므로
+	 * 							pageNo를 받아 그 페이지에 해당하는 메세지 리스트를 보여준다
+	 * @param member_id
+	 * @param pageNo
+	 * @return
+	 */
 	@RequestMapping("auth_messagebox.do")
 	public ModelAndView messagebox(String member_id,String pageNo){
 		MessageListVO list= messageService.myMessageBox(member_id,pageNo);
@@ -58,6 +85,16 @@ public class MessageController {
 	}
 	
 
+	/**
+	 * 
+	 * @Method Name  : messageBoxContent
+	 * @작성일   : 2015. 12. 22. 
+	 * @작성자   : 유서정
+	 * @변경이력  :
+	 * @Method 설명 : 회원이 받은 메세지중 한 메세지를 클릭하면 그 메세지에 해당하는 내용과 정보를 보여준다
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping("auth_messageBoxContent.do")
 	@ResponseBody
 	public MessageVO messageBoxContent(MessageVO vo) {
