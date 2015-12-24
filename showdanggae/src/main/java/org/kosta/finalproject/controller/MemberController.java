@@ -1,5 +1,4 @@
 package org.kosta.finalproject.controller;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -391,47 +390,59 @@ public class MemberController {
 		return new ModelAndView("member_memberManagerDeleteOk");
 	}
 
-	// CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
 	/**
-	 * (right 부분) 검색하고자 하는 친구의 ID를 검색하는 메서드 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
 	 * 
+	 * @Method 이름 : findMemberById
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드. 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
 	 * @param member_id
 	 * @param sessionId
 	 * @return
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
 	 */
 	@RequestMapping("auth_findMemberById.do")
 	@ResponseBody
 	public List<MemberVO> findMemberById(String member_id, String sessionId)
 			throws Exception {
-		System.out.println("controller 영역 " + member_id + " " + sessionId);
 		List<MemberVO> list = memberService
 				.findMemberById(member_id, sessionId);
 		return list;
 	}
 
 	/**
-	 * (right 부분) 친구 ID 검색 후, 팔로잉을 하는 메서드 '+팔로우' 버튼 클릭과 동시에 친구추가가 되고 'v팔로잉' 버튼으로
-	 * 변경된다.
 	 * 
+	 * @Method 이름 : addFollow
+	 * @Method 설명 : right.jsp에서 친구 ID 검색 후, 팔로잉을 하는 메서드 '+팔로우' 버튼 클릭과 동시에 친구추가가 되고
+	 * 					 'v팔로잉' 버튼으로 변경된다.
+	 * 		
 	 * @param fvo
+	 * @param request
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : 송슬하,박준서
 	 */
+	
 	@RequestMapping("auth_add.do")
 	@ResponseBody
 	public void addFollow(FollowVO fvo, HttpServletRequest request)
 			throws Exception {
 		memberService.addFollow(fvo);
 	}
-
+	
 	/**
-	 * (right 부분) 팔로잉한 친구를 팔로잉 취소하는 메서드 'v팔로잉' 버튼 클릭과 동시에 친구삭제가 되고 '+팔로우' 버튼으로
-	 * 변경된다.
 	 * 
+	 * @Method 이름 : deleteFollow
+	 * @Method 설명 : right.jsp에서  팔로잉한 친구를 팔로잉 취소하는 메서드 'v팔로잉' 버튼 클릭과 동시에 친구삭제가 되고
+	 * 					 '+팔로우' 버튼으로 변경된다.
 	 * @param vo
+	 * @param request
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
 	 */
+	
 	@RequestMapping("auth_delete.do")
 	@ResponseBody
 	public void deleteFollow(FollowVO vo, HttpServletRequest request)
@@ -439,13 +450,18 @@ public class MemberController {
 		memberService.deleteFollow(vo);
 	}
 
+	
 	/**
-	 * (right 부분) 팔로잉 버튼 클릭시 내가 following 한 친구 리스트를 보여준다.
 	 * 
+	 * @Method 이름 : findFollowingId
+	 * @Method 설명 : right.jsp에서 팔로잉 탭을 클릭했을시 내가 팔로잉한 친구 리스트를 보여준다.
 	 * @param member_id
 	 * @return
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
 	 */
+	
 	@RequestMapping("auth_findFollowingId.do")
 	@ResponseBody
 	public List<FollowVO> findFollowingId(String member_id) throws Exception {
@@ -455,12 +471,16 @@ public class MemberController {
 	}
 
 	/**
-	 * (right 부분) 팔로워 버튼 클릭시 나를 following 한 친구 리스트를 보여준다.
 	 * 
+	 * @Method 이름 : findFollowerId
+	 * @Method 설명 : right.jsp에서 팔로워 탭을 클릭했을 시 나를 팔로우한 친구 리스트를 보여준다.
 	 * @param member_id
 	 * @return
 	 * @throws Exception
+	 * @작성일 : 2015. 12. 22.
+	 * @작성자 : KOSTA
 	 */
+	
 	@RequestMapping("auth_findFollowerId.do")
 	@ResponseBody
 	public List<FollowVO> findFollowerId(String member_id) throws Exception {
@@ -474,7 +494,7 @@ public class MemberController {
 	 * 
 	 * @param searchId
 	 * @return
-	 * @throws Exception
+	 * @throws Exception 이건 없앴는데 어떻게 해야하나...
 	 */
 	@RequestMapping("auth_onkeyupId.do")
 	@ResponseBody
