@@ -13,7 +13,9 @@
 			location.href="auth_getMyProductList.do?member_id=${sessionScope.mvo.member_id}&currentCategory=${requestScope.productInfo.pvo.category_id}";
 		});
 		$("#deleteProductBtn").click(function(){
-			location.href="deleteProduct.do?product_id=${requestScope.productInfo.pvo.product_id}";
+			if(confirm("이 글을 삭제하시겠습니까?")) {
+				location.href="deleteProduct.do?product_id=${requestScope.productInfo.pvo.product_id}";
+			}
 		});
 		
 		function AddComma(data_value) {

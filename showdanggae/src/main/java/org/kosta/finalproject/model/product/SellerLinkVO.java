@@ -1,5 +1,11 @@
 package org.kosta.finalproject.model.product;
 
+
+/**
+ * 링크, product_id등 다수의 정보를 포함하고 있는 판매 링크를 전달하기 위한 VO 클래스
+ * @author 용호
+ *
+ */
 public class SellerLinkVO {
 	
 	private String link;
