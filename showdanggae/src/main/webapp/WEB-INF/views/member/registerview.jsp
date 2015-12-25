@@ -2,11 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
-
-
-
 $(document).ready(function() {
-	
 	
 	$("#emailSelect").change(function(){
 		var checkval1=$("#email_id").val();
@@ -36,8 +32,6 @@ $(document).ready(function() {
 	var emaildomainComp = $(":input[name=email_domain]").val();
 	var birthdayComp = $(":input[name=birthday]").val();
 	var email=emailIdComp+"@"+emaildomainComp;
-	
-	
 	var RegexName = /^[가-힣]{2,4}$/; //이름 유효성 검사 2~4자 사이
 
 
@@ -57,7 +51,7 @@ $(document).ready(function() {
 			alert("비밀번호를 입력해주세요");
 			return false;
 		}
-		//repassResult
+		
 		if($("#repassResult").text() !="인증성공"){
 			alert("비밀번호 인증을 받으세요");
 			return false;

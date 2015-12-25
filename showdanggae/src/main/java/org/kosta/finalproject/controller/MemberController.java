@@ -118,6 +118,7 @@ public class MemberController {
 	public String registerview() {
 		return "member_registerview";
 	}
+	
 
 	/**
 	 * 이건 성엽오빠가~~~~~~~~~~~~~~
@@ -527,12 +528,12 @@ public class MemberController {
 
 
 /**
- * 
  * @Method Name  : Profile
  * @작성일   : 2015. 12. 22. 
  * @작성자   : 유서정
  * @변경이력  :
- * @Method 설명 : 회원의 프로필정보(회원의 관심사리스트)를 제공해주고 선택한 관심사를 저장시켜준다			 
+ * @Method 설명 : 회원의 프로필정보(회원의 관심사리스트)를 제공해주고 
+ * 선택한 관심사를 저장시켜준다			 
  * @param member_id
  * @return
  */
@@ -559,8 +560,10 @@ public class MemberController {
 	 * @작성일   : 2015. 12. 22. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보(게시물,팔로우,팔로잉)를 ajax로 가져다준다 
-	 * 							(회원이 게시한 게시물수, 회원을 받아보는 팔로우 수,회원이 다른회원을 받아보는 팔로잉 수)
+	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보
+	 * 				  (게시물,팔로우,팔로잉)를 ajax로 가져다준다 
+	 * 				 (회원이 게시한 게시물수, 회원을 받아보는 팔로우 수,
+	 * 				 회원이 다른회원을 받아보는 팔로잉 수)
 	 * @param member_id
 	 * @return
 	 */

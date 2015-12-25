@@ -15,6 +15,7 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+	
 	/**
 	 * 
 	 * @Method Name  : idCheck

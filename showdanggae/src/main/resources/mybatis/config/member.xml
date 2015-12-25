@@ -11,8 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
 
  <insert id="register">
-insert into member (member_id,password,member_name,email,birthday) values (#{member_id},#{password},#{member_name},#{email},to_date(#{birthday},'RRMMDD'))
-
+insert into member (member_id,password,member_name,email,birthday) 
+values (#{member_id},#{password},#{member_name},#{email},to_date(#{birthday},'RRMMDD'))
  </insert>
  
  <select id="login" resultType="mvo">
