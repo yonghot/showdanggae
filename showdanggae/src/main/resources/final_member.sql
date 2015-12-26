@@ -46,7 +46,7 @@ insert into member values ('dd','tjwjd','������','lipchel@naver.com'
  update member set email='lipchel@daum.net' , birthday='19880530' where member_Id='javaKING'
 
 
- 
+ select * from MEMBER
 select  to_date(birthday) from member where member_Id='javaKING'; 
 
 to_char(,'yymmdd')
@@ -85,8 +85,8 @@ select member_id,password,member_name,report,email,birthday from member where me
 	
 select * from interest where member_id='lipchel'
 
-
-
+select * from member
+  delete from member where member_id='admin'
 
 -- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 

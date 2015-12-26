@@ -15,10 +15,6 @@ public class ProductDAOImpl implements ProductDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	
-	// 강민석 영역
-
-	// 김용호 영역
-	
 	@Override
 	public List<ProductVO> getMyProductList(Map<String, String> map) {
 		return sqlSessionTemplate.selectList("product.getMyProductList", map);
@@ -106,8 +102,18 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSessionTemplate.selectOne("product.getCategoryIdByProductId", product_id);
 	}
 
+	/**
+	 * @Method 이름 : getLowestPriceByProductId
+	 * @Method 설명 : 쇼핑 메모 리스트를 불러올 때 썸네일 이미지와 함께 최저가를 카드에 표시해주기 위해 해당 글에 포함된 판매링크별 가격 중 최저가를 추출한다.
+	 * @param product_id
+	 * @return
+	 * @작성일 : 2015. 12. 23.
+	 * @작성자 : 용호
+	 */
 	@Override
 	public int getLowestPriceByProductId(int product_id) {
+		
+		//최저가의 기본값을 0으로 설정하고 판매링크가 있을 경우에만 최저가를 갱신한다.
 		int lowestPrice = 0;
 		try {
 			lowestPrice = sqlSessionTemplate.selectOne("product.getLowestPriceByProductId", product_id);

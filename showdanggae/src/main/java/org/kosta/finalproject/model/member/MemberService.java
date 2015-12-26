@@ -24,6 +24,9 @@ public interface MemberService {
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 	
 	public List<MemberVO> findMemberById(String id, String sessionId);
+	
+	
+	
 	public void addFollow(FollowVO fvo);
 	public void deleteFollow(FollowVO vo);
 	public List<FollowVO> findFollowingId(String member_id);

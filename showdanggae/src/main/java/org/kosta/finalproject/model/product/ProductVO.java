@@ -1,20 +1,26 @@
 package org.kosta.finalproject.model.product;
 
+
+/**
+ * 다수의 정보를 갖는 product를 전달하기 위한 VO 클래스 
+ * @author 용호
+ *
+ */
 public class ProductVO {
 	
-	private int product_id; //primary key
-	private int category_id; //not null
-	private String member_id; //not null
-	private String product_name; //not null
-	private int likes; //default 0
-	private int dislikes; //default 0
-	private int hits; //default 0
-	private String review; //not null
-	private int review_score; //default 0
-	private String detail; //not null
-	private int visiblity; //default 0
-	private String regist_date; //not null
-	private int currentCategory; //default 0
+	private int product_id;
+	private int category_id;
+	private String member_id;
+	private String product_name;
+	private int likes;
+	private int dislikes;
+	private int hits;
+	private String review;
+	private int review_score;
+	private String detail;
+	private int visiblity;
+	private String regist_date;
+	private int currentCategory;
 	private String thumbnail_link;
 	private int lowestPrice;
 	private int rownum;

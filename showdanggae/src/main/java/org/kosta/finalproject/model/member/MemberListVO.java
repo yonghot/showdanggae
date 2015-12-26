@@ -1,7 +1,11 @@
 package org.kosta.finalproject.model.member;
-
 import java.util.ArrayList;
-
+/**
+ * list : 회원들의 정보를 담은 MemberVO 의 리스트들
+ * mpagingBean :  관리자가 보는 회원관리 view 에서 페이징처리를 위한 class
+ * @author 유서정
+ *
+ */
 
 public class MemberListVO {
 	private ArrayList<MemberVO> list;

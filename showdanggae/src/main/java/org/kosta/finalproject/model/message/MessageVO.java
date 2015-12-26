@@ -1,5 +1,15 @@
 package org.kosta.finalproject.model.message;
-
+/**
+ * member_id:메세지 수신자
+ * message:메세지 내용
+ * sender: 메세지 발신자
+ * title: 메세지 제목
+ * send_date: 메세지를 보낸날짜
+ * mno:메세지 고유 번호
+ * read:메세지 읽음 표시내용
+ * @author 유서정
+ *
+ */
 public class MessageVO {
 	private String member_id;
 	private String message;

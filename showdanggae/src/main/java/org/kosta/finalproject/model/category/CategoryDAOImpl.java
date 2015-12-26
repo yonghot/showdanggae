@@ -12,8 +12,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 @Repository
 public class CategoryDAOImpl implements CategoryDAO{
+	
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
+	
 	
 	@Override
 	public void addMyCategory(HashMap<String, String> map) {
@@ -40,7 +42,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 		return sqlSessionTemplate.selectList("category.findEvaluatingItemByCategoryId", category_id);
 	}
 	@Override
-	public void deleteEvaluatingItem(int  category_id) {
+	public void deleteEvaluatingItem(int category_id) {
 		sqlSessionTemplate.delete("category.deleteEvaluatingItem", category_id);		
 	}
 	
@@ -48,6 +50,10 @@ public class CategoryDAOImpl implements CategoryDAO{
 	@Override
 	public List<CategoryVO> getMainCategoryList() {
 		return sqlSessionTemplate.selectList("category.getMainCategoryList");
+	}
+	@Override
+	public String getFirstMemberCategoryId(String member_id) {
+		return sqlSessionTemplate.selectOne("category.getFirstMemberCategoryId", member_id);
 	}
 	@Override
 	public List<CategoryVO> getMemberCategoryList(String member_id) {
@@ -59,7 +65,6 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 	@Override
 	public int getProductCountNumber(int category_id) {
-		System.out.println(sqlSessionTemplate.selectOne("category.getProductCountNumber", category_id));
 		return sqlSessionTemplate.selectOne("category.getProductCountNumber", category_id);
 	}
 	
