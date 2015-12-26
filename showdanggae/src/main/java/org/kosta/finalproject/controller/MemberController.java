@@ -267,7 +267,8 @@ public class MemberController {
 	/**
 	 * 
 	 * @Method 이름 : findMemberById
-	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드. 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드.
+	 * 				  검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
 	 * @param member_id
 	 * @param sessionId
 	 * @return
