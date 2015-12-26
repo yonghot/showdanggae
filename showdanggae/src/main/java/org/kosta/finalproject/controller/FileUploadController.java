@@ -29,8 +29,7 @@ public class FileUploadController {
 	 */
 	@RequestMapping("fileupload.do") 
 	@ResponseBody
-	public ModelAndView fileUpload(FileVO vo) {
-		
+	public ModelAndView fileUpload(FileVO vo) {	
 		MultipartFile imgFile = vo.getProImgFile();
 		//업로드 파일이 없으면 파일명은 공란 처리된다
 		String fileName = imgFile.getOriginalFilename();
@@ -40,12 +39,10 @@ public class FileUploadController {
 			try {
 				fileName=vo.getMember_id()+".jpg";
 				imgFile.transferTo(new File(path+fileName));
-			
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
 		return new ModelAndView("member_profile");
 	}
 		

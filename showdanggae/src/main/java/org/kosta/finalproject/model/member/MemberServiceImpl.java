@@ -400,7 +400,6 @@ public class MemberServiceImpl implements MemberService {
  */
 	@Override
 	public List<String> myinterestList(String member_id) {
-		
 		return memberDAO.myinterestList(member_id);
 	}
 
