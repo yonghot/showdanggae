@@ -4,32 +4,27 @@
 <script type="text/javascript">
 
      $(document).ready(function(){
+    	 
      	$("tr").click(function(){
- 		
-     
  			$.ajax({
 				type:"get",
 				url:"auth_messageBoxContent.do?mno=" +$(this).children().eq(2).children().eq(1).val() + "&member_id=" +$(":input[name=member_id]").val(),
 				dataType:"json",
 				success:function(data){
 					
-					  if(data!=""){	
+				  if(data!=""){	
 					  
-						  
-						  $('.modal').modal({
-		                       remote :   $("#massage_title").html(data.title),
-		                       remote :   $("#massage_sender").html(data.sender),
-		                       remote :   $("#message-text").html(data.message)
+						$('.modal').modal({
+	                       remote :   $("#massage_title").html(data.title),
+	                       remote :   $("#massage_sender").html(data.sender),
+	                       remote :   $("#message-text").html(data.message)
 		                });
-						 
-						  
-			            }
+					 
+					  
+		            }
 				}
 			});
-
- 
      	});
-     	 
     });
          
          

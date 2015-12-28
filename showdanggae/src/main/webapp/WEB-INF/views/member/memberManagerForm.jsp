@@ -29,7 +29,6 @@
  			
  			if(confirm('메세지를 보내시겠습니까?')==true){			
  				$("#sendForm").submit();
- 			 
  			}else{
  				return false;
  			}
@@ -66,7 +65,6 @@
 				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>
 				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
 				data-whatever="${mvo.member_id}">메세지보내기</button></td>
-
 				
 			</tr>	
 			</c:forEach>
@@ -83,7 +81,7 @@
 		${i}
 	</c:when>
 	<c:otherwise>
-			<a href="${initParam.root}memberManagerForm.do?pageNo=${i }">${i }</a>
+			<a href="${initParam.root}memberManagerForm.do?pageNo=${i}">${i}</a>
 	</c:otherwise>
 	</c:choose>	
 	</c:forEach>
@@ -110,7 +108,6 @@
           <div class="form-group">
             <label for="recipient-name" class="control-label">받는이:</label>
             <input type="text" class="form-control" id="recipient-name" name="member_id">
-        
           </div>
          <div class="form-group">
             <label for="message-title" class="control-label">제목:</label> 
@@ -125,11 +122,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-        <button type="button"class="btn btn-primary" id="sendMessage" >보내기</button>
-     
-        
+        <button type="button"class="btn btn-primary" id="sendMessage">보내기</button>
       </div>
     </div>
   </div>
-  </div>
+</div>
 	

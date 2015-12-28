@@ -24,24 +24,6 @@ public class MessageController {
 	private MessageService messageService;
 
 
-/*	@RequestMapping("messagePopForm.do")
-	public ModelAndView messagePopForm(HttpServletRequest request){		
-		
-		String member_id=request.getParameter("member_id");
-		System.out.println(member_id);
-		return new ModelAndView("popup/message_popup","member_id",member_id);		
-	}
-/*	@RequestMapping("messagePopForm1.do")
-	public ModelAndView messagePopForm1(HttpServletRequest request, MemberVO vo){		
-	
-		String member_id=request.getParameter("member_id");
-		System.out.println(member_id);
-		return new ModelAndView("/popup/message_popup1","member_id",member_id);		
-
-	}
-	
-	*/
-
 	/**
 	 * 
 	 * @Method Name  : sendMessage
@@ -53,6 +35,7 @@ public class MessageController {
 	 * @param vo
 	 * @return
 	 */
+	
 
 
 
