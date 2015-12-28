@@ -25,8 +25,8 @@ insert into member (member_Id,password,member_name,email,birthday) values ('java
 insert into member (member_Id,password,member_name,email,birthday) values ('java2','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('java3','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member (member_Id,password,member_name,email,birthday) values ('java4','1234','김용호','blue@blueprint.com', to_date('880307','RRMMDD'));
-insert into member (member_Id,password,member_name,email,birthday) values ('admingalbage','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
-insert into member (member_Id,password,member_name,email,birthday) values ('david','1234','박성엽','david@naver.com',to_date('850429','RRMMDD'));
+insert into member (member_Id,password,member_name,email,birthday) values ('javaking','1234','관리자','admin@showdanggae.com', to_date('120204','RRMMDD')); 
+insert into member (member_Id,password,member_name,email,birthday) values ('javasong','1234','박성엽','david@naver.com',to_date('850429','RRMMDD'));
 
 insert into member(member_id, password, member_name, email, birthday) values('jaxeva','1234','유서정','blue@blueprint.com', to_date('880307','RRMMDD'));
 insert into member(member_id, password, member_name, email, birthday) values('jaexva1','1234','유서정','blue@blueprint.com', to_date('880307','RRMMDD'));
