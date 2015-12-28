@@ -53,13 +53,7 @@
 				<td>${mvo.email}</td>
 				<td>${mvo.birthday }</td>
 				<td>${mvo.report }</td>
-				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>
-<<<<<<< HEAD
-				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
-				data-whatever="${mvo.member_id}">메세지보내기</button></td>
-=======
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-				
+				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>	
 				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#managerexampleModal" 
 				data-whatever="${mvo.member_id}">메세지보내기</button></td>		
 			</tr>	
@@ -107,11 +101,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form action="sendMessage.do" id="sendForm">
           <div class="form-group">
             <label for="recipient-name" class="control-label">받는이:</label>
-<<<<<<< HEAD
-            <input type="text" class="form-control" id="recipient-name" name="member_id">
-=======
             <input type="text" class="form-control" id="recipient-name" name="member_id" >     
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
           </div>
          <div class="form-group">
             <label for="message-title" class="control-label">제목:</label> 
@@ -130,11 +120,5 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
       </div>
     </div>
   </div>
-<<<<<<< HEAD
 </div>
 	
-=======
-  </div>
-  
-  
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git

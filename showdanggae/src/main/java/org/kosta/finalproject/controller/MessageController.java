@@ -36,16 +36,11 @@ public class MessageController {
 	 * @param vo
 	 * @return
 	 */
-<<<<<<< HEAD
-=======
 	@RequestMapping("sendMessage.do")
 	public String sendMessage(MessageVO vo){
 		messageService.sendMessage(vo);
 		return "message_messageSendOk";
 	}
->>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
-	
-
 
 
 /**
