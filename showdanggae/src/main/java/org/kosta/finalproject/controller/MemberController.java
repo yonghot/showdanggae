@@ -365,10 +365,7 @@ public class MemberController {
 	 */
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(String pageNo) {
-
 		MemberListVO mvolist = memberService.memberManagerList(pageNo);
-		System.out.println(mvolist);
-
 		return new ModelAndView("member_memberManagerForm", "memberList",
 				mvolist);
 	}

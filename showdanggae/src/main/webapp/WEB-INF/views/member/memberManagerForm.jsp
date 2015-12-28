@@ -15,15 +15,7 @@
  			}
  		
  	 	});
- 		
- 		$('#exampleModal').on('shown.bs.modal', function (event) {
- 			  var button = $(event.relatedTarget) 
- 			  var recipient = button.data('whatever')
-				
- 			  var modal = $(this)
- 			  modal.find('.modal-title').text('New message to ' + recipient)
- 			  modal.find('.modal-body input').val(recipient)
- 			})
+ 	
 
   		$("#sendMessage").click(function(){
  			
@@ -57,27 +49,27 @@
   		</tr>
 			<c:forEach var="mvo" items="${requestScope.memberList.list}">				
 			<tr>
-			
 			    <td>${mvo.member_id}</td> 	
 				<td>${mvo.member_name }</td>
 				<td>${mvo.email}</td>
 				<td>${mvo.birthday }</td>
 				<td>${mvo.report }</td>
 				<td><input type="button" value="삭제" class="btn btn-default" id="deleteBtn" name="deleteBtn"></td>
-				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 
-				data-whatever="${mvo.member_id}">메세지보내기</button></td>
-
 				
+				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#managerexampleModal" 
+				data-whatever="${mvo.member_id}">메세지보내기</button></td>		
 			</tr>	
+	
 			</c:forEach>
 </table>
 
 	<c:if test="${requestScope.memberList.mpagingBean.isPreviousPageGroup()}">
-			<a href="${initParam.root}memberManagerForm.do?pageNo=${requestScope.memberList.mpagingBean.startPageOfPageGroup-1}">◀ </a>
-		</c:if>
+	<a href="${initParam.root}memberManagerForm.do?pageNo=${requestScope.memberList.mpagingBean.startPageOfPageGroup-1}">◀ </a>
+	</c:if>
 		
 		
-<c:forEach begin="${requestScope.memberList.mpagingBean.startPageOfPageGroup }" end="${requestScope.memberList.mpagingBean.endPageOfPageGroup }" var="i">
+<c:forEach begin="${requestScope.memberList.mpagingBean.startPageOfPageGroup }" 
+end="${requestScope.memberList.mpagingBean.endPageOfPageGroup }" var="i">
 	<c:choose>
 	<c:when test="${requestScope.memberList.mpagingBean.nowPage==i}">
 		${i}
@@ -98,19 +90,20 @@
 	
 	</div>
 	
-<div class="modal fade" id="exampleModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="managerexampleModal"  tabindex="-1" role="dialog" 
+aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
       <div class="modal-body">
         <form action="sendMessage.do" id="sendForm">
           <div class="form-group">
             <label for="recipient-name" class="control-label">받는이:</label>
-            <input type="text" class="form-control" id="recipient-name" name="member_id">
-        
+            <input type="text" class="form-control" id="recipient-name" name="member_id" >     
           </div>
          <div class="form-group">
             <label for="message-title" class="control-label">제목:</label> 
@@ -132,4 +125,5 @@
     </div>
   </div>
   </div>
-	
+  
+  

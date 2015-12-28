@@ -154,7 +154,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * @작성일   : 2015. 12. 23. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 : 
+	 * @Method 설명 : 회원탈퇴 처리할 아이디를 삭제한다
 	 * @param member_id
 	 */
 	@Override

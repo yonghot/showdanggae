@@ -196,7 +196,7 @@ public class QnABoardController {
 	 * @작성일   : 2015. 12. 23. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 :관리자가 등록한 답글을 보여준다
+	 * @Method 설명 :관리자의 답글을 등록한 후 게시된 글을 보여준다
 	 * @param qvo
 	 * @return
 	 */
