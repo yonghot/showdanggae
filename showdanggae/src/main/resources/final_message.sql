@@ -35,8 +35,8 @@ member_name 은 관리자
 
 notice_seq.nextval
 
-INSERT INTO MESSAGE(member_Id,message,spand_name,title,spand_date,mno)
-values ('admin','두번째메세지TEST','관리자','TEST1',SYSDATE,message_seq.nextval);
+INSERT INTO MESSAGE(member_Id,message,spand_name,title,send_date,mno)
+values ('lipchel','두번째메세지TEST','관리자','TEST1',SYSDATE,message_seq.nextval);
 
 
 //특정 사람이 받은 메세지 검색할때

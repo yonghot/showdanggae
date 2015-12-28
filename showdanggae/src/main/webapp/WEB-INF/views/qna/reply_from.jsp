@@ -28,7 +28,8 @@ $(document).ready(function(){
 <table class="table">
 	<tr>
 		<td>글번호: ${requestScope.qvo.no } | 글제목:
-		<input type=text name=title value="RE:${requestScope.qvo.title }" id="title" readonly="readonly"></input>
+		<input type=text name=title value="RE:${requestScope.qvo.title }" 
+		id="title" readonly="readonly"></input>
 		</td>
 	</tr>
 	<tr>
@@ -48,7 +49,8 @@ ${requestScope.qvo.content}
 	</tr>
 	
 	<tr>
-		<td valign="middle"><input type="submit" value="답글달기"  id="replyBtn" class="btn btn-default"></input></td>
+		<td valign="middle"><input type="submit" value="답글달기"  
+		id="replyBtn" class="btn btn-default"></input></td>
 	</tr>
 </table>
   <input type="hidden" name="ref" value="${requestScope.qvo.ref }">

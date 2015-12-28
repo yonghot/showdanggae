@@ -115,7 +115,7 @@ public class MessageController {
 	@RequestMapping("auth_messageBoxContent.do")
 	@ResponseBody
 	public MessageVO messageBoxContent(MessageVO vo) {
-		System.out.println(vo);
+	
 		MessageVO msvo = messageService.MyMessageShowPopUp(vo);
 
 		return msvo;

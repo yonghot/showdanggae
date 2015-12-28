@@ -144,7 +144,7 @@ public class QnABoardDAOImpl implements QnABoardDAO{
 	 */
 	@Override
 	public void insertRefContent(QnaVO qvo) {
-		//sqlSessionTemplate.insert("board.writeReply", bvo);		
+			
 		sqlSessionTemplate.insert("qna.writeReply", qvo);
 	}
 
