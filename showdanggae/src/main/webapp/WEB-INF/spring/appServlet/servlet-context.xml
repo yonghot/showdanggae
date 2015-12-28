@@ -86,9 +86,10 @@
    C:\\java-kosta\\WAS\\finalproject-tomcat\\webapps\\showdanggae\\upload\\
    C:\java-kosta\WAS\project-tomcat\webapps\showdanggae\withdraw
  -->
+ 
 <bean id="uploadPath" class="java.lang.String" >
  <constructor-arg>
-  <value>C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\upload\\</value><!-- value가 여기 붙어있어야 한다 -->
+  <value>C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\upload\\</value>
  </constructor-arg>
 </bean> 
 

@@ -118,6 +118,7 @@ public class MemberController {
 	public String registerview() {
 		return "member_registerview";
 	}
+	
 
 	/**
 	 * 이건 성엽오빠가~~~~~~~~~~~~~~
@@ -364,10 +365,7 @@ public class MemberController {
 	 */
 	@RequestMapping("memberManagerForm.do")
 	public ModelAndView memberManagerForm(String pageNo) {
-
 		MemberListVO mvolist = memberService.memberManagerList(pageNo);
-		System.out.println(mvolist);
-
 		return new ModelAndView("member_memberManagerForm", "memberList",
 				mvolist);
 	}
@@ -394,7 +392,8 @@ public class MemberController {
 	/**
 	 * 
 	 * @Method 이름 : findMemberById
-	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드. 검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
+	 * @Method 설명 : right.jsp에서 검색하고자 하는 친구의 ID를 검색하는 메서드.
+	 * 				  검색시 입력어가 포함된 모든 ID가 리스트로 출력된다.
 	 * @param member_id
 	 * @param sessionId
 	 * @return
@@ -439,7 +438,7 @@ public class MemberController {
 	 * @param request
 	 * @throws Exception
 	 * @작성일 : 2015. 12. 22.
-	 * @작성자 : KOSTA
+	 * @작성자 : 송슬하,박준서
 	 */
 	
 	@RequestMapping("auth_delete.do")
@@ -457,7 +456,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 * @작성일 : 2015. 12. 22.
-	 * @작성자 : KOSTA
+	 * @작성자 : 송슬하,박준서
 	 */
 	
 	@RequestMapping("auth_findFollowingId.do")
@@ -475,7 +474,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 * @작성일 : 2015. 12. 22.
-	 * @작성자 : KOSTA
+	 * @작성자 : 송슬하,박준서
 	 */
 	
 	@RequestMapping("auth_findFollowerId.do")
@@ -523,12 +522,12 @@ public class MemberController {
 
 
 /**
- * 
  * @Method Name  : Profile
  * @작성일   : 2015. 12. 22. 
  * @작성자   : 유서정
  * @변경이력  :
- * @Method 설명 : 회원의 프로필정보(회원의 관심사리스트)를 제공해주고 선택한 관심사를 저장시켜준다			 
+ * @Method 설명 : 회원의 프로필정보(회원의 관심사리스트)를 제공해주고 
+ * 선택한 관심사를 저장시켜준다			 
  * @param member_id
  * @return
  */
@@ -537,6 +536,7 @@ public class MemberController {
 		//member_profile로 관심사 리스트 보내줌
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("member_profile");
+		
 		//내가 선택한 관심사를 제외한 관심사
 		List<String> interestList=memberService.profileInterestList(member_id);
 		//내가 이미 선택한 관심사
@@ -555,8 +555,10 @@ public class MemberController {
 	 * @작성일   : 2015. 12. 22. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보(게시물,팔로우,팔로잉)를 ajax로 가져다준다 
-	 * 							(회원이 게시한 게시물수, 회원을 받아보는 팔로우 수,회원이 다른회원을 받아보는 팔로잉 수)
+	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보
+	 * 				  (게시물,팔로우,팔로잉)를 ajax로 가져다준다 
+	 * 				 (회원이 게시한 게시물수, 회원을 받아보는 팔로우 수,
+	 * 				 회원이 다른회원을 받아보는 팔로잉 수)
 	 * @param member_id
 	 * @return
 	 */
@@ -574,7 +576,8 @@ public class MemberController {
 	 * @작성일   : 2015. 12. 22. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 :template의 왼쪽에 나타나는 나의 프로필 정보(나의 관심사들)를 ajax로 가져다준다
+	 * @Method 설명 :template의 왼쪽에 나타나는 나의 프로필 정보(나의 관심사들)
+	 * 를 ajax로 가져다준다
 	 * @param member_id
 	 * @return
 	 */
@@ -582,7 +585,6 @@ public class MemberController {
 	@ResponseBody
 	public List<String> profileInterest(String member_id){
 		List<String> interest=memberService.profileInterest(member_id);
-	
 		return interest;
 	}
 	
@@ -592,7 +594,7 @@ public class MemberController {
 	 * @작성일   : 2015. 12. 22. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보(관심사 , 내 소개)를 수정한다					
+	 * @Method 설명 : template의 왼쪽에 나타나는 나의 프로필 정보(내 소개)를 수정					
 	 * @param vo
 	 * @param request
 	 * @return

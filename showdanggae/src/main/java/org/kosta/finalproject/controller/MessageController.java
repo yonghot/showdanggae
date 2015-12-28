@@ -14,6 +14,7 @@ import org.kosta.finalproject.model.message.MsPagingBean;
 import org.kosta.finalproject.model.notice.ListVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +36,14 @@ public class MessageController {
 	 * @param vo
 	 * @return
 	 */
+<<<<<<< HEAD
+=======
+	@RequestMapping("sendMessage.do")
+	public String sendMessage(MessageVO vo){
+		messageService.sendMessage(vo);
+		return "message_messageSendOk";
+	}
+>>>>>>> branch 'master' of https://github.com/yonghot/showdanggae.git
 	
 
 
@@ -91,11 +100,13 @@ public class MessageController {
 	@RequestMapping("auth_messageBoxContent.do")
 	@ResponseBody
 	public MessageVO messageBoxContent(MessageVO vo) {
-		System.out.println(vo);
+	
 		MessageVO msvo = messageService.MyMessageShowPopUp(vo);
 
 		return msvo;
 	}
+
+	
 
 
 }

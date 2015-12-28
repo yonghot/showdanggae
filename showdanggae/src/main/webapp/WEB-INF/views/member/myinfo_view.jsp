@@ -134,7 +134,8 @@ $(document).ready(function() {
                        <label for="inputEmail3" class="control-label">아이디</label>
                    </div>
                    <div class="col-sm-6 hidden-sm hidden-xs text-left">
-                       <input type="text" class="form-control" value="${sessionScope.mvo.member_id }" name="member_id"  id="id"readonly="readonly">            
+                       <input type="text" class="form-control" value="${sessionScope.mvo.member_id }" 
+                       name="member_id"  id="id"readonly="readonly">            
                    </div>
                </div>
                <div class="form-group">
@@ -151,7 +152,8 @@ $(document).ready(function() {
                        <label for="inputPassword3" class="control-label">비밀번호 확인</label>
                    </div>
                    <div class="col-sm-6">
-                       <input type="password" class="form-control" name="repassword" id="repassword" placeholder="위와 똑같이 한번만 더 입력해주세요">
+                       <input type="password" class="form-control" name="repassword" 
+                       id="repassword" placeholder="위와 똑같이 한번만 더 입력해주세요">
                        <span id="repassResult"></span>
                    </div>
                </div>
@@ -160,7 +162,8 @@ $(document).ready(function() {
                        <label for="inputPassword3" class="control-label">이름</label>
                    </div>
                    <div class="col-sm-6">
-                       <input type="text" class="form-control"  id="name" name="member_name" value="${sessionScope.mvo.member_name }"  placeholder="이름">
+                       <input type="text" class="form-control"  id="name" name="member_name" 
+                       value="${sessionScope.mvo.member_name }"  placeholder="이름">
                          </div>
                      </div>
 				<div class="form-group">
@@ -168,13 +171,15 @@ $(document).ready(function() {
                       <label for="inputPassword3" class="control-label">이메일</label>
                   </div>
                   <div class="col-sm-2">
-                      	<input class="form-control" id="email_id" name="email_id"  value="${sessionScope.mvo.email_id }" type="text" />
+                      	<input class="form-control" id="email_id" name="email_id"  
+                      	value="${sessionScope.mvo.email_id }" type="text" />
                     </div>  
                    <div class="col-sm-1" align="center">
                    @
                    </div>
 				<div class="col-sm-3">
-					<input class="form-control" id="email_domain"  name="email_domain" readonly="readonly" value="${sessionScope.mvo.email_domain }" type="text" placeholder="이메일 Domain"  />				 
+					<input class="form-control" id="email_domain"  name="email_domain" readonly="readonly" 
+					value="${sessionScope.mvo.email_domain }" type="text" placeholder="이메일 Domain"  />				 
 					<input id="email" name="email" value="" type="hidden"  />
 				</div>
 				<div class="col-sm-3">

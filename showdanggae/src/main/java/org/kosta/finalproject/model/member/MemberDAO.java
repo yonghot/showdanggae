@@ -27,6 +27,8 @@ public interface MemberDAO {
 	//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 	
 	List<MemberVO> findMemberById(String id);
+	
+	
 	public void addFollow(FollowVO fvo);
 	public void deleteFollow(FollowVO vo);
 	List<FollowVO> findFollowingId(String member_id);

@@ -336,7 +336,7 @@ public class MemberServiceImpl implements MemberService {
  * @작성자   : 유서정
  * @변경이력  :
  * @Method 설명 : 회원 자신이 올린 게시물 수, 회원글을 받아보는 팔로워 수, 회원이
- * 							 다른 회원을 받아보는 팔로잉 수를 각각 HashMap으로 저장한다
+ * 				  다른 회원을 받아보는 팔로잉 수를 각각 HashMap으로 저장한다
  * @param member_id
  * @return
  */
@@ -400,7 +400,6 @@ public class MemberServiceImpl implements MemberService {
  */
 	@Override
 	public List<String> myinterestList(String member_id) {
-		
 		return memberDAO.myinterestList(member_id);
 	}
 

@@ -74,16 +74,6 @@
 							"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
 
 						}
-					/*     <div class="btn-group">
-						   <button class="btn">행동</button>
-						   <button class='btn dropdown-toggle' data-toggle='dropdown'>
-						     <span class='caret'></span>
-						   </button>
-						   <ul class='dropdown-menu'>
-						   <a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>메세지 보내기</a>
-						 
-						   </ul>
-						 </div>  */
 						index+="<tbody></table>"
 							$("#searchIdView").html("");	
 						$("#searchFollowIdView").html(index);
@@ -138,14 +128,20 @@
 					 if(data!=""){		
 						 index +="<tr class='success'><td>ID</td><td></td></tr></thead><tbody>";
 						for(var i=0; i<data.length;i++){	
-							if(data[i].member_id=='${sessionScope.mvo.member_id}'&&data[i].member_id!="admingalbage"){
+						if(data[i].member_id=='${sessionScope.mvo.member_id}'&&data[i].member_id!="admingalbage"){
 								index +="<tr><td>"+data[i].member_id+"</td><td></td></tr>";
 							 }else if(data[i].member_id=="admingalbage"){
 									index +="";
 							 }else if(data[i].isFollow==true){
-								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'></form></td></tr>";
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+
+								data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+
+								"></form></a></td><td><form><input type='button' value='v팔로잉' id='addBtn' class='messagePopBtn3'>"
+								+"</form></td></tr>";
 							}else{
-								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+"></form></a></td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'></form></td></tr>";						
+								index +="<tr><td><a href='#'class='findMemberByIdBtn' data-toggle='modal' data-target='#exampleModal'>"+
+								data[i].member_id+"<form><input type='hidden' value="+data[i].member_id+
+								"></form></a></td><td><form><input type='button' value='+팔로우' id='addBtn' class='messagePopBtn3'>"
+								+"</form></td></tr>";						
 							}
 						}
 						index+="</table>";
@@ -176,9 +172,8 @@
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].following+"</a></td></tr>";
 							/* 	index += "<tr><td><a href='#'><span class='messagePopBtn1'>"+data[i].following+
 								"<form><input type='hidden' value="+data[i].following+"></form></span></a></td></tr>"; */
-
-								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].following+
-								"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
+								index += "<tr><td><a href='#'class='followingIdBtn' data-toggle='modal' data-target='#exampleModal'>"
+								+data[i].following+"<form><input type='hidden' value="+data[i].following+"></form></a></td></tr>";
 
 							}
 							index+="<tbody></table>"
@@ -194,6 +189,8 @@
 		   }); 
 		   //팔로워 버튼 클릭시 팔로우 아이디
 		   $("#followerBtn").click(function(event){
+			   
+			   
 			   event.preventDefault();
 			   $.ajax({
 					type:"POST",
@@ -204,11 +201,10 @@
 						var index="<table class='table'><thead>";
 						if(data!=""){
 							index +="<tr class='success'><td>ID</td></tr></thead><tbody>";
-							for(var i=0; i<data.length;i++){
-								
+							for(var i=0; i<data.length;i++){						
 								//index += "<tr><td><a href='${initParam.root}messagePopForm1.do?member_id='>"+data[i].follower+"</a></td></tr>";
-								index += "<tr><td><a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>"+data[i].follower+
-								"<form><input type='hidden' value="+data[i].follower+"></form></a></td></tr>";
+								index += "<tr><td><a href='#'class='followerIdBtn' data-toggle='modal' data-target='#exampleModal'>"
+								+data[i].follower+"<form><input type='hidden' value="+data[i].follower+"></form></a></td></tr>";
 							}
 							index+="</tbody></table>"
 								$("#searchIdView").html("");
@@ -295,7 +291,7 @@ session이 있을경우만 보여주고 세션이 끊겼을 경우에는 보여�
 		</div>
 	</div>
 </div>
- <!-- 사용기술 ajax 부추스트랩 자바스크립트 -->
+ <!-- 사용기술 ajax 부트스트랩 자바스크립트 -->
 
 
 

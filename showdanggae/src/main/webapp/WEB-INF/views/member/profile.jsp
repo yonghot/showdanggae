@@ -35,7 +35,8 @@
    	
    		$("#member_infoBtn").click(function(){
    			var infoComp = $(":input[name=member_info]").val();
-   			location.href="infoUpdate.do?member_info=" + infoComp +"&member_id=${sessionScope.mvo.member_id}";
+   			location.href="infoUpdate.do?member_info="
+   					+ infoComp +"&member_id=${sessionScope.mvo.member_id}";
    		});
    		});
    		
@@ -56,17 +57,17 @@
 	</td>
 </tr>
 <tr>
-	<td width="600"><!-- file:\\\C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\uploadl\\lipchel.jpg -->
-<!-- 	<img src="C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\uploadl\\${sessionScope.mvo.member_id}" alt="..." class="img-circle"> -->
-	<img src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" class="img-circle"  width=100px, height=100px>
+	<td width="600">
+	<img src="${initParam.root }upload/${sessionScope.mvo.member_id}.jpg" 
+	class="img-circle" width=100px, height=100px>
 	</td>
-	
 	<td>
-	 	    <form id="profileupimgloadForm" action="${initParam.root}fileupload.do" enctype="multipart/form-data" method="post">
-			<input type="file" name="proImgFile"><br>
-			<input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}">
-			<input type="submit" name="파일업로드"> <br>
-		</form>
+	  <form id="profileupimgloadForm" action="${initParam.root}fileupload.do"
+	   enctype="multipart/form-data" method="post">
+	  <input type="file" name="proImgFile"><br>
+	  <input type="hidden" name="member_id" value="${sessionScope.mvo.member_id}">
+	  <input type="submit" name="파일업로드"> <br>
+	  </form>
 	</td>
 </tr>
 	<tr>
@@ -78,7 +79,8 @@
 	<td colspan="2">
 		<div class="col-lg-10">
     <div class="input-group">
-      <input type="text" class="form-control"  name="member_info" value="${sessionScope.mvo.member_info}">
+      <input type="text" class="form-control"
+       name="member_info" value="${sessionScope.mvo.member_info}">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" id=member_infoBtn>등록</button>
       </span>
@@ -98,16 +100,13 @@
 	<br>
 
 	<c:forEach items="${requestScope.interestList}" var="interestList" >
-			<input type="checkbox" name=interestCheck  value="${interestList}">${interestList} 	 
+			<input type="checkbox" name=interestCheck  value="${interestList}">
+			${interestList}<br> 	 
 	</c:forEach>
 	
-	<c:forEach items="${requestScope.myinterestList}" var="myinterestList" >
-		    <div class="checkbox disabled">
-					  <label>
-					    <input type="checkbox"  disabled>
-					   		${myinterestList }
-					  </label>
-					</div>		
+	<c:forEach items="${requestScope.myinterestList}" var="myinterestList">	    
+			<input type="checkbox"  disabled>
+					   		${myinterestList }<br>		
 	</c:forEach>	
 	</form>
 	</td>
@@ -116,14 +115,14 @@
 		<form id="delinterest">
         <button class="btn btn-default" type="button" id="interestDelBtn">삭제</button><br>
 	<c:forEach items="${requestScope.interestList}" var="interestList" >
-			<input type="checkbox"  disabled  value="${interestList}">${interestList} 	 
+			<input type="checkbox"  disabled  value="${interestList}">${interestList}<br>
 	</c:forEach>
 	
 	<c:forEach items="${requestScope.myinterestList}" var="myinterestList" >
 		    <div class="checkbox disabled">
 					  <label>
 					    <input type="checkbox" name=interestCheck  value="${myinterestList}">
-					   		${myinterestList }
+					   		${myinterestList}<br>
 					  </label>
 					</div>		
 	</c:forEach>	
@@ -137,3 +136,6 @@
 </div>
 </div>
 
+
+<!-- file:\\\C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\uploadl\\lipchel.jpg -->
+<!-- 	<img src="C:\\java-kosta\\WAS\\project-tomcat\\webapps\\showdanggae\\uploadl\\${sessionScope.mvo.member_id}" alt="..." class="img-circle"> -->

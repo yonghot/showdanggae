@@ -15,6 +15,7 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+	
 	/**
 	 * 
 	 * @Method Name  : idCheck
@@ -153,7 +154,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 * @작성일   : 2015. 12. 23. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 : 
+	 * @Method 설명 : 회원탈퇴 처리할 아이디를 삭제한다
 	 * @param member_id
 	 */
 	@Override
@@ -378,15 +379,16 @@ public class MemberDAOImpl implements MemberDAO {
 	 * @작성일   : 2015. 12. 23. 
 	 * @작성자   : 유서정
 	 * @변경이력  :
-	 * @Method 설명 : 회원이 수정한 회원정보를 수정하고, 저장된 정보를 session에 다시 연결해 주기위해
-	 * 							해당 id에 일치하는 회원정보를 다시 검색한다
+	 * @Method 설명 : 회원이 수정한 회원정보를 수정하고, 저장된 정보를
+	 * 				 session에 다시 연결해 주기위해
+	 * 				 해당 id에 일치하는 회원정보를 다시 검색한다
 	 * @param vo
 	 * @return
 	 */
 	@Override
 	public MemberVO infoUpdate(MemberVO vo) {
-		 sqlSessionTemplate.update("member.infoUpdate", vo);
-		return  sqlSessionTemplate.selectOne("member.sessionConnect", vo.getMember_id());
+		sqlSessionTemplate.update("member.infoUpdate", vo);
+	return sqlSessionTemplate.selectOne("member.sessionConnect", vo.getMember_id());
 	}
 
 	/**

@@ -84,7 +84,6 @@ create table noticeboard(
 	writedate date not null
 );
 
-
 drop table qnaboard cascade constraint;
 create table qnaboard(
 	no number primary key,
